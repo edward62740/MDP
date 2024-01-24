@@ -1,0 +1,35 @@
+/*
+ * app_motion.h
+ *
+ *  Created on: Jan 22, 2024
+ *      Author: edward62740
+ */
+
+#ifndef INC_APP_MOTION_H_
+#define INC_APP_MOTION_H_
+
+
+#define CENTER_POS_PWM 153 //150
+#define LEFT_DELTA 40  // was 40
+#define RIGHT_DELTA 90 // was 80 then 100
+#define STEERING_BUFFER_TIME 250
+#define LEFT_POS_PWM (CENTER_POS_PWM - LEFT_DELTA)
+#define RIGHT_POS_PWM (CENTER_POS_PWM + RIGHT_DELTA)
+
+class Servo {
+public:
+	Servo(TIM_HandleTypeDef  *ctrl, uint32_t min, uint32_t max, uint32_t center);
+	~Servo();
+	bool turnLeft();
+	bool turnRight();
+	bool turnToPos(uint32_t count);
+
+private:
+	TIM_HandleTypeDef *htimer;
+	uint32_t state;
+
+
+};
+
+
+#endif /* INC_APP_MOTION_H_ */

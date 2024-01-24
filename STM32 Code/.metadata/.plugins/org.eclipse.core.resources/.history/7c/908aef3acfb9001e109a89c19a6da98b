@@ -1,0 +1,73 @@
+/*
+ * app_motion.h
+ *
+ *  Created on: Jan 22, 2024
+ *      Author: edward62740
+ */
+
+#ifndef INC_APP_MOTION_H_
+#define INC_APP_MOTION_H_
+
+#include "app_parser.h"
+#include "stm32f4xx_hal.h"
+
+namespace AppMotion { // application-layer motion logic
+
+class MotionController
+{
+	typedef struct
+	{
+		osThreadId_t runner; // task handle
+		osThreadAttr_t attr;
+		struct {
+			osMessageQueueId_t queue;
+			//osMutexId_t lock;
+		} mailbox; //
+
+	} u_ctx ; // struct containing context info for a  instance.
+
+public:
+	MotionController(u_ctx *ctx);
+
+	void start();
+	~MotionController( void );
+	u_ctx *ctx;
+	static void motionTask(void *pv);
+
+	void turnLeft();
+	void turnRight();
+	void turnFront();
+
+	void setLeftPWM(uint16_t dutyCycle);
+	void setRightPWM(uint16_t dutyCycle);
+};
+
+class Servo {
+public:
+
+
+	Servo(TIM_HandleTypeDef  *ctrl, void (*sysDelayMs)(void*),
+			uint32_t min, uint32_t max, uint32_t center);
+	~Servo();
+	void turnLeft();
+	void turnRight();
+	void turnFront();
+	void turnToPos(uint32_t count);
+	static const uint32_t TURN_DELAY_MS = 250UL;
+private:
+	TIM_HandleTypeDef *htimer;
+	uint32_t state;
+	void (*sysDelayMs)(uint32_t);
+	uint32_t MIN_PWM;
+	uint32_t MAX_PWM;
+	uint32_t CTR_PWM;
+
+
+
+};
+
+
+}
+
+
+#endif /* INC_APP_MOTION_H_ */

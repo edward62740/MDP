@@ -1,0 +1,173 @@
+
+#include "cmsis_os.h"
+#include "app_main.h"
+#include "main.h"
+#include "stm32f4xx_hal.h"
+#include "ICM20948.h"
+#include <cmath>
+#include <cstdio>
+
+osSemaphoreId_t l;
+osSemaphoreAttr_t attr;
+uint8_t aRxBuffer[5]; // buffer for UART
+bool await = false;
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+//	__HAL_UART_CLEAR_OREFLAG(&huart4);
+	if (huart == &huart4) {
+
+		osSemaphoreRelease(l);
+		HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_10);
+
+	    HAL_UART_Receive_IT(&huart4, (uint8_t*) aRxBuffer, 5);
+		await = true;
+		}
+}
+
+void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *I2cHandle)
+{
+
+}
+
+void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
+{
+
+}
+#define CENTER_POS_PWM 153 //150
+#define LEFT_DELTA 40  // was 40
+#define RIGHT_DELTA 90 // was 80 then 100
+#define STEERING_BUFFER_TIME 250
+#define LEFT_POS_PWM (CENTER_POS_PWM - LEFT_DELTA)
+#define RIGHT_POS_PWM (CENTER_POS_PWM + RIGHT_DELTA)
+void setLeftPWM(uint16_t dutyCycle) {
+	__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, dutyCycle);
+}
+
+void setRightPWM(uint16_t dutyCycle) {
+	__HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_2, dutyCycle);
+}
+void turnLeft() {
+	htim1.Instance->CCR1 = LEFT_POS_PWM;
+	osDelay(STEERING_BUFFER_TIME);
+}
+void turnRight() {
+	htim1.Instance->CCR1 = RIGHT_POS_PWM;
+	osDelay(STEERING_BUFFER_TIME);
+}
+void faceFront() {
+	htim1.Instance->CCR1 = CENTER_POS_PWM;
+	osDelay(STEERING_BUFFER_TIME);
+}
+
+
+void UARTReceiveTask(void const * argument)
+{
+  /* USER CODE BEGIN UARTReceiveTask */
+  /* Infinite loop */
+	l = osSemaphoreNew(1, 0, &attr);
+
+	HAL_UART_Receive_DMA(&huart4, (uint8_t*) aRxBuffer, 10);
+  for(;;)
+  {
+
+    osSemaphoreAcquire(l, osWaitForever);
+    HAL_UART_Receive_DMA(&huart4, (uint8_t *) aRxBuffer, 2);
+
+  }
+  /* USER CODE END UARTReceiveTask */
+}
+
+
+void sensorTask(void *pv) {
+
+	ICM20948 imu;
+	IMU_Initialise(&imu, &hi2c1);
+	osDelay(50);
+	Mag_init(&imu);
+
+	uint8_t readGyroZData[2];
+	printf("Scanning I2C bus:\r\n");
+	HAL_StatusTypeDef result;
+	uint8_t i;
+	for (i = 1; i < 128; i++) {
+		/*
+		 * the HAL wants a left aligned i2c address
+		 * &hi2c1 is the handle
+		 * (uint16_t)(i<<1) is the i2c address left aligned
+		 * retries 2
+		 * timeout 2
+		 */
+		result = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t) (i << 1), 2, 2);
+		if (result != HAL_OK) // HAL_ERROR or HAL_BUSY or HAL_TIMEOUT
+				{
+			printf("."); // No ACK received at that address
+		}
+		if (result == HAL_OK) {
+			printf("0x%X", i); // Received an ACK at that address
+		}
+	}
+	printf("\r\n");
+
+	//magCalICM20948(&imu, &imu.mag_bias, &imu.mag_scale);
+	char sbuf[100] = { 0 };
+	printf("%d\n", imu.mag_bias[0]);
+	printf("%d\n", imu.mag_bias[1]);
+	printf("%d\n", imu.mag_bias[2]);
+	uint32_t timeNow = HAL_GetTick();
+	float dir = 0;
+
+	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+
+	// ------- left motor
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+	// ------- right motor
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET);
+	// drive the motor
+
+	float DEG2RAD = 0.017453292519943295769236907684886f;
+	Gyro_calibrate(&imu);
+	float mRes = 10.0f * 4912.0f / 32760.0f;
+	for (;;) {
+
+		//uint8_t sbuf[60] = { 0 };
+		/* USER CODE END WHILE */
+
+		IMU_AccelRead(&imu);
+		IMU_GyroRead(&imu);
+		Mag_read(&imu);
+
+		MahonyQuaternionUpdate(&imu, imu.acc[0], imu.acc[1], imu.acc[2],
+				(float) imu.gyro[0] * DEG2RAD, (float) imu.gyro[1] * DEG2RAD,
+				(float) imu.gyro[2] * DEG2RAD,
+				(float) imu.mag[1] * mRes - imu.mag_bias[1],
+				(float) imu.mag[0] * mRes - imu.mag_bias[0],
+				(float) imu.mag[2] * mRes - imu.mag_bias[2], 0.1);
+		double pitch = atan2(imu.acc[1],
+				(sqrt((imu.acc[0] * imu.acc[0]) + (imu.acc[2] * imu.acc[2]))));
+		double roll = atan2(-imu.acc[0],
+				(sqrt((imu.acc[1] * imu.acc[1]) + (imu.acc[2] * imu.acc[2]))));
+		float Yh = (imu.mag[1] * cos(roll)) - (imu.mag[2] * sin(roll));
+		float Xh = (imu.mag[0] * cos(pitch))
+				+ (imu.mag[1] * sin(roll) * sin(pitch))
+				+ (imu.mag[2] * cos(roll) * sin(pitch));
+
+		float yaw = atan2(Yh, Xh);
+		//timeNow = HAL_GetTick();
+		/*float yaw = atan2(2.0f * (imu.q[1] * imu.q[2] + imu.q[0] * imu.q[3]),
+		 imu.q[0] * imu.q[0] + imu.q[1] * imu.q[1] - imu.q[2] * imu.q[2]
+		 - imu.q[3] * imu.q[3]) * 57.295779513082320876798154814105f;*/
+		dir += ((float) imu.gyro[2]) * 0.1;
+		uint16_t len = sprintf(&sbuf[0],
+				"%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f\r\n",
+				imu.acc[0], imu.acc[1], imu.acc[2], imu.gyro[0], imu.gyro[1],
+				imu.gyro[2], imu.mag[0], imu.mag[1], imu.mag[2]);
+
+		HAL_UART_Transmit(&huart4, (uint8_t *)sbuf, len, 10);
+	//	HAL_UART_Receive_IT(&huart4, (uint8_t*) aRxBuffer, 5);
+		osDelay(100);
+
+	}
+}

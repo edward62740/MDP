@@ -1,0 +1,9 @@
+../Core/Src/app_motion.cpp:21:1:AppMotion::MotionController::MotionController(u_ctx*)	16	static
+../Core/Src/app_motion.cpp:25:1:AppMotion::MotionController::~MotionController()	16	static
+../Core/Src/app_motion.cpp:28:6:void AppMotion::MotionController::start()	24	static
+../Core/Src/app_motion.cpp:34:6:static void AppMotion::MotionController::motionTask(void*)	80	static
+../Core/Src/app_motion.cpp:57:1:AppMotion::Servo::Servo(TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t)	24	static
+../Core/Src/app_motion.cpp:65:1:AppMotion::Servo::~Servo()	16	static
+../Core/Src/app_motion.cpp:66:6:void AppMotion::Servo::turnLeft()	16	static
+../Core/Src/app_motion.cpp:71:6:void AppMotion::Servo::turnRight()	16	static
+../Core/Src/app_motion.cpp:76:6:void AppMotion::Servo::turnFront()	16	static

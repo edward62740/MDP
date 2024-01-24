@@ -1,0 +1,27 @@
+#include "app_parser.h"
+#include "cmsis_os2.h"
+
+namespace AppParser {
+
+Processor::Processor(u_ctx *ctx) {
+	this->ctx = ctx;
+}
+
+void Processor::beginProcessorTask() {
+	this->ctx->runner = osThreadNew(this->beginProcessorTaskImpl, NULL, &this->ctx->attr);
+}
+
+/*! startDetectorTaskImpl()
+ @brief internally called task to run the detector
+ @note
+ @param *_this pointer to this class
+ */
+void Processor::beginProcessorTaskImpl(void *_this) {
+	static_cast<Processor*>(_this)->processorTask();
+}
+
+void Processor::processorTask() {
+	osDelay(50);
+}
+
+}

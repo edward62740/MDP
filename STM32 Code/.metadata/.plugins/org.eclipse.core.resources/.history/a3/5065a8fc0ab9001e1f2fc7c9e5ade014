@@ -1,0 +1,26 @@
+/*
+ * app_main.h
+ *
+ *  Created on: Jan 22, 2024
+ *      Author: edward62740
+ */
+
+#ifndef INC_APP_MAIN_H_
+#define INC_APP_MAIN_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+const  uint32_t UART_IN_BUF_SIZE = 10U;
+void sensorTask(void *pv);
+void UARTReceiveTask(void const * argument);
+void initializeCPPconstructs(void);
+extern osSemaphoreId_t l;
+extern uint8_t aRxBuffer[UART_IN_BUF_SIZE];
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#endif /* INC_APP_MAIN_H_ */
