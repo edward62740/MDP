@@ -1,28 +1,36 @@
-18:18:31 **** Incremental Build of configuration Debug for project STM32_code ****
+15:19:42 **** Incremental Build of configuration Debug for project STM32_code ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/ThreadSafe/newlib_lock_glue.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -I../Core/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/ThreadSafe/newlib_lock_glue.d" -MT"Core/ThreadSafe/newlib_lock_glue.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/ThreadSafe/newlib_lock_glue.o"
 arm-none-eabi-g++ "../Core/Src/app_motion.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I../Core/Inc -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/Src/app_motion.d" -MT"Core/Src/app_motion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app_motion.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -I../Core/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -I../Core/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:161:2: warning: implicit declaration of function 'initializeCPPconstructs' [-Wimplicit-function-declaration]
-  161 |  initializeCPPconstructs();
-      |  ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/app_motion.cpp: In static member function 'static void AppMotion::MotionController::turn(AppMotion::Motor, AppMotion::Motor, AppMotion::Servo, bool, bool, uint32_t)':
+../Core/Src/app_motion.cpp:104:10: warning: unused variable 'buf' [-Wunused-variable]
+  104 |  uint8_t buf[30] = {0};
+      |          ^~~
+../Core/Src/app_motion.cpp: In member function 'bool AppMotion::Motor::setSpeed(uint32_t)':
+../Core/Src/app_motion.cpp:170:1: warning: control reaches end of non-void function [-Wreturn-type]
+  170 | }
+      | ^
 arm-none-eabi-g++ -o "STM32_code.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_code.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 Finished building target: STM32_code.elf
  
 arm-none-eabi-size   STM32_code.elf 
 arm-none-eabi-objdump -h -S  STM32_code.elf  > "STM32_code.list"
    text	   data	    bss	    dec	    hex	filename
-  59356	    584	  24576	  84516	  14a24	STM32_code.elf
+  61484	    584	  24592	  86660	  15284	STM32_code.elf
 Finished building: default.size.stdout
  
 Finished building: STM32_code.list
  
-18:18:34 **** Incremental Build of configuration Debug for project STM32_code ****
+15:19:44 **** Incremental Build of configuration Debug for project STM32_code ****
 make -j8 all 
 arm-none-eabi-size   STM32_code.elf 
    text	   data	    bss	    dec	    hex	filename
-  59356	    584	  24576	  84516	  14a24	STM32_code.elf
+  61484	    584	  24592	  86660	  15284	STM32_code.elf
+Finished building: default.size.stdout
+ 
+15:19:55 **** Incremental Build of configuration Debug for project STM32_code ****
+make -j8 all 
+arm-none-eabi-size   STM32_code.elf 
+   text	   data	    bss	    dec	    hex	filename
+  61484	    584	  24592	  86660	  15284	STM32_code.elf
 Finished building: default.size.stdout
  

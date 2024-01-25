@@ -5,10 +5,10 @@
 ../Core/ICM20948_lib/ICM20948.c:120:19:Mag_ReadOneByte	40	static
 ../Core/ICM20948_lib/ICM20948.c:129:19:IMU_TempRead	24	static
 ../Core/ICM20948_lib/ICM20948.c:140:19:IMU_AccelRead	40	static
-../Core/ICM20948_lib/ICM20948.c:183:19:Gyro_calibrate	40	static
-../Core/ICM20948_lib/ICM20948.c:216:19:IMU_GyroRead	48	static
-../Core/ICM20948_lib/ICM20948.c:273:19:Mag_init	24	static
-../Core/ICM20948_lib/ICM20948.c:280:19:Mag_read	32	static
-../Core/ICM20948_lib/ICM20948.c:299:6:magCalICM20948	88	static
-../Core/ICM20948_lib/ICM20948.c:385:6:MahonyQuaternionUpdate	184	static
-../Core/ICM20948_lib/ICM20948.c:481:14:getQ	16	static
+../Core/ICM20948_lib/ICM20948.c:183:19:Gyro_calibrate	32	static
+../Core/ICM20948_lib/ICM20948.c:217:19:IMU_GyroRead	48	static
+../Core/ICM20948_lib/ICM20948.c:256:19:Mag_init	24	static
+../Core/ICM20948_lib/ICM20948.c:263:19:Mag_read	32	static
+../Core/ICM20948_lib/ICM20948.c:282:6:magCalICM20948	88	static
+../Core/ICM20948_lib/ICM20948.c:368:6:MahonyQuaternionUpdate	184	static
+../Core/ICM20948_lib/ICM20948.c:464:14:getQ	16	static

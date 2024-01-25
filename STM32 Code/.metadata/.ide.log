@@ -18316,3 +18316,1402 @@
 2024-01-23 18:32:03,368 [INFO] WebAppUi:459 - Close the Jxbrowser engine manually
 2024-01-23 18:32:03,392 [INFO] WebAppUi:462 - Profiles folder deleted
 2024-01-23 18:32:03,765 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 
+2024-01-25 08:48:58,163 [INFO] Activator:179 - 
+
+
+2024-01-25 08:48:58,176 [INFO] Activator:180 - !SESSION log4j initialized
+2024-01-25 08:49:25,467 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2024-01-25 08:49:25,480 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2024-01-25 08:49:25,480 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2024-01-25 12:11:51,807 [INFO] Activator:179 - 
+
+
+2024-01-25 12:11:51,808 [INFO] Activator:180 - !SESSION log4j initialized
+2024-01-25 12:12:18,499 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2024-01-25 12:12:18,500 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2024-01-25 12:12:18,501 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2024-01-25 12:37:22,862 [INFO] Activator:179 - 
+
+
+2024-01-25 12:37:22,864 [INFO] Activator:180 - !SESSION log4j initialized
+2024-01-25 12:37:49,389 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2024-01-25 12:37:49,389 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2024-01-25 12:37:49,390 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2024-01-25 14:15:40,815 [INFO] McuFinderGlobals:52 - Set McuFinder mode to 2 (CubeIDE integrated)
+2024-01-25 14:15:41,015 [INFO] ApplicationProperties:181 - Using Application install path: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646
+2024-01-25 14:15:41,029 [INFO] DbMcusXml:77 - Set database path to: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\/mcu/
+2024-01-25 14:15:41,029 [INFO] ApiDb:273 - Set plugin database path to: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\/plugins/boardmanager/
+2024-01-25 14:15:41,031 [WARN] ApiDb:258 - Overriding images path with different value:  => C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\/plugins/mcufinder/images/
+2024-01-25 14:15:41,045 [INFO] ApiDb:249 - Set database path to: C:\Users\Workstation\.stmcufinder\plugins\mcufinder//mcu/
+2024-01-25 14:15:41,047 [INFO] DbMcusAds:124 - Set database path to: C:\Users\Workstation\.stmcufinder\plugins\mcufinder//mcu/
+2024-01-25 14:15:41,097 [INFO] CrossReferenceDbSqlite:202 - Set database path to: C:\Users\Workstation\.stmcufinder\plugins\mcufinder//mcu/cs/
+2024-01-25 14:15:41,189 [INFO] RulesReader:61 - Compatibility file has been processed (283 Rules)
+2024-01-25 14:15:41,251 [INFO] DbMcusXml:77 - Set database path to: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\/mcu/
+2024-01-25 14:15:41,251 [INFO] ApiDb:273 - Set plugin database path to: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\/plugins/boardmanager/
+2024-01-25 14:15:41,251 [INFO] ApiDb:260 - Set plugin images path to: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\/plugins/mcufinder/images/
+2024-01-25 14:15:41,252 [WARN] DbFile:40 - Overriding database path with different value: C:\Users\Workstation\.stmcufinder\plugins\mcufinder/ => C:\Users\Workstation\.stmcufinder\plugins\mcufinder
+2024-01-25 14:15:41,252 [INFO] ApiDb:249 - Set database path to: C:\Users\Workstation\.stmcufinder\plugins\mcufinder//mcu/
+2024-01-25 14:15:41,252 [WARN] DbFile:40 - Overriding database path with different value: C:\Users\Workstation\.stmcufinder\plugins\mcufinder/ => C:\Users\Workstation\.stmcufinder\plugins\mcufinder
+2024-01-25 14:15:41,252 [INFO] DbMcusAds:124 - Set database path to: C:\Users\Workstation\.stmcufinder\plugins\mcufinder//mcu/
+2024-01-25 14:15:41,253 [WARN] DbFile:40 - Overriding database path with different value: C:\Users\Workstation\.stmcufinder\plugins\mcufinder/ => C:\Users\Workstation\.stmcufinder\plugins\mcufinder
+2024-01-25 14:15:41,253 [WARN] DbFile:40 - Overriding database path with different value: C:\Users\Workstation\.stmcufinder\plugins\mcufinder/ => C:\Users\Workstation\.stmcufinder\plugins\mcufinder
+2024-01-25 14:15:41,253 [INFO] CrossReferenceDbSqlite:202 - Set database path to: C:\Users\Workstation\.stmcufinder\plugins\mcufinder//mcu/cs/
+2024-01-25 14:15:41,318 [INFO] MainPanel:252 - HeapMemory: 637534208
+2024-01-25 14:15:41,407 [INFO] DbMcusXml:77 - Set database path to: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\/mcu/
+2024-01-25 14:15:41,407 [INFO] ApiDb:273 - Set plugin database path to: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\/plugins/boardmanager/
+2024-01-25 14:15:41,407 [INFO] ApiDb:260 - Set plugin images path to: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\/plugins/mcufinder/images/
+2024-01-25 14:15:41,407 [WARN] DbFile:40 - Overriding database path with different value: C:\Users\Workstation\.stmcufinder\plugins\mcufinder/ => C:\Users\Workstation\.stmcufinder\plugins\mcufinder
+2024-01-25 14:15:41,408 [INFO] ApiDb:249 - Set database path to: C:\Users\Workstation\.stmcufinder\plugins\mcufinder//mcu/
+2024-01-25 14:15:41,408 [WARN] DbFile:40 - Overriding database path with different value: C:\Users\Workstation\.stmcufinder\plugins\mcufinder/ => C:\Users\Workstation\.stmcufinder\plugins\mcufinder
+2024-01-25 14:15:41,408 [INFO] DbMcusAds:124 - Set database path to: C:\Users\Workstation\.stmcufinder\plugins\mcufinder//mcu/
+2024-01-25 14:15:41,408 [WARN] DbFile:40 - Overriding database path with different value: C:\Users\Workstation\.stmcufinder\plugins\mcufinder/ => C:\Users\Workstation\.stmcufinder\plugins\mcufinder
+2024-01-25 14:15:41,408 [WARN] DbFile:40 - Overriding database path with different value: C:\Users\Workstation\.stmcufinder\plugins\mcufinder/ => C:\Users\Workstation\.stmcufinder\plugins\mcufinder
+2024-01-25 14:15:41,408 [INFO] CrossReferenceDbSqlite:202 - Set database path to: C:\Users\Workstation\.stmcufinder\plugins\mcufinder//mcu/cs/
+2024-01-25 14:15:41,425 [INFO] ApplicationProperties:181 - Using Application install path: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646
+2024-01-25 14:15:41,426 [INFO] PluginManage:193 - Search for loadable plugins [exclusion list=, ]
+2024-01-25 14:15:41,428 [INFO] PluginManage:307 - Check plugin analytics
+2024-01-25 14:15:41,579 [INFO] AnalyticsPlugin:262 - Accepted Software Licenses: 
+2024-01-25 14:15:41,579 [INFO] AnalyticsPlugin:264 - Accepted CMSIS Pack Licenses: 
+2024-01-25 14:15:41,580 [INFO] AnalyticsPlugin:266 - Accepted Firmware Licenses: 
+2024-01-25 14:15:41,586 [INFO] PluginManage:356 - Loaded plugin analytics (category:tool,tabindex:-1)
+2024-01-25 14:15:41,586 [INFO] PluginManage:307 - Check plugin cadmodel
+2024-01-25 14:15:41,596 [INFO] CADModel:104 - Init CAD model plugin
+2024-01-25 14:15:41,596 [INFO] PluginManage:356 - Loaded plugin cadmodel (category:power,tabindex:5)
+2024-01-25 14:15:41,597 [INFO] PluginManage:307 - Check plugin clock
+2024-01-25 14:15:41,610 [INFO] PluginManage:356 - Loaded plugin clock (category:base,tabindex:2)
+2024-01-25 14:15:41,610 [INFO] PluginManage:307 - Check plugin ddr
+2024-01-25 14:15:41,612 [INFO] PluginManage:356 - Loaded plugin ddr (category:tool,tabindex:6)
+2024-01-25 14:15:41,612 [INFO] PluginManage:307 - Check plugin filemanager
+2024-01-25 14:15:41,729 [INFO] PluginManage:356 - Loaded plugin filemanager (category:base,tabindex:10)
+2024-01-25 14:15:41,730 [INFO] PluginManage:307 - Check plugin ipmanager
+2024-01-25 14:15:41,736 [INFO] PluginManage:356 - Loaded plugin ipmanager (category:base,tabindex:5)
+2024-01-25 14:15:41,736 [INFO] PluginManage:307 - Check plugin lpbam
+2024-01-25 14:15:41,762 [INFO] PluginManage:356 - Loaded plugin lpbam (category:base,tabindex:0)
+2024-01-25 14:15:41,762 [INFO] PluginManage:307 - Check plugin pinoutandconfiguration
+2024-01-25 14:15:41,775 [INFO] PluginManage:356 - Loaded plugin pinoutandconfiguration (category:base,tabindex:1)
+2024-01-25 14:15:41,775 [INFO] PluginManage:307 - Check plugin pinoutconfig
+2024-01-25 14:15:41,806 [INFO] PluginManage:356 - Loaded plugin pinoutconfig (category:base,tabindex:0)
+2024-01-25 14:15:41,806 [INFO] PluginManage:307 - Check plugin power
+2024-01-25 14:15:41,819 [INFO] PluginManage:356 - Loaded plugin power (category:power,tabindex:4)
+2024-01-25 14:15:41,819 [INFO] PluginManage:307 - Check plugin projectmanager
+2024-01-25 14:15:41,831 [INFO] PluginManage:356 - Loaded plugin projectmanager (category:projectmanager,tabindex:3)
+2024-01-25 14:15:41,831 [INFO] PluginManage:307 - Check plugin thirdparty
+2024-01-25 14:15:42,011 [WARN] IntegrityCheckThread:82 - waiting for thirdparty lock release [integrity check]
+2024-01-25 14:15:42,011 [INFO] PluginManage:356 - Loaded plugin thirdparty (category:base,tabindex:-1)
+2024-01-25 14:15:42,012 [INFO] IntegrityCheckThread:84 - entering critical section [integrity check]
+2024-01-25 14:15:42,012 [INFO] PluginManage:307 - Check plugin tools
+2024-01-25 14:15:42,013 [INFO] ThirdPartyUpdaterWithRetryManager:70 - Updater plugin not ready yet. [1/15]
+2024-01-25 14:15:42,031 [INFO] PluginManage:356 - Loaded plugin tools (category:base,tabindex:7)
+2024-01-25 14:15:42,031 [INFO] PluginManage:307 - Check plugin tutovideos
+2024-01-25 14:15:42,192 [INFO] PluginManage:356 - Loaded plugin tutovideos (category:base,tabindex:-1)
+2024-01-25 14:15:42,193 [INFO] PluginManage:307 - Check plugin updater
+2024-01-25 14:15:42,204 [INFO] PluginManage:356 - Loaded plugin updater (category:base,tabindex:12)
+2024-01-25 14:15:42,204 [INFO] PluginManage:280 - PluginManage : Loaded plugins [15]
+2024-01-25 14:15:42,398 [INFO] PinOutPanel:1477 - setPackage(No Configuration,No Configuration)
+2024-01-25 14:15:42,452 [INFO] CADModel:164 - CPN selected for project level
+2024-01-25 14:15:42,452 [INFO] CADModel:113 - Register for checkConnection events
+2024-01-25 14:15:42,472 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,473 [INFO] PluginManager:219 - loadIPPluginJar : add adc
+2024-01-25 14:15:42,497 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,498 [INFO] PluginManager:219 - loadIPPluginJar : add aes
+2024-01-25 14:15:42,531 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,531 [INFO] PluginManager:219 - loadIPPluginJar : add can
+2024-01-25 14:15:42,546 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,546 [INFO] PluginManager:219 - loadIPPluginJar : add comp
+2024-01-25 14:15:42,567 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,568 [INFO] PluginManager:219 - loadIPPluginJar : add cryp
+2024-01-25 14:15:42,587 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,587 [INFO] PluginManager:219 - loadIPPluginJar : add dfsdm
+2024-01-25 14:15:42,597 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,597 [INFO] PluginManager:219 - loadIPPluginJar : add dma
+2024-01-25 14:15:42,624 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,624 [INFO] PluginManager:219 - loadIPPluginJar : add dma3
+2024-01-25 14:15:42,637 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,638 [INFO] PluginManager:219 - loadIPPluginJar : add fatfs
+2024-01-25 14:15:42,679 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,679 [INFO] PluginManager:219 - loadIPPluginJar : add fmc
+2024-01-25 14:15:42,689 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,690 [INFO] PluginManager:219 - loadIPPluginJar : add freertos
+2024-01-25 14:15:42,703 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,704 [INFO] PluginManager:219 - loadIPPluginJar : add genericplugin
+2024-01-25 14:15:42,769 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,769 [INFO] PluginManager:219 - loadIPPluginJar : add gfxmmu
+2024-01-25 14:15:42,858 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,858 [INFO] PluginManager:219 - loadIPPluginJar : add gic
+2024-01-25 14:15:42,867 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,868 [INFO] PluginManager:219 - loadIPPluginJar : add gpio
+2024-01-25 14:15:42,926 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,926 [INFO] PluginManager:219 - loadIPPluginJar : add gtzc
+2024-01-25 14:15:42,948 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,948 [INFO] PluginManager:219 - loadIPPluginJar : add hash
+2024-01-25 14:15:42,984 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:42,984 [INFO] PluginManager:219 - loadIPPluginJar : add i2c
+2024-01-25 14:15:43,011 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,011 [INFO] PluginManager:219 - loadIPPluginJar : add i2s
+2024-01-25 14:15:43,115 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,115 [INFO] PluginManager:219 - loadIPPluginJar : add ipddr
+2024-01-25 14:15:43,186 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,186 [INFO] PluginManager:219 - loadIPPluginJar : add linkedlist
+2024-01-25 14:15:43,214 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,214 [INFO] PluginManager:219 - loadIPPluginJar : add lorawan
+2024-01-25 14:15:43,244 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,244 [INFO] PluginManager:219 - loadIPPluginJar : add ltdc
+2024-01-25 14:15:43,255 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,255 [INFO] PluginManager:219 - loadIPPluginJar : add mdma
+2024-01-25 14:15:43,264 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,264 [INFO] PluginManager:219 - loadIPPluginJar : add nvic
+2024-01-25 14:15:43,293 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,294 [INFO] PluginManager:219 - loadIPPluginJar : add opamp
+2024-01-25 14:15:43,339 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,339 [INFO] PluginManager:219 - loadIPPluginJar : add openamp
+2024-01-25 14:15:43,370 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,370 [INFO] PluginManager:219 - loadIPPluginJar : add pdm2pcm
+2024-01-25 14:15:43,380 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,382 [INFO] PluginManager:219 - loadIPPluginJar : add plateformsettings
+2024-01-25 14:15:43,396 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,397 [INFO] PluginManager:219 - loadIPPluginJar : add quadspi
+2024-01-25 14:15:43,406 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,407 [INFO] PluginManager:219 - loadIPPluginJar : add resmgrutility
+2024-01-25 14:15:43,440 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,441 [INFO] PluginManager:219 - loadIPPluginJar : add sai
+2024-01-25 14:15:43,465 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,465 [INFO] PluginManager:219 - loadIPPluginJar : add spi
+2024-01-25 14:15:43,502 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,502 [INFO] PluginManager:219 - loadIPPluginJar : add stm32_wpan
+2024-01-25 14:15:43,516 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,516 [INFO] PluginManager:219 - loadIPPluginJar : add tim
+2024-01-25 14:15:43,553 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,553 [INFO] PluginManager:219 - loadIPPluginJar : add touchsensing
+2024-01-25 14:15:43,568 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,569 [INFO] PluginManager:219 - loadIPPluginJar : add tracer_emb
+2024-01-25 14:15:43,585 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,585 [INFO] PluginManager:219 - loadIPPluginJar : add ts
+2024-01-25 14:15:43,599 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,599 [INFO] PluginManager:219 - loadIPPluginJar : add tsc
+2024-01-25 14:15:43,612 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,614 [INFO] PluginManager:219 - loadIPPluginJar : add ucpd
+2024-01-25 14:15:43,643 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,643 [INFO] PluginManager:219 - loadIPPluginJar : add usart
+2024-01-25 14:15:43,671 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:15:43,671 [INFO] PluginManager:219 - loadIPPluginJar : add usbx
+2024-01-25 14:15:43,789 [INFO] CADModel:164 - CPN selected for project level
+2024-01-25 14:15:43,789 [INFO] CADModel:113 - Register for checkConnection events
+2024-01-25 14:15:43,789 [FATAL] Updater:308 - Updater called before beeing initialized
+2024-01-25 14:15:43,789 [ERROR] CADModel:124 - Updater not yet initialized, retry later 
+2024-01-25 14:15:43,903 [INFO] CADModel:164 - CPN selected for project level
+2024-01-25 14:15:43,904 [INFO] CADModel:113 - Register for checkConnection events
+2024-01-25 14:15:43,904 [FATAL] Updater:308 - Updater called before beeing initialized
+2024-01-25 14:15:43,904 [ERROR] CADModel:124 - Updater not yet initialized, retry later 
+2024-01-25 14:15:43,907 [FATAL] Updater:308 - Updater called before beeing initialized
+2024-01-25 14:15:44,014 [FATAL] Updater:308 - Updater called before beeing initialized
+2024-01-25 14:15:44,027 [INFO] DbMcusAds:52 - JSON generation date=Wed Nov 29 18:52:27 SGT 2023 (1701255147200)
+2024-01-25 14:15:44,028 [FATAL] Updater:308 - Updater called before beeing initialized
+2024-01-25 14:15:44,062 [WARN] DetailPanel:344 - Failed to get advertising image, set to default
+2024-01-25 14:15:44,147 [FATAL] Updater:308 - Updater called before beeing initialized
+2024-01-25 14:15:44,149 [FATAL] Updater:308 - Updater called before beeing initialized
+2024-01-25 14:15:44,150 [FATAL] Updater:308 - Updater called before beeing initialized
+2024-01-25 14:15:44,150 [WARN] DetailPanel:344 - Failed to get advertising image, set to default
+2024-01-25 14:15:44,150 [FATAL] Updater:308 - Updater called before beeing initialized
+2024-01-25 14:15:44,210 [ERROR] Updater:1120 - MainUpdater not yet initialized. External WinMGr cannot be set.
+2024-01-25 14:15:44,218 [INFO] Updater:1056 - Updater Version found : 6.7.0
+2024-01-25 14:15:44,231 [INFO] ApplicationProperties:181 - Using Application install path: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646
+2024-01-25 14:15:45,024 [INFO] ThirdPartyUpdaterWithRetryManager:70 - Updater plugin not ready yet. [2/15]
+2024-01-25 14:15:45,190 [INFO] MainUpdater:2800 - connection check result : 10
+2024-01-25 14:15:45,191 [INFO] MainUpdater:3494 - Updater definition file requires update
+2024-01-25 14:15:45,191 [INFO] MainUpdater:282 - Updater Check For Update Now.
+2024-01-25 14:15:45,192 [INFO] MicroXplorer:481 - Change Database Version : DB.6.0.70
+2024-01-25 14:15:45,221 [INFO] ServerAccessManage:474 - Download File updaters.zip
+2024-01-25 14:15:45,265 [INFO] FileExtend:239 - Unzip File : updaters.zip
+2024-01-25 14:15:45,265 [INFO] FileExtend:254 - Standard Zip Deflate
+2024-01-25 14:15:45,631 [INFO] ServerAccessManage:474 - Download File PacksControlFlags.xml
+2024-01-25 14:15:45,700 [INFO] ServerAccessManage:474 - Download File cubemx.pidx
+2024-01-25 14:15:46,562 [INFO] ServerAccessManage:474 - Download File STMicroelectronics.X-CUBE-EEPRMA1.pdsc
+2024-01-25 14:15:47,517 [ERROR] ServerAccessManage:1090 - Problem, file not found on Server
+2024-01-25 14:15:48,040 [WARN] MainUpdater:1186 - Updater busy. Cannot search thirdparties
+2024-01-25 14:15:48,040 [INFO] ThirdPartyUpdaterWithRetryManager:96 - Updater plugin is busy. [1/15]
+2024-01-25 14:15:48,462 [ERROR] ServerAccessManage:1090 - Problem, file not found on Server
+2024-01-25 14:15:49,070 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-EEPRMA1.5.1.0
+2024-01-25 14:15:49,076 [INFO] PopulateThirdPartyThread:64 - Ending populate Thread
+2024-01-25 14:15:49,078 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-EEPRMA1 5.1.0
+2024-01-25 14:15:49,078 [INFO] LoadServerUpdatesThread:367 - End of LoadServerUpdate Thread
+2024-01-25 14:15:49,196 [INFO] CheckServerUpdateThread:119 - End of CheckServer Thread
+2024-01-25 14:15:49,321 [INFO] MainUpdater:2800 - connection check result : 10
+2024-01-25 14:15:49,328 [INFO] MainUpdater:2800 - connection check result : 10
+2024-01-25 14:15:49,433 [INFO] MicroXplorer:451 - Change Database Path : 
+2024-01-25 14:15:49,433 [INFO] MicroXplorer:481 - Change Database Version : DB.6.0.70
+2024-01-25 14:15:49,433 [WARN] ThirdParty:845 - waiting for thirdparty lock release [close project]
+2024-01-25 14:15:51,192 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SMBUS.2.1.0
+2024-01-25 14:15:51,200 [WARN] ConditionMgr:437 - getConditionDescription Invalid condition id : SIGFOX STM32 LIB Condition cause : null
+2024-01-25 14:15:51,201 [WARN] ConditionMgr:437 - getConditionDescription Invalid condition id : Sigfox Third Party LIB Condition cause : null
+2024-01-25 14:15:51,202 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SFXS2LP1.2.0.0
+2024-01-25 14:15:51,203 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : SIGFOX STM32 LIB Condition cause : null
+2024-01-25 14:15:51,203 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : Sigfox Third Party LIB Condition cause : null
+2024-01-25 14:15:51,203 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : Sigfox Third Party LIB Condition cause : null
+2024-01-25 14:15:51,203 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : SIGFOX STM32 LIB Condition cause : null
+2024-01-25 14:15:51,203 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : SIGFOX STM32 LIB Condition cause : null
+2024-01-25 14:15:51,203 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : Sigfox Third Party LIB Condition cause : null
+2024-01-25 14:15:51,211 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.23.0
+2024-01-25 14:15:51,238 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-H7.1.1.0
+2024-01-25 14:15:51,262 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-F7.1.1.0
+2024-01-25 14:15:51,272 [ERROR] RealEvaluatedCondition:430 - Found unsupported composite condition: CLASS='Data Exchange' GROUP='STM32_MetaDataManager'
+2024-01-25 14:15:51,273 [ERROR] RealEvaluatedCondition:430 - Found unsupported composite condition: GROUP='STM32_MetaDataManager' CLASS='Data Exchange'
+2024-01-25 14:15:51,273 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-SNS-MOTENV1.4.3.0
+2024-01-25 14:15:51,282 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-SNS-MOTENV1.4.3.2
+2024-01-25 14:15:51,290 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-SNS-FLIGHT1.5.0.0
+2024-01-25 14:15:51,297 [ERROR] RealEvaluatedCondition:430 - Found unsupported composite condition: GROUP='STM32_MetaDataManager' CLASS='Data Exchange'
+2024-01-25 14:15:51,297 [ERROR] RealEvaluatedCondition:430 - Found unsupported composite condition: GROUP='STM32_MetaDataManager' CLASS='Data Exchange'
+2024-01-25 14:15:51,298 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-SNS-MOTENV1.4.3.1
+2024-01-25 14:15:51,305 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-SNS-FLIGHT1.5.0.1
+2024-01-25 14:15:51,313 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE1.6.2.3
+2024-01-25 14:15:51,320 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-EEPRMA1.3.0.0
+2024-01-25 14:15:51,328 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE1.6.2.4
+2024-01-25 14:15:51,336 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-ALGOBUILD.1.1.0
+2024-01-25 14:15:51,351 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE1.6.2.0
+2024-01-25 14:15:51,358 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE1.6.2.1
+2024-01-25 14:15:51,365 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE2.3.2.1
+2024-01-25 14:15:51,367 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-SNS-FLIGHT1.5.0.2
+2024-01-25 14:15:51,374 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE2.3.2.0
+2024-01-25 14:15:51,383 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-DISPLAY.3.0.0
+2024-01-25 14:15:51,393 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE1.7.0.0
+2024-01-25 14:15:51,400 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.22.0
+2024-01-25 14:15:51,407 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.22.1
+2024-01-25 14:15:51,419 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SUBG2.4.2.0
+2024-01-25 14:15:51,440 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-H7.1.0.0
+2024-01-25 14:15:51,476 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-MEMS1.9.3.0
+2024-01-25 14:15:51,560 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-SNS-SMARTAG2.1.2.0
+2024-01-25 14:15:51,572 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2024-01-25 14:15:51,573 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2024-01-25 14:15:51,574 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2024-01-25 14:15:51,576 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2024-01-25 14:15:51,577 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2024-01-25 14:15:51,579 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-WL.2.0.0
+2024-01-25 14:15:51,588 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-ALGOBUILD.1.2.1
+2024-01-25 14:15:51,598 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-ALGOBUILD.1.2.0
+2024-01-25 14:15:51,609 [WARN] PackLoader:242 - Cannot read IP mode file for WES.I-CUBE-Cesium.1.3.0
+2024-01-25 14:15:51,617 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE1.6.1.0
+2024-01-25 14:15:51,624 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE2.3.3.0
+2024-01-25 14:15:51,633 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-DISPLAY.2.2.0
+2024-01-25 14:15:51,649 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOF1.3.2.0
+2024-01-25 14:15:51,676 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-H7.2.1.0
+2024-01-25 14:15:51,686 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.21.1
+2024-01-25 14:15:51,693 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.21.0
+2024-01-25 14:15:51,700 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.21.4
+2024-01-25 14:15:51,740 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-MEMS1.9.4.0
+2024-01-25 14:15:52,069 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AI.7.3.0
+2024-01-25 14:15:52,081 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-ALGOBUILD.1.3.0
+2024-01-25 14:15:52,108 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-G0.1.1.0
+2024-01-25 14:15:52,122 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-NFC4.3.0.0
+2024-01-25 14:15:52,166 [WARN] PackLoader:242 - Cannot read IP mode file for SEGGER.I-CUBE-embOS.1.2.0
+2024-01-25 14:15:52,212 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.17.0
+2024-01-25 14:15:52,228 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLEMGR.3.0.0
+2024-01-25 14:15:52,245 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLEMGR.1.3.0
+2024-01-25 14:15:52,251 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-ATR-SIGFOX1.3.2.0
+2024-01-25 14:15:52,255 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-EEPRMA1.5.1.0
+2024-01-25 14:15:52,266 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.20.0
+2024-01-25 14:15:52,314 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-MEMS1.9.5.0
+2024-01-25 14:15:52,536 [WARN] PackLoader:242 - Cannot read IP mode file for SEGGER.I-CUBE-embOS.1.3.1
+2024-01-25 14:15:52,596 [WARN] PackLoader:242 - Cannot read IP mode file for SEGGER.I-CUBE-embOS.1.3.0
+2024-01-25 14:15:52,636 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.16.1
+2024-01-25 14:15:52,645 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOUCHGFX.4.16.0
+2024-01-25 14:15:52,655 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLE2.3.1.0
+2024-01-25 14:15:52,668 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-GNSS1.6.0.0
+2024-01-25 14:15:52,694 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-F4.1.1.0
+2024-01-25 14:15:52,710 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLEMGR.1.2.0
+2024-01-25 14:15:52,738 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-L5.2.0.0
+2024-01-25 14:15:52,775 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-MEMS1.9.6.0
+2024-01-25 14:15:52,880 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-EEPRMA1.4.2.0
+2024-01-25 14:15:52,890 [WARN] PackLoader:242 - Cannot read IP mode file for ITTIA_DB.I-CUBE-ITTIADB.8.8.0
+2024-01-25 14:15:52,904 [WARN] PackLoader:242 - Cannot read IP mode file for emotas.I-CUBE-CANOPEN.1.1.3
+2024-01-25 14:15:52,914 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-BLEMGR.2.0.0
+2024-01-25 14:15:52,922 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-NFC4.2.0.5
+2024-01-25 14:15:52,939 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-NFC4.2.0.4
+2024-01-25 14:15:52,947 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-NFC4.2.0.3
+2024-01-25 14:15:52,956 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-NFC4.2.0.2
+2024-01-25 14:15:52,963 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-NFC4.2.0.1
+2024-01-25 14:15:52,984 [WARN] ConditionMgr:437 - getConditionDescription Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:52,984 [WARN] ConditionMgr:437 - getConditionDescription Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:52,986 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-H7.3.1.0
+2024-01-25 14:15:52,987 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:52,987 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:52,987 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:52,988 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:52,988 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:52,997 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SFXS2LP1.3.1.0
+2024-01-25 14:15:53,024 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-F4.1.0.0
+2024-01-25 14:15:53,033 [WARN] PackLoader:242 - Cannot read IP mode file for wolfSSL.I-CUBE-wolfSSL.5.5.4
+2024-01-25 14:15:53,045 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SUBG2.3.0.1
+2024-01-25 14:15:53,059 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SUBG2.3.0.0
+2024-01-25 14:15:53,071 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOF1.2.0.0
+2024-01-25 14:15:53,081 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-NFC7.1.0.1
+2024-01-25 14:15:53,090 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-NFC7.1.0.0
+2024-01-25 14:15:53,101 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-NFC6.3.0.0
+2024-01-25 14:15:53,112 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-EEPRMA1.4.1.0
+2024-01-25 14:15:53,122 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-DISPLAY.1.0.0
+2024-01-25 14:15:53,152 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AI.8.1.0
+2024-01-25 14:15:53,159 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AI.6.0.0
+2024-01-25 14:15:53,177 [WARN] ConditionMgr:437 - getConditionDescription Invalid condition id : LAN8742 Phy interface Condition cause : null
+2024-01-25 14:15:53,177 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-L4.2.0.0
+2024-01-25 14:15:53,178 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : LAN8742 Phy interface Condition cause : null
+2024-01-25 14:15:53,178 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : LAN8742 Phy interface Condition cause : null
+2024-01-25 14:15:53,179 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : LAN8742 Phy interface Condition cause : null
+2024-01-25 14:15:53,187 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SFXS2LP1.4.0.0
+2024-01-25 14:15:53,194 [WARN] PackLoader:242 - Cannot read IP mode file for wolfSSL.I-CUBE-wolfSSL.4.7.0
+2024-01-25 14:15:53,202 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AI.5.2.0
+2024-01-25 14:15:53,246 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-H7.3.0.0
+2024-01-25 14:15:53,257 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-ISPU.1.1.0
+2024-01-25 14:15:53,269 [WARN] PackLoader:242 - Cannot read IP mode file for RoweBots.I-CUBE-UNISONRTOS.5.5.0-4
+2024-01-25 14:15:53,278 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SFXS2LP1.3.0.0
+2024-01-25 14:15:53,285 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AI.8.0.0
+2024-01-25 14:15:53,301 [WARN] ConditionMgr:437 - getConditionDescription Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:53,301 [WARN] ConditionMgr:437 - getConditionDescription Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:53,303 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-WB.2.0.0
+2024-01-25 14:15:53,303 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:53,303 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:53,303 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:53,304 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:53,304 [WARN] ConditionMgr:1038 - genDependencies : Invalid condition id : UX DEVICE CLASS RTOS Condition cause : null
+2024-01-25 14:15:53,313 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-FREERTOS.1.0.0
+2024-01-25 14:15:53,320 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-FREERTOS.1.0.1
+2024-01-25 14:15:53,349 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-MEMS1.9.0.0
+2024-01-25 14:15:53,428 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-MEMS1.8.2.0
+2024-01-25 14:15:53,490 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-L5.1.1.0
+2024-01-25 14:15:53,497 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AI.8.0.1
+2024-01-25 14:15:53,508 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SUBG2.5.0.0
+2024-01-25 14:15:53,523 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-GNSS1.5.1.0
+2024-01-25 14:15:53,536 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOF1.3.3.1
+2024-01-25 14:15:53,567 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-G4.2.0.0
+2024-01-25 14:15:53,582 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOF1.3.3.0
+2024-01-25 14:15:53,597 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-ATR-ASTRA1.1.1.1
+2024-01-25 14:15:53,615 [WARN] PackLoader:242 - Cannot read IP mode file for Infineon.AIROC-Wi-Fi-Bluetooth-STM32.1.5.1
+2024-01-25 14:15:53,622 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-SNS-MOTENVWB1.1.3.1
+2024-01-25 14:15:53,643 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-G4.1.0.0
+2024-01-25 14:15:53,668 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-L4.1.0.0
+2024-01-25 14:15:53,678 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-ISPU.2.0.0
+2024-01-25 14:15:53,726 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-MEMS1.10.0.0
+2024-01-25 14:15:53,825 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-FREERTOS.1.1.0
+2024-01-25 14:15:53,838 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-SUBG2.4.0.0
+2024-01-25 14:15:53,856 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-WL.1.0.0
+2024-01-25 14:15:53,864 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOF1.1.0.0
+2024-01-25 14:15:53,874 [WARN] PackLoader:242 - Cannot read IP mode file for portGmbH.I-Cube-SoM-uGOAL.1.1.0
+2024-01-25 14:15:53,885 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-ALS.1.0.1
+2024-01-25 14:15:53,892 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AI.7.0.0
+2024-01-25 14:15:53,907 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-WB.1.1.0
+2024-01-25 14:15:53,942 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-MEMS1.8.3.0
+2024-01-25 14:15:54,028 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-L5.1.0.0
+2024-01-25 14:15:54,040 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-EEPRMA1.3.1.0
+2024-01-25 14:15:54,050 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-EEPRMA1.3.1.1
+2024-01-25 14:15:54,058 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-GNSS1.5.2.0
+2024-01-25 14:15:54,062 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.FP-ATR-ASTRA1.2.0.0
+2024-01-25 14:15:54,076 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-TOF1.3.4.0
+2024-01-25 14:15:54,146 [WARN] PackLoader:242 - Cannot read IP mode file for STMicroelectronics.X-CUBE-AZRTOS-H7.3.2.0
+2024-01-25 14:15:54,148 [INFO] ThirdParty:947 - Integrity check success = true
+2024-01-25 14:15:54,148 [INFO] IntegrityCheckThread:98 - exiting critical section [integrity check]
+2024-01-25 14:15:54,148 [INFO] IntegrityCheckThread:101 - End integrity checks thread
+2024-01-25 14:15:54,149 [INFO] ThirdParty:847 - entering critical section [close project]
+2024-01-25 14:15:54,151 [INFO] ThirdParty:857 - exiting critical section [close project]
+2024-01-25 14:15:54,160 [INFO] PinOutPanel:1477 - setPackage(No Configuration,No Configuration)
+2024-01-25 14:15:54,165 [INFO] UtilMem:74 - Begin LoadConfig() Used Memory: 764002384 Bytes (944766976)
+2024-01-25 14:15:54,167 [INFO] MicroXplorer:451 - Change Database Path : 
+2024-01-25 14:15:54,167 [INFO] MicroXplorer:481 - Change Database Version : DB.6.0.70
+2024-01-25 14:15:54,168 [INFO] OpenFileManager:307 - Change cursor
+2024-01-25 14:15:54,225 [INFO] Mcu:1925 - Initializing MCU STM32F407V(E-G)Tx STM32F407VETx STM32F407VET6
+2024-01-25 14:15:55,803 [INFO] Context:654 - Trying to add GPIOservice into a context  which must be forbidden
+2024-01-25 14:15:56,366 [INFO] RtosManager:489 - Registered RTOS mode: class=CMSIS, group=RTOS, mode=CMSIS_V1, owner=FREERTOS
+2024-01-25 14:15:56,367 [INFO] RtosManager:489 - Registered RTOS mode: class=CMSIS, group=RTOS2, mode=CMSIS_V2, owner=FREERTOS
+2024-01-25 14:15:56,367 [INFO] RtosManager:489 - Registered RTOS mode: class=RTOS, group=Core, mode=CMSIS_V1, owner=FREERTOS
+2024-01-25 14:15:56,367 [INFO] RtosManager:489 - Registered RTOS mode: class=RTOS, group=Core, mode=CMSIS_V2, owner=FREERTOS
+2024-01-25 14:15:56,367 [WARN] ModelIntegratedComponent:185 - Missing modes for component STMicroelectronics:FreeRTOS:0.0.1:STMicroelectronics:RTOS:FreeRTOS:Core:::10.2.0:
+2024-01-25 14:15:56,379 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,379 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,379 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,379 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,379 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,379 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,379 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,380 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,381 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,382 [WARN] ModelIntegratedComponent:64 - No mode defined for component null
+2024-01-25 14:15:56,739 [INFO] ThirdPartyModel:294 - Start build external matchings
+2024-01-25 14:15:59,869 [INFO] ThirdPartyModel:310 - End build external matchings
+2024-01-25 14:16:00,037 [INFO] RtosManager:802 - Current active RTOS is FREERTOS [Cortex-M4NS]
+2024-01-25 14:16:00,049 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Instance) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,049 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Channel) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,050 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Direction) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,050 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphInc) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,050 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemInc) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,050 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphDataAlignment) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemDataAlignment) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Mode) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Priority) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (FIFOMode) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (FIFOThreshold) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (FIFOThreshold) has invalid value (null)
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemBurst) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemBurst) has invalid value (null)
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphBurst) has Id (USART3_RX) currently not set
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphBurst) has invalid value (null)
+2024-01-25 14:16:00,051 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Instance) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Channel) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Direction) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphInc) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemInc) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphDataAlignment) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemDataAlignment) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Mode) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (Priority) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (FIFOMode) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (FIFOThreshold) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (FIFOThreshold) has invalid value (null)
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemBurst) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,052 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (MemBurst) has invalid value (null)
+2024-01-25 14:16:00,053 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphBurst) has Id (USART3_TX) currently not set
+2024-01-25 14:16:00,053 [INFO] ImportTextPane:193 - (OptionalMessage_ERROR) IP (DMA) : Parameter (PeriphBurst) has invalid value (null)
+2024-01-25 14:16:00,062 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:00,062 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:00,365 [INFO] UtilMem:74 - End LoadConfig() Used Memory: 678055032 Bytes (944766976)
+2024-01-25 14:16:00,473 [INFO] ApiDb:580 - Connected to CubeFinder SQLite database (C:\Users\Workstation\.stmcufinder\plugins\mcufinder\mcu\cube-finder-db.db)
+2024-01-25 14:16:00,535 [INFO] ApiDb:667 - CubeFinder database Data Model version=2.1
+2024-01-25 14:16:00,535 [INFO] ApiDb:668 - CubeFinder database Configuration version=3.0.39
+2024-01-25 14:16:00,535 [INFO] ApiDb:669 - CubeFinder database generation date=2023-12-08 (1702028721)
+2024-01-25 14:16:00,535 [INFO] ApiDb:670 - CubeFinder database FW Pack versions=[FP-ATR-ASTRA1_V2.0.0, FP-SNS-FLIGHT1_V5.0.1, FP-SNS-FLIGHT1_V5.0.2, FP-SNS-MOTENV1_V4.3.1, FP-SNS-MOTENV1_V4.3.2, FP-SNS-MOTENVWB1_V1.3.1, FP-SNS-SMARTAG2_V1.2.0, STM32Cube_FW_C0_V1.1.0, STM32Cube_FW_F4_V1.28.0, STM32Cube_FW_F7_V1.17.0, STM32Cube_FW_G0_V1.6.1, STM32Cube_FW_G4_V1.5.1, STM32Cube_FW_H5_V0.5.1, STM32Cube_FW_H5_V1.1.1, STM32Cube_FW_H5_V1.2.0RC2, STM32Cube_FW_H7_V1.11.0, STM32Cube_FW_L0_V1.12.2, STM32Cube_FW_L5_V1.5.0, STM32Cube_FW_U5_V1.3.0RC4, STM32Cube_FW_U5_V1.4.0, STM32Cube_FW_WBA_V1.0.0RC1, STM32Cube_FW_WBA_V1.1.0RC1, STM32Cube_FW_WBA_V1.2.0, STM32Cube_FW_WBA_V1.2.0RC2, STM32Cube_FW_WB_V1.15.0RC1, STM32Cube_FW_WB_V1.16.0, STM32Cube_FW_WB_V1.16.0RC2, STM32Cube_FW_WB_V1.18.0, STM32Cube_FW_WL_V1.3.0, X-CUBE-ALGOBUILD_V1.3.0, X-CUBE-ALS_V1.0.1, X-CUBE-AZRTOS-F4_V1.1.0, X-CUBE-AZRTOS-F7_V1.1.0, X-CUBE-AZRTOS-G0_V1.1.0, X-CUBE-AZRTOS-G4_V2.0.0, X-CUBE-AZRTOS-H7_V3.1.0, X-CUBE-AZRTOS-L4_V1.0.0, X-CUBE-AZRTOS-L4_V2.0.0, X-CUBE-AZRTOS-L5_V1.1.0, X-CUBE-AZRTOS-WB_V2.0.0, X-CUBE-AZRTOS-WL_V2.0.0, X-CUBE-BLE1_V7.0.0, X-CUBE-BLE2_V3.3.0, X-CUBE-BLEMGR_V3.0.0, X-CUBE-EEPRMA1_V4.1.0, X-CUBE-EEPRMA1_V4.2.0, X-CUBE-FREERTOS_V1.1.0, X-CUBE-GNSS1_V6.0.0, X-CUBE-MEMS1_V10.0.0, X-CUBE-MEMS1_V9.1.0, X-CUBE-MEMS1_V9.4.0, X-CUBE-MEMS1_V9.6.0, X-CUBE-NFC4_V3.0.0, X-CUBE-NFC7_V1.0.1, X-CUBE-SFXS2LP1_V4.0.0, X-CUBE-SUBG2_V5.0.0, X-CUBE-TOF1_V3.4.0]
+2024-01-25 14:16:02,502 [INFO] ApiDb:239 - Found 143 in-development CPN: [B-WB1M-WPAN1, B-WL5M-SUBG1, NUCLEO-C031C6, STEVAL-PROTEUS1, STEVAL-STWINBX1, STM320518-EVAL, STM32C0116-DK, STM32C011D6Y3TR, STM32C011D6Y6TR, STM32C011F4P3, STM32C011F4P6, STM32C011F4U3, STM32C011F4U6TR, STM32C011F6P3, STM32C011F6P6, STM32C011F6U3, STM32C011F6U6TR, STM32C011J4M3, STM32C011J4M6, STM32C011J6M3, STM32C011J6M6, STM32C0316-DK, STM32C031C4T3, STM32C031C4T6, STM32C031C4U3, STM32C031C4U6, STM32C031C6T3, STM32C031C6T6, STM32C031C6U3, STM32C031C6U6, STM32C031F4P3, STM32C031F4P6, STM32C031F6P3, STM32C031F6P6, STM32C031G4U3, STM32C031G4U6, STM32C031G6U3, STM32C031G6U6, STM32C031K4T3, STM32C031K4T6, STM32C031K4U3, STM32C031K4U6, STM32C031K6T3, STM32C031K6T6, STM32C031K6U3, STM32C031K6U6, STM32G071K8TXN, STM32G071K8UXN, STM32G081GBU6N, STM32G081KBT6N, STM32G081KBUXN, STM32G0B1CCT6N, STM32G0B1KCT6, STM32G0B1NEY6TR, STM32G0B1RCT6N, STM32G0C1CCT6, STM32G0C1CCT6N, STM32G0C1CCU6N, STM32G0C1CET6N, STM32G0C1CEU6N, STM32G0C1KCT6, STM32G0C1NEY6TR, STM32G0C1RCI6N, STM32G0C1RCT6N, STM32G0C1REI6N, STM32G0C1RET6N, STM32G0C1VCI6, STM32G0C1VEI6, STM32G471CCT6, STM32G471CCU6, STM32G471CET3, STM32G471CET6, STM32G471CEU3, STM32G471CEU6, STM32G471MCT6, STM32G471MET3, STM32G471MET6, STM32G471MEY6TR, STM32G471QCT6, STM32G471QET3, STM32G471RCT6, STM32G471RET3, STM32G471RET6, STM32G471VCH6, STM32G471VCI6, STM32G471VCT6, STM32G471VEH3, STM32G471VEH6, STM32G471VEI3, STM32G471VEI6, STM32G471VET3, STM32G471VET6, STM32G474CCT6, STM32L476VGY6PTR, STM32L4R5QGI6STR, STM32MP131AAE3, STM32MP131AAF3, STM32MP131AAG3, STM32MP131CAE3, STM32MP131CAF3, STM32MP131CAG3, STM32MP131DAE7, STM32MP131DAF7, STM32MP131DAG7, STM32MP131FAE7, STM32MP131FAF7, STM32MP131FAG7, STM32MP133AAE3, STM32MP133AAF3, STM32MP133AAG3, STM32MP133CAE3, STM32MP133CAF3, STM32MP133CAG3, STM32MP133DAE7, STM32MP133DAF7, STM32MP133DAG7, STM32MP133FAE7, STM32MP133FAF7, STM32MP133FAG7, STM32MP135AAE3, STM32MP135AAF3, STM32MP135AAG3, STM32MP135CAE3, STM32MP135CAF3, STM32MP135CAG3, STM32MP135DAE7, STM32MP135DAF7, STM32MP135DAG7, STM32MP135F-DK, STM32MP135FAE7, STM32MP135FAF7, STM32MP135FAF7T, STM32MP135FAF7U, STM32MP135FAG7, STM32U595ZJT6Q, STM32U599BJY6QTR, STM32U599NIH6Q, STM32U599NJH6Q, STM32U5A5ZJT6Q, STM32U5A9BJY6QTR, STM32U5A9NJH6Q, STM32WB1MMCH6, STM32WL5MOCH6TR]
+2024-01-25 14:16:02,504 [INFO] DbMcus:215 - Found 3853 MCUs, 3853 are supported
+2024-01-25 14:16:02,506 [INFO] ApiDb:422 - Load user favorites file C:\Users\Workstation/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2024-01-25 14:16:02,506 [INFO] ApiDb:426 - User favorites MCUs=[]
+2024-01-25 14:16:02,506 [INFO] DbMcus:221 - Set 0 / 0 favorites MCUs
+2024-01-25 14:16:02,815 [WARN] ThirdParty:807 - waiting for thirdparty lock release [change project]
+2024-01-25 14:16:02,816 [INFO] ThirdParty:809 - entering critical section [change project]
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-GNSS1 6.0.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics USB_HOST 2.0.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-F4 1.1.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics LIBJPEG 8.0.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SMBUS 2.1.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SFXS2LP1 2.0.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.23.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLEMGR 1.2.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-H7 1.1.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-F7 1.1.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-L5 2.0.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics USB_DEVICE 2.0.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 9.6.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-EEPRMA1 4.2.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :ITTIA_DB I-CUBE-ITTIADB 8.8.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-MOTENV1 4.3.0
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-MOTENV1 4.3.2
+2024-01-25 14:16:02,816 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-FLIGHT1 5.0.0
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-MOTENV1 4.3.1
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-FLIGHT1 5.0.1
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE1 6.2.3
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-EEPRMA1 3.0.0
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE1 6.2.4
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FreeRTOS 0.0.1
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :emotas I-CUBE-CANOPEN 1.1.3
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLEMGR 2.0.0
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ALGOBUILD 1.1.0
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE1 6.2.0
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE1 6.2.1
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE2 3.2.1
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-FLIGHT1 5.0.2
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC4 2.0.5
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC4 2.0.4
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC4 2.0.3
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC4 2.0.2
+2024-01-25 14:16:02,817 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC4 2.0.1
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-H7 3.1.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics PDM2PCM 3.3.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE2 3.2.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SFXS2LP1 3.1.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-DISPLAY 3.0.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-F4 1.0.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE1 7.0.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :wolfSSL I-CUBE-wolfSSL 5.5.4
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SUBG2 3.0.1
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SUBG2 3.0.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOF1 2.0.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics HAL Drivers 0.0.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.22.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC7 1.0.1
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics MBEDTLS 2.14.1
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC7 1.0.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.22.1
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SUBG2 4.2.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-H7 1.0.0
+2024-01-25 14:16:02,818 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC6 3.0.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 9.3.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-EEPRMA1 4.1.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-SMARTAG2 1.2.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-WL 2.0.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ALGOBUILD 1.2.1
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-DISPLAY 1.0.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics USB_DEVICE 1.0.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AI 8.1.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AI 6.0.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ALGOBUILD 1.2.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-L4 2.0.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics ThreadX 0.0.2
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :WES I-CUBE-Cesium 1.3.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE1 6.1.0
+2024-01-25 14:16:02,819 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics lwIP 2.1.2
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SFXS2LP1 4.0.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE2 3.3.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-DISPLAY 2.2.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOF1 3.2.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :wolfSSL I-CUBE-wolfSSL 4.7.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AI 5.2.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics PDM2PCM 3.2.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-H7 3.0.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ISPU 1.1.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :RoweBots I-CUBE-UNISONRTOS 5.5.0-4
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SFXS2LP1 3.0.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-H7 2.1.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics USB_DEVICE 3.0.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AI 8.0.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-WB 2.0.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-FREERTOS 1.0.0
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-FREERTOS 1.0.1
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.21.1
+2024-01-25 14:16:02,820 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.21.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 9.0.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.21.4
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 9.4.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AI 7.3.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ALGOBUILD 1.3.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 8.2.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-L5 1.1.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-G0 1.1.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AI 8.0.1
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-NFC4 3.0.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :SEGGER I-CUBE-embOS 1.2.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SUBG2 5.0.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics STM32_WPAN 1.0.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-GNSS1 5.1.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics lwIP 2.0.3
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics USB_HOST 1.0.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOF1 3.3.1
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-G4 2.0.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.17.0
+2024-01-25 14:16:02,821 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics PDM2PCM 3.1.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOF1 3.3.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-ATR-ASTRA1 1.1.1
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :Infineon AIROC-Wi-Fi-Bluetooth-STM32 1.5.1
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLEMGR 3.0.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLEMGR 1.3.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-SNS-MOTENVWB1 1.3.1
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-ATR-SIGFOX1 3.2.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-G4 1.0.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-L4 1.0.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ISPU 2.0.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-EEPRMA1 5.1.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics MBEDTLS 2.16.2
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.20.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 10.0.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-FREERTOS 1.1.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-SUBG2 4.0.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-WL 1.0.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOF1 1.0.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :portGmbH I-Cube-SoM-uGOAL 1.1.0
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-ALS 1.0.1
+2024-01-25 14:16:02,822 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 9.5.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AI 7.0.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics ThreadX 1.0.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-WB 1.1.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :SEGGER I-CUBE-embOS 1.3.1
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-MEMS1 8.3.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-L5 1.0.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-EEPRMA1 3.1.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :SEGGER I-CUBE-embOS 1.3.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-EEPRMA1 3.1.1
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-GNSS1 5.2.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics FP-ATR-ASTRA1 2.0.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOF1 3.4.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.16.1
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-AZRTOS-H7 3.2.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-TOUCHGFX 4.16.0
+2024-01-25 14:16:02,823 [INFO] ThirdParty:999 - CMSIS Pack Vendor :STMicroelectronics X-CUBE-BLE2 3.1.0
+2024-01-25 14:16:02,824 [INFO] ThirdParty:815 - exiting critical section [change project]
+2024-01-25 14:16:03,235 [INFO] PinOutPanel:1477 - setPackage(No Configuration,No Configuration)
+2024-01-25 14:16:03,236 [INFO] PinOutPanel:1477 - setPackage(STM32F407VETx,LQFP100)
+2024-01-25 14:16:03,694 [INFO] UtilMem:74 - Before build in PCC Used Memory: 684170736 Bytes (944766976)
+2024-01-25 14:16:04,339 [INFO] UserBatteryFile:100 - Li-ion 4000.0 0.1 3.7 2000.0 5000.0
+2024-01-25 14:16:04,547 [INFO] UtilMem:74 - After build in PCC Used Memory: 694319072 Bytes (944766976)
+2024-01-25 14:16:04,637 [INFO] ApiDbMcu:505 - Load IP Config File for FREERTOS
+2024-01-25 14:16:04,667 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,667 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,667 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,667 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,667 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,668 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,668 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,668 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,668 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,668 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,669 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,669 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,669 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,669 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,669 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,669 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,670 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,671 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,671 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,671 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,671 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,672 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,672 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,672 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,672 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,672 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,672 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,673 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,673 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,673 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,673 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,673 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,673 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,674 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,674 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,674 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,674 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,674 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,675 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,675 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,675 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,675 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,676 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,676 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,676 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,676 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,677 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,677 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,677 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,677 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,678 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,678 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,678 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,679 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,679 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,680 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,680 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,681 [INFO] IPUIPlugin:79 - create IPUIPlugin
+2024-01-25 14:16:04,700 [INFO] ApiDbMcu:505 - Load IP Config File for PDM2PCM
+2024-01-25 14:16:04,707 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:04,707 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:04,734 [WARN] FreeRTOS:1022 - Null or empty value: should not occur! (nothing added to the table)
+2024-01-25 14:16:04,931 [INFO] CADModel:164 - CPN selected for project levelSTM32F407VET6
+2024-01-25 14:16:04,931 [INFO] CADModel:113 - Register for checkConnection events
+2024-01-25 14:16:04,934 [INFO] RtosManager:615 - Active RTOS found at IOC load: FREERTOS [Cortex-M4NS]
+2024-01-25 14:16:04,991 [INFO] OpenFileManager:327 - Restore cursor
+2024-01-25 14:16:05,160 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:05,161 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:05,161 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:05,161 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:12,339 [INFO] Gpio:272 - dependency for GPIO [I2C1, TIM1, TIM2, TIM3, USART3]
+2024-01-25 14:16:25,402 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:25,402 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:25,402 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:25,403 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:25,445 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:25,446 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:25,479 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:25,479 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:25,509 [INFO] Gpio:272 - dependency for GPIO [I2C1, TIM1, TIM2, TIM3, USART3]
+2024-01-25 14:16:25,561 [INFO] NvicIntPanel:100 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2024-01-25 14:16:50,122 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 737189896 Bytes (944766976)
+2024-01-25 14:16:51,390 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 726065888 Bytes (944766976)
+2024-01-25 14:16:51,532 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 797895392 Bytes (944766976)
+2024-01-25 14:16:51,898 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: FREERTOS
+2024-01-25 14:16:51,898 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:16:51,898 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:16:51,898 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:16:51,898 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2024-01-25 14:16:51,898 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2024-01-25 14:16:51,898 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: I2C
+2024-01-25 14:16:51,898 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2024-01-25 14:16:51,899 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2024-01-25 14:16:51,899 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: DMA
+2024-01-25 14:16:51,899 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:16:51,899 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2024-01-25 14:16:51,900 [INFO] CodeGenerator:692 - code generatio: config db path: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\
+2024-01-25 14:16:51,910 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:51,910 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:16:52,253 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\license.tmp_save
+2024-01-25 14:16:52,653 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\license.tmp
+2024-01-25 14:16:52,732 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\gpio.tmp_save
+2024-01-25 14:16:52,969 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\gpio.tmp
+2024-01-25 14:16:53,522 [INFO] Middleware:1435 - No code input for Bsp Dependency
+2024-01-25 14:16:53,534 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp_save
+2024-01-25 14:16:53,660 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp
+2024-01-25 14:16:53,669 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp_save
+2024-01-25 14:16:53,758 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp
+2024-01-25 14:16:53,767 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp_save
+2024-01-25 14:16:53,848 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp
+2024-01-25 14:16:53,857 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp_save
+2024-01-25 14:16:53,932 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp
+2024-01-25 14:16:53,942 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp_save
+2024-01-25 14:16:54,013 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp
+2024-01-25 14:16:54,023 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp_save
+2024-01-25 14:16:54,139 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp
+2024-01-25 14:16:54,149 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp_save
+2024-01-25 14:16:54,226 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp
+2024-01-25 14:16:54,238 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp_save
+2024-01-25 14:16:54,331 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp
+2024-01-25 14:16:54,343 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp_save
+2024-01-25 14:16:54,415 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp
+2024-01-25 14:16:54,431 [INFO] Middleware:1435 - No code input for Bsp Dependency
+2024-01-25 14:16:54,438 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp_save
+2024-01-25 14:16:54,533 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp
+2024-01-25 14:16:54,538 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp_save
+2024-01-25 14:16:54,578 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp
+2024-01-25 14:16:54,582 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp_save
+2024-01-25 14:16:54,623 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp
+2024-01-25 14:16:54,627 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp_save
+2024-01-25 14:16:54,668 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp
+2024-01-25 14:16:54,677 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp_save
+2024-01-25 14:16:54,727 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp
+2024-01-25 14:16:54,731 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp_save
+2024-01-25 14:16:54,771 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp
+2024-01-25 14:16:54,776 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp_save
+2024-01-25 14:16:54,816 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp
+2024-01-25 14:16:54,820 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp_save
+2024-01-25 14:16:54,871 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp
+2024-01-25 14:16:54,875 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp_save
+2024-01-25 14:16:54,911 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp
+2024-01-25 14:16:54,925 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\FreeRTOSConfig.h_save
+2024-01-25 14:16:54,991 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\FreeRTOSConfig.h
+2024-01-25 14:16:55,005 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\freertos.c_save
+2024-01-25 14:16:55,061 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\freertos.c
+2024-01-25 14:16:55,108 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma.tmp_save
+2024-01-25 14:16:55,178 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma.tmp
+2024-01-25 14:16:55,184 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma_GV.tmp_save
+2024-01-25 14:16:55,227 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma_GV.tmp
+2024-01-25 14:16:55,251 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_it.c_save
+2024-01-25 14:16:55,343 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_it.c
+2024-01-25 14:16:55,358 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_it.h_save
+2024-01-25 14:16:55,421 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_it.h
+2024-01-25 14:16:55,445 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_msp.c_save
+2024-01-25 14:16:55,555 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_msp.c
+2024-01-25 14:16:55,566 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\system.tmp_save
+2024-01-25 14:16:55,628 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\system.tmp
+2024-01-25 14:16:55,646 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_timebase_tim.c_save
+2024-01-25 14:16:55,714 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_timebase_tim.c
+2024-01-25 14:16:55,738 [INFO] CodeEngine:303 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_hal_conf.h_save
+2024-01-25 14:16:55,817 [INFO] CodeEngine:327 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_hal_conf.h
+2024-01-25 14:16:55,858 [WARN] IPConfigManager:3414 - IP not found : TIM
+2024-01-25 14:16:55,859 [WARN] CodeGenerator:3583 - IP not found : null
+2024-01-25 14:16:55,882 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\main.h_save
+2024-01-25 14:16:55,991 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\main.h
+2024-01-25 14:16:56,008 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\main.c_save
+2024-01-25 14:16:56,211 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\main.c
+2024-01-25 14:16:56,851 [INFO] ProjectBuilder:2919 - Time for Copy HAL[1] : 179mS.
+2024-01-25 14:16:56,863 [INFO] ProjectBuilder:4183 - Project Generator version: 3.18.0-B7
+2024-01-25 14:16:57,110 [INFO] ConfigFileManager:1396 - The Die is : DIE413
+2024-01-25 14:16:57,120 [INFO] ApiDbMcu:505 - Load IP Config File for FATFS
+2024-01-25 14:16:57,128 [INFO] ApiDbMcu:505 - Load IP Config File for LIBJPEG
+2024-01-25 14:16:57,137 [INFO] ApiDbMcu:505 - Load IP Config File for LWIP
+2024-01-25 14:16:57,147 [INFO] ApiDbMcu:505 - Load IP Config File for MBEDTLS
+2024-01-25 14:16:57,158 [INFO] ApiDbMcu:505 - Load IP Config File for USB_DEVICE
+2024-01-25 14:16:57,166 [INFO] ApiDbMcu:505 - Load IP Config File for USB_HOST
+2024-01-25 14:16:59,608 [INFO] ProjectBuilder:4351 - Time for Generating toolchain IDE Files: 2745mS.
+2024-01-25 14:16:59,609 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 1mS.
+2024-01-25 14:16:59,614 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 0mS.
+2024-01-25 14:18:11,805 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 821572448 Bytes (1067450368)
+2024-01-25 14:18:12,803 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 845689696 Bytes (1067450368)
+2024-01-25 14:18:13,212 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 882916192 Bytes (1067450368)
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: FREERTOS
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: I2C
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2024-01-25 14:18:13,422 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: DMA
+2024-01-25 14:18:13,423 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:18:13,423 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2024-01-25 14:18:13,423 [INFO] CodeGenerator:692 - code generatio: config db path: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\
+2024-01-25 14:18:13,427 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:18:13,427 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:18:13,440 [INFO] Argument:300 - Argument : hdmavalue: null
+2024-01-25 14:18:13,440 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:18:13,440 [INFO] Argument:300 - Argument : Instancevalue: DMA1_Stream1
+2024-01-25 14:18:13,440 [INFO] Argument:310 - Argument : Instancevalue: DMA1_Stream1
+2024-01-25 14:18:13,440 [INFO] Argument:300 - Argument : Initvalue: null
+2024-01-25 14:18:13,440 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : Lockvalue: null
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : Lockvalue: null
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : Statevalue: null
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : Statevalue: null
+2024-01-25 14:18:13,441 [INFO] Argument:300 - Argument : Parentvalue: null
+2024-01-25 14:18:13,441 [INFO] Argument:310 - Argument : Parentvalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:300 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:310 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:300 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:310 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:300 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:310 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:300 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:310 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:300 - Argument : ErrorCodevalue: null
+2024-01-25 14:18:13,442 [INFO] Argument:310 - Argument : ErrorCodevalue: null
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : hdmavalue: null
+2024-01-25 14:18:13,443 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : Instancevalue: DMA1_Stream3
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : Instancevalue: DMA1_Stream3
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : Initvalue: null
+2024-01-25 14:18:13,443 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:18:13,443 [INFO] Argument:310 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:18:13,443 [INFO] Argument:300 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:18:13,444 [INFO] Argument:310 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:18:13,444 [INFO] Argument:300 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:18:13,444 [INFO] Argument:310 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:18:13,444 [INFO] Argument:300 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:18:13,444 [INFO] Argument:310 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:18:13,444 [INFO] Argument:300 - Argument : Lockvalue: null
+2024-01-25 14:18:13,444 [INFO] Argument:310 - Argument : Lockvalue: null
+2024-01-25 14:18:13,444 [INFO] Argument:300 - Argument : Statevalue: null
+2024-01-25 14:18:13,444 [INFO] Argument:310 - Argument : Statevalue: null
+2024-01-25 14:18:13,444 [INFO] Argument:300 - Argument : Parentvalue: null
+2024-01-25 14:18:13,444 [INFO] Argument:310 - Argument : Parentvalue: null
+2024-01-25 14:18:13,444 [INFO] Argument:300 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:18:13,444 [INFO] Argument:310 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:18:13,444 [INFO] Argument:300 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:18:13,445 [INFO] Argument:310 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:18:13,445 [INFO] Argument:300 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:18:13,445 [INFO] Argument:310 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:18:13,445 [INFO] Argument:300 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:18:13,445 [INFO] Argument:310 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:18:13,445 [INFO] Argument:300 - Argument : ErrorCodevalue: null
+2024-01-25 14:18:13,445 [INFO] Argument:310 - Argument : ErrorCodevalue: null
+2024-01-25 14:18:13,603 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\license.tmp_save
+2024-01-25 14:18:13,689 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\license.tmp
+2024-01-25 14:18:13,725 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\gpio.tmp_save
+2024-01-25 14:18:13,819 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\gpio.tmp
+2024-01-25 14:18:14,340 [INFO] Middleware:1435 - No code input for Bsp Dependency
+2024-01-25 14:18:14,346 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp_save
+2024-01-25 14:18:14,428 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp
+2024-01-25 14:18:14,431 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp_save
+2024-01-25 14:18:14,471 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp
+2024-01-25 14:18:14,474 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp_save
+2024-01-25 14:18:14,513 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp
+2024-01-25 14:18:14,516 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp_save
+2024-01-25 14:18:14,549 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp
+2024-01-25 14:18:14,551 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp_save
+2024-01-25 14:18:14,595 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp
+2024-01-25 14:18:14,597 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp_save
+2024-01-25 14:18:14,632 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp
+2024-01-25 14:18:14,637 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp_save
+2024-01-25 14:18:14,672 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp
+2024-01-25 14:18:14,678 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp_save
+2024-01-25 14:18:14,715 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp
+2024-01-25 14:18:14,717 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp_save
+2024-01-25 14:18:14,752 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp
+2024-01-25 14:18:14,761 [INFO] Middleware:1435 - No code input for Bsp Dependency
+2024-01-25 14:18:14,766 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp_save
+2024-01-25 14:18:14,824 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp
+2024-01-25 14:18:14,828 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp_save
+2024-01-25 14:18:14,861 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp
+2024-01-25 14:18:14,864 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp_save
+2024-01-25 14:18:14,898 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp
+2024-01-25 14:18:14,901 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp_save
+2024-01-25 14:18:14,937 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp
+2024-01-25 14:18:14,945 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp_save
+2024-01-25 14:18:14,982 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp
+2024-01-25 14:18:14,985 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp_save
+2024-01-25 14:18:15,020 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp
+2024-01-25 14:18:15,023 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp_save
+2024-01-25 14:18:15,069 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp
+2024-01-25 14:18:15,073 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp_save
+2024-01-25 14:18:15,111 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp
+2024-01-25 14:18:15,115 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp_save
+2024-01-25 14:18:15,149 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp
+2024-01-25 14:18:15,157 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\FreeRTOSConfig.h_save
+2024-01-25 14:18:15,206 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\FreeRTOSConfig.h
+2024-01-25 14:18:15,215 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\freertos.c_save
+2024-01-25 14:18:15,259 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\freertos.c
+2024-01-25 14:18:15,282 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma.tmp_save
+2024-01-25 14:18:15,335 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma.tmp
+2024-01-25 14:18:15,337 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma_GV.tmp_save
+2024-01-25 14:18:15,370 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma_GV.tmp
+2024-01-25 14:18:15,386 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_it.c_save
+2024-01-25 14:18:15,457 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_it.c
+2024-01-25 14:18:15,465 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_it.h_save
+2024-01-25 14:18:15,510 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_it.h
+2024-01-25 14:18:15,525 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_msp.c_save
+2024-01-25 14:18:15,620 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_msp.c
+2024-01-25 14:18:15,623 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\system.tmp_save
+2024-01-25 14:18:15,664 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\system.tmp
+2024-01-25 14:18:15,672 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_timebase_tim.c_save
+2024-01-25 14:18:15,726 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_timebase_tim.c
+2024-01-25 14:18:15,741 [INFO] CodeEngine:303 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_hal_conf.h_save
+2024-01-25 14:18:15,824 [INFO] CodeEngine:327 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_hal_conf.h
+2024-01-25 14:18:15,856 [WARN] IPConfigManager:3414 - IP not found : TIM
+2024-01-25 14:18:15,857 [WARN] CodeGenerator:3583 - IP not found : null
+2024-01-25 14:18:15,869 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\main.h_save
+2024-01-25 14:18:15,927 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\main.h
+2024-01-25 14:18:15,936 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\main.c_save
+2024-01-25 14:18:16,063 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\main.c
+2024-01-25 14:18:16,551 [INFO] ProjectBuilder:2919 - Time for Copy HAL[1] : 156mS.
+2024-01-25 14:18:16,555 [INFO] ProjectBuilder:4183 - Project Generator version: 3.18.0-B7
+2024-01-25 14:18:16,808 [INFO] ConfigFileManager:1396 - The Die is : DIE413
+2024-01-25 14:18:18,138 [INFO] ProjectBuilder:4351 - Time for Generating toolchain IDE Files: 1583mS.
+2024-01-25 14:18:18,139 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 1mS.
+2024-01-25 14:18:18,145 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 0mS.
+2024-01-25 14:18:39,795 [INFO] Gpio:272 - dependency for GPIO [I2C1, TIM1, TIM2, TIM3, USART3]
+2024-01-25 14:18:48,572 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 698822384 Bytes (1073741824)
+2024-01-25 14:18:50,025 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 748631792 Bytes (1073741824)
+2024-01-25 14:18:50,414 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 793720560 Bytes (1073741824)
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: FREERTOS
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: I2C
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2024-01-25 14:18:50,649 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: DMA
+2024-01-25 14:18:50,650 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:18:50,650 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2024-01-25 14:18:50,651 [INFO] CodeGenerator:692 - code generatio: config db path: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\
+2024-01-25 14:18:50,656 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:18:50,656 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:18:50,669 [INFO] Argument:300 - Argument : hdmavalue: null
+2024-01-25 14:18:50,669 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:18:50,669 [INFO] Argument:300 - Argument : Instancevalue: DMA1_Stream1
+2024-01-25 14:18:50,669 [INFO] Argument:310 - Argument : Instancevalue: DMA1_Stream1
+2024-01-25 14:18:50,669 [INFO] Argument:300 - Argument : Initvalue: null
+2024-01-25 14:18:50,669 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:18:50,669 [INFO] Argument:300 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:18:50,669 [INFO] Argument:310 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:18:50,669 [INFO] Argument:300 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2024-01-25 14:18:50,669 [INFO] Argument:310 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2024-01-25 14:18:50,669 [INFO] Argument:300 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:18:50,669 [INFO] Argument:310 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : Lockvalue: null
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : Lockvalue: null
+2024-01-25 14:18:50,670 [INFO] Argument:300 - Argument : Statevalue: null
+2024-01-25 14:18:50,670 [INFO] Argument:310 - Argument : Statevalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:300 - Argument : Parentvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:310 - Argument : Parentvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:300 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:310 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:300 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:310 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:300 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:310 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:300 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:310 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:300 - Argument : ErrorCodevalue: null
+2024-01-25 14:18:50,671 [INFO] Argument:310 - Argument : ErrorCodevalue: null
+2024-01-25 14:18:50,673 [INFO] Argument:300 - Argument : hdmavalue: null
+2024-01-25 14:18:50,673 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:18:50,673 [INFO] Argument:300 - Argument : Instancevalue: DMA1_Stream3
+2024-01-25 14:18:50,673 [INFO] Argument:310 - Argument : Instancevalue: DMA1_Stream3
+2024-01-25 14:18:50,673 [INFO] Argument:300 - Argument : Initvalue: null
+2024-01-25 14:18:50,673 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:18:50,673 [INFO] Argument:300 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:18:50,673 [INFO] Argument:310 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:18:50,673 [INFO] Argument:300 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2024-01-25 14:18:50,673 [INFO] Argument:310 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2024-01-25 14:18:50,673 [INFO] Argument:300 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:18:50,673 [INFO] Argument:310 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:18:50,673 [INFO] Argument:300 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : Lockvalue: null
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : Lockvalue: null
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : Statevalue: null
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : Statevalue: null
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : Parentvalue: null
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : Parentvalue: null
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:18:50,674 [INFO] Argument:300 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:18:50,674 [INFO] Argument:310 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:18:50,675 [INFO] Argument:300 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:18:50,675 [INFO] Argument:310 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:18:50,675 [INFO] Argument:300 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:18:50,675 [INFO] Argument:310 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:18:50,675 [INFO] Argument:300 - Argument : ErrorCodevalue: null
+2024-01-25 14:18:50,675 [INFO] Argument:310 - Argument : ErrorCodevalue: null
+2024-01-25 14:18:50,789 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\license.tmp_save
+2024-01-25 14:18:50,890 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\license.tmp
+2024-01-25 14:18:50,915 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\gpio.tmp_save
+2024-01-25 14:18:51,036 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\gpio.tmp
+2024-01-25 14:18:51,480 [INFO] Middleware:1435 - No code input for Bsp Dependency
+2024-01-25 14:18:51,486 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp_save
+2024-01-25 14:18:51,559 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp
+2024-01-25 14:18:51,562 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp_save
+2024-01-25 14:18:51,612 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp
+2024-01-25 14:18:51,614 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp_save
+2024-01-25 14:18:51,650 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp
+2024-01-25 14:18:51,652 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp_save
+2024-01-25 14:18:51,689 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp
+2024-01-25 14:18:51,691 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp_save
+2024-01-25 14:18:51,732 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp
+2024-01-25 14:18:51,735 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp_save
+2024-01-25 14:18:51,769 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp
+2024-01-25 14:18:51,771 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp_save
+2024-01-25 14:18:51,807 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp
+2024-01-25 14:18:51,809 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp_save
+2024-01-25 14:18:51,847 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp
+2024-01-25 14:18:51,849 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp_save
+2024-01-25 14:18:51,888 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp
+2024-01-25 14:18:51,897 [INFO] Middleware:1435 - No code input for Bsp Dependency
+2024-01-25 14:18:51,903 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp_save
+2024-01-25 14:18:51,958 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp
+2024-01-25 14:18:51,961 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp_save
+2024-01-25 14:18:51,995 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp
+2024-01-25 14:18:51,998 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp_save
+2024-01-25 14:18:52,033 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp
+2024-01-25 14:18:52,036 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp_save
+2024-01-25 14:18:52,083 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp
+2024-01-25 14:18:52,091 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp_save
+2024-01-25 14:18:52,128 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp
+2024-01-25 14:18:52,131 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp_save
+2024-01-25 14:18:52,165 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp
+2024-01-25 14:18:52,168 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp_save
+2024-01-25 14:18:52,203 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp
+2024-01-25 14:18:52,206 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp_save
+2024-01-25 14:18:52,244 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp
+2024-01-25 14:18:52,248 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp_save
+2024-01-25 14:18:52,281 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp
+2024-01-25 14:18:52,289 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\FreeRTOSConfig.h_save
+2024-01-25 14:18:52,335 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\FreeRTOSConfig.h
+2024-01-25 14:18:52,343 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\freertos.c_save
+2024-01-25 14:18:52,380 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\freertos.c
+2024-01-25 14:18:52,402 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma.tmp_save
+2024-01-25 14:18:52,456 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma.tmp
+2024-01-25 14:18:52,458 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma_GV.tmp_save
+2024-01-25 14:18:52,491 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma_GV.tmp
+2024-01-25 14:18:52,506 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_it.c_save
+2024-01-25 14:18:52,643 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_it.c
+2024-01-25 14:18:52,649 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_it.h_save
+2024-01-25 14:18:52,724 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_it.h
+2024-01-25 14:18:52,742 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_msp.c_save
+2024-01-25 14:18:52,857 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_msp.c
+2024-01-25 14:18:52,860 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\system.tmp_save
+2024-01-25 14:18:52,902 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\system.tmp
+2024-01-25 14:18:52,910 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_timebase_tim.c_save
+2024-01-25 14:18:52,965 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_timebase_tim.c
+2024-01-25 14:18:52,979 [INFO] CodeEngine:303 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_hal_conf.h_save
+2024-01-25 14:18:53,058 [INFO] CodeEngine:327 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_hal_conf.h
+2024-01-25 14:18:53,082 [WARN] IPConfigManager:3414 - IP not found : TIM
+2024-01-25 14:18:53,083 [WARN] CodeGenerator:3583 - IP not found : null
+2024-01-25 14:18:53,095 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\main.h_save
+2024-01-25 14:18:53,196 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\main.h
+2024-01-25 14:18:53,205 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\main.c_save
+2024-01-25 14:18:53,327 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\main.c
+2024-01-25 14:18:53,825 [INFO] ProjectBuilder:2919 - Time for Copy HAL[1] : 167mS.
+2024-01-25 14:18:53,829 [INFO] ProjectBuilder:4183 - Project Generator version: 3.18.0-B7
+2024-01-25 14:18:54,063 [INFO] ConfigFileManager:1396 - The Die is : DIE413
+2024-01-25 14:18:55,088 [INFO] ProjectBuilder:4351 - Time for Generating toolchain IDE Files: 1259mS.
+2024-01-25 14:18:55,089 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 0mS.
+2024-01-25 14:18:55,095 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 1mS.
+2024-01-25 14:19:28,481 [INFO] NvicIntPanel:100 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,2,27,705x489,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2024-01-25 14:21:53,690 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:21:53,690 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:21:53,691 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:21:53,691 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:21:53,717 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:21:53,718 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:21:53,740 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:21:53,740 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:21:53,759 [INFO] Gpio:272 - dependency for GPIO [I2C1, TIM1, TIM2, TIM3, USART3]
+2024-01-25 14:22:04,145 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:04,145 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:04,146 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:04,146 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:04,187 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:04,187 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:04,212 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:04,212 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:04,238 [INFO] Gpio:272 - dependency for GPIO [I2C1, TIM1, TIM2, TIM3, USART3]
+2024-01-25 14:22:04,271 [INFO] NvicIntPanel:100 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2024-01-25 14:22:16,744 [INFO] Gpio:272 - dependency for GPIO [I2C1, TIM1, TIM2, TIM3, USART3]
+2024-01-25 14:22:18,510 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 852247824 Bytes (1073741824)
+2024-01-25 14:22:19,756 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 876887312 Bytes (1073741824)
+2024-01-25 14:22:20,136 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 915162384 Bytes (1073741824)
+2024-01-25 14:22:20,324 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: FREERTOS
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: I2C
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: DMA
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2024-01-25 14:22:20,325 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2024-01-25 14:22:20,326 [INFO] CodeGenerator:692 - code generatio: config db path: C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.7.0.202211181646\\db\
+2024-01-25 14:22:20,345 [WARN] IP:2112 - I2C_Coeff_DF not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:20,345 [WARN] IP:2112 - Analog_Filter not found: check if there is a RefParameter without a condition.
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : hdmavalue: null
+2024-01-25 14:22:20,356 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : Instancevalue: DMA1_Stream1
+2024-01-25 14:22:20,356 [INFO] Argument:310 - Argument : Instancevalue: DMA1_Stream1
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : Initvalue: null
+2024-01-25 14:22:20,356 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:22:20,356 [INFO] Argument:310 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2024-01-25 14:22:20,356 [INFO] Argument:310 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:22:20,356 [INFO] Argument:310 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:22:20,356 [INFO] Argument:310 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:22:20,356 [INFO] Argument:310 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:22:20,356 [INFO] Argument:310 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:22:20,356 [INFO] Argument:300 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:22:20,356 [INFO] Argument:310 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : Lockvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : Lockvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : Statevalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : Statevalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : Parentvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : Parentvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:300 - Argument : ErrorCodevalue: null
+2024-01-25 14:22:20,357 [INFO] Argument:310 - Argument : ErrorCodevalue: null
+2024-01-25 14:22:20,358 [INFO] Argument:300 - Argument : hdmavalue: null
+2024-01-25 14:22:20,358 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:22:20,358 [INFO] Argument:300 - Argument : Instancevalue: DMA1_Stream3
+2024-01-25 14:22:20,358 [INFO] Argument:310 - Argument : Instancevalue: DMA1_Stream3
+2024-01-25 14:22:20,358 [INFO] Argument:300 - Argument : Initvalue: null
+2024-01-25 14:22:20,358 [INFO] Argument:302 - 	 sub Args: 
+2024-01-25 14:22:20,358 [INFO] Argument:300 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:22:20,358 [INFO] Argument:310 - Argument : Channelvalue: DMA_CHANNEL_4
+2024-01-25 14:22:20,358 [INFO] Argument:300 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2024-01-25 14:22:20,358 [INFO] Argument:310 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2024-01-25 14:22:20,358 [INFO] Argument:300 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : Modevalue: DMA_NORMAL
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : FIFOModevalue: DMA_FIFOMODE_ENABLE
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : FIFOThresholdvalue: DMA_FIFO_THRESHOLD_FULL
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : MemBurstvalue: DMA_MBURST_SINGLE
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : PeriphBurstvalue: DMA_PBURST_SINGLE
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : Lockvalue: null
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : Lockvalue: null
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : Statevalue: null
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : Statevalue: null
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : Parentvalue: null
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : Parentvalue: null
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : XferCpltCallbackvalue: null
+2024-01-25 14:22:20,359 [INFO] Argument:300 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:22:20,359 [INFO] Argument:310 - Argument : XferHalfCpltCallbackvalue: null
+2024-01-25 14:22:20,360 [INFO] Argument:300 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:22:20,360 [INFO] Argument:310 - Argument : XferM1CpltCallbackvalue: null
+2024-01-25 14:22:20,360 [INFO] Argument:300 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:22:20,360 [INFO] Argument:310 - Argument : XferErrorCallbackvalue: null
+2024-01-25 14:22:20,360 [INFO] Argument:300 - Argument : ErrorCodevalue: null
+2024-01-25 14:22:20,360 [INFO] Argument:310 - Argument : ErrorCodevalue: null
+2024-01-25 14:22:20,500 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\license.tmp_save
+2024-01-25 14:22:20,556 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\license.tmp
+2024-01-25 14:22:20,576 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\gpio.tmp_save
+2024-01-25 14:22:20,642 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\gpio.tmp
+2024-01-25 14:22:21,017 [INFO] Middleware:1435 - No code input for Bsp Dependency
+2024-01-25 14:22:21,021 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp_save
+2024-01-25 14:22:21,104 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp
+2024-01-25 14:22:21,106 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp_save
+2024-01-25 14:22:21,150 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp
+2024-01-25 14:22:21,153 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp_save
+2024-01-25 14:22:21,187 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp
+2024-01-25 14:22:21,189 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp_save
+2024-01-25 14:22:21,223 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp
+2024-01-25 14:22:21,225 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp_save
+2024-01-25 14:22:21,270 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp
+2024-01-25 14:22:21,273 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp_save
+2024-01-25 14:22:21,329 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp
+2024-01-25 14:22:21,332 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp_save
+2024-01-25 14:22:21,381 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp
+2024-01-25 14:22:21,384 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp_save
+2024-01-25 14:22:21,423 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp
+2024-01-25 14:22:21,425 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp_save
+2024-01-25 14:22:21,458 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp
+2024-01-25 14:22:21,467 [INFO] Middleware:1435 - No code input for Bsp Dependency
+2024-01-25 14:22:21,472 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp_save
+2024-01-25 14:22:21,523 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_inc.tmp
+2024-01-25 14:22:21,526 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp_save
+2024-01-25 14:22:21,559 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelInit.tmp
+2024-01-25 14:22:21,562 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp_save
+2024-01-25 14:22:21,596 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_kernelStart.tmp
+2024-01-25 14:22:21,599 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp_save
+2024-01-25 14:22:21,633 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_typedefs.tmp
+2024-01-25 14:22:21,641 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp_save
+2024-01-25 14:22:21,678 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_vars.tmp
+2024-01-25 14:22:21,681 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp_save
+2024-01-25 14:22:21,715 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_pfp.tmp
+2024-01-25 14:22:21,718 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp_save
+2024-01-25 14:22:21,753 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_obj_creat.tmp
+2024-01-25 14:22:21,756 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp_save
+2024-01-25 14:22:21,794 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_default_thread.tmp
+2024-01-25 14:22:21,798 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp_save
+2024-01-25 14:22:21,842 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\rtos_threads.tmp
+2024-01-25 14:22:21,851 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\FreeRTOSConfig.h_save
+2024-01-25 14:22:21,896 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\FreeRTOSConfig.h
+2024-01-25 14:22:21,905 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\freertos.c_save
+2024-01-25 14:22:21,946 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\freertos.c
+2024-01-25 14:22:21,974 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma.tmp_save
+2024-01-25 14:22:22,025 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma.tmp
+2024-01-25 14:22:22,027 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma_GV.tmp_save
+2024-01-25 14:22:22,060 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\dma_GV.tmp
+2024-01-25 14:22:22,075 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_it.c_save
+2024-01-25 14:22:22,148 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_it.c
+2024-01-25 14:22:22,152 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_it.h_save
+2024-01-25 14:22:22,198 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_it.h
+2024-01-25 14:22:22,211 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_msp.c_save
+2024-01-25 14:22:22,284 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_msp.c
+2024-01-25 14:22:22,287 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\system.tmp_save
+2024-01-25 14:22:22,326 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\MXTmpFiles\system.tmp
+2024-01-25 14:22:22,333 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_timebase_tim.c_save
+2024-01-25 14:22:22,373 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\stm32f4xx_hal_timebase_tim.c
+2024-01-25 14:22:22,384 [INFO] CodeEngine:303 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_hal_conf.h_save
+2024-01-25 14:22:22,448 [INFO] CodeEngine:327 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\stm32f4xx_hal_conf.h
+2024-01-25 14:22:22,473 [WARN] IPConfigManager:3414 - IP not found : TIM
+2024-01-25 14:22:22,474 [WARN] CodeGenerator:3583 - IP not found : null
+2024-01-25 14:22:22,485 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\main.h_save
+2024-01-25 14:22:22,543 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Inc\main.h
+2024-01-25 14:22:22,553 [INFO] CodeEngine:247 - oldGeneratedFile, C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\main.c_save
+2024-01-25 14:22:22,668 [INFO] CodeEngine:271 - Generated code: C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Core\Src\main.c
+2024-01-25 14:22:23,223 [INFO] ProjectBuilder:2919 - Time for Copy HAL[1] : 181mS.
+2024-01-25 14:22:23,227 [INFO] ProjectBuilder:4183 - Project Generator version: 3.18.0-B7
+2024-01-25 14:22:23,482 [INFO] ConfigFileManager:1396 - The Die is : DIE413
+2024-01-25 14:22:24,682 [INFO] ProjectBuilder:4351 - Time for Generating toolchain IDE Files: 1455mS.
+2024-01-25 14:22:24,683 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 1mS.
+2024-01-25 14:22:24,688 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 0mS.
+2024-01-25 15:23:58,869 [INFO] JxBrowserEngine:114 - Initiate JxBrowser Engine with user profile folder
+2024-01-25 15:24:00,585 [INFO] WebAppUi:459 - Close the Jxbrowser engine manually
+2024-01-25 15:24:00,605 [INFO] WebAppUi:462 - Profiles folder deleted
+2024-01-25 15:24:00,881 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 

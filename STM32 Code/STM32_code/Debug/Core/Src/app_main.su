@@ -1,7 +1,9 @@
-../Core/Src/app_main.cpp:38:6:void HAL_UART_RxCpltCallback(UART_HandleTypeDef*)	16	static
-../Core/Src/app_main.cpp:48:6:void initializeCPPconstructs()	8	static
-../Core/Src/app_main.cpp:67:6:void robotTurn(float*)	48	static
-../Core/Src/app_main.cpp:90:6:void sensorTask(void*)	256	static
-../Core/Src/app_main.cpp:189:1:void __static_initialization_and_destruction_0(int, int)	16	static
-../Core/Src/app_main.cpp:189:1:cpp)	8	static
-../Core/Src/app_main.cpp:189:1:cpp)	8	static
+../Core/Inc/app_motion.h:79:2:AppMotion::MotionController::~MotionController()	16	static
+../Core/Src/app_main.cpp:14:6:void HAL_GPIO_EXTI_Callback(uint16_t)	16	static
+../Core/Src/app_main.cpp:43:6:void HAL_UART_RxCpltCallback(UART_HandleTypeDef*)	16	static
+../Core/Src/app_main.cpp:53:6:void initializeCPPconstructs()	8	static
+../Core/Src/app_main.cpp:73:6:void robotTurn(float*)	48	static
+../Core/Src/app_main.cpp:96:6:void sensorTask(void*)	256	static
+../Core/Src/app_main.cpp:186:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Core/Src/app_main.cpp:186:1:cpp)	8	static
+../Core/Src/app_main.cpp:186:1:cpp)	8	static

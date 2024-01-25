@@ -69,14 +69,14 @@ uint8_t* IMU_Initialise(ICM20948 *dev, I2C_HandleTypeDef *i2cHandle) {
 	/* user bank 2 register */
 	ret = IMU_WriteOneByte(dev, REG_ADD_REG_BANK_SEL, REG_VAL_REG_BANK_2);
 
-	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_SMPLRT_DIV, 0x07); // pg 59  Gyro sample rate divider Output data rate = 1.11K/7 = 157 Hz
+	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_SMPLRT_DIV, 0x40); //
 
 	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_CONFIG_1,
 			REG_VAL_BIT_GYRO_DLPCFG_6 | REG_VAL_BIT_GYRO_FS_500DPS
 					| REG_VAL_BIT_GYRO_DLPF); // enable low pass filter and set Gyro FS
 
 
-	ret = IMU_WriteOneByte(dev, REG_ADD_ACCEL_SMPLRT_DIV_2, 0x07); //  pg 63 Acce sample rate divider: ODR = 1.125KHz/7 = 161
+	ret = IMU_WriteOneByte(dev, REG_ADD_ACCEL_SMPLRT_DIV_2, 0x04); //  pg 63 Acce sample rate divider: ODR = 1.125KHz/7 = 161
 	ret = IMU_WriteOneByte(dev, REG_ADD_ACCEL_SMPLRT_DIV_1, 0x00); // upper 3 bit of sample rate = 0
 
 	// enable LPF and set accel full scale to +/-2G, sensitivity scale factor = 16384 LSB/g
@@ -184,7 +184,7 @@ HAL_StatusTypeDef Gyro_calibrate(ICM20948 *dev) // calibrate the offset of the g
 // store the offset in int16_t gyro_offset[3]
 {
 	uint8_t u8Buf[2] = { 0 }; // reset to zero upon entry
-	int32_t gyroRaw[3] = { 0 }; // reset to zero upon entry
+	int16_t gyroRaw[3] = { 0 }; // reset to zero upon entry
 	int8_t i;
 	int16_t temp;
 
@@ -194,21 +194,22 @@ HAL_StatusTypeDef Gyro_calibrate(ICM20948 *dev) // calibrate the offset of the g
 		temp = (u8Buf[1] << 8) | u8Buf[0]; // for debugging
 		gyroRaw[0] = temp + gyroRaw[0];
 		//gyroRaw[0] = (u8Buf[1]<<8)|u8Buf[0] + gyroRaw[0];
-
+osDelay(1);
 		IMU_ReadOneByte(dev, REG_ADD_GYRO_YOUT_L, &u8Buf[0]);
 		IMU_ReadOneByte(dev, REG_ADD_GYRO_YOUT_H, &u8Buf[1]);
-		gyroRaw[1] = (u8Buf[1] << 8) | u8Buf[0] + gyroRaw[1];
-
+		gyroRaw[1] = ((u8Buf[1] << 8) | u8Buf[0]) + gyroRaw[1];
+		osDelay(1);
 		IMU_ReadOneByte(dev, REG_ADD_GYRO_ZOUT_L, &u8Buf[0]);
 		ret = IMU_ReadOneByte(dev, REG_ADD_GYRO_ZOUT_H, &u8Buf[1]);
-		gyroRaw[2] = (u8Buf[1] << 8) | u8Buf[0] + gyroRaw[2];
+		gyroRaw[2] = ((u8Buf[1] << 8) | u8Buf[0]) + gyroRaw[2];
 
 		osDelay(100); // wait for 100msec
 	}
 
-	gyro_offset[0] = gyroRaw[0] >> 5;  // average of 32 reads
-	gyro_offset[1] = gyroRaw[1] >> 5;
-	gyro_offset[2] = gyroRaw[2] >> 5;
+	dev->gyro_bias[0] = (float)(gyroRaw[0] >> 5);  // average of 32 reads
+	dev->gyro_bias[1] = (float)(gyroRaw[1] >> 5);
+	dev->gyro_bias[2] = (float)(gyroRaw[2] >> 5);
+
 
 	return ret;
 }
@@ -218,54 +219,36 @@ HAL_StatusTypeDef IMU_GyroRead(ICM20948 *dev) { // return the change in value in
 	int16_t gyroRaw[3] = { 0 };  // reset to zero
 	int16_t gyroDiff[3];
 	int16_t temp;
-	static int16_t gyroOld[3] = { 0, 0, 0 };  // previous value
 
 	ret = IMU_ReadOneByte(dev, REG_ADD_GYRO_YOUT_L, &u8Buf[0]);
 	ret = IMU_ReadOneByte(dev, REG_ADD_GYRO_YOUT_H, &u8Buf[1]);
-	gyroRaw[1] = (u8Buf[1] << 8) | u8Buf[0] - gyro_offset[1];
-	gyroDiff[1] = gyroRaw[1] - gyroOld[1];  // change in value
-	gyroOld[1] = gyroRaw[1];
+	gyroRaw[1] = (u8Buf[1] << 8) | u8Buf[0];
+
 
 	ret = IMU_ReadOneByte(dev, REG_ADD_GYRO_ZOUT_L, &u8Buf[0]);
 	ret = IMU_ReadOneByte(dev, REG_ADD_GYRO_ZOUT_H, &u8Buf[1]);
-	gyroRaw[2] = (u8Buf[1] << 8) | u8Buf[0] - gyro_offset[2];
-	gyroDiff[2] = gyroRaw[2] - gyroOld[2];  // change in value
-	gyroOld[2] = gyroRaw[2];
+	gyroRaw[2] = (u8Buf[1] << 8) | u8Buf[0];
+
 
 	ret = IMU_ReadOneByte(dev, REG_ADD_GYRO_XOUT_L, &u8Buf[0]);
 	ret = IMU_ReadOneByte(dev, REG_ADD_GYRO_XOUT_H, &u8Buf[1]);
 	temp = (u8Buf[1] << 8) | u8Buf[0]; // for debugging
-	gyroRaw[0] = (u8Buf[1] << 8) | u8Buf[0] - gyro_offset[0];
-	gyroDiff[0] = gyroRaw[0] - gyroOld[0];  // change in value
-	gyroOld[0] = gyroRaw[0];
+	gyroRaw[0] = (u8Buf[1] << 8) | u8Buf[0];
 
-	/* extend to 32 bit SIGNED integers (two's complement)*/
-	int32_t gyroRawSigned[3];
-
-	//if ( (gyroDiff[0] & 0x00008000) == 0x00008000 )  //32 bit - no need to check
-	//	gyroRawSigned[0] = gyroRaw[0] | 0xFFFF0000;
-	//else
-	gyroRawSigned[0] = gyroRaw[0];
-
-	//if ( (gyroDiff[1] & 0x00008000) == 0x00008000 )
-	//	gyroRawSigned[1] = gyroRaw[1] | 0xFFFF0000;
-	//else
-	gyroRawSigned[1] = gyroRaw[1];
-
-	//if ( (gyroDiff[2] & 0x00008000) == 0x800008000 )
-	//	gyroRawSigned[2] = gyroRaw[2] | 0xFFFF0000;
-	//else
-	gyroRawSigned[2] = gyroRaw[2];
+	float gyroRawFloat[3] = {0};
+	gyroRawFloat[0] = gyroRaw[0] - dev->gyro_bias[0];
+	gyroRawFloat[1] = gyroRaw[1] - dev->gyro_bias[1];
+	gyroRawFloat[2] = gyroRaw[2] - dev->gyro_bias[2];
 
 	// gyro full scale set to +/-500 dps, sensitivity scale factor = 65.5 LSB/dps
 	// degree per second = value/65.5
-	dev->gyro[0] = 0.0152671755725191f * gyroRawSigned[0];
-	dev->gyro[1] = 0.0152671755725191f * gyroRawSigned[1];
-	dev->gyro[2] = 0.0152671755725191f * gyroRawSigned[2];
 
-	dev->gyro[0] -= dev->gyro_bias[0];
-	dev->gyro[1] -= dev->gyro_bias[1];
-	dev->gyro[2] -= dev->gyro_bias[2];
+
+
+	dev->gyro[0] = 0.0152671755725191f * gyroRawFloat[0];
+	dev->gyro[1] = 0.0152671755725191f * gyroRawFloat[1];
+	dev->gyro[2] = 0.0152671755725191f * gyroRawFloat[2];
+
 	return ret;
 
 }

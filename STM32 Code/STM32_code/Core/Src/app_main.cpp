@@ -9,14 +9,17 @@
 #include <cmath>
 #include <cstdio>
 
-bool lock = true;
-
-
+sensorData_t sensor_data; // public variables shared across all files.
+bool test_run = false;
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	test_run = true;
+}
 /* Instances and shared variables for AppParser and AppMotion namespace class instances */
 osMutexAttr_t procLock_attr;
 //osMutexId_t procLockHandle = osMutexNew(&procLock_attr);
 osThreadId_t procTaskHandle;
-const osThreadAttr_t procTask_attr = { .name = "procTask", .stack_size = 8192,
+const osThreadAttr_t procTask_attr = { .name = "procTask", .stack_size = 1024,
 		.priority = (osPriority_t) osPriorityBelowNormal7, };
 
 static u_ctx procCtx = { .runner = procTaskHandle, .attr = procTask_attr,
@@ -24,7 +27,7 @@ static u_ctx procCtx = { .runner = procTaskHandle, .attr = procTask_attr,
 
 
 osThreadId_t ctrlTaskHandle;
-const osThreadAttr_t ctrlTask_attr = { .name = "ctrlTask", .stack_size = 8192,
+const osThreadAttr_t ctrlTask_attr = { .name = "ctrlTask", .stack_size = 1024,
 		.priority = (osPriority_t) osPriorityBelowNormal7, };
 
 osMessageQueueId_t ctrlQueue = osMessageQueueNew(10, sizeof(AppParser::MOTION_PKT_t), NULL);
@@ -49,11 +52,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
  */
 void initializeCPPconstructs(void) {
 	//procTaskHandle = osThreadNew(processorTask, NULL, &procTask_attr);
-	//controller.start();
+
 	processor.start();
-	osThreadNew((osThreadFunc_t)&controller.motionTask,
-	    		&ctrlCtx,
-	                                    &(ctrlCtx.attr));
+	//osThreadNew((osThreadFunc_t)&controller.motionTask,
+	    		//&ctrlCtx,
+	                                   // &(ctrlCtx.attr));
+				controller.start();
 	//htim1.Instance->CCR1 = 153;
 }
 
@@ -94,10 +98,13 @@ void sensorTask(void *pv) {
 	IMU_Initialise(&imu, &hi2c1);
 
 	osDelay(50);
-//	Gyro_calibrate(&imu);
-	//Mag_init(&imu);
+	Gyro_calibrate(&imu);
+	Mag_init(&imu);
 
+	sensor_data.imu = &imu;
 	uint8_t readGyroZData[2];
+
+	/**I2C scanner for debug purposes **/
 	printf("Scanning I2C bus:\r\n");
 	HAL_StatusTypeDef result;
 	uint8_t i;
@@ -128,23 +135,11 @@ void sensorTask(void *pv) {
 	uint32_t timeNow = HAL_GetTick();
 	float dir = 0;
 
-	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-
-	// ------- left motor
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-	// ------- right motor
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET);
-	// drive the motor
-
 	float DEG2RAD = 0.017453292519943295769236907684886f;
 
 	float mRes = 10.0f * 4912.0f / 32760.0f;
 	for (;;) {
-		controller.motionTask(&ctrlCtx);
+
 		//setLeftPWM(1000); // was 1000, 2000
 		//setRightPWM(2000);
 		//robotTurnPID(&targetAngle, 0);
@@ -156,6 +151,7 @@ void sensorTask(void *pv) {
 		IMU_AccelRead(&imu);
 		IMU_GyroRead(&imu);
 		//Mag_read(&imu);
+
 
 		/*MahonyQuaternionUpdate(&imu, imu.acc[0], imu.acc[1], imu.acc[2],
 		 (float) imu.gyro[0] * DEG2RAD, (float) imu.gyro[1] * DEG2RAD,
@@ -177,15 +173,14 @@ void sensorTask(void *pv) {
 		/*float yaw = atan2(2.0f * (imu.q[1] * imu.q[2] + imu.q[0] * imu.q[3]),
 		 imu.q[0] * imu.q[0] + imu.q[1] * imu.q[1] - imu.q[2] * imu.q[2]
 		 - imu.q[3] * imu.q[3]) * 57.295779513082320876798154814105f;*/
-		dir += ((float) imu.gyro[2]) * 0.1;
 		uint16_t len = sprintf(&sbuf[0],
 				"%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f\r\n",
 				imu.acc[0], imu.acc[1], imu.acc[2], imu.gyro[0], imu.gyro[1],
-				imu.gyro[2], imu.mag[0], imu.mag[1], imu.mag[2]);
+				imu.gyro[2], dir, 0, 0);
 
-		HAL_UART_Transmit(&huart3, (uint8_t*) sbuf, len, 10);
+	//	HAL_UART_Transmit(&huart3, (uint8_t*) sbuf, len, 10);
 		//	HAL_UART_Receive_IT(&huart3, (uint8_t*) aRxBuffer, 5);
-		osDelay(150);
+		osDelay(65);
 
 	}
 }

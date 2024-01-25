@@ -1,9 +1,15 @@
+../Core/Inc/app_motion.h:22:2:AppMotion::Servo::~Servo()	16	static
+../Core/Inc/app_motion.h:45:2:AppMotion::Motor::~Motor()	16	static
 ../Core/Src/app_motion.cpp:21:1:AppMotion::MotionController::MotionController(u_ctx*)	16	static
-../Core/Src/app_motion.cpp:25:1:AppMotion::MotionController::~MotionController()	16	static
-../Core/Src/app_motion.cpp:28:6:void AppMotion::MotionController::start()	24	static
-../Core/Src/app_motion.cpp:34:6:static void AppMotion::MotionController::motionTask(void*)	80	static
-../Core/Src/app_motion.cpp:57:1:AppMotion::Servo::Servo(TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t)	24	static
-../Core/Src/app_motion.cpp:65:1:AppMotion::Servo::~Servo()	16	static
-../Core/Src/app_motion.cpp:66:6:void AppMotion::Servo::turnLeft()	16	static
-../Core/Src/app_motion.cpp:71:6:void AppMotion::Servo::turnRight()	16	static
-../Core/Src/app_motion.cpp:76:6:void AppMotion::Servo::turnFront()	16	static
+../Core/Src/app_motion.cpp:26:6:void AppMotion::MotionController::start()	24	static
+../Core/Src/app_motion.cpp:33:6:static void AppMotion::MotionController::motionTask(void*)	440	static
+../Core/Src/app_motion.cpp:95:6:static void AppMotion::MotionController::turn(AppMotion::Motor, AppMotion::Motor, AppMotion::Servo, bool, bool, uint32_t)	88	static
+../Core/Src/app_motion.cpp:125:1:AppMotion::Servo::Servo(TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t, uint32_t)	24	static
+../Core/Src/app_motion.cpp:135:6:void AppMotion::Servo::turnLeft()	16	static
+../Core/Src/app_motion.cpp:140:6:void AppMotion::Servo::turnRight()	16	static
+../Core/Src/app_motion.cpp:145:6:void AppMotion::Servo::turnFront()	16	static
+../Core/Src/app_motion.cpp:150:1:AppMotion::Motor::Motor(TIM_HandleTypeDef*, uint32_t, GPIO_TypeDef*, GPIO_TypeDef*, uint16_t, uint16_t, uint32_t)	24	static
+../Core/Src/app_motion.cpp:165:6:bool AppMotion::Motor::setSpeed(uint32_t)	24	static
+../Core/Src/app_motion.cpp:172:6:void AppMotion::Motor::halt()	16	static
+../Core/Src/app_motion.cpp:176:6:void AppMotion::Motor::setForward()	16	static
+../Core/Src/app_motion.cpp:181:6:void AppMotion::Motor::setBackward()	16	static

@@ -3,6 +3,7 @@
 #include "stm32f4xx_hal.h"
 #include "main.h"
 #include "app_main.h"
+#include "app_motion.h"
 #include "queue.h"
 #include <cstdlib>
 #include <cstdio>
@@ -56,9 +57,11 @@ void Processor::start(void) {
     wrapper_instance->rx_ctx = this_ctx;
     wrapper_instance->tx_ctx = o_ctx;
 
-    this->this_ctx->runner = osThreadNew((osThreadFunc_t)&Processor::processorTask,
+    this->this_ctx->runner = osThreadNew((osThreadFunc_t) Processor::processorTask,
     		wrapper_instance,
                                     &(this_ctx->attr));
+
+    return;
 }
 
 void Processor::processorTask(void *pv) {
