@@ -1,0 +1,40 @@
+/*
+ * oled.cpp
+ *
+ *  Created on: Jan 27, 2024
+ *      Author: edward62740
+ */
+#include "oled.h"
+#include "cmsis_os2.h"
+#include "app_main.h"
+#include <cstring>
+namespace Display {
+
+void oledTask(void * ) {
+
+	OLED_Init();
+	OLED_Clear();
+	typedef struct {
+		bool proc;
+		bool lsnr;
+		bool senr;
+		bool motn;
+	} isTaskAlive_t;
+	OLED_ShowString(0, 0, (uint8_t *)"TH | OK");
+	OLED_Display_On();
+	OLED_DrawRect(60, 16, 65, 21, 1);
+	OLED_DrawRect(60, 28, 65, 33, 1);
+	OLED_DrawRect(60, 40, 65, 45, 1);
+	OLED_DrawRect(60, 52, 65, 57, 1);
+	OLED_ShowString(1, 14, (uint8_t *)"PROC");
+	OLED_Refresh_Gram();
+
+	for (;;)
+	{
+
+		memset((void *)&is_task_alive_struct, 0, sizeof(isTaskAlive_t));
+		osDelay(250);
+	}
+}
+
+}

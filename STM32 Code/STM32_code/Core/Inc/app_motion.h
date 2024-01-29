@@ -13,7 +13,7 @@
 #include "app_parser.h"
 
 namespace AppMotion { // application-layer motion logic
-
+/* Servo class that holds servo info */
 class Servo {
 public:
 
@@ -36,7 +36,7 @@ private:
 	uint32_t CTR_PWM;
 
 };
-
+/* Motor class that holds motor info */
 class Motor {
 public:
 	Motor(TIM_HandleTypeDef *ctrl, uint32_t channel, GPIO_TypeDef *gpioAPort,
@@ -61,6 +61,11 @@ private:
 
 };
 
+class Encoder {
+public:
+
+};
+
 class MotionController {
 
 #define CENTER_POS_PWM 153 //150
@@ -69,18 +74,29 @@ class MotionController {
 
 #define LEFT_POS_PWM (CENTER_POS_PWM - LEFT_DELTA)
 #define RIGHT_POS_PWM (CENTER_POS_PWM + RIGHT_DELTA)
+	typedef struct {
+	    u_ctx* ctx;
+	    MotionController* i;
+	} instance_wrapper; // for passing to class instance info to static task fn, workaround.
+
 
 public:
+
 	MotionController(u_ctx *ctx);
 
 	void start();
-	static void turn(Motor lmotor, Motor rmotor, Servo servo, bool isRight, bool isFwd,
+	void turn(bool isRight, bool isFwd,
 			uint32_t arg);
+	void emergencyStop();
 	~MotionController() {
 	}
 	;
 	u_ctx *ctx;
 	static void motionTask(void *pv);
+private:
+	Motor *lmotor;
+	Motor *rmotor;
+	Servo *servo;
 };
 
 }

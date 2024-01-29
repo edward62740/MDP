@@ -1,10 +1,29 @@
-15:19:55 **** Incremental Build of configuration Debug for project STM32_code ****
+14:05:35 **** Incremental Build of configuration Debug for project STM32_code ****
 make -j8 all 
+arm-none-eabi-g++ "../Core/Src/app_motion.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I../Core/Inc -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/OLED_lib" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/Src/app_motion.d" -MT"Core/Src/app_motion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app_motion.o"
+In file included from ../Core/Inc/app_motion.h:13,
+                 from ../Core/Src/app_motion.cpp:10:
+../Core/Inc/app_parser.h:94:30: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   94 | static constexpr char* ack = "ack";
+      |                              ^~~~~
+../Core/Inc/app_parser.h:95:31: warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+   95 | static constexpr char* nack = "nack";
+      |                               ^~~~~~
+../Core/Src/app_motion.cpp: In member function 'void AppMotion::MotionController::turn(bool, bool, uint32_t)':
+../Core/Src/app_motion.cpp:98:10: warning: unused variable 'buf' [-Wunused-variable]
+   98 |  uint8_t buf[30] = { 0 };
+      |          ^~~
+arm-none-eabi-g++ -o "STM32_code.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_code.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: STM32_code.elf
+ 
 arm-none-eabi-size   STM32_code.elf 
+arm-none-eabi-objdump -h -S  STM32_code.elf  > "STM32_code.list"
    text	   data	    bss	    dec	    hex	filename
-  61484	    584	  24592	  86660	  15284	STM32_code.elf
+  76636	    588	  25732	 102956	  1922c	STM32_code.elf
 Finished building: default.size.stdout
  
+Finished building: STM32_code.list
+ 
 
-15:19:55 Build Finished. 0 errors, 0 warnings. (took 289ms)
+14:05:36 Build Finished. 0 errors, 3 warnings. (took 998ms)
 

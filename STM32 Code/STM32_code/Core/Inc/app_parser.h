@@ -24,7 +24,7 @@ typedef struct
 typedef struct {
     u_ctx* rx_ctx;
     u_ctx* tx_ctx;
-} ctx_wrapper; // for passing to static void * fn
+} ctx_wrapper; // generic wrapper to contain two tasks contexts
 
 
 namespace AppParser {
@@ -47,20 +47,20 @@ typedef struct
 	uint32_t arg;
 	bool is_absol;
 	bool turn_opt;
-} MOTION_PKT_t;
+} MOTION_PKT_t; // struct containing msg to send to motioncontroller queue
 
 
 typedef struct {
     uint8_t buffer[10];
     uint32_t length;
-} AppMessage_t ;
+} AppMessage_t ; // struct containing dma rxbuf captured by listener() within buf full cb fn
 typedef uint8_t BUF_CMP_t; // buf type
 
 class Listener
 {
 public:
 	Listener(u_ctx *ctx);
-	volatile void invoke();
+	volatile void invoke(); // called within isr to memcpy rxbuf into queue
 	~Listener( void );
 private:
 	u_ctx *ctx;
@@ -73,8 +73,8 @@ public:
 
 	void start();
 	~Processor( void );
-	u_ctx *this_ctx;
-	u_ctx *o_ctx;
+	u_ctx *this_ctx; // context of this process
+	u_ctx *o_ctx; // context of the other process, i.e. the motion controller.
 	static void processorTask(void *pv);
 private:
 
@@ -84,13 +84,15 @@ private:
 	{
 		return a == b;
 	}
-	static MOTION_PKT_t *getMotionCmdFromBytes(BUF_CMP_t *bytes);
+	static MOTION_PKT_t *getMotionCmdFromBytes(BUF_CMP_t *bytes); // handle motion request and give the MOTION_PKT_t back
+	static void returnSensorRequestCmd(BUF_CMP_t id); // handle the sensor request and return from ctx
 
 };
 
 /* PUBLIC CONSTANTS FOR UART CMDS AND APPLICATION-LAYER CMDS RESPECTIVELY */
 
-
+static constexpr char* ack = "ack";
+static constexpr char* nack = "nack";
 //index 0
 static constexpr BUF_CMP_t START_CHAR = 'x';
 
@@ -103,12 +105,18 @@ static constexpr BUF_CMP_t MOTOR_CHAR = 'm';
 static constexpr BUF_CMP_t SENSOR_CHAR = 's';
 static constexpr BUF_CMP_t AUX_CHAR = 'a';
 
-// index 3
+// index 3 iff [2] is MOTOR_CHAR
 static constexpr BUF_CMP_t FWD_CHAR = 'f';
 static constexpr BUF_CMP_t BWD_CHAR = 'b';
 static constexpr BUF_CMP_t RIGHT_CHAR = 'r';
 static constexpr BUF_CMP_t LEFT_CHAR = 'l';
 
+static constexpr BUF_CMP_t IR_L_CHAR = 'w';
+static constexpr BUF_CMP_t IR_R_CHAR = 'e';
+static constexpr BUF_CMP_t USOUND_CHAR = 'u';
+static constexpr BUF_CMP_t GY_Z_CHAR = 'g'; // others are probably useless..
+static constexpr BUF_CMP_t QTRN_YAW_CHAR = 'y';
+static constexpr BUF_CMP_t QTRN_ALL_CHAR = 'k';
 // index 4,5,6
 /* This will be a 3-digit number
  * if [2] is MOTOR_CHAR AND [3] is f/b, then this is motion in cm.

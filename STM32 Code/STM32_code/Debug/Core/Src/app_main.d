@@ -32,6 +32,9 @@ Core/Src/app_main.o: ../Core/Src/app_main.cpp ../Core/Inc/app_parser.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_adc.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
@@ -44,7 +47,8 @@ Core/Src/app_main.o: ../Core/Src/app_main.cpp ../Core/Inc/app_parser.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/app_parser.h ../Core/Inc/app_main.h \
  C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h \
- ../Core/Inc/main.h
+ ../Core/Inc/main.h ../Core/Src/app_display.h \
+ C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/OLED_lib/oled.h
 ../Core/Inc/app_parser.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
@@ -79,6 +83,9 @@ Core/Src/app_main.o: ../Core/Src/app_main.cpp ../Core/Inc/app_parser.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_adc.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
@@ -93,3 +100,5 @@ Core/Src/app_main.o: ../Core/Src/app_main.cpp ../Core/Inc/app_parser.h \
 ../Core/Inc/app_main.h:
 C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h:
 ../Core/Inc/main.h:
+../Core/Src/app_display.h:
+C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/OLED_lib/oled.h:

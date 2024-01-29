@@ -17,6 +17,7 @@ RM := rm -rf
 -include Core/ThreadSafe/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
+-include Core/OLED_lib/subdir.mk
 -include Core/ICM20948_lib/subdir.mk
 -include objects.mk
 

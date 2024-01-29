@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item key="LastUsedSourceTemplate" value="Default C++ source template"/>
 	<item key="LastUsedHeaderTemplate" value="Default C++ header template"/>
-	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="${workspace_loc:/${ProjName}/Core/Inc}"/>
+	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="${workspace_loc:/${ProjName}/Core/HCSR04_lib}"/>
 	<section name="completion_proposal_size">
 		<item key="size.x" value="431"/>
 		<item key="size.y" value="252"/>

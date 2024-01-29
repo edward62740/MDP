@@ -4,7 +4,7 @@
  * Functions to control motion
  *
  *  Created on: Jan 22, 2024
- *      Author: eward62740
+ *      Author: edward62740
  *
  */
 #include "app_motion.h"
@@ -20,50 +20,45 @@ namespace AppMotion {
 
 MotionController::MotionController(u_ctx *ctx) {
 	this->ctx = ctx;
+	/* Instantiate the physical devices */
+
+	this->servo = new Servo(&htim1, TIM_CHANNEL_1, CENTER_POS_PWM - LEFT_DELTA,
+			CENTER_POS_PWM + RIGHT_DELTA, CENTER_POS_PWM);
+	this->lmotor = new Motor(&htim8, TIM_CHANNEL_1, GPIOA, GPIOA, GPIO_PIN_5, GPIO_PIN_4,
+			7199);
+	this->rmotor = new Motor(&htim8, TIM_CHANNEL_2, GPIOA, GPIOA, GPIO_PIN_2, GPIO_PIN_3,
+			7199);
 
 }
 
 void MotionController::start(void) {
 
+
+	instance_wrapper *wrapper_instance = new instance_wrapper();
+	wrapper_instance->ctx = ctx;
+	wrapper_instance->i = this;
 	this->ctx->runner = osThreadNew(
-			(osThreadFunc_t) MotionController::motionTask, ctx, &(ctx->attr));
+			(osThreadFunc_t) MotionController::motionTask, wrapper_instance,
+			&(ctx->attr));
 	return;
 }
 
 void MotionController::motionTask(void *pv) {
-	u_ctx *ctx = (u_ctx*) pv;
 
-	/* Instantiate the physical devices */
-	Servo servo(&htim1, TIM_CHANNEL_1, CENTER_POS_PWM - LEFT_DELTA,
-	CENTER_POS_PWM + RIGHT_DELTA, CENTER_POS_PWM);
+	// workaround section START
+	instance_wrapper *wrapper = static_cast<instance_wrapper*>(pv);
+	u_ctx *ctx = wrapper->ctx;
+	MotionController *self = wrapper->i;
 
-	Motor lmotor(&htim8, TIM_CHANNEL_1, GPIOA, GPIOA, GPIO_PIN_5, GPIO_PIN_4,
-			7199);
-	Motor rmotor(&htim8, TIM_CHANNEL_2, GPIOA, GPIOA, GPIO_PIN_2, GPIO_PIN_3,
-			7199);
+	Motor *lmotor = self->lmotor;
+	Motor *rmotor = self->rmotor;
+	Servo *servo = self->servo;
 
+	/* workaround section END. henceforth refer to any "this" as "self" */
 	for (;;) {
 		osDelay(50);
-		static int ctr = 0;
-		if(test_run)
-		{
-			ctr++;
-			turn(lmotor, rmotor, servo, false, true, 45);
-			turn(lmotor, rmotor, servo, true, false, 45);
-			if(ctr >=4) {
-				servo.turnFront();
-				lmotor.setSpeed(100);
-								rmotor.setSpeed(100);
-								lmotor.setForward();
-								rmotor.setForward();
-								osDelay(1000);
-								lmotor.halt();
-															rmotor.halt();
-test_run = false;
-ctr = 0;
-			}
+		is_task_alive_struct.motn = true;
 
-		}
 		//osThreadYield();
 		if (osMessageQueueGetCount(ctx->mailbox.queue) > 0) {
 			AppParser::MOTION_PKT_t pkt;
@@ -71,46 +66,45 @@ ctr = 0;
 			char buffer[20] = { 0 };
 			sprintf((char*) &buffer, "cmd:%ld, arg:%ld\r\n", (uint32_t) pkt.cmd,
 					pkt.arg);
-			HAL_UART_Transmit(&huart3, (uint8_t*) buffer, sizeof(buffer), 10);
+			//HAL_UART_Transmit(&huart3, (uint8_t*) buffer, sizeof(buffer), 10);
 			if (pkt.cmd == AppParser::MOTION_CMD::MOVE_FWD) {
-				servo.turnFront();
-				lmotor.setSpeed(30);
-				rmotor.setSpeed(30);
-				lmotor.setForward();
-				rmotor.setForward();
+				servo->turnFront();
+				lmotor->setSpeed(30);
+				rmotor->setSpeed(30);
+				lmotor->setForward();
+				rmotor->setForward();
 				osDelay(500); // replace delay with tachometer count down
-				lmotor.halt();
-				rmotor.halt();
+				lmotor->halt();
+				rmotor->halt();
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_LEFT_FWD) {
-				turn(lmotor, rmotor, servo, false, true, pkt.arg);
+				self->turn(false, true, pkt.arg);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_RIGHT_FWD)
-				turn(lmotor, rmotor, servo, true, true, pkt.arg);
+				self->turn(true, true, pkt.arg);
 		}
 		HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_10);
 
 	}
 }
 
-void MotionController::turn(Motor lmotor, Motor rmotor, Servo servo, bool isRight, bool isFwd, uint32_t arg)
-{
-	isRight? servo.turnRight(): servo.turnLeft();
+void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
+	isRight ? servo->turnRight() : servo->turnLeft();
 
-	isFwd ? lmotor.setForward(): lmotor.setBackward();
-	isFwd ? rmotor.setForward(): rmotor.setBackward();
-	isRight ? lmotor.setSpeed(50) : lmotor.setSpeed(10);
-	isRight ? rmotor.setSpeed(10) : rmotor.setSpeed(50);
+	isFwd ? lmotor->setForward() : lmotor->setBackward();
+	isFwd ? rmotor->setForward() : rmotor->setBackward();
+	isRight ? lmotor->setSpeed(50) : lmotor->setSpeed(10);
+	isRight ? rmotor->setSpeed(10) : rmotor->setSpeed(50);
 	uint32_t timeNow = HAL_GetTick();
-	uint8_t buf[30] = {0};
+	uint8_t buf[30] = { 0 };
 	float target = (float) arg;
 	float angle = 0;
-	do {
+	do { // TODO CHANGE TO QUATERNION YAW
 
-
-		angle += sensor_data.imu->gyro[2]
-				* (HAL_GetTick() - timeNow) * 0.001;
-		if ((!isRight && isFwd && angle > target) || (isRight && isFwd && angle < -target) ||
-				(!isRight && !isFwd && angle < -target) || (isRight && !isFwd && angle > target))
+		angle += sensor_data.imu->gyro[2] * (HAL_GetTick() - timeNow) * 0.001;
+		if ((!isRight && isFwd && angle > target)
+				|| (isRight && isFwd && angle < -target)
+				|| (!isRight && !isFwd && angle < -target)
+				|| (isRight && !isFwd && angle > target))
 			break;
 		timeNow = HAL_GetTick();
 		osDelay(50);
@@ -118,8 +112,13 @@ void MotionController::turn(Motor lmotor, Motor rmotor, Servo servo, bool isRigh
 
 	} while (1);
 
-	lmotor.halt();
-	rmotor.halt();
+	lmotor->halt();
+	rmotor->halt();
+}
+
+void MotionController::emergencyStop() {
+	lmotor->halt();
+	rmotor->halt();
 }
 
 Servo::Servo(TIM_HandleTypeDef *ctrl, uint32_t channel, uint32_t min,
@@ -167,6 +166,7 @@ bool Motor::setSpeed(uint32_t percent) {
 		return false;
 	uint32_t value = this->period / 100 * percent;
 	__HAL_TIM_SET_COMPARE(this->htimer, this->channel, value);
+	return true;
 }
 
 void Motor::halt() {
