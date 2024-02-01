@@ -76,7 +76,7 @@ uint8_t* IMU_Initialise(ICM20948 *dev, I2C_HandleTypeDef *i2cHandle) {
 					| REG_VAL_BIT_GYRO_DLPF); // enable low pass filter and set Gyro FS
 
 
-	ret = IMU_WriteOneByte(dev, REG_ADD_ACCEL_SMPLRT_DIV_2, 0x04); //  pg 63 Acce sample rate divider: ODR = 1.125KHz/7 = 161
+	ret = IMU_WriteOneByte(dev, REG_ADD_ACCEL_SMPLRT_DIV_2, 0x10); //
 	ret = IMU_WriteOneByte(dev, REG_ADD_ACCEL_SMPLRT_DIV_1, 0x00); // upper 3 bit of sample rate = 0
 
 	// enable LPF and set accel full scale to +/-2G, sensitivity scale factor = 16384 LSB/g
@@ -86,6 +86,7 @@ uint8_t* IMU_Initialise(ICM20948 *dev, I2C_HandleTypeDef *i2cHandle) {
 
 	IMU_WriteOneByte(dev, REG_ADD_TEMP_CONFIG, REG_VAL_TEMP_CONFIG); // Temp configuration pg 67
 
+	IMU_WriteOneByte(dev, 0x15, 0x03);
 	// back to bank 0
 	ret = IMU_WriteOneByte(dev, REG_ADD_REG_BANK_SEL, REG_VAL_REG_BANK_0);
 
@@ -245,9 +246,9 @@ HAL_StatusTypeDef IMU_GyroRead(ICM20948 *dev) { // return the change in value in
 
 
 
-	dev->gyro[0] = 0.0152671755725191f * gyroRawFloat[0];
-	dev->gyro[1] = 0.0152671755725191f * gyroRawFloat[1];
-	dev->gyro[2] = 0.0152671755725191f * gyroRawFloat[2];
+	dev->gyro[0] = 0.01525902189669f * gyroRawFloat[0];
+	dev->gyro[1] = 0.01525902189669f * gyroRawFloat[1];
+	dev->gyro[2] = 0.01525902189669f * gyroRawFloat[2];
 
 	return ret;
 

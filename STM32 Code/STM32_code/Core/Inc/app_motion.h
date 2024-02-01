@@ -11,7 +11,7 @@
 #include "cmsis_os2.h"
 #include "stm32f4xx_hal.h"
 #include "app_parser.h"
-
+#include "pid.h"
 namespace AppMotion { // application-layer motion logic
 /* Servo class that holds servo info */
 class Servo {
@@ -46,9 +46,12 @@ public:
 	}
 	;
 	bool setSpeed(uint32_t percent);
+	bool _setDutyCycleVal(uint32_t dc);
 	void setForward(void);
 	void setBackward(void);
 	void halt(void);
+
+
 
 private:
 	TIM_HandleTypeDef *htimer;
@@ -61,14 +64,24 @@ private:
 
 };
 
+
+
 class Encoder {
 public:
+	Encoder(TIM_HandleTypeDef *ctrl, uint32_t channel);
+	~Encoder() {};
+	uint32_t getCount();
+	uint32_t getDelta(uint32_t ct1, uint32_t ct2);
+
+private:
+	TIM_HandleTypeDef *htimer;
+		uint32_t channel;
 
 };
 
 class MotionController {
 
-#define CENTER_POS_PWM 153 //150
+#define CENTER_POS_PWM 148 //150
 #define LEFT_DELTA 40  // was 40
 #define RIGHT_DELTA 90 // was 80 then 100
 
@@ -87,16 +100,24 @@ public:
 	void start();
 	void turn(bool isRight, bool isFwd,
 			uint32_t arg);
+	void move(bool isFwd, uint32_t arg, uint32_t speed);
 	void emergencyStop();
 	~MotionController() {
 	}
 	;
 	u_ctx *ctx;
 	static void motionTask(void *pv);
+	static float map(float x, float in_min, float in_max, float out_min, float out_max) {
+	    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
 private:
 	Motor *lmotor;
 	Motor *rmotor;
 	Servo *servo;
+	Encoder *lencoder;
+	Encoder *rencoder;
+	pid_type_def left_pid, right_pid;
+	bool emergency;
 };
 
 }

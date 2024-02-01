@@ -48,6 +48,7 @@ Core/Src/app_parser.o: ../Core/Src/app_parser.cpp \
  ../Core/Inc/main.h \
  C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h \
  ../Core/Inc/app_main.h ../Core/Inc/app_motion.h ../Core/Inc/app_parser.h \
+ ../Core/Inc/pid.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 ../Core/Inc/app_parser.h:
@@ -101,5 +102,6 @@ C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_l
 ../Core/Inc/app_main.h:
 ../Core/Inc/app_motion.h:
 ../Core/Inc/app_parser.h:
+../Core/Inc/pid.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:

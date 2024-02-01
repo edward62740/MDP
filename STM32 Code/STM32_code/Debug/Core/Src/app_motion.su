@@ -1,14 +1,20 @@
-../Core/Src/app_motion.cpp:21:1:AppMotion::MotionController::MotionController(u_ctx*)	40	static
-../Core/Src/app_motion.cpp:34:6:void AppMotion::MotionController::start()	32	static
-../Core/Src/app_motion.cpp:46:6:static void AppMotion::MotionController::motionTask(void*)	72	static
-../Core/Src/app_motion.cpp:90:6:void AppMotion::MotionController::turn(bool, bool, uint32_t)	88	static
-../Core/Src/app_motion.cpp:119:6:void AppMotion::MotionController::emergencyStop()	16	static
-../Core/Src/app_motion.cpp:124:1:AppMotion::Servo::Servo(TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t, uint32_t)	24	static
-../Core/Src/app_motion.cpp:134:6:void AppMotion::Servo::turnLeft()	16	static
-../Core/Src/app_motion.cpp:139:6:void AppMotion::Servo::turnRight()	16	static
-../Core/Src/app_motion.cpp:144:6:void AppMotion::Servo::turnFront()	16	static
-../Core/Src/app_motion.cpp:149:1:AppMotion::Motor::Motor(TIM_HandleTypeDef*, uint32_t, GPIO_TypeDef*, GPIO_TypeDef*, uint16_t, uint16_t, uint32_t)	24	static
-../Core/Src/app_motion.cpp:164:6:bool AppMotion::Motor::setSpeed(uint32_t)	24	static
-../Core/Src/app_motion.cpp:172:6:void AppMotion::Motor::halt()	16	static
-../Core/Src/app_motion.cpp:176:6:void AppMotion::Motor::setForward()	16	static
-../Core/Src/app_motion.cpp:181:6:void AppMotion::Motor::setBackward()	16	static
+../Core/Inc/app_motion.h:110:15:static float AppMotion::MotionController::map(float, float, float, float, float)	32	static
+../Core/Src/app_motion.cpp:29:1:AppMotion::MotionController::MotionController(u_ctx*)	16	static
+../Core/Src/app_motion.cpp:35:6:void AppMotion::MotionController::start()	56	static
+../Core/Src/app_motion.cpp:58:6:static void AppMotion::MotionController::motionTask(void*)	72	static
+../Core/Src/app_motion.cpp:114:6:void AppMotion::MotionController::move(bool, uint32_t, uint32_t)	88	static
+../Core/Src/app_motion.cpp:167:6:void AppMotion::MotionController::turn(bool, bool, uint32_t)	88	static
+../Core/Src/app_motion.cpp:219:6:void AppMotion::MotionController::emergencyStop()	16	static
+../Core/Src/app_motion.cpp:223:1:AppMotion::Servo::Servo(TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t, uint32_t)	24	static
+../Core/Src/app_motion.cpp:233:6:void AppMotion::Servo::turnLeft()	16	static
+../Core/Src/app_motion.cpp:238:6:void AppMotion::Servo::turnRight()	16	static
+../Core/Src/app_motion.cpp:243:6:void AppMotion::Servo::turnFront()	16	static
+../Core/Src/app_motion.cpp:248:1:AppMotion::Motor::Motor(TIM_HandleTypeDef*, uint32_t, GPIO_TypeDef*, GPIO_TypeDef*, uint16_t, uint16_t, uint32_t)	24	static
+../Core/Src/app_motion.cpp:263:6:bool AppMotion::Motor::setSpeed(uint32_t)	24	static
+../Core/Src/app_motion.cpp:271:6:bool AppMotion::Motor::_setDutyCycleVal(uint32_t)	16	static
+../Core/Src/app_motion.cpp:278:6:void AppMotion::Motor::halt()	16	static
+../Core/Src/app_motion.cpp:282:6:void AppMotion::Motor::setForward()	16	static
+../Core/Src/app_motion.cpp:287:6:void AppMotion::Motor::setBackward()	16	static
+../Core/Src/app_motion.cpp:292:1:AppMotion::Encoder::Encoder(TIM_HandleTypeDef*, uint32_t)	24	static
+../Core/Src/app_motion.cpp:300:10:uint32_t AppMotion::Encoder::getCount()	16	static
+../Core/Src/app_motion.cpp:304:10:uint32_t AppMotion::Encoder::getDelta(uint32_t, uint32_t)	24	static

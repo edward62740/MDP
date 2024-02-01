@@ -1,0 +1,43 @@
+#pragma once
+
+extern "C" {
+    #include "stdint.h" // for fixed-width integer types
+
+    enum PID_MODE
+    {
+        PID_POSITION = 0,
+        PID_DELTA
+    };
+
+    typedef struct
+    {
+        uint8_t mode;
+        // PID parameters
+        float Kp;
+        float Ki;
+        float Kd;
+
+        float max_out;  // maximum output
+        float max_iout; // maximum integral output
+
+        float set;
+        float fdb;
+
+        float out;
+        float Pout;
+        float Iout;
+        float Dout;
+        float Dbuf[3];  // differential term: 0 (latest), 1 (previous), 2 (previous previous)
+        float error[3]; // error term: 0 (latest), 1 (previous), 2 (previous previous)
+
+        // Additional fields
+        float dT;
+        float max_dout;
+    } pid_type_def;
+
+    extern void PID_init(pid_type_def *pid, uint8_t mode, const float PID[3], float max_out, float max_iout);
+    extern void PID_init_oldmethod(pid_type_def *pid, uint8_t mode, const float PID[3], float max_out, float max_iout, float max_dout, float dT);
+    extern float PID_calc(pid_type_def *pid, float ref, float set);
+    extern float PID_calc_oldmethod(pid_type_def *pid, float input, float target);
+    extern void PID_clear(pid_type_def *pid);
+}

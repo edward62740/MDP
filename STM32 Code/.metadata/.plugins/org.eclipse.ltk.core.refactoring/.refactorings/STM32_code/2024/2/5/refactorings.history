@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;STM32_code/Core/Src/pid.c&apos; to &apos;pid.cpp&apos;" description="Rename resource &apos;pid.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/pid.c" name="pid.cpp" stamp="1706762777125" updateReferences="true"/>
+</session>

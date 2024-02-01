@@ -64,7 +64,7 @@ class RobotController:
     '''
     Command robot to turn left/right by [angle] degrees and in the direction specified by [dir].
     0 <= angle <= 359
-    dir = True means turn left, dir = False means turn right.
+    dir = True means turn forward, dir = False means turn backward.
     returns True if command was acknowledged, False otherwise.
     '''
 
@@ -78,9 +78,9 @@ class RobotController:
         self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LEFT_CHAR)
         self.drv.add_args_bytes(angle)
         if dir:
-            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LEFT_CHAR)
+            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.FWD_CHAR)
         else:
-            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.RIGHT_CHAR)
+            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.BWD_CHAR)
 
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
@@ -95,9 +95,9 @@ class RobotController:
         self.drv.add_motor_cmd_byte(self.drv.MotorCmd.RIGHT_CHAR)
         self.drv.add_args_bytes(angle)
         if dir:
-            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LEFT_CHAR)
+            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.FWD_CHAR)
         else:
-            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.RIGHT_CHAR)
+            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.BWD_CHAR)
 
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())

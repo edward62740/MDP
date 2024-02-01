@@ -18,7 +18,8 @@ CPP_SRCS += \
 ../Core/Src/app_display.cpp \
 ../Core/Src/app_main.cpp \
 ../Core/Src/app_motion.cpp \
-../Core/Src/app_parser.cpp 
+../Core/Src/app_parser.cpp \
+../Core/Src/pid.cpp 
 
 C_DEPS += \
 ./Core/Src/freertos.d \
@@ -37,6 +38,7 @@ OBJS += \
 ./Core/Src/app_parser.o \
 ./Core/Src/freertos.o \
 ./Core/Src/main.o \
+./Core/Src/pid.o \
 ./Core/Src/stm32f4xx_hal_msp.o \
 ./Core/Src/stm32f4xx_hal_timebase_tim.o \
 ./Core/Src/stm32f4xx_it.o \
@@ -48,7 +50,8 @@ CPP_DEPS += \
 ./Core/Src/app_display.d \
 ./Core/Src/app_main.d \
 ./Core/Src/app_motion.d \
-./Core/Src/app_parser.d 
+./Core/Src/app_parser.d \
+./Core/Src/pid.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -60,7 +63,7 @@ Core/Src/%.o Core/Src/%.su: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/app_display.d ./Core/Src/app_display.o ./Core/Src/app_display.su ./Core/Src/app_main.d ./Core/Src/app_main.o ./Core/Src/app_main.su ./Core/Src/app_motion.d ./Core/Src/app_motion.o ./Core/Src/app_motion.su ./Core/Src/app_parser.d ./Core/Src/app_parser.o ./Core/Src/app_parser.su ./Core/Src/freertos.d ./Core/Src/freertos.o ./Core/Src/freertos.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_hal_timebase_tim.d ./Core/Src/stm32f4xx_hal_timebase_tim.o ./Core/Src/stm32f4xx_hal_timebase_tim.su ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
+	-$(RM) ./Core/Src/app_display.d ./Core/Src/app_display.o ./Core/Src/app_display.su ./Core/Src/app_main.d ./Core/Src/app_main.o ./Core/Src/app_main.su ./Core/Src/app_motion.d ./Core/Src/app_motion.o ./Core/Src/app_motion.su ./Core/Src/app_parser.d ./Core/Src/app_parser.o ./Core/Src/app_parser.su ./Core/Src/freertos.d ./Core/Src/freertos.o ./Core/Src/freertos.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/pid.d ./Core/Src/pid.o ./Core/Src/pid.su ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_hal_timebase_tim.d ./Core/Src/stm32f4xx_hal_timebase_tim.o ./Core/Src/stm32f4xx_hal_timebase_tim.su ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
 
 .PHONY: clean-Core-2f-Src
 
