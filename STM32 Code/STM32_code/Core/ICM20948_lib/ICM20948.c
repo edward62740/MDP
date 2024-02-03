@@ -72,7 +72,7 @@ uint8_t* IMU_Initialise(ICM20948 *dev, I2C_HandleTypeDef *i2cHandle) {
 	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_SMPLRT_DIV, 0x16); //
 
 	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_CONFIG_1,
-			REG_VAL_BIT_GYRO_DLPCFG_6 | REG_VAL_BIT_GYRO_FS_500DPS
+			REG_VAL_BIT_GYRO_DLPCFG_6 | REG_VAL_BIT_GYRO_FS_2000DPS
 					| REG_VAL_BIT_GYRO_DLPF); // enable low pass filter and set Gyro FS
 
 
@@ -204,7 +204,7 @@ osDelay(1);
 		ret = IMU_ReadOneByte(dev, REG_ADD_GYRO_ZOUT_H, &u8Buf[1]);
 		gyroRaw[2] = ((u8Buf[1] << 8) | u8Buf[0]) + gyroRaw[2];
 
-		osDelay(100); // wait for 100msec
+		osDelay(10); // wait for 100msec
 	}
 
 	dev->gyro_bias[0] = (float)(gyroRaw[0] >> 5);  // average of 32 reads
@@ -246,9 +246,9 @@ HAL_StatusTypeDef IMU_GyroRead(ICM20948 *dev) { // return the change in value in
 
 
 
-	dev->gyro[0] = 0.01525902189669f * gyroRawFloat[0];
-	dev->gyro[1] = 0.01525902189669f * gyroRawFloat[1];
-	dev->gyro[2] = 0.01525902189669f * gyroRawFloat[2];
+	dev->gyro[0] = 0.06106870229f * gyroRawFloat[0];
+	dev->gyro[1] = 0.06106870229f * gyroRawFloat[1];
+	dev->gyro[2] = 0.06106870229f * gyroRawFloat[2];
 
 	return ret;
 

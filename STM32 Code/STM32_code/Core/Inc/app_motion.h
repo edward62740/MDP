@@ -82,10 +82,10 @@ private:
 class MotionController {
 
 #define CENTER_POS_PWM 148 //150
-#define LEFT_DELTA 40  // was 40
-#define RIGHT_DELTA 90 // was 80 then 100
+#define LEFT_DELTA 50  // was 40
+#define RIGHT_DELTA 100 // was 80 then 100
 
-#define LEFT_POS_PWM (CENTER_POS_PWM - LEFT_DELTA)
+#define LEFT_POS_PWM (CENTER_POS_PWM - RIGHT_DELTA)
 #define RIGHT_POS_PWM (CENTER_POS_PWM + RIGHT_DELTA)
 	typedef struct {
 	    u_ctx* ctx;
@@ -117,6 +117,7 @@ private:
 	Encoder *lencoder;
 	Encoder *rencoder;
 	pid_type_def left_pid, right_pid;
+	pid_type_def sync_left_pid, sync_right_pid;
 	bool emergency;
 };
 

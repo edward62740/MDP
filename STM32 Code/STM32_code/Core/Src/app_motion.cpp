@@ -40,8 +40,11 @@ void MotionController::start(void) {
 	this->rmotor = new Motor(&htim8, TIM_CHANNEL_2, GPIOA, GPIOA, GPIO_PIN_2,
 	GPIO_PIN_3, 7199);
 	float pid_param_right[3] = { 3.1, 0.0, 0.1 };
+	float pid_param_sync[3] = { 5, 3, 1 };
 	PID_init(&this->left_pid, PID_POSITION, pid_param_right, 4000, 3000);
 	PID_init(&this->right_pid, PID_POSITION, pid_param_right, 4000, 3000);
+	PID_init(&this->sync_left_pid, PID_POSITION, pid_param_sync, 500, 500);
+	PID_init(&this->sync_right_pid, PID_POSITION, pid_param_sync, 500, 500);
 
 	this->lencoder = new Encoder(&htim2, TIM_CHANNEL_ALL);
 	this->rencoder = new Encoder(&htim3, TIM_CHANNEL_ALL);
@@ -125,37 +128,40 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
 
 	double cur_left = 0, cur_right = 0;
 	float count_left = 0, count_right = 0;
+
 	do {
+
+		count_left = (double) lencoder->getDelta(l_encoder_count,
+				lencoder->getCount());
+		count_right = (double) rencoder->getDelta(r_encoder_count,
+				rencoder->getCount());
+
+		cur_left += count_left;
+		cur_right += count_right;
+		double speed_error = count_left - count_right;
+
 		if (cur_left > target - 2000 || cur_right > target - 2000) {
-			lmotor->setSpeed(map(target - cur_left, 2000, 330, 20, 8));
-			rmotor->setSpeed(map(target - cur_right, 2000, 330, 20, 8));
+			lmotor->setSpeed(map(target - cur_left, 2000, 330, 30, 10));
+			rmotor->setSpeed(map(target - cur_right, 2000, 330, 30, 10));
 		} else {
-			lmotor->_setDutyCycleVal(
-					PID_calc(&this->left_pid, cur_left, target));
-			rmotor->_setDutyCycleVal(
-					PID_calc(&this->right_pid, cur_right, target));
+			float pid_left = PID_calc(&this->left_pid, target - cur_left, target);
+			float pid_right = PID_calc(&this->right_pid, target - cur_right, target);
+			float pid_left_d = PID_calc(&this->sync_left_pid, speed_error, 0);
+			float pid_right_d = PID_calc(&this->sync_right_pid, -speed_error, 0);
+			lmotor->_setDutyCycleVal((uint32_t) ((pid_left + pid_left_d ) > 1000 ? (pid_left + pid_left_d ) : 1000)
+					);
+			rmotor->_setDutyCycleVal((uint32_t) ((pid_right + pid_right_d) > 1000 ? (pid_right + pid_right_d)  : 1000)
+					);
 		}
-		/*
-		cur_left += DISTANCE_PER_ENCODER_PULSE
-				* abs(
-						(float) lencoder->getDelta(l_encoder_count,
-								lencoder->getCount()));
-		cur_right += DISTANCE_PER_ENCODER_PULSE
-				* abs(
-						(float) rencoder->getDelta(r_encoder_count,
-								rencoder->getCount()));
-								*/
+
 		l_encoder_count = lencoder->getCount();
 		r_encoder_count = rencoder->getCount();
 
-		if (cur_left > target || cur_right > target || emergency)
+		if ((cur_left > target && cur_right > target) || emergency)
 			break;
 
 		osDelay(50);
-		cur_left += (double) lencoder->getDelta(l_encoder_count,
-				lencoder->getCount());
-		cur_right += (double) rencoder->getDelta(r_encoder_count,
-				rencoder->getCount());
+
 		//osThreadYield();
 
 	} while (1);
@@ -170,43 +176,45 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 
 	isFwd ? lmotor->setForward() : lmotor->setBackward();
 	isFwd ? rmotor->setForward() : rmotor->setBackward();
-	isRight ? lmotor->setSpeed(30) : lmotor->setSpeed(0);
-	isRight ? rmotor->setSpeed(0) : rmotor->setSpeed(30);
+	isRight ? lmotor->setSpeed(25) : lmotor->setSpeed(0);
+	isRight ? rmotor->setSpeed(0) : rmotor->setSpeed(25);
 	uint32_t timeNow = HAL_GetTick();
 	uint32_t timeStart = timeNow;
 	uint8_t buf[30] = { 0 };
 	float target_yaw = 0;
-	float req = (float) arg;
+	float req = ((float) arg);
 	float cur = sensor_data.yaw_abs; //[-179,180]
 	float prev_yaw = cur;
 
-	if((!isRight && isFwd) || (isRight && !isFwd) )
+
+	if((!isRight && isFwd) || (isRight && !isFwd) ) //increase
 	{
 		if((req + cur) > 179) target_yaw = -180 + (req - (180 - cur));
 		else target_yaw = req + cur;
 	}
 	else
 	{
-		if((cur + -1*req) < -179) target_yaw = 180 - (req + (-180 - cur));
+		if((cur - req) < -179) target_yaw = 180 - (req + (-180 - cur));
 		else target_yaw = cur - req;
 	}
 
 	do{
 		if (abs(target_yaw - cur) < 29) {
-			if(isRight) lmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 29, 0, 30, 15));
+			if(isRight) lmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 29, 0, 25, 15));
 
-			else rmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 29, 0, 30, 15));
+			else rmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 29, 0, 25, 15));
 		}
 
+
 		timeNow = HAL_GetTick();
-		cur = 0.1*sensor_data.yaw_abs + 0.9*prev_yaw; //filter
+		cur = sensor_data.yaw_abs; //filter
 		prev_yaw = cur;
 
-		if (abs(cur - target_yaw) < 3
+		if (abs(target_yaw - cur) < 2.5
 				|| (HAL_GetTick() - timeStart) > 10000 || emergency)
 			break;
 
-		osDelay(2);
+		osDelay(10);
 		osThreadYield(); // need to ensure yield for the sensortask
 
 	} while (1);
