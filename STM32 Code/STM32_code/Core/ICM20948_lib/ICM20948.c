@@ -47,7 +47,7 @@ uint8_t* IMU_Initialise(ICM20948 *dev, I2C_HandleTypeDef *i2cHandle) {
 	// Bank 0 - Reset the device and then auto selects the best available clock source
 	ret = IMU_WriteOneByte(dev, REG_ADD_REG_BANK_SEL, REG_VAL_REG_BANK_0);
 
-	ret = IMU_WriteOneByte(dev, REG_ADD_PWR_MGMT_1, REG_VAL_ALL_RGE_RESET); // reset device - check hearder file value should be 0xF1
+	//ret = IMU_WriteOneByte(dev, REG_ADD_PWR_MGMT_1, REG_VAL_ALL_RGE_RESET); // reset device - check hearder file value should be 0xF1
 
 	osDelay(10);
 	ret = IMU_WriteOneByte(dev, REG_ADD_PWR_MGMT_1, REG_VAL_RUN_MODE); // auto selects the best available clock source for device
@@ -204,7 +204,7 @@ osDelay(1);
 		ret = IMU_ReadOneByte(dev, REG_ADD_GYRO_ZOUT_H, &u8Buf[1]);
 		gyroRaw[2] = ((u8Buf[1] << 8) | u8Buf[0]) + gyroRaw[2];
 
-		osDelay(10); // wait for 100msec
+		osDelay(25); // wait for 100msec
 	}
 
 	dev->gyro_bias[0] = (float)(gyroRaw[0] >> 5);  // average of 32 reads

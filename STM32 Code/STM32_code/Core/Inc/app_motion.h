@@ -81,7 +81,7 @@ private:
 
 class MotionController {
 
-#define CENTER_POS_PWM 148 //150
+#define CENTER_POS_PWM 147.5 //150
 #define LEFT_DELTA 50  // was 40
 #define RIGHT_DELTA 100 // was 80 then 100
 

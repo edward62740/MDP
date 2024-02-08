@@ -1,5 +1,6 @@
-from typing import Optional
-
+from asyncio import Task
+from typing import Optional, Callable, Any
+import asyncio
 import serial as ser
 from serial_cmd_base_ll import SerialCmdBaseLL
 
@@ -26,6 +27,7 @@ Requests are generally cheaper than commands, and can be assumed to return withi
 
 class RobotController:
     drv = None  # instance of serial_cmd_base_ll
+    _inst_obstr_cb = None  # obstacle callback
 
     def __init__(self, port, baudrate):
         self.drv = SerialCmdBaseLL(port, baudrate)
@@ -166,6 +168,7 @@ class RobotController:
     
     Note that this measurement is not very accurate and is dependent on the surface reflectance.
     '''
+
     def get_ir_L(self) -> Optional[float]:
         self.drv.construct_cmd()
         self.drv.add_cmd_byte(False)
@@ -191,3 +194,55 @@ class RobotController:
         except ValueError:
             return None
         return ret
+
+    def set_threshold_stop_distance_left(self, dist: int) -> bool:
+        if dist < 0 or dist > 999:
+            raise ValueError("Invalid distance, must be 0-999")
+
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.SENSOR)
+        self.drv.add_sensor_byte(self.drv.SensorCmd.IR_LEFT)
+        self.drv.add_args_bytes(dist)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+
+    def set_threshold_stop_distance_right(self, dist: int) -> bool:
+        if dist < 0 or dist > 999:
+            raise ValueError("Invalid distance, must be 0-998")
+
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.SENSOR)
+        self.drv.add_sensor_byte(self.drv.SensorCmd.IR_RIGHT)
+        self.drv.add_args_bytes(dist)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+
+    def set_threshold_disable_obstacle_detection(self) -> bool:
+
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.SENSOR)
+        self.drv.add_sensor_byte(self.drv.SensorCmd.IR_RIGHT)
+        self.drv.add_args_bytes(999)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+
+    async def listen_for_obstruction(self, callback: Callable[..., None]):
+        self._inst_obstr_cb = callback
+        print("running")
+
+        while True:
+            if not self.drv.is_reading and self.drv.ser.in_waiting > 0:
+
+                line = self.drv.ser.readline().decode('utf-8')
+
+                self.drv.ser.flush()
+                print(line)
+
+                if str(self.drv.KeyWord.WARN_OBSTACLE.value) in line:
+
+                    self._inst_obstr_cb()
+            await asyncio.sleep(0.01)
+

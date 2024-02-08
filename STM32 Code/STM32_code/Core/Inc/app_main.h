@@ -27,7 +27,8 @@ typedef struct {
 	uint32_t d_valid; // bitwise data valid mask. starts with LSB.
 	uint32_t ql; // length of uart incoming queue
 	bool is_allow_motor_override;  // gives this application power to override uart commands to stop if ir_distL || ir_dist R < th
-	float ir_dist_th; // threshold value for above member.
+	float ir_dist_th_L; // threshold value for above member.
+	float ir_dist_th_R; // threshold value for above member.
 } sensorData_t;
 
 typedef struct {

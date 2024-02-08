@@ -68,16 +68,9 @@ private:
 
 class Processor
 {
-public:
-	Processor(u_ctx *rx_ctx, u_ctx *tx_ctx);
 
-	void start();
-	~Processor( void );
-	u_ctx *this_ctx; // context of this process
-	u_ctx *o_ctx; // context of the other process, i.e. the motion controller.
-	static void processorTask(void *pv);
 private:
-
+// static all to workaround the queue in instance error
 	static void startImpl(void * _this); //unused
 	template <typename T> // no type bounds enforcement, must be uint8_t, char etc.
 	static bool isEq(const T &a, const T &b)
@@ -87,12 +80,28 @@ private:
 	static MOTION_PKT_t *getMotionCmdFromBytes(BUF_CMP_t *bytes); // handle motion request and give the MOTION_PKT_t back
 	static void returnSensorRequestCmd(BUF_CMP_t id); // handle the sensor request and return from ctx
 
+	static bool _signal_obstr;
+	static bool _obstr_txed;
+
+public:
+	Processor(u_ctx *rx_ctx, u_ctx *tx_ctx);
+
+	void start();
+	~Processor( void );
+	u_ctx *this_ctx; // context of this process
+	u_ctx *o_ctx; // context of the other process, i.e. the motion controller.
+	static void processorTask(void *pv);
+	static void signalObstruction(void) { _signal_obstr = true; }
+	static void signalNoObstruction(void) { _signal_obstr = false; _obstr_txed = false; }
+
+
 };
 
 /* PUBLIC CONSTANTS FOR UART CMDS AND APPLICATION-LAYER CMDS RESPECTIVELY */
 
-static constexpr char* ack = "ack";
-static constexpr char* nack = "nack";
+static constexpr char* ack = (char *)"ack";
+static constexpr char* nack = (char *)"nack";
+static constexpr char* obstr = (char *)"obst";
 //index 0
 static constexpr BUF_CMP_t START_CHAR = 'x';
 

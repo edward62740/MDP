@@ -64,7 +64,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 void initializeCPPconstructs(void) {
 
 	sensor_data.is_allow_motor_override = true;
-	sensor_data.ir_dist_th = 10.0f;
+	sensor_data.ir_dist_th_L = 10.0f;
+	sensor_data.ir_dist_th_R = 10.0f;
 	//procTaskHandle = osThreadNew(processorTask, NULL, &procTask_attr);
 
 	processor.start();
@@ -83,7 +84,7 @@ void sensorTask(void *pv) {
 
 	IMU_Initialise(&imu, &hi2c1);
 
-	osDelay(50);
+	osDelay(400);
 	Gyro_calibrate(&imu);
 	Mag_init(&imu);
 
@@ -130,7 +131,7 @@ void sensorTask(void *pv) {
 
 		quaternionUpdate(imu.gyro[0] * DEG2RAD, imu.gyro[1] * DEG2RAD,
 				imu.gyro[2] * DEG2RAD,imu.acc[0], imu.acc[1], imu.acc[2], (HAL_GetTick() - timeNow) * 0.001f);
-
+		timeNow = HAL_GetTick();
 
 
 		imu.q[0] = SEq_1;
@@ -144,13 +145,19 @@ void sensorTask(void *pv) {
 				 - imu.q[3] * imu.q[3]) * 57.295779513082320876798154814105f;
 
 		//sensor_data.yaw_abs += imu.gyro[2] * (HAL_GetTick() - timeNow) * 0.001f;
-		timeNow = HAL_GetTick();
+
 		HAL_ADC_Start(&hadc1);
+		HAL_ADC_Start(&hadc2);
 		HAL_ADC_PollForConversion(&hadc1,1); // trivial waiting time, dont bother with dma or whatever
 		uint32_t IR = HAL_ADC_GetValue(&hadc1);
+		HAL_ADC_PollForConversion(&hadc2,1); // trivial waiting time, dont bother with dma or whatever
+				uint32_t IR2 = HAL_ADC_GetValue(&hadc2);
 		HAL_ADC_Stop(&hadc1);
+		HAL_ADC_Stop(&hadc2);
 		float volt = (float) (IR *5)/4095;
 		sensor_data.ir_distL = roundf(29.988*pow(volt, -1.173));
+		 volt = (float) (IR2 *5)/4095;
+		sensor_data.ir_distR = roundf(29.988*pow(volt, -1.173));
 		/*uint16_t len = sprintf(&sbuf[0],
 				"%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f\r\n",
 				imu.acc[0], imu.acc[1], imu.acc[2], imu.gyro[0], imu.gyro[1],
@@ -162,10 +169,12 @@ void sensorTask(void *pv) {
 
 		if(sensor_data.is_allow_motor_override)
 		{
-			if(sensor_data.ir_distL < sensor_data.ir_dist_th /*|| sensor_data.ir_distR < sensor_data.ir_dist_th*/)
+			if(sensor_data.ir_distL < sensor_data.ir_dist_th_L || sensor_data.ir_distR < sensor_data.ir_dist_th_R)
 			{
 				controller.emergencyStop();
+				processor.signalObstruction();
 			}
+			else processor.signalNoObstruction(); // to prevent repeated tx
 		}
 
 

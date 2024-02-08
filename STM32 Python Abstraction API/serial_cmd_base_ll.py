@@ -11,8 +11,9 @@ import serial as ser
 class SerialCmdBaseLL:
     ser = None  # instance of serial.Serial
     CMD_LEN = 10
-    ACK_TIMEOUT_MS = 100
+    ACK_TIMEOUT_MS = 200
     payload = ""
+    is_reading = False
 
     class CmdChar(Enum):
         START_CHAR = b'x'
@@ -43,12 +44,16 @@ class SerialCmdBaseLL:
         QTRN_YAW = b'y'
         QTRN_ALL = b'k'
 
+    class KeyWord(Enum):
+        WARN_OBSTACLE = "obst"
+
     def __init__(self, port, baud):
         self.ser = ser.Serial(port, baud)
         self.ser.timeout = self.ACK_TIMEOUT_MS  / 1000
         pass
 
     def send_cmd(self) -> str:
+        self.is_reading = True
         self.payload += self.CmdChar.END_CHAR.value
         if len(self.payload) != self.CMD_LEN:
             raise IOError("Command length is not correct")
@@ -58,10 +63,11 @@ class SerialCmdBaseLL:
         self.ser.write(self.payload)
         ret = self.ser.readline()
         ret = ret.replace(b'\x00', b'')
-
         # self.ser.flush()
         print("[LL] Sending command: " + str(self.payload))
         ret = bytes.decode(ret, 'utf-8')
+        ret = ret.replace(str(self.KeyWord.WARN_OBSTACLE), '')
+        self.is_reading = False
         return ret
 
     @staticmethod

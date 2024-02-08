@@ -11,6 +11,9 @@
 
 namespace AppParser {
 
+bool Processor::_signal_obstr = false;
+bool Processor::_obstr_txed = false;
+
 static volatile BUF_CMP_t uartRxBuf[10];
 static volatile BUF_CMP_t uartOKBuf[10];
 Listener::Listener(u_ctx *ctx) {
@@ -78,6 +81,7 @@ void Processor::processorTask(void *pv) {
 
 		//HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_10);
 		is_task_alive_struct.proc = true;
+
 		osDelay(50);
 		osThreadYield();
 
@@ -138,27 +142,64 @@ void Processor::processorTask(void *pv) {
 				case MOTOR_CHAR: {
 					MOTION_PKT_t *pkt = getMotionCmdFromBytes(
 							(uint8_t*) &msg.buffer);
-					if(pkt == NULL)
-					{
-						HAL_UART_Transmit(&huart3, (BUF_CMP_t*) nack, sizeof(nack),
-													10);
+					if (pkt == NULL) {
+						HAL_UART_Transmit(&huart3, (BUF_CMP_t*) nack,
+								sizeof(nack), 10);
 						break;
 					}
 					osMessageQueuePut(tx_ctx->mailbox.queue, pkt, 0, 0);
 					HAL_UART_Transmit(&huart3, (BUF_CMP_t*) ack, sizeof(ack),
-												10);
-					break;
-				}
-				default: {
-					// something went wrong..
-					HAL_UART_Transmit(&huart3, (BUF_CMP_t*) nack, sizeof(nack),
 							10);
 					break;
 				}
+				case SENSOR_CHAR: {
+					uint32_t val = strtol((const char*) &msg.buffer[4], NULL,
+							10);
+					if (val == 0)
+						break;
+
+					switch (msg.buffer[3]) {
+
+					case IR_L_CHAR: {
+						sensor_data.ir_dist_th_L = (float) val;
+						if (val == 999)
+							sensor_data.ir_dist_th_L = 0;
+						HAL_UART_Transmit(&huart3, (BUF_CMP_t*) ack,
+								sizeof(ack), 10);
+						break;
+					}
+					case IR_R_CHAR: {
+						sensor_data.ir_dist_th_R = (float) val;
+						if (val == 999)
+							sensor_data.ir_dist_th_R = 0;
+						HAL_UART_Transmit(&huart3, (BUF_CMP_t*) ack,
+								sizeof(ack), 10);
+						break;
+					}
+					default: {
+						// something went wrong..
+
+					}
+
+					}
+
 				}
-			} else
-				HAL_UART_Transmit(&huart3, (BUF_CMP_t*) nack, sizeof(nack), 10);
+				default: {
+					// something went wrong..
+				}
+				}
+			} else {
+				HAL_UART_Transmit(&huart3, (BUF_CMP_t*) nack,
+						sizeof(nack), 10);
+			}
+
 			HAL_UART_Receive_DMA(&huart3, (BUF_CMP_t*) uartRxBuf, 10); // re-enable DMA buf for rx
+		} else if (_signal_obstr) // specifically lower priority than RX
+		{
+			if (!_obstr_txed)
+				HAL_UART_Transmit(&huart3, (BUF_CMP_t*) obstr, sizeof(obstr),
+						10);
+			_obstr_txed = true;
 		}
 
 	}
@@ -204,8 +245,9 @@ void Processor::returnSensorRequestCmd(BUF_CMP_t id) {
 		break;
 	}
 	case QTRN_ALL_CHAR: {
-		snprintf((char*) &tx_buf, sizeof(tx_buf), "%4.1f;%4.1f;%4.1f;%4.1f", sensor_data.imu->q[0],
-				sensor_data.imu->q[1], sensor_data.imu->q[2], sensor_data.imu->q[3]);
+		snprintf((char*) &tx_buf, sizeof(tx_buf), "%4.1f;%4.1f;%4.1f;%4.1f",
+				sensor_data.imu->q[0], sensor_data.imu->q[1],
+				sensor_data.imu->q[2], sensor_data.imu->q[3]);
 		HAL_UART_Transmit(&huart3, (BUF_CMP_t*) tx_buf, strlen((char*) tx_buf),
 				10);
 		break;
@@ -253,4 +295,5 @@ MOTION_PKT_t* Processor::getMotionCmdFromBytes(BUF_CMP_t *bytes) {
 	return pkt;
 
 }
+
 }

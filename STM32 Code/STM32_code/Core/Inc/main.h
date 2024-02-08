@@ -45,6 +45,7 @@ extern UART_HandleTypeDef huart3;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern ADC_HandleTypeDef hadc1;
+extern ADC_HandleTypeDef hadc2;
 extern ICM20948 imu;
 /* USER CODE END ET */
 

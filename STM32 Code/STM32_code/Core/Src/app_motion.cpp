@@ -40,11 +40,11 @@ void MotionController::start(void) {
 	this->rmotor = new Motor(&htim8, TIM_CHANNEL_2, GPIOA, GPIOA, GPIO_PIN_2,
 	GPIO_PIN_3, 7199);
 	float pid_param_right[3] = { 3.1, 0.0, 0.1 };
-	float pid_param_sync[3] = { 5, 3, 1 };
-	PID_init(&this->left_pid, PID_POSITION, pid_param_right, 4000, 3000);
-	PID_init(&this->right_pid, PID_POSITION, pid_param_right, 4000, 3000);
-	PID_init(&this->sync_left_pid, PID_POSITION, pid_param_sync, 500, 500);
-	PID_init(&this->sync_right_pid, PID_POSITION, pid_param_sync, 500, 500);
+	float pid_param_sync[3] = { 5, 0, 1 };
+	PID_init(&this->left_pid, PID_POSITION, pid_param_right, 5000, 4000);
+	PID_init(&this->right_pid, PID_POSITION, pid_param_right, 5000, 4000);
+	PID_init(&this->sync_left_pid, 0, pid_param_sync, 1000, 1000);
+	PID_init(&this->sync_right_pid, 0, pid_param_sync, 1000, 1000);
 
 	this->lencoder = new Encoder(&htim2, TIM_CHANNEL_ALL);
 	this->rencoder = new Encoder(&htim3, TIM_CHANNEL_ALL);
@@ -128,7 +128,7 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
 
 	double cur_left = 0, cur_right = 0;
 	float count_left = 0, count_right = 0;
-
+	double speed_error = 0;
 	do {
 
 		count_left = (double) lencoder->getDelta(l_encoder_count,
@@ -138,11 +138,11 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
 
 		cur_left += count_left;
 		cur_right += count_right;
-		double speed_error = count_left - count_right;
+		speed_error += (count_left - count_right);
 
 		if (cur_left > target - 2000 || cur_right > target - 2000) {
-			lmotor->setSpeed(map(target - cur_left, 2000, 330, 30, 10));
-			rmotor->setSpeed(map(target - cur_right, 2000, 330, 30, 10));
+			lmotor->setSpeed(map(target - cur_left, 2000, 330, 30, 12));
+			rmotor->setSpeed(map(target - cur_right, 2000, 330, 30, 12));
 		} else {
 			float pid_left = PID_calc(&this->left_pid, target - cur_left, target);
 			float pid_right = PID_calc(&this->right_pid, target - cur_right, target);
@@ -160,11 +160,15 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
 		if ((cur_left > target && cur_right > target) || emergency)
 			break;
 
-		osDelay(50);
+		osDelay(10);
 
 		//osThreadYield();
 
 	} while (1);
+	uint8_t buf[10] = { 0 };
+	snprintf((char*) buf, sizeof(buf), "%4.0f", cur_left - cur_right);
+	OLED_ShowString(85, 48, (uint8_t*) &buf);
+	OLED_Refresh_Gram();
 	emergency = false;
 	lmotor->halt();
 	rmotor->halt();
@@ -208,9 +212,10 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 
 		timeNow = HAL_GetTick();
 		cur = sensor_data.yaw_abs; //filter
+
 		prev_yaw = cur;
 
-		if (abs(target_yaw - cur) < 2.5
+		if (abs(target_yaw - cur) <= 1
 				|| (HAL_GetTick() - timeStart) > 10000 || emergency)
 			break;
 
