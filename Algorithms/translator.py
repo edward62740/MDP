@@ -50,7 +50,7 @@ class Translator:
         print("summarized path!")
 
         # compensate for turning arc
-        for i in range(1, len(summarized_path) - 1):
+        for i in range(1, len(summarized_path)):
             if summarized_path[i][0] == Movement.RIGHT or summarized_path[i][0] == Movement.LEFT:
                 if summarized_path[i - 1][0] == Movement.FORWARD:
                     summarized_path[i - 1][1] -= self.TURN_ARC_RADIUS_CM
@@ -58,6 +58,8 @@ class Translator:
                 elif summarized_path[i - 1][0] == Movement.REVERSE:
                     summarized_path[i - 1][1] += self.TURN_ARC_RADIUS_CM
 
+                if i >= len(summarized_path) - 1:
+                    continue
                 if summarized_path[i + 1][0] == Movement.FORWARD:
                     summarized_path[i + 1][1] -= self.TURN_ARC_RADIUS_CM
                 elif summarized_path[i + 1][0] == Movement.REVERSE:
