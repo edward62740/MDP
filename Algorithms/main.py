@@ -1,6 +1,7 @@
 from simulator import Simulator
 import argparse
 import logging
+from translator import Translator
 from comms import Communication
 
 # deciding which commands to accept from keyboard in comand line
@@ -16,3 +17,7 @@ else:
     logging.basicConfig(level=logging.INFO)
 
 x = Simulator()
+
+
+
+

@@ -1,6 +1,7 @@
 import time
 import tkinter.ttk as ttk
 from bz2 import compress
+from math import sqrt
 from tkinter import *
 from tkinter import scrolledtext
 from typing import Tuple
@@ -11,9 +12,16 @@ from Constants import *
 from map import *
 from Car import Car
 from setup_logger import logger
+from stm32_api.robot_controller import RobotController
+from translator import Translator
 
 
 class Simulator:
+    real_x = 15
+    real_y = 185
+    real_dir = 0
+    last_str = Movement.STOP
+
     def __init__(self):
         self.simulated_robot = True
         self.root = Tk()
@@ -148,7 +156,7 @@ class Simulator:
                     )  # ACK required
 
                     for _ in range(count):
-                        movement_command[movement]() # Move in Stim
+                        movement_command[movement]()  # Move in Stim
 
                 if movement in [Movement.LEFT, Movement.RIGHT]:
                     for _ in range(count):
@@ -316,10 +324,10 @@ class Simulator:
             for i in range(3):
                 for j in range(3):
                     if not (
-                        x - 1 + j < 0
-                        or x + j > config.map_size["width"]
-                        or y - 1 + i < 0
-                        or y - 1 + i >= config.map_size["height"]
+                            x - 1 + j < 0
+                            or x + j > config.map_size["width"]
+                            or y - 1 + i < 0
+                            or y - 1 + i >= config.map_size["height"]
                     ):
                         self.canvas.itemconfig(
                             config.map_cells_1[y - 1 + i][x - 1 + j], fill=wall_c
@@ -497,3 +505,107 @@ class Simulator:
         raise ValueError(
             f"No obstacle found at the given coordinate and direction of ({x}, {y}, {direction})"
         )
+
+    def draw_cmd_path(self, cmd_path):
+
+        for command, args in cmd_path:
+            print("exe cmd: ", command, args)
+
+            if command == RobotController.move_forward:
+                distance = args[0]
+                self.last_str = Movement.FORWARD
+
+                new_x, new_y = self.calculate_new_position(self.real_x, self.real_y, self.real_dir, distance)
+                canvas_x, canvas_y = self.robot_to_canvas(self.real_x, self.real_y)
+                canvas_new_x, canvas_new_y = self.robot_to_canvas(new_x, new_y)
+
+                self.canvas.create_line(canvas_x, canvas_y, canvas_new_x, canvas_new_y, fill="green", width=5)
+
+                self.update_map(full=True)
+                self.real_x, self.real_y = new_x, new_y
+
+            elif command == RobotController.move_backward:
+                distance = args[0]
+                self.last_str = Movement.REVERSE
+                new_x, new_y = self.calculate_new_position(self.real_x, self.real_y, self.real_dir, -distance)
+                canvas_x, canvas_y = self.robot_to_canvas(self.real_x, self.real_y)
+                canvas_new_x, canvas_new_y = self.robot_to_canvas(new_x, new_y)
+                self.canvas.create_line(canvas_x, canvas_y, canvas_new_x, canvas_new_y, fill="red", dash=(2, 4),
+                                        width=5)
+
+                self.update_map(full=True)
+                self.real_x, self.real_y = new_x, new_y
+            elif command == RobotController.turn_left:
+
+                # Calculate start and end points for the arc
+                tmp_x, tmp_y = self.real_x, self.real_y
+                tmp_dir = self.real_dir
+                self.real_x, self.real_y = self.calculate_new_position(self.real_x, self.real_y, self.real_dir, 19)
+                canvas_mid_x, canvas_mid_y = self.robot_to_canvas(
+                    *self.calculate_turn_mid_pos(self.real_x, self.real_y, tmp_dir, 19, False))
+                self.real_dir = (self.real_dir - 90) % 360  # 90 degrees to the right
+                self.real_x, self.real_y = self.calculate_new_position(self.real_x, self.real_y, self.real_dir, 19)
+                canvas_x, canvas_y = self.robot_to_canvas(self.real_x, self.real_y)
+                canvas_new_x, canvas_new_y = self.robot_to_canvas(tmp_x, tmp_y)
+
+                # self.canvas.create_arc(canvas_x, canvas_y, canvas_new_x, canvas_new_y, start=(self.real_dir + 90) % 360, extent=90, style='arc', outline='blue', width=5)
+                self.canvas.create_line([canvas_x, canvas_y, canvas_mid_x, canvas_mid_y, canvas_new_x, canvas_new_y],
+                                        fill="yellow", width=5, smooth=True)
+
+
+
+            elif command == RobotController.turn_right:
+                tmp_x, tmp_y = self.real_x, self.real_y
+                tmp_dir = self.real_dir
+                self.real_x, self.real_y = self.calculate_new_position(self.real_x, self.real_y, self.real_dir, 19)
+                canvas_mid_x, canvas_mid_y = self.robot_to_canvas(
+                    *self.calculate_turn_mid_pos(self.real_x, self.real_y, tmp_dir, 19, False))
+                self.real_dir = (self.real_dir + 90) % 360  # 90 degrees to the right
+                self.real_x, self.real_y = self.calculate_new_position(self.real_x, self.real_y, self.real_dir, 19)
+                canvas_x, canvas_y = self.robot_to_canvas(self.real_x, self.real_y)
+                canvas_new_x, canvas_new_y = self.robot_to_canvas(tmp_x, tmp_y)
+
+
+                self.canvas.create_line([canvas_x, canvas_y, canvas_mid_x, canvas_mid_y, canvas_new_x, canvas_new_y],
+                                        fill="blue", width=5, smooth=True)
+                # Update real direction
+
+    def calculate_new_position(self, x, y, direction, distance):
+        # Adjust the direction based on the robot's coordinate system
+        if direction == 0:  # Moving up in the canvas
+            return x, y - distance
+        elif direction == 90:  # Moving right
+            return x + distance, y
+        elif direction == 180:  # Moving down
+            return x, y + distance
+        elif direction == 270:  # Moving left
+            return x - distance, y
+        else:
+            return x, y
+
+    def robot_to_canvas(self, x, y):
+        # convert 200cm to the height of the canvas
+        canvas_height = self.canvas.winfo_height()
+        return x * canvas_height / 200, y * canvas_height / 200
+
+    def calculate_turn_mid_pos(self, x, y, direction, distance, is_left):
+        # given x, y and direction, where direction 0 is top and 0,0 is top left, calculate the mid point of the turn
+        distance = 3
+        if not is_left:
+            if direction == 0:
+                return x + distance, y - distance
+            elif direction == 90:
+                return x + distance, y + distance
+            elif direction == 180:
+                return x - distance, y + distance
+            elif direction == 270:
+                return x - distance, y - distance
+        else:
+            if direction == 0:
+                return x - distance, y - distance
+            elif direction == 90:
+                return x + distance, y - distance
+            elif direction == 180:
+                return x + distance, y + distance
+            elif direction == 270:
+                return x - distance, y + distance

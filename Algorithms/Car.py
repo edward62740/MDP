@@ -8,12 +8,13 @@ from Task2 import *
 from map import *
 from Astar import *
 from setup_logger import logger
-
+from translator import Translator
 
 class Car:
     def __init__(self, simulator):
         self.simulator = simulator
         self.map: Map = Map()
+        self.translator = Translator()
         self.y: int = config.map_size["height"] - 2
         self.x: int = 1
         #  self.y: int = 6  # robot initial position
@@ -247,6 +248,7 @@ class Car:
         self.hamiltonian_path_search(maze, target_states)
 
     def hamiltonian_path_search(self, maze, target_states):
+        print("running hamiltonian_path_search")
         start = [18, 1, 10]
         end = [
             target_states[0][1],
@@ -320,6 +322,8 @@ class Car:
             self.simulator.robot_movement.append(Movement.STOP)
             self.robot_rpi_temp_movement.append(Movement.STOP)
             self.simulator.movement_to_rpi.append(self.robot_rpi_temp_movement)
+            #print(self.robot_rpi_temp_movement)
+            self.translator.add_path(self.robot_rpi_temp_movement)
             start = end
             if i + 1 < len(target_states):
                 end = [
@@ -330,6 +334,10 @@ class Car:
 
         self.bearing = Bearing.NORTH  # Reset bearing to North
         self.displayMovement()  # TODO - this is removing my first element in self.simulator.robot_movement()
+        print("exiting hamiltonian_path_search")
+        ret = self.translator.translate()
+        self.simulator.draw_cmd_path(ret)
+        self.translator.dispatch(ret)
 
     def FastCar(self):
         Task2.fastestCar(self)
