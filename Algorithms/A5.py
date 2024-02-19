@@ -19,7 +19,7 @@ class Contigency:
         self.robot = Car(self)
         
 
-    def Nav():
+    def Nav(curr_pos):
           """
         if(imagepos = Right Edge):
             Turn Right.
@@ -32,22 +32,23 @@ class Contigency:
             RobotController.move_forward(20)
         else Approach()
         """
-    def Approach(): #TODO FineTune
+    def Approach(): #TODO FineTune to till Infront / On edge
         RobotController.move_forward(30)
 
-    def Circle(self):
+    def Circle(self,curr_pos):
         RobotController.move_backward(30)
         RobotController.turn_left(90,True)
         RobotController.turn_right(180,True)
 
-    def NoImage():
+    def NoImage(curr_pos):
 
         RobotController.move_backward(20)
-        #GetImage, if Image: Navi
+        #GetImage, if Image: Navi(curr_pos)
         sides = 1
         RobotController.turn_right(90,True)
         #Get Image
         RobotController.turn_right(90,True) #If still no Image
+        return curr_pos, ImageID
 
     def CrashAlert(curr_pos,goal_pos):
         RobotController.move_backward(20)
@@ -57,10 +58,10 @@ class Contigency:
 
 
 #If no image:
-        Contigency.NoImage()
+    NoImage()
 #else if Image Present:
-        Contigency.Nav()
-        #get Image
-        Image = 0 #Replace with get fn for imageID
-        while(Image == 99):
-            Contigency.Circle()
+    Nav()
+#get Image
+    Image = 0 #Replace with get fn for imageID
+    while(Image == 99):
+        Circle()
