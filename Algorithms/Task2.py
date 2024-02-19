@@ -3,7 +3,6 @@ import sys
 import time
 
 from Constants import *
-from Car import *
 from Astar import *
 from setup_logger import logger
 

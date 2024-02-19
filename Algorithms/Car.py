@@ -4,7 +4,7 @@ import time
 
 from Constants import *
 from PathFinder import FastestPath
-from Task2 import *
+from Task2 import Task2
 from map import *
 from Astar import *
 from setup_logger import logger
