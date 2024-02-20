@@ -1,0 +1,88 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <!-- Exploration Section -->
+        <TextView
+            android:id="@+id/textExplore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/statusbar"
+            android:gravity="center"
+            android:text="Image Recognition"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/exploreTimeTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+            android:text="00:00"
+            android:textColor="@color/colorBlack"
+            android:textSize="26sp" />
+
+        <ToggleButton
+            android:id="@+id/exploreToggleBtn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exploration"
+            android:textOff="START"
+            android:background="@drawable/border_black_state"
+            android:textOn="STOP" />
+
+        <ImageButton
+            android:id="@+id/exploreResetImageBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_refresh"
+            android:background="@color/transparent"/>
+
+        <!-- Fastest Path Section -->
+        <TextView
+            android:id="@+id/fastestTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/statusbar"
+            android:gravity="center"
+            android:text="Fastest Path"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/fastestTimeTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+            android:text="00:00"
+            android:textColor="@color/colorBlack"
+            android:textSize="26sp" />
+
+        <ToggleButton
+            android:id="@+id/fastestToggleBtn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FASTEST"
+            android:textOff="START"
+            android:background="@drawable/border_black_state"
+            android:textOn="STOP" />
+
+        <ImageButton
+            android:id="@+id/fastestResetImageBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_refresh"
+            android:background="@color/transparent"/>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
