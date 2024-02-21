@@ -163,10 +163,10 @@ void sensorTask(void *pv) {
 					|| sensor_data.ir_distR < sensor_data.ir_dist_th_R) {
 				controller.emergencyStop();
 				processor.signalObstruction();
-				HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin, GPIO_PIN_SET);
+				HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin, 0);
 			} else {
 				processor.signalNoObstruction(); // to prevent repeated tx
-				HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin, GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin, 0);
 			}
 		}
 

@@ -80,7 +80,7 @@ void MotionController::motionTask(void *pv) {
 
 		//osThreadYield();
 		if (osMessageQueueGetCount(ctx->mailbox.queue) > 0) {
-			HAL_GPIO_WritePin(Movement_Ind_Port, Movement_Ind_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(Movement_Ind_Port, Movement_Ind_Pin, 1);
 			AppParser::MOTION_PKT_t pkt;
 			osMessageQueueGet(ctx->mailbox.queue, &pkt, 0, 5);
 			char buffer[20] = { 0 };
@@ -110,7 +110,7 @@ void MotionController::motionTask(void *pv) {
 				self->turn(true, false, pkt.arg);
 		}
 		HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_10);
-		HAL_GPIO_WritePin(Movement_Ind_Port, Movement_Ind_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(Movement_Ind_Port, Movement_Ind_Pin, 0);
 
 	}
 }

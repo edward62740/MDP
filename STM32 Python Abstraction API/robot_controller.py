@@ -3,6 +3,7 @@ from typing import Optional, Callable, Any
 import asyncio
 import serial as ser
 from serial_cmd_base_ll import SerialCmdBaseLL
+import RPi.GPIO as GPIO
 
 '''
 Python API that abstracts away the low-level serial communication with the robot.
@@ -29,8 +30,14 @@ class RobotController:
     drv = None  # instance of serial_cmd_base_ll
     _inst_obstr_cb = None  # obstacle callback
 
+    PIN_COMMAND = 18
+    PIN_OBSTACLE = 23
+
     def __init__(self, port, baudrate):
         self.drv = SerialCmdBaseLL(port, baudrate)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.PIN_COMMAND, GPIO.IN)  # LED pin set as output
+        GPIO.setup(self.PIN_OBSTACLE, GPIO.IN)  # PWM pin set as output
 
     '''
     Command robot to move forward/backward by [dist] cm.
@@ -246,3 +253,8 @@ class RobotController:
                     self._inst_obstr_cb()
             await asyncio.sleep(0.01)
 
+    def poll_obstruction(self):
+        return GPIO.input(self.PIN_OBSTACLE)
+
+    def poll_is_moving(self):
+        return GPIO.input(self.PIN_COMMAND)

@@ -149,8 +149,8 @@ int main(void)
   MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_GPIO_WritePin(Movement_Ind_Port, Movement_Ind_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(Movement_Ind_Port, Movement_Ind_Pin, 0);
+  HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin, 0);
 
 
 	defaultTaskHandle = osThreadNew(StartDefaultTask, NULL,
