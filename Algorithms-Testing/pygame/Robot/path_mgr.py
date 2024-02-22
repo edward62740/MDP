@@ -78,7 +78,7 @@ class Brain:
                 new_commands.append(command)
                 index += 1
         self.commands = new_commands
-        self.brain.translator.add_path(new_commands)
+        self.translator.add_path(new_commands)
         print("Done!")
 
     def plan_path(self):

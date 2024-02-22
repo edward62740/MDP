@@ -26,7 +26,7 @@ class Translator:
     def add_path(self, path: List[Command]):
         self.logger.debug("adding path %s", path)
         for movement in path:
-            if not isinstance(movement, [StraightCommand,TurnCommand]):
+            if not isinstance(movement, Command):
                 raise ValueError("Invalid movement encountered: {}".format(movement))
             self.path.append(movement)
 
@@ -87,14 +87,27 @@ class Translator:
                     cmd_path.append((RobotController.turn_right, [90, True]))
                 elif tempCmd.angle < 0 and tempCmd.rev: # Reverse Wheel to Left; (Rear of car moving to left)
                     cmd_path.append((RobotController.turn_left, [90, False]))
+            
+            
+            elif isinstance(tempCmd,ScanCommand):
+                #SendRequest to take image
+                cmd_path.append('Scan')
 
-
+        cmd_path.append("Fin")
         self.logger.debug(cmd_path)
         return cmd_path
 
     def dispatch(self, cmd_path):
+        self.logger.debug("Start Dispatch")
         self.logger.debug("dispatching path")
         for cmd in cmd_path:
+            
+            
+            # print(cmd[0])
+            # print(*cmd[1])
+            # if cmd[0] != 'F':
+            #     print(" | ")
+            #     print(" V ")
             self.logger.debug(*cmd[1])
             cmd[0](self.robot, *cmd[1])
         self.logger.debug("dispatched path")

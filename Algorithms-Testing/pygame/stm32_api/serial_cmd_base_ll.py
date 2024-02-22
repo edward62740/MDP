@@ -48,11 +48,12 @@ class SerialCmdBaseLL:
         WARN_OBSTACLE = "obst"
 
     def __init__(self, port, baud):
-        self.ser = ser.Serial(port, baud)
-        self.ser.timeout = self.ACK_TIMEOUT_MS  / 1000
+        # self.ser = ser.Serial(port, baud)
+        # self.ser.timeout = self.ACK_TIMEOUT_MS  / 1000
         pass
 
     def send_cmd(self) -> str:
+        return ""
         self.is_reading = True
         self.payload += self.CmdChar.END_CHAR.value
         if len(self.payload) != self.CMD_LEN:

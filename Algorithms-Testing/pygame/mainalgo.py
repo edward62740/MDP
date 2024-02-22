@@ -131,14 +131,6 @@ def main(simulator):
         index_list = app.execute()
     commands = app.robot.convert_commands()
     commands.append("FIN")
-    print(commands[0])
-    print(commands[1])
-    print(commands[2])
-    print(commands[3])
-    print(commands[4])
-    print(commands[5])
-    print(commands[6])
-    print(commands[7])
     list_of_coor = app.robot.path_hist
     
     
@@ -161,7 +153,7 @@ def main(simulator):
 
 
 if __name__ == '__main__':
-    main(True)
+    main(False)
 """
 obstacles = parse_obstacle_data_cur(old_obstacles)
 app = AlgoSimulator(obstacles)

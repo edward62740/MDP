@@ -178,6 +178,7 @@ class AlgoMinimal(AlgoApp):
         print("Calculating path...")
         index_list = self.robot.brain.plan_path()
         ret = self.robot.brain.translator.translate()
+        print("Translated path...  Dispatching..")
         self.robot.brain.translator.dispatch(ret)
         return index_list
 
