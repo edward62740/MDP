@@ -1,40 +1,42 @@
 import socket
 import time
-from typing import List, Optional, Tuple
+from typing import List, Optional
 
 from Constants import Direction, Obstacle
 from setup_logger import logger
 
+RETRY_LIMIT = 10
 
 class Communication:
-    """
-    A TCP socket (Algo) client to communiacate the TCP socket (RPi) server listening at (self.ipv4, self.port)
-    """
-
     def __init__(self):
-        # self.ipv4 = "192.168.33.1" # TODO - comment on actual run
-        self.ipv4: str = socket.gethostbyname(socket.gethostname())
-        self.port: int = (
-            5000  # port the server is listening on for new websocket connections
-        )
-        self.socket: socket.socket = (
-            socket.socket()
-        )  # the socket object used for 2-way TCP communication with the RPi
+        self.ipv4 = "192.168.22.22" 
+        self.port: int = 5000  
+        
+        self.socket: socket.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # the socket object used for 2-way TCP communication with the RPi
         self.msg: str = None  # message received from the Rpi
         self.msg_format: str = "utf-8"  # message format for sending (encoding to a UTF-8 byte sequence) and receiving (decoding a UTF-8 byte sequence) data from the Rpi
         self.read_limit_bytes: int = 2048  # number of bytes to read from the socket in a single blocking socket.recv command
 
-    def connect(self) -> None:
-        """
-        Initiates a TCP socket connection to the server at (self.ipv4, self.port)
-        """
-        logger.debug(f"Connecting to the server at {self.ipv4}:{self.port}...")
-        self.socket.connect((self.ipv4, self.port))
-        logger.debug(f"Successfully connected to the server at {self.ipv4}:{self.port}")
-        logger.debug(
-            f"Algo - Press 'Create Map' now. Ask RPi server to send over command list"
-        )
-
+    def connect(self):
+        TRIES = 0
+        RETRY = True
+        while RETRY and TRIES < RETRY_LIMIT:
+            try:
+                if self.socket:
+                    self.socket.close()
+                logger.debug(f"Connecting to the server at {self.ipv4}:{self.port}...")
+                self.socket: socket.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.socket.connect((self.ipv4, self.port))
+                logger.debug(f"Successfully connected to the server at {self.ipv4}:{self.port}")
+                RETRY = False
+            except socket.error as e:
+                logger.debug("Connection with RPI failed: " + str(e))
+                if self.socket:
+                    self.socket.close()
+                TRIES += 1
+                logger.debug(f"Retrying for the {TRIES} time...")
+                time.sleep(1)
+                
     def disconnect(self):
         if not (self.socket and not self.socket._closed):
             logger.warning(
@@ -47,7 +49,28 @@ class Communication:
         self.socket.close()
         logger.debug(f"Algo client socket has been closed")
 
+    def listen_to_rpi(self):
+        logger.debug("[BLOCKING] Client listening for data from server...")
+
+        while True:
+            msg = self.socket.recv(self.read_limit_bytes).strip()
+
+            if msg:
+                self.msg = msg.decode(self.msg_format)
+                logger.debug(
+                    f"[ALGO RCV] Client received data from server: '{self.msg}'"
+                )
+                return
+
+            logger.debug(
+                f"[ALGO RCV] Client is waiting for data from server but received: '{self.msg}'. Sleeping for 1 second..."
+            )
+            time.sleep(1)
+            if not self.socket:
+                break
+            
     def send_message(self, message: str) -> None:
+        # NOT WRITTEN BY YEE LONG
         """Sends string data to the RPi
 
         Args:
@@ -60,6 +83,7 @@ class Communication:
         self.socket.send(str(message).encode(self.msg_format))
 
     def get_obstacles(self) -> List[Obstacle]:
+        # NOT WRITTEN BY YEE LONG
         """
         Returns the list of obstacles sent via Android.
 
@@ -98,6 +122,7 @@ class Communication:
             time.sleep(1)
 
     def parse_obstacle(self, obstacle_data: List[str]) -> Optional[Obstacle]:
+        # NOT WRITTEN BY YEE LONG
         """
         Parses an obstacle string into an Obstacle object.
 
@@ -141,29 +166,35 @@ class Communication:
 
         return Obstacle(index, x, y, direction)
 
-    def listen_to_rpi(self):
-        """
-        Reads at most `self.read_limit_bytes` bytes from the server and saves the data into `self.msg`
-        """
-        logger.debug("[BLOCKING] Client listening for data from server...")
 
+    # def communicate(self, data: str, listen=True, write=True):
+    #     if write and data:
+    #         self.send_message(data)
+    #     if listen:
+    #         self.listen_to_rpi()
+
+'''
+Below is used to test the connections written in this .py file
+Usage: See RPI_comms for use
+'''
+
+if __name__ == '__main__':
+    c = Communication()
+    try:
+        c.connect()
+        
         while True:
-            msg = self.socket.recv(self.read_limit_bytes).strip()
-
-            if msg:
-                self.msg = msg.decode(self.msg_format)
-                logger.debug(
-                    f"[ALGO RCV] Client received data from server: '{self.msg}'"
-                )
-                return
-
-            logger.debug(
-                f"[ALGO RCV] Client is waiting for data from server but received: '{self.msg}'. Sleeping for 1 second..."
-            )
-            time.sleep(1)
-
-    def communicate(self, data: str, listen=True, write=True):
-        if write and data:
-            self.send_message(data)
-        if listen:
-            self.listen_to_rpi()
+            c.listen_to_rpi()
+            if c.msg == "A-PC":
+                print("Listening to RPI...")
+                while not c.msg == "bye":
+                    c.listen_to_rpi()
+            elif c.msg == "PC-A":
+                print("Type something to send to RPI")
+                while not c.msg == "bye":
+                    c.send_message(input())
+            elif c.msg == "exit":
+                break
+    except:
+        c.disconnect()
+    c.disconnect()
