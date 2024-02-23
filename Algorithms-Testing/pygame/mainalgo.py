@@ -5,7 +5,7 @@ from typing import List #check
 from Map import *
 from simulator import AlgoSimulator, AlgoMinimal
 from settings import *
-#from translator import *
+from translator import *
 
 
 

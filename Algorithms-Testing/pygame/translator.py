@@ -16,7 +16,7 @@ from Robot.commands import *
 
 class Translator:
     GRID_UNIT_CM = 10
-    TURN_ARC_RADIUS_CM = 19
+    TURN_ARC_RADIUS_CM = 20
 
     def __init__(self, robot_port: str, robot_baudrate: int):
         self.path: List[Any] = []
@@ -109,6 +109,9 @@ class Translator:
             #     print(" | ")
             #     print(" V ")
             self.logger.debug(*cmd[1])
-            cmd[0](self.robot, *cmd[1])
+            if isinstance(cmd[0],str):
+                continue
+            else: 
+                cmd[0](self.robot, *cmd[1])
         self.logger.debug("dispatched path")
         return None

@@ -136,8 +136,8 @@ class AlgoSimulator(AlgoApp):
             start = time.time()
             self.robot.brain.plan_path()
             # Commented out code is to run on STM
-            # ret = self.robot.brain.translator.translate()
-            # self.robot.brain.translator.dispatch(ret)
+            ret = self.robot.brain.translator.translate()
+            self.robot.brain.translator.dispatch(ret)
             time_delta = str(time.time() - start)
             print(time_delta)
 
