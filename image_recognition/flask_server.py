@@ -43,7 +43,7 @@ id_to_class = {
     27: 38,
     28: 39,
     29: 40,
-    99：99,
+    99: 99,
 }
 
 def choose_best_class(detected_items):
