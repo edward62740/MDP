@@ -3,6 +3,7 @@
 # import numpy as np
 # import uuid
 # import math
+import torch
 from io import BytesIO
 from flask import Flask, request, jsonify
 from PIL import Image
@@ -45,7 +46,7 @@ id_to_class = {
 }
 
 def img_rec(image_file):
-    results = model(image_file)
+    results = model(image_file, device="0")
     mdp_id = id_to_class[int(results[0].boxes.cls)] # take the detected ID and convert to MDP ID
     results[0].save(filename=f'found_{mdp_id}.jpg')  # save to disk
     return mdp_id
