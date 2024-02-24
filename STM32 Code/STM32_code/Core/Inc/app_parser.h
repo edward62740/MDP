@@ -38,6 +38,7 @@ typedef enum : uint32_t
 	MOVE_LEFT_FWD,
 	MOVE_RIGHT_BWD,
 	MOVE_LEFT_BWD,
+	MOVE_HALT,
 } MOTION_CMD;
 
 
@@ -119,6 +120,7 @@ static constexpr BUF_CMP_t FWD_CHAR = 'f';
 static constexpr BUF_CMP_t BWD_CHAR = 'b';
 static constexpr BUF_CMP_t RIGHT_CHAR = 'r';
 static constexpr BUF_CMP_t LEFT_CHAR = 'l';
+static constexpr BUF_CMP_t HALT_CHAR = 'h';
 
 static constexpr BUF_CMP_t IR_L_CHAR = 'w';
 static constexpr BUF_CMP_t IR_R_CHAR = 'e';

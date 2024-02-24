@@ -138,6 +138,10 @@ void Processor::processorTask(void *pv) {
 
 			} else if (isEq<BUF_CMP_t>(CMD_CHAR, msg.buffer[1])) {
 				// do command stuff
+				if (isEq(HALT_CHAR, msg.buffer[3]))
+				{
+					_ext_sig_halt();
+				}
 				switch (msg.buffer[2]) {
 				case MOTOR_CHAR: {
 					MOTION_PKT_t *pkt = getMotionCmdFromBytes(
@@ -147,6 +151,7 @@ void Processor::processorTask(void *pv) {
 								sizeof(nack), 10);
 						break;
 					}
+
 					osMessageQueuePut(tx_ctx->mailbox.queue, pkt, 0, 0);
 					HAL_UART_Transmit(&huart3, (BUF_CMP_t*) ack, sizeof(ack),
 							10);
@@ -287,6 +292,7 @@ MOTION_PKT_t* Processor::getMotionCmdFromBytes(BUF_CMP_t *bytes) {
 		break;
 
 	}
+
 	default:
 		// something went wrong..
 		return NULL;

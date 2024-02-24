@@ -1,45 +1,10 @@
-18:58:39 **** Incremental Build of configuration Debug for project STM32_code ****
+17:56:36 **** Incremental Build of configuration Debug for project STM32_code ****
 make -j8 all 
-arm-none-eabi-g++ "../Core/Src/app_main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I../Core/Inc -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/OLED_lib" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/Src/app_main.d" -MT"Core/Src/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app_main.o"
-arm-none-eabi-g++ "../Core/Src/app_motion.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I../Core/Inc -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/OLED_lib" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/Src/app_motion.d" -MT"Core/Src/app_motion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app_motion.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/OLED_lib" -I"C:/Users/Workstation/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -I../Core/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:160:2: warning: implicit declaration of function 'initializeCPPconstructs' [-Wimplicit-function-declaration]
-  160 |  initializeCPPconstructs();
-      |  ^~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/app_motion.cpp: In static member function 'static void AppMotion::MotionController::motionTask(void*)':
-../Core/Src/app_motion.cpp:68:9: warning: unused variable 'lmotor' [-Wunused-variable]
-   68 |  Motor *lmotor = self->lmotor;
-      |         ^~~~~~
-../Core/Src/app_motion.cpp:69:9: warning: unused variable 'rmotor' [-Wunused-variable]
-   69 |  Motor *rmotor = self->rmotor;
-      |         ^~~~~~
-../Core/Src/app_motion.cpp: In member function 'void AppMotion::MotionController::move(bool, uint32_t, uint32_t)':
-../Core/Src/app_motion.cpp:126:11: warning: unused variable 'timeStart' [-Wunused-variable]
-  126 |  uint32_t timeStart = HAL_GetTick();
-      |           ^~~~~~~~~
-../Core/Src/app_motion.cpp: In member function 'void AppMotion::MotionController::turn(bool, bool, uint32_t)':
-../Core/Src/app_motion.cpp:189:10: warning: unused variable 'buf' [-Wunused-variable]
-  189 |  uint8_t buf[30] = { 0 };
-      |          ^~~
-../Core/Src/app_motion.cpp:193:8: warning: variable 'prev_yaw' set but not used [-Wunused-but-set-variable]
-  193 |  float prev_yaw = cur;
-      |        ^~~~~~~~
-../Core/Src/app_main.cpp: In function 'void sensorTask(void*)':
-../Core/Src/app_main.cpp:109:7: warning: unused variable 'sbuf' [-Wunused-variable]
-  109 |  char sbuf[100] = { 0 };
-      |       ^~~~
-arm-none-eabi-g++ -o "STM32_code.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_code.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: STM32_code.elf
- 
 arm-none-eabi-size   STM32_code.elf 
-arm-none-eabi-objdump -h -S  STM32_code.elf  > "STM32_code.list"
    text	   data	    bss	    dec	    hex	filename
-  80444	    588	  26140	 107172	  1a2a4	STM32_code.elf
+  80492	    588	  26140	 107220	  1a2d4	STM32_code.elf
 Finished building: default.size.stdout
  
-Finished building: STM32_code.list
- 
 
-18:58:40 Build Finished. 0 errors, 7 warnings. (took 1s.352ms)
+17:56:37 Build Finished. 0 errors, 0 warnings. (took 299ms)
 

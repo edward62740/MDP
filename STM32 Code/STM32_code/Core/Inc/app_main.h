@@ -47,7 +47,7 @@ const uint32_t IR_R_VALID_MASK = 0x20;
 const uint32_t USONIC_VALID_MASK = 0x40;
 extern sensorData_t sensor_data;
 extern isTaskAlive_t is_task_alive_struct;
-
+void _ext_sig_halt(void);
 void processorTask(void const *);
 void quaternionUpdate(float w_x, float w_y, float w_z, float a_x, float a_y, float a_z, float deltat);
 #ifdef __cplusplus

@@ -23,18 +23,18 @@ osMutexAttr_t procLock_attr;
 //osMutexId_t procLockHandle = osMutexNew(&procLock_attr);
 osThreadId_t procTaskHandle;
 const osThreadAttr_t procTask_attr = { .name = "procTask", .stack_size = 1024,
-		.priority = (osPriority_t) osPriorityBelowNormal2, };
+		.priority = (osPriority_t) osPriorityAboveNormal, };
 
 static u_ctx procCtx = { .runner = procTaskHandle, .attr = procTask_attr,
 		.mailbox = { .queue = NULL } };
 
 osThreadId_t ctrlTaskHandle;
 const osThreadAttr_t ctrlTask_attr = { .name = "ctrlTask", .stack_size = 2048,
-		.priority = (osPriority_t) osPriorityBelowNormal2, };
+		.priority = (osPriority_t) osPriorityBelowNormal, };
 
 osThreadId_t oledTaskHandle;
 const osThreadAttr_t oledTask_attr = { .name = "oledTask", .stack_size = 1024,
-		.priority = (osPriority_t) osPriorityLow1, };
+		.priority = (osPriority_t) osPriorityBelowNormal, };
 
 osMessageQueueId_t ctrlQueue = osMessageQueueNew(10,
 		sizeof(AppParser::MOTION_PKT_t), NULL);
@@ -171,6 +171,11 @@ void sensorTask(void *pv) {
 		}
 
 	}
+}
+
+void _ext_sig_halt(void)
+{
+	controller.emergencyStop();
 }
 
 #define gyroMeasError 3.14159265358979f * (1.0f / 180.0f)
