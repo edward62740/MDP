@@ -191,6 +191,7 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 	float req = ((float) arg);
 	float cur = sensor_data.yaw_abs; //[-179,180]
 	float prev_yaw = cur;
+	float last_target_dist = 99999.0f; // overshoot protection
 
 
 	if((!isRight && isFwd) || (isRight && !isFwd) ) //increase
@@ -216,7 +217,8 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 		cur = sensor_data.yaw_abs; //filter
 
 		prev_yaw = cur;
-
+		//break off immediately if overshoot
+		if (last_target_dist < abs(target_yaw - cur) && abs(target_yaw - cur) < 15) break;
 		if (abs(target_yaw - cur) <= 1
 				|| (HAL_GetTick() - timeStart) > 10000 || emergency)
 			break;
