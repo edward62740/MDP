@@ -46,6 +46,8 @@ id_to_class = {
     99: 99,
 }
 
+output_class = {}
+
 def choose_best_class(detected_items):
     YOLO_CONF_THRESH = 0.5
 
@@ -57,10 +59,11 @@ def choose_best_class(detected_items):
         # Only one item detected, return it
         detected_item = list(detected_items.keys())[0]
         _, confidence = detected_items[detected_item]
-        if confidence > YOLO_CONF_THRESH:
-            return detected_item
-        else:
-            return -1  # Return -1 to indicate no detections
+        return detected_item, confidence
+        # if confidence > YOLO_CONF_THRESH:
+        #    return detected_item
+        #else:
+        #    return -1  # Return -1 to indicate no detections
     else:
         # Handle multiple detections -> choose the best based on criteria
         best_actual_id = None
@@ -73,7 +76,7 @@ def choose_best_class(detected_items):
                 best_actual_id = actual_id
                 biggest_area = size
 
-    return best_actual_id
+    return best_actual_id, confidence
 
 def detect_image(image_path):
     output_folder_path = './output'
@@ -84,13 +87,14 @@ def detect_image(image_path):
     detected_items = {}
 
     try:
-        results = model(image_path, device="0")
+        # results = model(image_path, device="0") only with gpu
+        results = model(image_path) # CPU
         result = results[0]
         detection_count = result.boxes.shape[0]
         print(f'Number of detections: {detection_count}')
 
         if detection_count == 0:
-            return -1  # Return -1 to indicate no detections
+            return -1,-1  # Return -1 to indicate no detections
         
         boxes = result.boxes
         im_array = result.plot()
@@ -111,19 +115,30 @@ def detect_image(image_path):
 
         chosen_class = choose_best_class(detected_items)
         #print('chosen_class ',chosen_class)
-
-        if detection_count >= 1:
+        if not output_class.get(chosen_class[0]) and detection_count >= 1:
+            output_class[chosen_class[0]] = chosen_class[1]
             print('saving image')
-            saved_filename = f'found_{chosen_class}.jpg'
+            saved_filename = f'found_{chosen_class[0]}.jpg'
             im.save(os.path.join("./output", saved_filename))
+        elif output_class[chosen_class[0]] < chosen_class[1] and detection_count >= 1:
+            output_class[chosen_class[0]] = chosen_class[1]
+            print('saving image')
+            saved_filename = f'found_{chosen_class[0]}.jpg'
+            im.save(os.path.join("./output", saved_filename))
+
+        #if detection_count >= 1:
+        #    print('saving image')
+        #    saved_filename = f'found_{chosen_class[0]}.jpg'
+        #    im.save(os.path.join("./output", saved_filename))
 
         if chosen_class is not None:
             return chosen_class
         if chosen_class is None:
-            return -1  # Return -1 to indicate no detections
+            return -1,-1  # Return -1 to indicate no detections
 
     except Exception as e:
         print(f"[IMG-DET ERROR] Error processing {image_path}: {e}")
+        return -1,-1 # No detection
 
 '''
 def img_rec(image_file):
@@ -140,8 +155,12 @@ def upload_image():
         return jsonify({'message': 'No image part'}), 400  # Return an error response 
     image = request.files['image']
     img = Image.open(BytesIO(image.read()))
-    mdp_id = img_rec(img)
-    result = {'message': f'TARGET,Obstacle_num,{mdp_id}'}
+    # mdp_id = img_rec(img)
+    mdp_id = detect_image(img)
+    if mdp_id[0] == -1:
+        result = {'message': 'TARGET,Obstacle_num,-1,-1'}
+    else:
+        result = {'message': f'TARGET,Obstacle_num,{mdp_id[0]},{mdp_id[1]}'}
     return jsonify(result), 200  # Return a success response with the result
     
 if __name__ == '__main__':
