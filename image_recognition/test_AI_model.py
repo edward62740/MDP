@@ -34,9 +34,10 @@ id_to_class = {
 }
 
 model = YOLO('best_bull.pt')
-results = model('4_close.jpg')
+results = model('test_images/bull_1.jpg')
 cls = results[0].boxes.cls
-mdp_id = id_to_class[int(cls)]
-results[0].save(filename=f'found_{mdp_id}.jpg')  # save to disk
+print(results)
+# mdp_id = id_to_class[int(cls)]
+results[0].save(filename='found_1.jpg')  # save to dis
 
 
