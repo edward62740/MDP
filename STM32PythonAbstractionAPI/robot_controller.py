@@ -30,14 +30,18 @@ class RobotController:
     drv = None  # instance of serial_cmd_base_ll
     _inst_obstr_cb = None  # obstacle callback
 
-    PIN_COMMAND = 18
-    PIN_OBSTACLE = 23
+    PIN_COMMAND = 15
+    PIN_OBSTACLE = 14
 
     def __init__(self, port, baudrate):
         self.drv = SerialCmdBaseLL(port, baudrate)
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.PIN_COMMAND, GPIO.IN)  # LED pin set as output
-        GPIO.setup(self.PIN_OBSTACLE, GPIO.IN)  # PWM pin set as output
+        GPIO.setup(self.PIN_COMMAND, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # LED pin set as output
+        GPIO.setup(self.PIN_OBSTACLE, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # PWM pin set as output
+        if GPIO.input(self.PIN_COMMAND) == GPIO.HIGH:
+            print("[CONTROLLER] WARN: COMMAND PIN N/C OR UNEXPECTED STATE")
+        if GPIO.input(self.PIN_OBSTACLE) == GPIO.HIGH:
+            print("[CONTROLLER] WARN: OBSTACLE PIN N/C OR UNEXPECTED STATE")
 
     '''
     Command robot to move forward/backward by [dist] cm.
@@ -258,3 +262,11 @@ class RobotController:
 
     def poll_is_moving(self):
         return GPIO.input(self.PIN_COMMAND)
+
+    def halt(self):
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.MOTOR)
+        self.drv.add_sensor_byte(self.drv.MotorCmd.HALT_CHAR)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())

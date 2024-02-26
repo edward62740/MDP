@@ -35,6 +35,7 @@ class SerialCmdBaseLL:
         BWD_CHAR = b'b'
         RIGHT_CHAR = b'r'
         LEFT_CHAR = b'l'
+        HALT_CHAR = b'h'
 
     class SensorCmd(Enum):
         IR_LEFT = b'w'
