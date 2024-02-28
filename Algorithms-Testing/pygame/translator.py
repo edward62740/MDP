@@ -1,4 +1,5 @@
 import logging
+from time import sleep
 """
 This class acts as the mid-level abstraction that "translates" the ideal simulation commands to the set of commands for
 the robot. It also gets the robot sensor data to act as heuristic for the algorithm.
@@ -22,6 +23,7 @@ class Translator:
         self.path: List[Any] = []
         self.robot = RobotController(robot_port, robot_baudrate)
         self.logger = logging.getLogger(__name__)
+        self.moving = False
 
     def add_path(self, path: List[Command]):
         self.logger.debug("adding path %s", path)
@@ -101,8 +103,8 @@ class Translator:
         self.logger.debug("Start Dispatch")
         self.logger.debug("dispatching path")
         for cmd in cmd_path:
-            
-            
+            while self.moving:
+                sleep(1)
             # print(cmd[0])
             # print(*cmd[1])
             # if cmd[0] != 'F':
@@ -110,8 +112,12 @@ class Translator:
             #     print(" V ")
             self.logger.debug(*cmd[1])
             if isinstance(cmd[0],str):
-                continue
+                sleep(0.5)#Take Image and send to rpi/pc
             else: 
+                self.moving = True
                 cmd[0](self.robot, *cmd[1])
+                #if(self.robot.poll_is_moving):# If robot not moving
+                if(1):
+                    self.moving = False
         self.logger.debug("dispatched path")
         return None

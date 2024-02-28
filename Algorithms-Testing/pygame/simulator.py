@@ -8,9 +8,9 @@ from enum import Enum
 from Robot.robot import Robot
 from settings import *
 
-start_img = pygame.image.load("assets/Start.png").convert_alpha()
-exit_img = pygame.image.load("assets/Exit.png").convert_alpha()
-reset_img = pygame.image.load("assets/Reset.png").convert_alpha()
+start_img = pygame.image.load("Algorithms-testing/assets/Start.png").convert_alpha()
+exit_img = pygame.image.load("Algorithms-testing/assets/Exit.png").convert_alpha()
+reset_img = pygame.image.load("Algorithms-testing/assets/Reset.png").convert_alpha()
 
 
 class AlgoApp(ABC):

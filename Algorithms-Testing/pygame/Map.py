@@ -142,7 +142,7 @@ class Obstacle:
         # Translate given coordinates to be in PyGame coordinates.
         self.pos = Position(x * SCALING_FACTOR, y * SCALING_FACTOR, direction)
         # Arrow to draw at the target coordinate.
-        self.target_image = pygame.transform.scale(pygame.image.load("assets/Target.png"), (50, 50))
+        self.target_image = pygame.transform.scale(pygame.image.load("Algorithms-testing/assets/Target.png"), (50, 50))
 
         self.index = index
         
