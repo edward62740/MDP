@@ -11,9 +11,9 @@ from ultralytics import YOLO
 
 
 app = Flask(__name__)
-model = YOLO('best_bull.pt') # replace model here
+model = YOLO('best_model_dead_end.pt') # replace model here
 id_to_class = { 
-    0: 11, # convert detected image ID to their correct (MDP) class ID
+    0: 99, # convert detected image ID to their correct (MDP) class ID
     1: 12,
     2: 13,
     3: 14,
@@ -53,7 +53,7 @@ def choose_best_class(detected_items):
 
     if len(detected_items) == 0:
         print('No items detected')
-        return -1  # Return -1 to indicate no detections
+        return -1, -1  # Return -1 to indicate no detections
 
     elif len(detected_items) == 1:
         # Only one item detected, return it

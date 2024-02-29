@@ -3,7 +3,7 @@ from io import BytesIO
 
 url = 'http://127.0.0.1:8080/upload'
 # Take a photo
-photo = 'test_images/four_4.jpg'
+photo = 'test_images/bull_2.jpg'
 with open(photo, 'rb') as file:
     byte_stream = BytesIO(file.read())
 
