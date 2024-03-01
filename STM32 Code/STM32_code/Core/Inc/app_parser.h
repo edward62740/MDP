@@ -122,12 +122,15 @@ static constexpr BUF_CMP_t RIGHT_CHAR = 'r';
 static constexpr BUF_CMP_t LEFT_CHAR = 'l';
 static constexpr BUF_CMP_t HALT_CHAR = 'h';
 
+
 static constexpr BUF_CMP_t IR_L_CHAR = 'w';
 static constexpr BUF_CMP_t IR_R_CHAR = 'e';
 static constexpr BUF_CMP_t USOUND_CHAR = 'u';
 static constexpr BUF_CMP_t GY_Z_CHAR = 'g'; // others are probably useless..
 static constexpr BUF_CMP_t QTRN_YAW_CHAR = 'y';
 static constexpr BUF_CMP_t QTRN_ALL_CHAR = 'k';
+
+static constexpr BUF_CMP_t LAST_HALT_CHAR = 'o';
 // index 4,5,6
 /* This will be a 3-digit number
  * if [2] is MOTOR_CHAR AND [3] is f/b, then this is motion in cm.

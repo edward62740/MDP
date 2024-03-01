@@ -134,12 +134,19 @@ void Processor::processorTask(void *pv) {
 			if (isEq<BUF_CMP_t>(REQ_CHAR, msg.buffer[1])) {
 				if (isEq(SENSOR_CHAR, msg.buffer[2])) {
 					returnSensorRequestCmd(msg.buffer[3]);
+				} else if (isEq(AUX_CHAR, msg.buffer[2])) {
+					if (isEq(LAST_HALT_CHAR, msg.buffer[3])) {
+						uint8_t tx_buf[25] = { 0 };
+						snprintf((char*) &tx_buf, sizeof(tx_buf), "%ld",
+										sensor_data.last_halt_val);
+								HAL_UART_Transmit(&huart3, (BUF_CMP_t*) tx_buf, strlen((char*) tx_buf),
+										10);
+					}
 				}
 
 			} else if (isEq<BUF_CMP_t>(CMD_CHAR, msg.buffer[1])) {
 				// do command stuff
-				if (isEq(HALT_CHAR, msg.buffer[3]))
-				{
+				if (isEq(HALT_CHAR, msg.buffer[3])) {
 					_ext_sig_halt();
 				}
 				switch (msg.buffer[2]) {
@@ -194,8 +201,7 @@ void Processor::processorTask(void *pv) {
 				}
 				}
 			} else {
-				HAL_UART_Transmit(&huart3, (BUF_CMP_t*) nack,
-						sizeof(nack), 10);
+				HAL_UART_Transmit(&huart3, (BUF_CMP_t*) nack, sizeof(nack), 10);
 			}
 
 			HAL_UART_Receive_DMA(&huart3, (BUF_CMP_t*) uartRxBuf, 10); // re-enable DMA buf for rx

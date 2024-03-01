@@ -160,10 +160,14 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
 		r_encoder_count = rencoder->getCount();
 
 		if ((cur_left > target && cur_right > target) || emergency)
+		{
+			sensor_data.last_halt_val = (uint32_t) (cur_left>cur_right?cur_right:cur_left) * DISTANCE_PER_ENCODER_PULSE;
 			break;
+		}
+
 
 		osDelay(10);
-
+		sensor_data.last_halt_val = arg;
 		//osThreadYield();
 
 	} while (1);
@@ -218,11 +222,19 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 
 		prev_yaw = cur;
 		//break off immediately if overshoot
-		if (last_target_dist < abs(target_yaw - cur) && abs(target_yaw - cur) < 15) break;
-		if (abs(target_yaw - cur) <= 1
-				|| (HAL_GetTick() - timeStart) > 10000 || emergency)
+		if (last_target_dist < abs(target_yaw - cur)
+				&& abs(target_yaw - cur) < 15)
 			break;
 
+
+		if (abs(target_yaw - cur) <= 1
+				|| (HAL_GetTick() - timeStart) > 10000 || emergency)
+		{
+			sensor_data.last_halt_val = ((uint32_t)abs(target_yaw - cur)) %180;
+			break;
+		}
+
+		sensor_data.last_halt_val = arg;
 		osDelay(10);
 		osThreadYield(); // need to ensure yield for the sensortask
 

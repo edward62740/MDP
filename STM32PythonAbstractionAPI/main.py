@@ -2,6 +2,7 @@ import asyncio
 from time import sleep
 
 from robot_controller import RobotController
+from dispatcher import _Dispatcher, BlockingDispatcher, ConcurrentDispatcher, _IO_Attr_Type
 
 
 def cb_fn(*args):
@@ -9,34 +10,26 @@ def cb_fn(*args):
     print(args)
 
 
-async def main():
-    robot = RobotController('COM33', 115200)
-    print(robot.set_threshold_stop_distance_right(10))
-    loop = asyncio.get_event_loop()
-    loop.create_task(robot.listen_for_obstruction(cb_fn))
+def cb_fn2(*args):
+    print("COMPLETED CALLBACK FROM DISPATCHER2 WITH: ")
+    print(args)
 
-    while 1:
-        print(x := robot.get_quaternion())
-        # assert x is not None
-        await asyncio.sleep(0.2)
-        print(x := robot.get_yaw())
-        #assert x is not None
-        await asyncio.sleep(0.2)
-        print(x := robot.get_gyro_Z())
-        #assert x is not None
-        await asyncio.sleep(0.2)
-        print(x := robot.get_ir_L())
-        #assert x is not None
-        await asyncio.sleep(0.2)
-        print(x := robot.get_ir_R())
-        #assert x is not None
-        await asyncio.sleep(0.2)
-        print(x := robot.move_forward(10))
-        #assert x
-        await asyncio.sleep(0.2)
-        print(x := robot.move_backward(10))
-       # assert x
-        await asyncio.sleep(0.2)
+
+def cb_fn3(*args):
+    print("OBSTACLE DETECTED WITH TOTAL DISTANCE SUCCESSFULLY MOVED AS: ")
+    print(args)
+
+
+async def main():
+    robot = RobotController('COM3', 115200, cb_fn3)
+    dispatcher = BlockingDispatcher(robot, 15, 2, _IO_Attr_Type.SIMULATED)
+    dispatcher2 = ConcurrentDispatcher(robot, 5, 2, _IO_Attr_Type.SIMULATED)
+    print(robot.set_threshold_stop_distance_right(10))
+
+    dispatcher2.listen_for_obstruction(cb_fn3)
+
+    dispatcher2.dispatch(robot.get_quaternion, [], cb_fn, cb_fn2)  # async example
+    await dispatcher.dispatchB(robot.move_forward, [10], cb_fn)  # blocking example
 
 
 if __name__ == '__main__':

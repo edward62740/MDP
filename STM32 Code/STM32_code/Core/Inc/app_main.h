@@ -29,6 +29,7 @@ typedef struct {
 	bool is_allow_motor_override;  // gives this application power to override uart commands to stop if ir_distL || ir_dist R < th
 	float ir_dist_th_L; // threshold value for above member.
 	float ir_dist_th_R; // threshold value for above member.
+	uint32_t last_halt_val; // holds the value of the magnitude of the previous motion cmd executed if applicable
 } sensorData_t;
 
 typedef struct {
