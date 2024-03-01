@@ -116,8 +116,8 @@ class Translator:
             else: 
                 self.moving = True
                 cmd[0](self.robot, *cmd[1])
-                #if(self.robot.poll_is_moving):# If robot not moving
-                if(1):
+                if(self.robot.poll_is_moving==False):# If robot not moving
+                # if(1):
                     self.moving = False
         self.logger.debug("dispatched path")
         return None
