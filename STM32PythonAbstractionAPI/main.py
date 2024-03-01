@@ -29,6 +29,7 @@ async def main():
     dispatcher2.listen_for_obstruction(cb_fn3)
 
     dispatcher2.dispatch(robot.get_quaternion, [], cb_fn, cb_fn2)  # async example
+    dispatcher.dispatch(robot.move_forward, [10], cb_fn)  # async using the blocking dispatcher also works
     await dispatcher.dispatchB(robot.move_forward, [10], cb_fn)  # blocking example
 
 
