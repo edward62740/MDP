@@ -16,6 +16,7 @@ straight(x - r), rotate(k), straight(y - r) and the min. inner clearance at the 
 from typing import List, Tuple, Any, Callable
 from stm32_api.robot_controller import RobotController
 from Robot.commands import *
+import photographer
 
 
 class Translator:
@@ -123,6 +124,7 @@ class Translator:
             print(*cmd[1])
             if isinstance(cmd[0],str):
                 print('snap! took a photo')
+                photographer.take_photo()
                 sleep(0.5)#Take Image and send to rpi/pc
             else: 
                 self.moving = True

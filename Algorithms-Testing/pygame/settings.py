@@ -1,3 +1,7 @@
+'''
+This file contains all the settings required. To change stuff like the baud rate or whatever, just change here
+'''
+
 from enum import Enum 
 
 class Direction(Enum):
@@ -6,8 +10,13 @@ class Direction(Enum):
     BOTTOM = -90
     RIGHT = 0
     
+# STM32 port and baud rate
 PORT = '/dev/ttyUSB0'
 BAUD = 115200
+
+# PC address 
+PC = '192.168.22.31' # YL's macbook
+FLASK_PORT = 8080
   
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)

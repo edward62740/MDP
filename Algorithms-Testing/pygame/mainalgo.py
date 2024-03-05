@@ -1,3 +1,7 @@
+'''
+@benjamin, @shirley, can we delete this? mainT1.py should be the new integrated version without the GUI stuff
+'''
+
 import pygame
 import time
 import json
