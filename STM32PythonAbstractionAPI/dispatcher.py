@@ -3,7 +3,7 @@ from asyncio import Task
 from enum import Enum
 from typing import Callable, Optional, List, Any
 
-from robot_controller import RobotController, PinState
+from stm32_api.robot_controller import RobotController, PinState
 
 """
 This is a generic dispatcher that can be used to dispatch commands to the robot. It sends a given command for {
@@ -33,6 +33,7 @@ class _Dispatcher:
         self.p_sig_mv = robot.poll_is_moving
         self.p_sig_ob = robot.poll_obstruction
         if u_if is not _IO_Attr_Type.PHYSICAL:
+            print("[DISPATCHER] IN SIMULATED I/O MODE")
             return
         if self.robot.obstr_pin_state is PinState.Z:
             raise IOError("[DISPATCHER] CRITICAL: OBSTACLE PIN IN HIGH IMPEDANCE STATE DURING INITIALIZATION AND "
@@ -46,7 +47,7 @@ class _Dispatcher:
             backoff_period = self.clip(self.base ** i, self.robot.drv.ACK_TIMEOUT_MS, self.MAXIMUM_BACKOFF_PERIOD_MS)
             print("[DISPATCHER] Attempting to dispatch command to robot, attempt", i + 1, "of", self.patience,
                   " , with a delay of", backoff_period, "ms")
-            x = fn(*args)  # for python 3.7 compatibility
+            x = fn(self.robot, *args)  # for python 3.7 compatibility
             if x not in [False, None]:
                 print("[DISPATCHER] Command dispatched successfully!")
                 return x
