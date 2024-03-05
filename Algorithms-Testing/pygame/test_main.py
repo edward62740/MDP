@@ -10,6 +10,7 @@ from time import sleep
 from simulator import AlgoMinimal
 from typing import List
 from Map import *
+import asyncio
 
 rpi = RPI_connection()
 
@@ -25,7 +26,7 @@ def main():
     print(obstacles) #debugging
     
     app = AlgoMinimal(obstacles)
-    app.execute()
+    asyncio.run(app.execute())
 
 def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
     '''

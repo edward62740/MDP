@@ -26,7 +26,7 @@ class Translator:
         self.path: List[Any] = []
         self.robot = RobotController(robot_port, robot_baudrate)
         self.robot.set_threshold_disable_obstacle_detection() # remove in real run
-        self.dispatcher = BlockingDispatcher(self.robot, 5, 2, u_if=_IO_Attr_Type.SIMULATED)
+        self.dispatcher = BlockingDispatcher(self.robot, 5, 2, u_if=_IO_Attr_Type.PHYSICAL)
         self.logger = logging.getLogger(__name__)
         self.moving = False
 
