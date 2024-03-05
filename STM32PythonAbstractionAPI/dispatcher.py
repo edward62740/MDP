@@ -3,7 +3,7 @@ from asyncio import Task
 from enum import Enum
 from typing import Callable, Optional, List, Any
 
-from stm32_api.robot_controller import RobotController, PinState
+from robot_controller import RobotController, PinState
 
 """
 This is a generic dispatcher that can be used to dispatch commands to the robot. It sends a given command for {
