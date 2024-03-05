@@ -22,6 +22,7 @@ class Translator:
     def __init__(self, robot_port: str, robot_baudrate: int):
         self.path: List[Any] = []
         self.robot = RobotController(robot_port, robot_baudrate)
+        self.robot.set_threshold_disable_obstacle_detection() # remove in real run
         self.logger = logging.getLogger(__name__)
         self.moving = False
 
@@ -104,14 +105,17 @@ class Translator:
         self.logger.debug("dispatching path")
         for cmd in cmd_path:
             while self.moving:
+                print("in while loopp", self.moving)
+                self.moving = False # temporary 
                 sleep(1)
             # print(cmd[0])
             # print(*cmd[1])
             # if cmd[0] != 'F':
             #     print(" | ")
             #     print(" V ")
-            self.logger.debug(*cmd[1])
+            print(*cmd[1])
             if isinstance(cmd[0],str):
+                print('snap! took a photo')
                 sleep(0.5)#Take Image and send to rpi/pc
             else: 
                 self.moving = True

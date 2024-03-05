@@ -1,4 +1,4 @@
-import pygame
+#import pygame
 import datetime
 from Map import RobotPosition
 from settings import *
@@ -20,8 +20,7 @@ class Robot:
 
         self.brain = Brain(self, grid)
 
-        self.__image = pygame.transform.scale(pygame.image.load("Algorithms-testing/assets/robot.png"),
-                                              (90, 90))
+        #self.__image = pygame.transform.scale(pygame.image.load("Algorithms-testing/assets/robot.png"), (90, 90))
 
         self.path_hist = []  # Stores the history of the path taken by the robot.
 
@@ -103,31 +102,31 @@ class Robot:
         """
         StraightCommand(dist).apply_on_pos(self.pos)
 
-    def draw_simple_hamiltonian_path(self, screen):
-        prev = self._start_copy.xy_pygame()
-        for obs in self.brain.simple_hamiltonian:
-            target = obs.get_robot_target_pos().xy_pygame()
-            pygame.draw.line(screen, BLUE, prev, target)
-            prev = target
+    # def draw_simple_hamiltonian_path(self, screen):
+    #     prev = self._start_copy.xy_pygame()
+    #     for obs in self.brain.simple_hamiltonian:
+    #         target = obs.get_robot_target_pos().xy_pygame()
+    #         pygame.draw.line(screen, BLUE, prev, target)
+    #         prev = target
 
-    def draw_self(self, screen):
-        # The arrow to represent the direction of the robot.
-        rot_image = pygame.transform.rotate(self.__image, -(90 - self.pos.angle))
-        rect = rot_image.get_rect()
-        rect.center = self.pos.xy_pygame()
-        screen.blit(rot_image, rect)
+    # def draw_self(self, screen):
+    #     # The arrow to represent the direction of the robot.
+    #     rot_image = pygame.transform.rotate(self.__image, -(90 - self.pos.angle))
+    #     rect = rot_image.get_rect()
+    #     rect.center = self.pos.xy_pygame()
+    #     screen.blit(rot_image, rect)
 
-    def draw_historic_path(self, screen):
-        for dot in self.path_hist:
-            pygame.draw.circle(screen, BLACK, dot, 3)
+    # def draw_historic_path(self, screen):
+    #     for dot in self.path_hist:
+    #         pygame.draw.circle(screen, BLACK, dot, 3)
 
-    def draw(self, screen):
-        # Draw the robot itself.
-        self.draw_self(screen)
-        # Draw the simple hamiltonian path found by the robot.
-        self.draw_simple_hamiltonian_path(screen)
-        # Draw the path sketched by the robot
-        self.draw_historic_path(screen)
+    # def draw(self, screen):
+    #     # Draw the robot itself.
+    #     self.draw_self(screen)
+    #     # Draw the simple hamiltonian path found by the robot.
+    #     self.draw_simple_hamiltonian_path(screen)
+    #     # Draw the path sketched by the robot
+    #     self.draw_historic_path(screen)
 
     def update(self):
         # Store historic path

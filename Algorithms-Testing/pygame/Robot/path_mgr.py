@@ -4,7 +4,7 @@ from collections import deque
 from typing import Tuple
 from Map import Obstacle
 from Robot.commands import *
-from settings import *
+from settings import PORT, BAUD
 from Robot.path_algo import ModifiedAStar
 from translator import Translator
 
@@ -14,7 +14,7 @@ class Brain:
         self.grid = grid
 
         ####
-        self.translator = Translator("COM3", 115200)
+        self.translator = Translator(PORT, BAUD)
         ####
 
         # Compute the simple Hamiltonian path for all obstacles

@@ -3,7 +3,7 @@ from typing import Optional, Callable, Any
 import asyncio
 import serial as ser
 from stm32_api.serial_cmd_base_ll import SerialCmdBaseLL
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 '''
 Python API that abstracts away the low-level serial communication with the robot.
@@ -35,9 +35,9 @@ class RobotController:
 
     def __init__(self, port, baudrate):
         self.drv = SerialCmdBaseLL(port, baudrate)
-        # GPIO.setmode(GPIO.BCM)
-        # GPIO.setup(self.PIN_COMMAND, GPIO.IN)  # LED pin set as output
-        # GPIO.setup(self.PIN_OBSTACLE, GPIO.IN)  # PWM pin set as output
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.PIN_COMMAND, GPIO.IN)  # LED pin set as output
+        GPIO.setup(self.PIN_OBSTACLE, GPIO.IN)  # PWM pin set as output
 
     '''
     Command robot to move forward/backward by [dist] cm.

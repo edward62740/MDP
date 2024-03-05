@@ -1,5 +1,5 @@
 from enum import Enum 
-import pygame
+#import pygame
 from collections import deque
 from typing import List
 import math
@@ -99,31 +99,31 @@ class Node:
         """
         return Node(self.pos.x, self.pos.y, self.occupied, self.pos.direction)
 
-    def draw_self(self, screen):
-        if self.occupied:  # If current node is not permissible to the robot
-            rect = pygame.Rect(0, 0, GRID_CELL_LENGTH, GRID_CELL_LENGTH)
-            rect.center = self.pos.xy_pygame()
-            pygame.draw.rect(screen, DARK_GREY , rect)
+    # def draw_self(self, screen):
+    #     if self.occupied:  # If current node is not permissible to the robot
+    #         rect = pygame.Rect(0, 0, GRID_CELL_LENGTH, GRID_CELL_LENGTH)
+    #         rect.center = self.pos.xy_pygame()
+    #         pygame.draw.rect(screen, DARK_GREY , rect)
 
-    def draw_boundary(self, screen):
-        x_pygame, y_pygame = self.pos.xy_pygame()
+    # def draw_boundary(self, screen):
+    #     x_pygame, y_pygame = self.pos.xy_pygame()
 
-        left = x_pygame - GRID_CELL_LENGTH // 2
-        right = x_pygame + GRID_CELL_LENGTH // 2
-        top = y_pygame - GRID_CELL_LENGTH // 2
-        bottom = y_pygame + GRID_CELL_LENGTH // 2
+    #     left = x_pygame - GRID_CELL_LENGTH // 2
+    #     right = x_pygame + GRID_CELL_LENGTH // 2
+    #     top = y_pygame - GRID_CELL_LENGTH // 2
+    #     bottom = y_pygame + GRID_CELL_LENGTH // 2
 
-        # Draw
-        pygame.draw.line(screen, GREY, (left, top), (left, bottom))  # Left border
-        pygame.draw.line(screen, GREY, (left, top), (right, top))  # Top border
-        pygame.draw.line(screen, GREY, (right, top), (right, bottom))  # Right border
-        pygame.draw.line(screen, GREY, (left, bottom), (right, bottom))  # Bottom border
+    #     # Draw
+    #     pygame.draw.line(screen, GREY, (left, top), (left, bottom))  # Left border
+    #     pygame.draw.line(screen, GREY, (left, top), (right, top))  # Top border
+    #     pygame.draw.line(screen, GREY, (right, top), (right, bottom))  # Right border
+    #     pygame.draw.line(screen, GREY, (left, bottom), (right, bottom))  # Bottom border
 
-    def draw(self, screen):
-        # Draw self
-        self.draw_self(screen)
-        # Draw node border
-        self.draw_boundary(screen)
+    # def draw(self, screen):
+    #     # Draw self
+    #     self.draw_self(screen)
+    #     # Draw node border
+    #     self.draw_boundary(screen)
 
 class Obstacle:
     def __init__(self, x, y, direction, index):
@@ -142,7 +142,7 @@ class Obstacle:
         # Translate given coordinates to be in PyGame coordinates.
         self.pos = Position(x * SCALING_FACTOR, y * SCALING_FACTOR, direction)
         # Arrow to draw at the target coordinate.
-        self.target_image = pygame.transform.scale(pygame.image.load("Algorithms-testing/assets/Target.png"), (50, 50))
+        #self.target_image = pygame.transform.scale(pygame.image.load("Algorithms-testing/assets/Target.png"), (50, 50))
 
         self.index = index
         
@@ -202,69 +202,69 @@ class Obstacle:
         else: #RIGHT
             return RobotPosition(self.pos.x + OBSTACLE_SAFETY_WIDTH + OBSTACLE_LENGTH + 50, self.pos.y, Direction.LEFT)
 
-    def draw_self(self, screen):
-        # Draw the obstacle onto the grid.
-        # We need to translate the obstacle's center into that with respect to PyGame
-        # Get the coordinates of the grid's bottom left-hand corner.
-        rect = pygame.Rect(0, 0, OBSTACLE_LENGTH, OBSTACLE_LENGTH)
-        rect.center = self.pos.xy_pygame()
-        pygame.draw.rect(screen, BLACK, rect)
+    # def draw_self(self, screen):
+    #     # Draw the obstacle onto the grid.
+    #     # We need to translate the obstacle's center into that with respect to PyGame
+    #     # Get the coordinates of the grid's bottom left-hand corner.
+    #     rect = pygame.Rect(0, 0, OBSTACLE_LENGTH, OBSTACLE_LENGTH)
+    #     rect.center = self.pos.xy_pygame()
+    #     pygame.draw.rect(screen, BLACK, rect)
 
-        # Draw the direction of the picture
-        rect.width = OBSTACLE_LENGTH / 2
-        rect.height = OBSTACLE_LENGTH / 2
-        rect.center = self.pos.xy_pygame()
+    #     # Draw the direction of the picture
+    #     rect.width = OBSTACLE_LENGTH / 2
+    #     rect.height = OBSTACLE_LENGTH / 2
+    #     rect.center = self.pos.xy_pygame()
     
-        if self.pos.direction.value == 90: #TOP
-            rect.centery -= OBSTACLE_LENGTH / 4
-        elif self.pos.direction.value == -90: #BOTTOM
-            rect.centery += OBSTACLE_LENGTH / 4
-        elif self.pos.direction.value == 180: #LEFT
-            rect.centerx -= OBSTACLE_LENGTH / 4 
-        elif self.pos.direction.value == 0: #RIGHT
-            rect.centerx += OBSTACLE_LENGTH / 4
+    #     if self.pos.direction.value == 90: #TOP
+    #         rect.centery -= OBSTACLE_LENGTH / 4
+    #     elif self.pos.direction.value == -90: #BOTTOM
+    #         rect.centery += OBSTACLE_LENGTH / 4
+    #     elif self.pos.direction.value == 180: #LEFT
+    #         rect.centerx -= OBSTACLE_LENGTH / 4 
+    #     elif self.pos.direction.value == 0: #RIGHT
+    #         rect.centerx += OBSTACLE_LENGTH / 4
 
-        # Draw the picture place
-        pygame.draw.rect(screen, GREEN, rect)
+    #     # Draw the picture place
+    #     pygame.draw.rect(screen, GREEN, rect)
 
-    def draw_virtual_boundary(self, screen):
-        # Get the boundary points
-        points = self.get_boundary_points()
+    # def draw_virtual_boundary(self, screen):
+    #     # Get the boundary points
+    #     points = self.get_boundary_points()
 
-        # Draw left border
-        pygame.draw.line(screen, RED, points[0].xy_pygame(), points[2].xy_pygame())
-        # Draw right border
-        pygame.draw.line(screen, RED, points[1].xy_pygame(), points[3].xy_pygame())
-        # Draw upper border
-        pygame.draw.line(screen, RED, points[2].xy_pygame(), points[3].xy_pygame())
-        # Draw lower border
-        pygame.draw.line(screen, RED, points[0].xy_pygame(), points[1].xy_pygame())
+    #     # Draw left border
+    #     pygame.draw.line(screen, RED, points[0].xy_pygame(), points[2].xy_pygame())
+    #     # Draw right border
+    #     pygame.draw.line(screen, RED, points[1].xy_pygame(), points[3].xy_pygame())
+    #     # Draw upper border
+    #     pygame.draw.line(screen, RED, points[2].xy_pygame(), points[3].xy_pygame())
+    #     # Draw lower border
+    #     pygame.draw.line(screen, RED, points[0].xy_pygame(), points[1].xy_pygame())
 
-    def draw_robot_target(self, screen):
-        target = self.get_robot_target_pos()
+    # def draw_robot_target(self, screen):
+    #     target = self.get_robot_target_pos()
 
-        rot_image = self.target_image
-        angle = 0
+    #     rot_image = self.target_image
+    #     angle = 0
 
-        if target.direction == Direction.BOTTOM:
-            angle = 180
-        elif target.direction == Direction.LEFT:
-            angle = 90
-        elif target.direction == Direction.RIGHT:
-            angle = -90
+    #     if target.direction == Direction.BOTTOM:
+    #         angle = 180
+    #     elif target.direction == Direction.LEFT:
+    #         angle = 90
+    #     elif target.direction == Direction.RIGHT:
+    #         angle = -90
 
-        rot_image = pygame.transform.rotate(rot_image, angle)
-        rect = rot_image.get_rect()
-        rect.center = target.xy_pygame()
-        screen.blit(rot_image, rect)
+    #     rot_image = pygame.transform.rotate(rot_image, angle)
+    #     rect = rot_image.get_rect()
+    #     rect.center = target.xy_pygame()
+    #     screen.blit(rot_image, rect)
 
-    def draw(self, screen):
-        # Draw the obstacle itself.
-        self.draw_self(screen)
-        # Draw the obstacle's boundary.
-        self.draw_virtual_boundary(screen)
-        # Draw the target for this obstacle.
-        self.draw_robot_target(screen)
+    # def draw(self, screen):
+    #     # Draw the obstacle itself.
+    #     self.draw_self(screen)
+    #     # Draw the obstacle's boundary.
+    #     self.draw_virtual_boundary(screen)
+    #     # Draw the target for this obstacle.
+    #     self.draw_robot_target(screen)
 
 class Grid:
     def __init__(self, obstacles: List[Obstacle]):
@@ -335,33 +335,33 @@ class Grid:
             return False
         return True
 
-    @classmethod
-    def draw_arena_borders(cls, screen):
-        """
-        Draw the arena borders.
-        """
-        # Draw upper border
-        pygame.draw.line(screen, BLACK, (0, 0), (190, 0))
-        # Draw lower border
-        pygame.draw.line(screen, BLACK, (0, GRID_LENGTH), (GRID_LENGTH, GRID_LENGTH))
-        # Draw left border
-        pygame.draw.line(screen, BLACK, (0, 0), (0, GRID_LENGTH))
-        # Draw right border
-        pygame.draw.line(screen, BLACK, (GRID_LENGTH, GRID_LENGTH), (GRID_LENGTH, 0))
+    # @classmethod
+    # def draw_arena_borders(cls, screen):
+    #     """
+    #     Draw the arena borders.
+    #     """
+    #     # Draw upper border
+    #     pygame.draw.line(screen, BLACK, (0, 0), (190, 0))
+    #     # Draw lower border
+    #     pygame.draw.line(screen, BLACK, (0, GRID_LENGTH), (GRID_LENGTH, GRID_LENGTH))
+    #     # Draw left border
+    #     pygame.draw.line(screen, BLACK, (0, 0), (0, GRID_LENGTH))
+    #     # Draw right border
+    #     pygame.draw.line(screen, BLACK, (GRID_LENGTH, GRID_LENGTH), (GRID_LENGTH, 0))
 
-    def draw_obstacles(self, screen):
-        for ob in self.obstacles:
-            ob.draw(screen)
+    # def draw_obstacles(self, screen):
+    #     for ob in self.obstacles:
+    #         ob.draw(screen)
 
-    def draw_nodes(self, screen):
-        for row in self.nodes:
-            for col in row:
-                col.draw(screen)
+    # def draw_nodes(self, screen):
+    #     for row in self.nodes:
+    #         for col in row:
+    #             col.draw(screen)
 
-    def draw(self, screen):
-        # Draw nodes
-        self.draw_nodes(screen)
-        # Draw arena borders
-        self.draw_arena_borders(screen)
-        # Draw obstacles
-        self.draw_obstacles(screen)
+    # def draw(self, screen):
+    #     # Draw nodes
+    #     self.draw_nodes(screen)
+    #     # Draw arena borders
+    #     self.draw_arena_borders(screen)
+    #     # Draw obstacles
+    #     self.draw_obstacles(screen)
