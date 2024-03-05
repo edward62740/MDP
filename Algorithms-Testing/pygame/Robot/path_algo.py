@@ -75,7 +75,8 @@ class ModifiedAStar:
                 if not (self.grid.check_valid_position(p_c) and self.grid.get_coordinate_node(*p_c.xy())):
                     return None, None
         command.apply_on_pos(p)
-        if self.grid.check_valid_position(p) and (after := self.grid.get_coordinate_node(*p.xy())):
+        after = self.grid.get_coordinate_node(*p.xy())
+        if self.grid.check_valid_position(p) and after:
             after.pos.direction = p.direction
             return after.copy(), p
         return None, None

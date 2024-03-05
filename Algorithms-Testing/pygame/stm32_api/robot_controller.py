@@ -1,9 +1,12 @@
 from asyncio import Task
+from dataclasses import dataclass
+from enum import Enum
 from typing import Optional, Callable, Any
 import asyncio
 import serial as ser
 from stm32_api.serial_cmd_base_ll import SerialCmdBaseLL
-import RPi.GPIO as GPIO
+
+#import RPi.GPIO as GPIO
 
 '''
 Python API that abstracts away the low-level serial communication with the robot.
@@ -26,19 +29,41 @@ Requests are generally cheaper than commands, and can be assumed to return withi
 '''
 
 
+class PinState(Enum):
+    HIGH = 1
+    LOW = 0
+    Z = -1
+
+
 class RobotController:
     drv = None  # instance of serial_cmd_base_ll
     _inst_obstr_cb = None  # obstacle callback
 
-    PIN_COMMAND = 18
-    PIN_OBSTACLE = 23
+    PIN_COMMAND = 15
+    PIN_OBSTACLE = 14
 
-    def __init__(self, port, baudrate):
+    def __init__(self, port, baudrate, _inst_obstr_cb: Optional[Callable[..., None]] = None):
         self.drv = SerialCmdBaseLL(port, baudrate)
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.PIN_COMMAND, GPIO.IN)  # LED pin set as output
-        GPIO.setup(self.PIN_OBSTACLE, GPIO.IN)  # PWM pin set as output
+        #GPIO.setmode(GPIO.BCM)
+        self.cmd_pin_state = PinState.Z
+        self.obstr_pin_state = PinState.Z
+        '''
+        GPIO.setup(self.PIN_COMMAND, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # LED pin set as output
+        GPIO.setup(self.PIN_OBSTACLE, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # PWM pin set as output
+        if GPIO.input(self.PIN_COMMAND) == GPIO.HIGH:
+            print("[CONTROLLER] WARN: COMMAND PIN N/C OR UNEXPECTED STATE")
+        else:
+            self.cmd_pin_state = PinState.LOW
 
+        if GPIO.input(self.PIN_OBSTACLE) == GPIO.HIGH:
+            print("[CONTROLLER] WARN: OBSTACLE PIN N/C OR UNEXPECTED STATE")
+        else:
+            self.obstr_pin_state = PinState.LOW
+        self._inst_obstr_cb = _inst_obstr_cb
+        if self._inst_obstr_cb is not None:
+            GPIO.add_event_detect(self.PIN_OBSTACLE, GPIO.RISING,
+                                  callback=self.sig_obst_callback, bouncetime=50)
+        '''
     '''
     Command robot to move forward/backward by [dist] cm.
     0 <= dist <= 999
@@ -172,7 +197,7 @@ class RobotController:
     '''
     Requests the left/right cm-approximation derived from the reflected IR illuminance,
     given by the formula where x is the analog signal in mV.
-    
+
     Note that this measurement is not very accurate and is dependent on the surface reflectance.
     '''
 
@@ -236,6 +261,7 @@ class RobotController:
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
 
+    """ DEPRECIATED: USE BELOW INSTEAD
     async def listen_for_obstruction(self, callback: Callable[..., None]):
         self._inst_obstr_cb = callback
         print("running")
@@ -249,12 +275,39 @@ class RobotController:
                 print(line)
 
                 if str(self.drv.KeyWord.WARN_OBSTACLE.value) in line:
-
                     self._inst_obstr_cb()
             await asyncio.sleep(0.01)
+    """
+
+    def sig_obst_callback(self, channel):
+
+        if self._inst_obstr_cb is not None:
+            _d_ret = self.get_last_successful_arg()
+            self._inst_obstr_cb(_d_ret)
 
     def poll_obstruction(self):
         return GPIO.input(self.PIN_OBSTACLE)
 
     def poll_is_moving(self):
         return GPIO.input(self.PIN_COMMAND)
+
+    def halt(self):
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.MOTOR)
+        self.drv.add_sensor_byte(self.drv.MotorCmd.HALT_CHAR)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+
+    def get_last_successful_arg(self):
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(False)
+        self.drv.add_module_byte(self.drv.Modules.AUX)
+        self.drv.add_sensor_byte(self.drv.SensorCmd.LAST_HALT)
+        self.drv.pad_to_end()
+        ret = self.drv.send_cmd()
+        try:
+            ret = float(ret)
+        except ValueError:
+            return None
+        return ret

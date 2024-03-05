@@ -40,12 +40,12 @@ class AlgoMinimal(AlgoApp):
     def init(self):
         pass
 
-    def execute(self):
+    async def execute(self):
         print("Calculating path...")
         index_list = self.robot.brain.plan_path()
         ret = self.robot.brain.translator.translate()
         print("Translated path...  Dispatching..")
-        self.robot.brain.translator.dispatch(ret)
+        await self.robot.brain.translator.dispatch(ret)
         return index_list
 
    

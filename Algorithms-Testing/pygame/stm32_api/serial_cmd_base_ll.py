@@ -35,6 +35,7 @@ class SerialCmdBaseLL:
         BWD_CHAR = b'b'
         RIGHT_CHAR = b'r'
         LEFT_CHAR = b'l'
+        HALT_CHAR = b'h'
 
     class SensorCmd(Enum):
         IR_LEFT = b'w'
@@ -43,13 +44,14 @@ class SerialCmdBaseLL:
         GZ = b'g'
         QTRN_YAW = b'y'
         QTRN_ALL = b'k'
+        LAST_HALT = b'o'
 
     class KeyWord(Enum):
         WARN_OBSTACLE = "obst"
 
     def __init__(self, port, baud):
         self.ser = ser.Serial(port, baud)
-        self.ser.timeout = self.ACK_TIMEOUT_MS  / 1000
+        self.ser.timeout = self.ACK_TIMEOUT_MS / 1000
         pass
 
     def send_cmd(self) -> str:

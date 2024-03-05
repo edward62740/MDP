@@ -6,7 +6,7 @@ class Direction(Enum):
     BOTTOM = -90
     RIGHT = 0
     
-PORT = '/dev/ttyUSB0'
+PORT = 'COM9'
 BAUD = 115200
   
 RED = (255, 0, 0)

@@ -1,5 +1,8 @@
 import logging
 from time import sleep
+
+from stm32_api.dispatcher import BlockingDispatcher, _IO_Attr_Type
+
 """
 This class acts as the mid-level abstraction that "translates" the ideal simulation commands to the set of commands for
 the robot. It also gets the robot sensor data to act as heuristic for the algorithm.
@@ -23,6 +26,7 @@ class Translator:
         self.path: List[Any] = []
         self.robot = RobotController(robot_port, robot_baudrate)
         self.robot.set_threshold_disable_obstacle_detection() # remove in real run
+        self.dispatcher = BlockingDispatcher(self.robot, 5, 2, u_if=_IO_Attr_Type.SIMULATED)
         self.logger = logging.getLogger(__name__)
         self.moving = False
 
@@ -100,7 +104,10 @@ class Translator:
         self.logger.debug(cmd_path)
         return cmd_path
 
-    def dispatch(self, cmd_path):
+    def obstacle_callback(self, *args):
+        print("Obstacle detected!")
+
+    async def dispatch(self, cmd_path):
         self.logger.debug("Start Dispatch")
         self.logger.debug("dispatching path")
         for cmd in cmd_path:
@@ -119,7 +126,8 @@ class Translator:
                 sleep(0.5)#Take Image and send to rpi/pc
             else: 
                 self.moving = True
-                cmd[0](self.robot, *cmd[1])
+                #cmd[0](self.robot, *cmd[1])
+                await self.dispatcher.dispatchB(cmd[0], cmd[1], self.obstacle_callback)
                 if(self.robot.poll_is_moving==False):# If robot not moving
                 # if(1):
                     self.moving = False

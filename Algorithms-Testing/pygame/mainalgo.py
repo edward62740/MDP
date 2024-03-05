@@ -3,15 +3,15 @@ import time
 import json
 from typing import List #check 
 from Map import *
-from simulator import AlgoSimulator, AlgoMinimal
+from simulator import  AlgoMinimal
 from settings import *
 from translator import *
+import asyncio
 
 
-
-start_img = pygame.image.load("Algorithms-testing/assets/Start.png").convert_alpha()
-exit_img = pygame.image.load("Algorithms-testing/assets/Exit.png").convert_alpha()
-reset_img = pygame.image.load("Algorithms-testing/assets/Reset.png").convert_alpha()
+#start_img = pygame.image.load("Algorithms-testing/assets/Start.png").convert_alpha()
+#exit_img = pygame.image.load("Algorithms-testing/assets/Exit.png").convert_alpha()
+#reset_img = pygame.image.load("Algorithms-testing/assets/Reset.png").convert_alpha()
 
 """
 old_obstacles = [{"x":1,"y":18,"direction":-90,"obs_id":0},
@@ -55,7 +55,7 @@ def parse_obstacle_data_cur(data) -> List[Obstacle]:
     return obs 
      
 
-def main(simulator):
+async def main(simulator):
    # simulator: Pass in True to show simulator screen
     
     index = 0
@@ -128,7 +128,7 @@ def main(simulator):
         app.execute()
     else:
         app = AlgoMinimal(obstacles)
-        index_list = app.execute()
+        index_list = await app.execute()
     commands = app.robot.convert_commands()
     commands.append("FIN")
     list_of_coor = app.robot.path_hist
@@ -153,7 +153,7 @@ def main(simulator):
 
 
 if __name__ == '__main__':
-    main(False)
+    asyncio.run(main(False))
 """
 obstacles = parse_obstacle_data_cur(old_obstacles)
 app = AlgoSimulator(obstacles)

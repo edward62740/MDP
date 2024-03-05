@@ -33,8 +33,9 @@ class Position:
         y_descaled = self.y / 5
         return x_descaled, y_descaled
    """ #this function is commented out for now because it is never called 
+
    def xy_dir(self):
-        return *self.xy(), self.direction
+       return self.xy() + (self.direction,)
 
    def xy_pygame(self):
         """
