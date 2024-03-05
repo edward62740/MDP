@@ -6,7 +6,7 @@ import asyncio
 import serial as ser
 from serial_cmd_base_ll import SerialCmdBaseLL
 
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 '''
 Python API that abstracts away the low-level serial communication with the robot.
@@ -44,7 +44,7 @@ class RobotController:
 
     def __init__(self, port, baudrate, _inst_obstr_cb: Optional[Callable[..., None]] = None):
         self.drv = SerialCmdBaseLL(port, baudrate)
-        # GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BCM)
         self.cmd_pin_state = PinState.Z
         self.obstr_pin_state = PinState.Z
 
