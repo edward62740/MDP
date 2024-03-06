@@ -9,9 +9,9 @@ from setup_logger import logger
 RETRY_LIMIT = 10
 
 class Communication:
-    def __init__(self):
-        self.ipv4 = "192.168.22.22" 
-        self.port: int = 5000  
+    def __init__(self, IP, PORT):
+        self.ipv4: str = IP 
+        self.port: int = PORT  
         
         self.socket: socket.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # the socket object used for 2-way TCP communication with the RPi
         self.msg: str = None  # message received from the Rpi
@@ -61,7 +61,7 @@ class Communication:
                 logger.debug(
                     f"[ALGO RCV] Client received data from server: '{self.msg}'"
                 )
-                return
+                return self.msg
 
             logger.debug(
                 f"[ALGO RCV] Client is waiting for data from server but received: '{self.msg}'. Sleeping for 1 second..."
@@ -88,13 +88,14 @@ Usage: See RPI_comms for use
 '''
 
 if __name__ == '__main__':
-    c = Communication()
+    c = Communication('192.168.22.22', 5000)
     message = ''
     try:
         c.connect()
         
         while True:
             direction = c.listen_to_rpi()
+            time.sleep(1)
             if direction == "A-PC":
                 direction = ''
                 print("Listening to RPI...")

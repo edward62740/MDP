@@ -15,7 +15,7 @@ from ultralytics import YOLO
 
 
 app = Flask(__name__)
-model = YOLO('/models/best_bull.pt') # replace model here
+model = YOLO('./models/best_bull.pt') # replace model here
 id_to_class = { 
     0: 99, # convert detected image ID to their correct (MDP) class ID
     1: 12,
@@ -167,5 +167,8 @@ def upload_image():
         result = {'message': f'TARGET,Obstacle_num,{mdp_id[0]},{mdp_id[1]}'}
     return jsonify(result), 200  # Return a success response with the result
     
+def start_server(host, port, debug):
+    app.run(host=host,port=port,debug=debug)    
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=8080,debug=False)
