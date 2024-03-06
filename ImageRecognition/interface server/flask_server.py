@@ -123,12 +123,12 @@ def detect_image(image_path):
             output_class[chosen_class[0]] = chosen_class[1]
             print('saving image')
             saved_filename = f'found_{chosen_class[0]}.jpg'
-            im.save(os.path.join("./output", saved_filename))
+            im.save(os.path.join("./photos_taken", saved_filename))
         elif output_class[chosen_class[0]] < chosen_class[1] and detection_count >= 1:
             output_class[chosen_class[0]] = chosen_class[1]
             print('saving image')
             saved_filename = f'found_{chosen_class[0]}.jpg'
-            im.save(os.path.join("./output", saved_filename))
+            im.save(os.path.join("./photos_taken", saved_filename))
 
         #if detection_count >= 1:
         #    print('saving image')
