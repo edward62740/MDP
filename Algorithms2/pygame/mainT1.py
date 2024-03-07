@@ -23,7 +23,7 @@ def main():
     obst_message = '16,15,N,16,6,W,8,10,S,1,15,E,6,20,S,'
     #obst_message = rpi.android_receive()
     obst_message = obst_message.replace(' ', '')
-    obst_message = obst_message[:-1]
+    #obst_message = obst_message[:-1]
     obstacles = parse_obstacle_data_cur(obst_message)
     print(obstacles) #debugging
     
@@ -40,6 +40,7 @@ def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
     - output example return value: [Obstacle(Position(15, 185,  angle=Direction.BOTTOM)), Obstacle(Position(165, 105,  angle=Direction.TOP)), Obstacle(Position(125, 35,  angle=Direction.TOP)), Obstacle(Position(185, 185,  angle=Direction.BOTTOM)), Obstacle(Position(25, 85,  angle=Direction.TOP)), Obstacle(Position(55, 125,  angle=Direction.BOTTOM))]
     '''
     obst_split = obst_message.split(',')
+    print(obst_split)
     data = []
     for i in range(0,len(obst_split), 3):
         x = int(obst_split[i])

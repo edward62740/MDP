@@ -16,7 +16,7 @@ import random
 
 
 app = Flask(__name__)
-model = YOLO('./models/best_bull.pt') # replace model here
+model = YOLO('./models/no_deadend.pt') # replace model here
 id_to_class = { 
     0: 99, # convert detected image ID to their correct (MDP) class ID
     1: 12,
@@ -131,7 +131,7 @@ def detect_image(image_path):
             saved_filename = f'found_{chosen_class[0]}.jpg'
             im.save(os.path.join("./photos_taken", saved_filename))
         else:
-            print('saving image')
+            print('saving image by else')
             number = str(random.randint(0,9999999))
             saved_filename = f'found_{number}.jpg'
             im.save(os.path.join("./photos_taken", saved_filename))
@@ -168,6 +168,7 @@ def upload_image():
     # mdp_id = img_rec(img)
     mdp_id = detect_image(img)
     if mdp_id[0] == -1:
+        img.save(f'./photos_taken/not_found_{str(random.randint(0,9999999))}.jpeg', 'JPEG')
         result = {'message': 'TARGET,Obstacle_num,-1,-1'}
     else:
         result = {'message': f'TARGET,Obstacle_num,{mdp_id[0]},{mdp_id[1]}'}
