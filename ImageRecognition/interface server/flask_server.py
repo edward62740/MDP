@@ -8,6 +8,7 @@ from io import BytesIO
 from flask import Flask, request, jsonify
 from PIL import Image
 from ultralytics import YOLO
+import random
 # import cv2
 # import numpy as np
 # import uuid
@@ -53,7 +54,7 @@ id_to_class = {
 output_class = {}
 
 def choose_best_class(detected_items):
-    YOLO_CONF_THRESH = 0.5
+    YOLO_CONF_THRESH = 0.1
 
     if len(detected_items) == 0:
         print('No items detected')
@@ -128,6 +129,11 @@ def detect_image(image_path):
             output_class[chosen_class[0]] = chosen_class[1]
             print('saving image')
             saved_filename = f'found_{chosen_class[0]}.jpg'
+            im.save(os.path.join("./photos_taken", saved_filename))
+        else:
+            print('saving image')
+            number = str(random.randint(0,9999999))
+            saved_filename = f'found_{number}.jpg'
             im.save(os.path.join("./photos_taken", saved_filename))
 
         #if detection_count >= 1:

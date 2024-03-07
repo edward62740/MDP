@@ -9,22 +9,29 @@ from typing import List
 from Map import *
 from Connection.RPI_comms import RPI_connection
 from simulator import AlgoMinimal
+#import pdb; pdb.set_trace()
 
 rpi = RPI_connection()
 
 def main():
     #rpi.bluetooth_connect() #TODO: test this on the android
+    
 
     print("===========================Receive Obstacles Data===========================")
     print("Waiting to receive obstacle data from ANDROID...")
 
+    obst_message = '16,15,N,16,6,W,8,10,S,1,15,E,6,20,S,'
     #obst_message = rpi.android_receive()
-    obst_message = '1,18,s,16,10,n,12,3,n,18,18,s,2,8,n,5,12,s'
+    obst_message = obst_message.replace(' ', '')
+    obst_message = obst_message[:-1]
     obstacles = parse_obstacle_data_cur(obst_message)
     print(obstacles) #debugging
     
-    app = AlgoMinimal(obstacles)
-    asyncio.run(app.execute())
+    try:
+        app = AlgoMinimal(obstacles)
+        asyncio.run(app.execute())
+    except Exception as e:
+        print(e)
 
 def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
     '''
