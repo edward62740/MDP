@@ -1,7 +1,7 @@
 Middlewares/Third_Party/FreeRTOS/Source/event_groups.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
- C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h \
+ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
@@ -14,7 +14,7 @@ Middlewares/Third_Party/FreeRTOS/Source/event_groups.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
-C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h:
+C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:

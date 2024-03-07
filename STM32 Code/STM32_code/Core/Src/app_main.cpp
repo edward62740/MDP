@@ -15,6 +15,7 @@
 sensorData_t sensor_data; // public variables shared across all files.
 isTaskAlive_t is_task_alive_struct = { 0 };
 bool test_run = false;
+void irTask(void *pv);
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	test_run = true;
 }
@@ -34,6 +35,10 @@ const osThreadAttr_t ctrlTask_attr = { .name = "ctrlTask", .stack_size = 2048,
 
 osThreadId_t oledTaskHandle;
 const osThreadAttr_t oledTask_attr = { .name = "oledTask", .stack_size = 1024,
+		.priority = (osPriority_t) osPriorityBelowNormal, };
+
+osThreadId_t irTaskHandle;
+const osThreadAttr_t irTask_attr = { .name = "irTask", .stack_size = 1024,
 		.priority = (osPriority_t) osPriorityBelowNormal, };
 
 osMessageQueueId_t ctrlQueue = osMessageQueueNew(10,
@@ -70,9 +75,60 @@ void initializeCPPconstructs(void) {
 	controller.start();
 	//htim1.Instance->CCR1 = 153;
 	oledTaskHandle = osThreadNew(Display::oledTask, NULL, &oledTask_attr);
+	irTaskHandle = osThreadNew(irTask, NULL, &irTask_attr);
 }
 
-float SEq_1 = 1.0f, SEq_2 = 0.0f, SEq_3 = 0.0f, SEq_4 = 0.0f;// estimated orientation quaternion elements with initial conditions
+#define BUFFER_SIZE 10  // Buffer size for 10 samples
+
+float irBufferL[BUFFER_SIZE]; // Buffer for left IR sensor
+float irBufferR[BUFFER_SIZE]; // Buffer for right IR sensor
+int bufferIndex = 0;          // Current index in the buffer
+float ir_distL_Avg = 0;       // Average distance for left IR sensor
+float ir_distR_Avg = 0;       // Average distance for right IR sensor
+void irTask(void *pv) {
+	for (;;) {
+		osDelay(5);
+		HAL_ADC_Start(&hadc1);
+		HAL_ADC_Start(&hadc2);
+		HAL_ADC_PollForConversion(&hadc1, 1); // trivial waiting time, dont bother with dma or whatever
+		uint32_t IR = HAL_ADC_GetValue(&hadc1);
+		HAL_ADC_PollForConversion(&hadc2, 1); // trivial waiting time, dont bother with dma or whatever
+		uint32_t IR2 = HAL_ADC_GetValue(&hadc2);
+		HAL_ADC_Stop(&hadc1);
+		HAL_ADC_Stop(&hadc2);
+		float volt = (float) (IR * 5) / 4095;
+		irBufferL[bufferIndex] = roundf(29.988 * pow(volt, -1.173));
+		volt = (float) (IR2 * 5) / 4095;
+		irBufferR[bufferIndex] = roundf(29.988 * pow(volt, -1.173));
+
+
+        float sumL = 0, sumR = 0;
+        for (int i = 0; i < BUFFER_SIZE; i++) {
+            sumL += irBufferL[i];
+            sumR += irBufferR[i];
+        }
+        ir_distL_Avg = sumL / BUFFER_SIZE;
+        ir_distR_Avg = sumR / BUFFER_SIZE;
+
+        bufferIndex = (bufferIndex + 1) % BUFFER_SIZE; // Update buffer index
+        sensor_data.ir_distL = ir_distL_Avg;
+        sensor_data.ir_distR = ir_distR_Avg;
+		if (sensor_data.is_allow_motor_override) {
+			if (sensor_data.ir_distL < sensor_data.ir_dist_th_L
+					|| sensor_data.ir_distR < sensor_data.ir_dist_th_R) {
+				controller.emergencyStop();
+				processor.signalObstruction();
+				HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin,
+						GPIO_PIN_SET);
+			} else {
+				processor.signalNoObstruction(); // to prevent repeated tx
+				HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin,
+						GPIO_PIN_RESET);
+			}
+		}
+	}
+}
+float SEq_1 = 1.0f, SEq_2 = 0.0f, SEq_3 = 0.0f, SEq_4 = 0.0f; // estimated orientation quaternion elements with initial conditions
 void sensorTask(void *pv) {
 
 	IMU_Initialise(&imu, &hi2c1);
@@ -137,18 +193,6 @@ void sensorTask(void *pv) {
 
 		//sensor_data.yaw_abs += imu.gyro[2] * (HAL_GetTick() - timeNow) * 0.001f;
 
-		HAL_ADC_Start(&hadc1);
-		HAL_ADC_Start(&hadc2);
-		HAL_ADC_PollForConversion(&hadc1, 1); // trivial waiting time, dont bother with dma or whatever
-		uint32_t IR = HAL_ADC_GetValue(&hadc1);
-		HAL_ADC_PollForConversion(&hadc2, 1); // trivial waiting time, dont bother with dma or whatever
-		uint32_t IR2 = HAL_ADC_GetValue(&hadc2);
-		HAL_ADC_Stop(&hadc1);
-		HAL_ADC_Stop(&hadc2);
-		float volt = (float) (IR * 5) / 4095;
-		sensor_data.ir_distL = roundf(29.988 * pow(volt, -1.173));
-		volt = (float) (IR2 * 5) / 4095;
-		sensor_data.ir_distR = roundf(29.988 * pow(volt, -1.173));
 		/*uint16_t len = sprintf(&sbuf[0],
 		 "%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f,%5.2f\r\n",
 		 imu.acc[0], imu.acc[1], imu.acc[2], imu.gyro[0], imu.gyro[1],
@@ -158,23 +202,10 @@ void sensorTask(void *pv) {
 		//	HAL_UART_Receive_IT(&huart3, (uint8_t*) aRxBuffer, 5);
 		is_task_alive_struct.senr = true;
 
-		if (sensor_data.is_allow_motor_override) {
-			if (sensor_data.ir_distL < sensor_data.ir_dist_th_L
-					|| sensor_data.ir_distR < sensor_data.ir_dist_th_R) {
-				controller.emergencyStop();
-				processor.signalObstruction();
-				HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin, GPIO_PIN_SET);
-			} else {
-				processor.signalNoObstruction(); // to prevent repeated tx
-				HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin, GPIO_PIN_RESET);
-			}
-		}
-
 	}
 }
 
-void _ext_sig_halt(void)
-{
+void _ext_sig_halt(void) {
 	controller.emergencyStop();
 }
 

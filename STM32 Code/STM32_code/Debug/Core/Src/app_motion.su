@@ -1,9 +1,9 @@
 ../Core/Inc/app_motion.h:110:15:static float AppMotion::MotionController::map(float, float, float, float, float)	32	static
 ../Core/Src/app_motion.cpp:29:1:AppMotion::MotionController::MotionController(u_ctx*)	16	static
 ../Core/Src/app_motion.cpp:35:6:void AppMotion::MotionController::start()	72	static
-../Core/Src/app_motion.cpp:61:6:static void AppMotion::MotionController::motionTask(void*)	72	static
-../Core/Src/app_motion.cpp:119:6:void AppMotion::MotionController::move(bool, uint32_t, uint32_t)	128	static
-../Core/Src/app_motion.cpp:183:6:void AppMotion::MotionController::turn(bool, bool, uint32_t)	96	static
+../Core/Src/app_motion.cpp:62:6:static void AppMotion::MotionController::motionTask(void*)	72	static
+../Core/Src/app_motion.cpp:120:6:void AppMotion::MotionController::move(bool, uint32_t, uint32_t)	128	static
+../Core/Src/app_motion.cpp:184:6:void AppMotion::MotionController::turn(bool, bool, uint32_t)	96	static
 ../Core/Src/app_motion.cpp:248:6:void AppMotion::MotionController::emergencyStop()	16	static
 ../Core/Src/app_motion.cpp:252:1:AppMotion::Servo::Servo(TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t, uint32_t)	24	static
 ../Core/Src/app_motion.cpp:262:6:void AppMotion::Servo::turnLeft()	16	static

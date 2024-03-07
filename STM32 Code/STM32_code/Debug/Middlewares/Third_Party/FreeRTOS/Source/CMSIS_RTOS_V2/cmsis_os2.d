@@ -4,7 +4,7 @@ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.o: \
  ../Drivers/CMSIS/Include/cmsis_compiler.h \
  ../Drivers/CMSIS/Include/cmsis_gcc.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
- C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h \
+ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
@@ -27,7 +27,7 @@ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.o: \
  ../Drivers/CMSIS/Include/mpu_armv7.h \
  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h \
+ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
@@ -55,7 +55,7 @@ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.o: \
 ../Drivers/CMSIS/Include/cmsis_compiler.h:
 ../Drivers/CMSIS/Include/cmsis_gcc.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
-C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h:
+C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
@@ -78,7 +78,7 @@ C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRT
 ../Drivers/CMSIS/Include/mpu_armv7.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h:
+C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
