@@ -47,7 +47,7 @@ uint8_t* IMU_Initialise(ICM20948 *dev, I2C_HandleTypeDef *i2cHandle) {
 	// Bank 0 - Reset the device and then auto selects the best available clock source
 	ret = IMU_WriteOneByte(dev, REG_ADD_REG_BANK_SEL, REG_VAL_REG_BANK_0);
 
-	//ret = IMU_WriteOneByte(dev, REG_ADD_PWR_MGMT_1, REG_VAL_ALL_RGE_RESET); // reset device - check header file value should be 0xF1
+	//ret = IMU_WriteOneByte(dev, REG_ADD_PWR_MGMT_1, REG_VAL_ALL_RGE_RESET); // reset device - check hearder file value should be 0xF1
 
 	osDelay(10);
 	ret = IMU_WriteOneByte(dev, REG_ADD_PWR_MGMT_1, REG_VAL_RUN_MODE); // auto selects the best available clock source for device
@@ -59,7 +59,7 @@ uint8_t* IMU_Initialise(ICM20948 *dev, I2C_HandleTypeDef *i2cHandle) {
 	osDelay(10);
 	ret = IMU_WriteOneByte(dev, REG_ADD_PWR_MGMT_2, REG_VAL_ACCEL_GYROLL_ON); // ON
 
-	ret = IMU_WriteOneByte(dev, REG_ADD_INT_ENABLE_1, REG_VAL_INT_ENABLED); // Turn on int on pin INT1
+	ret = IMU_WriteOneByte(dev, REG_ADD_INT_ENABLE_1, REG_VAL_INT_ENABLED); // Turn on inteerup on pin INT1
 
 	uint8_t tmp = 0;
 	IMU_ReadOneByte(dev, REG_ADD_INT_PIN_CFG, &tmp);
@@ -74,8 +74,6 @@ uint8_t* IMU_Initialise(ICM20948 *dev, I2C_HandleTypeDef *i2cHandle) {
 	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_CONFIG_1,
 			REG_VAL_BIT_GYRO_DLPCFG_6 | REG_VAL_BIT_GYRO_FS_2000DPS
 					| REG_VAL_BIT_GYRO_DLPF); // enable low pass filter and set Gyro FS
-
-	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_CONFIG_2, 0x03); // 8x average **NEW**
 
 
 	ret = IMU_WriteOneByte(dev, REG_ADD_ACCEL_SMPLRT_DIV_2, 0x10); //

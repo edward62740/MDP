@@ -31,7 +31,7 @@ static u_ctx procCtx = { .runner = procTaskHandle, .attr = procTask_attr,
 
 osThreadId_t ctrlTaskHandle;
 const osThreadAttr_t ctrlTask_attr = { .name = "ctrlTask", .stack_size = 2048,
-		.priority = (osPriority_t) osPriorityNormal, };
+		.priority = (osPriority_t) osPriorityBelowNormal, };
 
 osThreadId_t oledTaskHandle;
 const osThreadAttr_t oledTask_attr = { .name = "oledTask", .stack_size = 1024,
@@ -170,7 +170,6 @@ void sensorTask(void *pv) {
 
 	for (;;) {
 		osDelay(5); // 281hz gyro
-		osThreadYield();
 
 		IMU_AccelRead(&imu);
 		IMU_GyroRead(&imu);

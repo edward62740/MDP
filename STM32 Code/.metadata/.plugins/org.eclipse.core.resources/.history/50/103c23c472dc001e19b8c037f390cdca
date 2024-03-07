@@ -225,9 +225,9 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 		if (last_target_dist < abs(target_yaw - cur)
 				&& abs(target_yaw - cur) < 15)
 			break;
-		else last_target_dist = abs(target_yaw - cur);
 
-		if (abs(target_yaw - cur) <= 1
+
+		if (abs(target_yaw - cur) <= 2
 				|| (HAL_GetTick() - timeStart) > 10000)
 		{
 			sensor_data.last_halt_val = ((uint32_t)abs(target_yaw - cur)) %180;
