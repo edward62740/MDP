@@ -11,8 +11,8 @@ class Robot:
         # Note that we assume the robot starts always facing the top.
         # This value will never change, but it will not affect us as the robot uses a more fine-tuned internal
         # angle tracker.
-        self.pos = RobotPosition(25 * SCALING_FACTOR,
-                                 15 * SCALING_FACTOR,
+        self.pos = RobotPosition(20 * SCALING_FACTOR,
+                                 10 * SCALING_FACTOR,
                                  Direction.TOP,
                                  90)
                                  

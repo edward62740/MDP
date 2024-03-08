@@ -10,6 +10,7 @@ from Map import *
 from Connection.RPI_comms import RPI_connection
 from simulator import AlgoMinimal
 #import pdb; pdb.set_trace()
+#import pdb; pdb.set_trace()
 
 rpi = RPI_connection()
 
@@ -54,6 +55,7 @@ def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
         elif(obst_split[i+2].upper() == 'W'):
             direction = 180
         obs_id = i // 3
+        print({"x":x,"y":y,"direction":direction,"obs_id":obs_id})
         data.append({"x":x,"y":y,"direction":direction,"obs_id":obs_id})
     
     # this part onwards was the previously written parsing thing
@@ -67,9 +69,9 @@ def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
 
     for i in lst:
         i["x"] *= 10
-        i["x"] += 5
+        i["x"] -= 5
         i["y"] *= 10
-        i["y"] += 5
+        i["y"] -= 5
         #i["obs_id"] -= 1
 
     a = [list(row) for row in zip(*[m.values() for m in lst])]

@@ -8,8 +8,9 @@ from io import BytesIO
 from settings import PC, FLASK_PORT
 
 def take_photo():
+    print("snap! picture taken")
     with picamera.PiCamera() as camera:
-        camera.resolution = (640, 640)
+        camera.resolution = (1980, 1980)
         image_stream = BytesIO()
         camera.capture(image_stream, format='jpeg')  # take photo and save as given name
         image_stream.seek(0)
