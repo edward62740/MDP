@@ -161,9 +161,9 @@ class TurnCommand(Command):
         assert isinstance(curr_pos, RobotPosition), print("Cannot apply turn command on non-robot positions!")
 
         # Get change in (x, y) coordinate.
-        x_change = ROBOT_TURN_RADIUS * (math.sin(math.radians(curr_pos.angle + self.angle)) -
+        x_change = (19.7 * 3) * (math.sin(math.radians(curr_pos.angle + self.angle)) -
                                                  math.sin(math.radians(curr_pos.angle)))
-        y_change = ROBOT_TURN_RADIUS * (math.cos(math.radians(curr_pos.angle + self.angle)) -
+        y_change = (19.7 * 3) * (math.cos(math.radians(curr_pos.angle + self.angle)) -
                                                  math.cos(math.radians(curr_pos.angle)))
 
         if self.angle < 0 and not self.rev:  # Wheels to right moving forward.

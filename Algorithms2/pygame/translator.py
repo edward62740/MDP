@@ -1,5 +1,6 @@
 import logging
 from time import sleep
+from multiprocessing import Process
 
 from stm32_api.dispatcher import BlockingDispatcher, _IO_Attr_Type
 
@@ -26,7 +27,8 @@ class Translator:
     def __init__(self, robot_port: str, robot_baudrate: int):
         self.path: List[Any] = []
         self.robot = RobotController(robot_port, robot_baudrate)
-        self.robot.set_threshold_disable_obstacle_detection() # remove in real run
+        self.robot.set_threshold_stop_distance_right(1)
+        self.robot.set_threshold_stop_distance_left(1) # remove in real run
         self.dispatcher = BlockingDispatcher(self.robot, 5, 2, u_if=_IO_Attr_Type.PHYSICAL)
         self.logger = logging.getLogger(__name__)
         self.moving = False
@@ -109,6 +111,7 @@ class Translator:
         print("Obstacle detected!")
 
     async def dispatch(self, cmd_path):
+        snap_pic_process = Process(target=photographer.take_photo())
         self.logger.debug("Start Dispatch")
         self.logger.debug("dispatching path")
         for cmd in cmd_path:
@@ -123,6 +126,7 @@ class Translator:
             #     print(" V ")
             print(*cmd[1])
             if isinstance(cmd[0],str):
+                #snap_pic_process.start()
                 print('snap! took a photo')
                 photographer.take_photo()
                 sleep(0.5)#Take Image and send to rpi/pc
@@ -130,7 +134,7 @@ class Translator:
                 self.moving = True
                 #cmd[0](self.robot, *cmd[1])
                 await self.dispatcher.dispatchB(cmd[0], cmd[1], self.obstacle_callback)
-                if(self.robot.poll_is_moving==False):# If robot not moving
+                while(self.robot.poll_is_moving()):# If robot not moving
                 # if(1):
                     self.moving = False
         self.logger.debug("dispatched path")

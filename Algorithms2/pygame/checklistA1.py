@@ -68,7 +68,7 @@ if __name__ == '__main__':
                     elif move == 's' or move == 'S':
                         robot.move_backward(DIST)
                     elif move == 'd' or move == 'D':
-                        robot.turn_left(DIST, True)
+                        robot.turn_right(ANGLE, True)
                     elif move.lower() == 'bye':
                         move = ''
                         break
@@ -87,7 +87,7 @@ if __name__ == '__main__':
                     elif move == 's' or move == 'S':
                         robot.move_backward(DIST)
                     elif move == 'd' or move == 'D':
-                        robot.turn_left(DIST, True)
+                        robot.turn_right(ANGLE, True)
                     elif move.lower() == 'bye':
                         move = ''
                         rpi.PC_send('bye')

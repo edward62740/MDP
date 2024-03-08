@@ -9,22 +9,29 @@ from typing import List
 from Map import *
 from Connection.RPI_comms import RPI_connection
 from simulator import AlgoMinimal
+#import pdb; pdb.set_trace()
 
 rpi = RPI_connection()
 
 def main():
     #rpi.bluetooth_connect() #TODO: test this on the android
+    
 
     print("===========================Receive Obstacles Data===========================")
     print("Waiting to receive obstacle data from ANDROID...")
 
+    obst_message = '16,15,N,16,6,W,8,10,S,1,15,E,6,20,S'
     #obst_message = rpi.android_receive()
-    obst_message = '1,18,s,16,10,n,12,3,n,18,18,s,2,8,n,5,12,s'
+    #obst_message = obst_message.replace(' ', '')
+    #obst_message = obst_message[:-1]
     obstacles = parse_obstacle_data_cur(obst_message)
     print(obstacles) #debugging
     
-    app = AlgoMinimal(obstacles)
-    asyncio.run(app.execute())
+    try:
+        app = AlgoMinimal(obstacles)
+        asyncio.run(app.execute())
+    except Exception as e:
+        print(e)
 
 def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
     '''
@@ -33,6 +40,7 @@ def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
     - output example return value: [Obstacle(Position(15, 185,  angle=Direction.BOTTOM)), Obstacle(Position(165, 105,  angle=Direction.TOP)), Obstacle(Position(125, 35,  angle=Direction.TOP)), Obstacle(Position(185, 185,  angle=Direction.BOTTOM)), Obstacle(Position(25, 85,  angle=Direction.TOP)), Obstacle(Position(55, 125,  angle=Direction.BOTTOM))]
     '''
     obst_split = obst_message.split(',')
+    print(obst_split)
     data = []
     for i in range(0,len(obst_split), 3):
         x = int(obst_split[i])
@@ -46,6 +54,7 @@ def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
         elif(obst_split[i+2].upper() == 'W'):
             direction = 180
         obs_id = i // 3
+        print({"x":x,"y":y,"direction":direction,"obs_id":obs_id})
         data.append({"x":x,"y":y,"direction":direction,"obs_id":obs_id})
     
     # this part onwards was the previously written parsing thing
@@ -59,9 +68,9 @@ def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
 
     for i in lst:
         i["x"] *= 10
-        i["x"] += 5
+        i["x"] -= 5
         i["y"] *= 10
-        i["y"] += 5
+        i["y"] -= 5
         #i["obs_id"] -= 1
 
     a = [list(row) for row in zip(*[m.values() for m in lst])]
