@@ -69,13 +69,13 @@ uint8_t* IMU_Initialise(ICM20948 *dev, I2C_HandleTypeDef *i2cHandle) {
 	/* user bank 2 register */
 	ret = IMU_WriteOneByte(dev, REG_ADD_REG_BANK_SEL, REG_VAL_REG_BANK_2);
 
-	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_SMPLRT_DIV, 0x16); //
+	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_SMPLRT_DIV, 0x16); // changed to 0 from 0x16 **NEW**
 
 	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_CONFIG_1,
 			REG_VAL_BIT_GYRO_DLPCFG_6 | REG_VAL_BIT_GYRO_FS_2000DPS
 					| REG_VAL_BIT_GYRO_DLPF); // enable low pass filter and set Gyro FS
 
-	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_CONFIG_2, 0x03); // 8x average **NEW**
+	ret = IMU_WriteOneByte(dev, REG_ADD_GYRO_CONFIG_2, 0x05); // 8x average **NEW**
 
 
 	ret = IMU_WriteOneByte(dev, REG_ADD_ACCEL_SMPLRT_DIV_2, 0x10); //

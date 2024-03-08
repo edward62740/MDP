@@ -6,8 +6,8 @@
 ../Core/Src/app_main.cpp:64:6:void initializeCPPconstructs()	8	static
 ../Core/Src/app_main.cpp:88:6:void irTask(void*)	48	static
 ../Core/Src/app_main.cpp:132:6:void sensorTask(void*)	168	static
-../Core/Src/app_main.cpp:208:6:void _ext_sig_halt()	8	static
-../Core/Src/app_main.cpp:214:6:void quaternionUpdate(float, float, float, float, float, float, float)	152	static
-../Core/Src/app_main.cpp:281:1:void __static_initialization_and_destruction_0(int, int)	16	static
-../Core/Src/app_main.cpp:281:1:cpp)	8	static
-../Core/Src/app_main.cpp:281:1:cpp)	8	static
+../Core/Src/app_main.cpp:209:6:void _ext_sig_halt()	8	static
+../Core/Src/app_main.cpp:215:6:void quaternionUpdate(float, float, float, float, float, float, float)	152	static
+../Core/Src/app_main.cpp:282:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Core/Src/app_main.cpp:282:1:cpp)	8	static
+../Core/Src/app_main.cpp:282:1:cpp)	8	static

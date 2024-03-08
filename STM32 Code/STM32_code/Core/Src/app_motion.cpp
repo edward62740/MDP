@@ -211,10 +211,10 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 	}
 
 	do{
-		if (abs(target_yaw - cur) < 35) {
-			if(isRight) lmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 35, 0, 30, 15));
+		if (abs(target_yaw - cur) < 45) {
+			if(isRight) lmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 45, 0, 25, 15));
 
-			else rmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 35, 0, 30, 15));
+			else rmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 45, 0, 25, 15));
 		}
 
 		timeNow = HAL_GetTick();
@@ -227,7 +227,7 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 			break;
 		else last_target_dist = abs(target_yaw - cur);
 
-		if (abs(target_yaw - cur) <= 1
+		if (abs(target_yaw - cur) <= 0.75
 				|| (HAL_GetTick() - timeStart) > 10000)
 		{
 			sensor_data.last_halt_val = ((uint32_t)abs(target_yaw - cur)) %180;

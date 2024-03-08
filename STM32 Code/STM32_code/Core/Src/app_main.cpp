@@ -169,7 +169,7 @@ void sensorTask(void *pv) {
 	float DEG2RAD = 0.017453292519943295769236907684886f;
 
 	for (;;) {
-		osDelay(5); // 281hz gyro
+		osDelay(50); // 281hz gyro
 		osThreadYield();
 
 		IMU_AccelRead(&imu);
