@@ -59,13 +59,13 @@ async def main():
     #stm sensor
     robot.set_threshold_disable_obstacle_detection()
     sensor = SRF05.SRF05(trigger_pin=17, echo_pin=27)
-
+    dispatcher = BlockingDispatcher(robot, 5, 2, u_if=_IO_Attr_Type.PHYSICAL)
     print("START TASK 2")
-    start_time = time.time()
+    start_time = time()
 
     print("Straight FORWARD TO DETECT OBS1 from origin")
     #robot.move_forward(30)                                          #move forward to 1st obstacle; distance between 60-150cm
-    await robot.dispatcher.dispatchB(robot.move_forward,[30],None)
+    await dispatcher.dispatchB(robot.move_forward,[30],None)
 
 
     #sensor
@@ -88,27 +88,27 @@ async def main():
     if obs1 == 38:
         
         #robot.turn_right(ANGLE, True)                               #turn forward right arnd 1st obstacle
-        await robot.dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
+        await dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
         print("Turn Right forward around obs1")
 
         #robot.turn_left(ANGLE, True)                                #turn forward left
-        await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+        await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
         print("Turn Left forward around obs1")        
 
         #robot.move_forward(20)                                      #move forward; facing East
-        await robot.dispatcher.dispatchB(robot.move_forward,[20],None)
+        await dispatcher.dispatchB(robot.move_forward,[20],None)
         print("Straight forward arnd obs1")
 
         #robot.turn_left(ANGLE, True)                                #turn forward left
-        await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+        await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
         print("Turn Left forward towards obs2")
 
         #robot.turn_right(ANGLE, True)                               #turn forward right arnd 1st obstacle
-        await robot.dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
+        await dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
         print("Turn Right forward towards obs2")
 
         #robot.move_forward(40)                                      #move forward; facing North
-        await robot.dispatcher.dispatchB(robot.move_forward,[40],None) 
+        await dispatcher.dispatchB(robot.move_forward,[40],None) 
         print("Straight forward TO DETECT OBS2")
         
         #sensor
@@ -130,77 +130,77 @@ async def main():
         if(obs2 == 38):
 
             #robot.turn_right(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
             print("Turn Right forward around obs2")
 
             #robot.move_forward(20)
-            await robot.dispatcher.dispatchB(robot.move_forward,[20],None) 
+            await dispatcher.dispatchB(robot.move_forward,[20],None) 
             print("Straight forward arnd obs2")
 
             #robot.turn_left(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
             print("Turn Left forward arnd obs2")
 
             #robot.move_forward(65)                                  #length of obstacle2
-            await robot.dispatcher.dispatchB(robot.move_forward,[65],None)   
+            await dispatcher.dispatchB(robot.move_forward,[65],None)   
             print("Straight forward at top of obs2")
 
             #robot.turn_left(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
             print("Turn Left forward around obs2")
             
             print("-" * 70)
             
             #to origin turn Right
             #robot.move_forward(120)
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Straight forward towards origin after ob2")
 
             #robot.turn_left(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
             print("Turn Left forward after obs 1 towards origin ")
 
             #robot.move_forward(50)
-            await robot.dispatcher.dispatchB(robot.move_forward,[50],None) 
+            await dispatcher.dispatchB(robot.move_forward,[50],None) 
             print("Straight forward into origin")
             print("Parked.")
 
         else:
             
             #robot.turn_left(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
             print("Turn Left forward around obs2")
 
             #robot.move_forward(20)      
-            await robot.dispatcher.dispatchB(robot.move_forward,[20],None) 
+            await dispatcher.dispatchB(robot.move_forward,[20],None) 
             print("Straight forward around obs2")
 
             #robot.turn_right(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Turn Right forward around obs2")
 
             #robot.move_forward(65) #length 30-60
-            await robot.dispatcher.dispatchB(robot.move_forward,[65],None) 
+            await dispatcher.dispatchB(robot.move_forward,[65],None) 
             print("Straight forward at top of obs2")
 
             #robot.turn_right(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Turn Right forward around obs2")
 
             print("-" * 70)
 
             #to origin turn left
             #robot.move_forward(120) #fastest speed when going back origin
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Straight forward towards origin after ob2")
 
             #robot.turn_right(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Turn Right forward after obs 1 towards origin ")
 
             #carpark 60x50 deep; carpark 20 + carpark to obs1 30 =  50
             #robot.move_forward(50)
-            await robot.dispatcher.dispatchB(robot.move_forward,[50],None) 
+            await dispatcher.dispatchB(robot.move_forward,[50],None) 
             print("Straight forward into origin")
             print("Parked.")
 
@@ -210,19 +210,19 @@ async def main():
     else:
 
         #robot.turn_left(ANGLE, True)                                #turn forward right arnd 1st obstacle
-        await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+        await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
         print("Turn Left forward around obs1")
 
         #robot.move_forward(20)                                      #move forward; facing East
-        await robot.dispatcher.dispatchB(robot.move_forward,[20],None) 
+        await dispatcher.dispatchB(robot.move_forward,[20],None) 
         print("Straight forward arnd obs1")
         
         #robot.turn_right(ANGLE, True)                               #turn forward left
-        await robot.dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
+        await dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
         print("Turn Right forward towards obs2")
         
         #robot.move_forward(40)                                      #move forward; facing North
-        await robot.dispatcher.dispatchB(robot.move_forward,[40],None) 
+        await dispatcher.dispatchB(robot.move_forward,[40],None) 
         print("Straight forward TO DETECT OBS2")
 
         #sensor
@@ -243,77 +243,77 @@ async def main():
         if(obs2 == 38):
 
             #robot.turn_right(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
             print("Turn Right forward around obs2")
 
             #robot.move_forward(20)
-            await robot.dispatcher.dispatchB(robot.move_forward,[20],None) 
+            await dispatcher.dispatchB(robot.move_forward,[20],None) 
             print("Straight forward arnd obs2")
 
             #robot.turn_left(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
             print("Turn Left forward arnd obs2")
 
             #robot.move_forward(65)                                  #length of obstacle2
-            await robot.dispatcher.dispatchB(robot.move_forward,[65],None)   
+            await dispatcher.dispatchB(robot.move_forward,[65],None)   
             print("Straight forward at top of obs2")
 
             #robot.turn_left(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
             print("Turn Left forward around obs2")
             
             print("-" * 70)
             
             #to origin turn Right
             #robot.move_forward(120)
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Straight forward towards origin after ob2")
 
             #robot.turn_left(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
             print("Turn Left forward after obs 1 towards origin ")
 
             #robot.move_forward(50)
-            await robot.dispatcher.dispatchB(robot.move_forward,[50],None) 
+            await dispatcher.dispatchB(robot.move_forward,[50],None) 
             print("Straight forward into origin")
             print("Parked.")
 
         else:
             
             #robot.turn_left(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
+            await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
             print("Turn Left forward around obs2")
 
             #robot.move_forward(20)      
-            await robot.dispatcher.dispatchB(robot.move_forward,[20],None) 
+            await dispatcher.dispatchB(robot.move_forward,[20],None) 
             print("Straight forward around obs2")
 
             #robot.turn_right(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Turn Right forward around obs2")
 
             #robot.move_forward(65) #length 30-60
-            await robot.dispatcher.dispatchB(robot.move_forward,[65],None) 
+            await dispatcher.dispatchB(robot.move_forward,[65],None) 
             print("Straight forward at top of obs2")
 
             #robot.turn_right(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Turn Right forward around obs2")
 
             print("-" * 70)
 
             #to origin turn left
             #robot.move_forward(120) #fastest speed when going back origin
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Straight forward towards origin after ob2")
 
             #robot.turn_right(ANGLE, True)
-            await robot.dispatcher.dispatchB(robot.move_forward,[120],None) 
+            await dispatcher.dispatchB(robot.move_forward,[120],None) 
             print("Turn Right forward after obs 1 towards origin ")
 
             #carpark 60x50 deep; carpark 20 + carpark to obs1 30 =  50
             #robot.move_forward(50)
-            await robot.dispatcher.dispatchB(robot.move_forward,[50],None) 
+            await dispatcher.dispatchB(robot.move_forward,[50],None) 
             print("Straight forward into origin")
             print("Parked.")
     
