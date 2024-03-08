@@ -3,12 +3,17 @@ To be run on PC. PC hosts flask server for image recognition works
 '''
 
 import os
+import ast
 import torch
 from io import BytesIO
 from flask import Flask, request, jsonify
 from PIL import Image
 from ultralytics import YOLO
 import random
+
+from Algorithms.simulator import AlgoMinimal
+from Algorithms.Map import Obstacle, Direction
+from typing import List
 # import cv2
 # import numpy as np
 # import uuid
@@ -173,9 +178,79 @@ def upload_image():
     else:
         result = {'message': f'TARGET,Obstacle_num,{mdp_id[0]},{mdp_id[1]}'}
     return jsonify(result), 200  # Return a success response with the result
+
+# To receive map data from RPI for computation of hamiltonian path on PC
+@app.route('/map', methods=['POST'])
+def upload_map():
+    map = request.json
+    map = map['message']
+
+    obstacles = parse_obstacle_data_cur(map)
+    app = AlgoMinimal(obstacles)
+    path = app.plan_path_only()
+    path = list(path) 
+    return jsonify(str(path)), 200 
+
+def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
+    '''
+    converts obstacle data from android to list format. a bit weird here since im trying to fit it to the format that was previously written
+    - input example argument: 1,18,S,16,10,N,12,3,N,18,18,S,2,8,N,5,12,S
+    - output example return value: [Obstacle(Position(15, 185,  angle=Direction.BOTTOM)), Obstacle(Position(165, 105,  angle=Direction.TOP)), Obstacle(Position(125, 35,  angle=Direction.TOP)), Obstacle(Position(185, 185,  angle=Direction.BOTTOM)), Obstacle(Position(25, 85,  angle=Direction.TOP)), Obstacle(Position(55, 125,  angle=Direction.BOTTOM))]
+    '''
+    obst_message = obst_message.replace(' ', '')
+    if obst_message[-1] == ',':
+        obst_message = obst_message[:-1]
+    obst_split = obst_message.split(',')
+    print(obst_split)
+    data = []
+    for i in range(0,len(obst_split), 3):
+        x = int(obst_split[i])
+        y = int(obst_split[i+1])
+        if(obst_split[i+2].upper() == 'N'):
+            direction = 90
+        elif(obst_split[i+2].upper() == 'S'):
+            direction = -90
+        elif(obst_split[i+2].upper() == 'E'):
+            direction = 0
+        elif(obst_split[i+2].upper() == 'W'):
+            direction = 180
+        obs_id = i // 3
+        data.append({"x":x,"y":y,"direction":direction,"obs_id":obs_id})
+    
+    # this part onwards was the previously written parsing thing
+    obs = []
+    lst3 = []
+    lst = []
+    i = 0
+
+    for obj in data:
+        lst.append(obj)
+
+    for i in lst:
+        i["x"] *= 10
+        i["x"] += 5
+        i["y"] *= 10
+        i["y"] += 5
+        #i["obs_id"] -= 1
+
+    a = [list(row) for row in zip(*[m.values() for m in lst])]
+
+    for i in range(len(a[0])):
+        lst2 = [item[i] for item in a]
+        lst3.append(lst2)
+        i+=1
+        
+    for obstacle_params in lst3:
+        obs.append(Obstacle(obstacle_params[0],
+                            obstacle_params[1],
+                            Direction(obstacle_params[2]),
+                            obstacle_params[3]))
+
+    # [[x, y, orient, index], [x, y, orient, index]]
+    return obs 
     
 def start_server(host, port, debug):
     app.run(host=host,port=port,debug=debug)    
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=8080,debug=False)
+    app.run(host='0.0.0.0',port=8081,debug=False)

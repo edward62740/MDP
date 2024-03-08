@@ -6,6 +6,7 @@ import picamera
 import requests
 from io import BytesIO
 from settings import PC, FLASK_PORT
+import time
 
 def take_photo():
     print("snap! picture taken")
@@ -20,8 +21,8 @@ def take_photo():
         if response.status_code == 200:
             mdp_id = response.text
             print(mdp_id)
+            time.sleep(1)
             return mdp_id
-        # time.sleep(2)
         else:
             print("Server Down or Image Rec failed!")
             return None

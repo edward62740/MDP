@@ -2,11 +2,11 @@ import itertools
 import math
 from collections import deque
 from typing import Tuple
-from Map import Obstacle
-from Robot.commands import *
-from settings import PORT, BAUD
-from Robot.path_algo import ModifiedAStar
-from translator import Translator
+from Algorithms.Map import Obstacle
+from Algorithms.Robot.commands import *
+from Algorithms.settings import PORT, BAUD
+from Algorithms.Robot.path_algo import ModifiedAStar
+from Algorithms.translator import Translator
 
 class Brain:
     def __init__(self, robot, grid):
@@ -21,7 +21,8 @@ class Brain:
         self.simple_hamiltonian = tuple()
 
         # Create all the commands required to finish the course.
-        self.commands = deque()
+        #self.commands = deque()
+        self.commands = []
 
 
     def compute_simple_hamiltonian_path(self) -> Tuple[Obstacle]:
@@ -78,8 +79,8 @@ class Brain:
                 new_commands.append(command)
                 index += 1
         self.commands = new_commands
+        self.translator.add_path(new_commands)
         print("Done!")
-        return self.translator.add_path(new_commands)
 
     def plan_path(self):
         print("-" * 70)
@@ -99,8 +100,9 @@ class Brain:
                 curr = res
                 self.commands.append(ScanCommand(ROBOT_SCAN_TIME, obstacle.index))
 
+        self.compress_paths()
         print("-" * 70)
-        return self.compress_paths()
+        return self.commands
 
     # def plan_bullseye(self):
     #     print("-" * 40)

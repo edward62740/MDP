@@ -1,11 +1,11 @@
 #import pygame
 import time
-from Map import Grid,Obstacle
+from Algorithms.Map import Grid,Obstacle
 from abc import ABC, abstractmethod
 #from button import Button
 from typing import List
 from enum import Enum
-from Robot.robot import Robot
+from Algorithms.Robot.robot import Robot
 #from settings import *
 
 # start_img = pygame.image.load("Algorithms-testing/assets/Start.png").convert_alpha()
@@ -42,15 +42,16 @@ class AlgoMinimal(AlgoApp):
 
     async def execute(self):
         print("Calculating path...")
-        #index_list = self.robot.brain.plan_path()
-        planned_path = self.robot.brain.plan_path()
+        x = self.robot.brain.plan_path()
         ret = self.robot.brain.translator.translate()
-        print("Planned path: ", planned_path)
         print("Translated path...  Dispatching..")
         await self.robot.brain.translator.dispatch(ret)
-        
+        return
+
     async def execute_PC(self, path):
         print("Dispatching path computed by the PC")
-        await self.robot.brain.translator.dispatch_2(self.robot.brain.translator.translate(path))
+        await self.robot.brain.translator.dispatch(self.robot.brain.translator.translate(path))
         return
-   
+    
+    def plan_path_only(self):
+        return self.robot.brain.plan_path()

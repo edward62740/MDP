@@ -47,6 +47,8 @@ class _Dispatcher:
             backoff_period = self.clip(self.base ** i, self.robot.drv.ACK_TIMEOUT_MS, self.MAXIMUM_BACKOFF_PERIOD_MS)
             print("[DISPATCHER] Attempting to dispatch command to robot, attempt", i + 1, "of", self.patience,
                   " , with a delay of", backoff_period, "ms")
+            #print(str(*args) + ",")
+            #print(self.robot)
             x = fn(self.robot, *args)  # for python 3.7 compatibility
             if x not in [False, None]:
                 print("[DISPATCHER] Command dispatched successfully!")

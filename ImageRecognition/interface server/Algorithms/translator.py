@@ -1,8 +1,6 @@
 import logging
 from time import sleep
-from multiprocessing import Process
 
-from stm32_api.dispatcher import BlockingDispatcher, _IO_Attr_Type
 
 """
 This class acts as the mid-level abstraction that "translates" the ideal simulation commands to the set of commands for
@@ -15,9 +13,7 @@ straight(x - r), rotate(k), straight(y - r) and the min. inner clearance at the 
 
 """
 from typing import List, Tuple, Any, Callable
-from stm32_api.robot_controller import RobotController
-from Robot.commands import *
-import photographer
+from Algorithms.Robot.commands import *
 
 
 class Translator:
@@ -26,10 +22,6 @@ class Translator:
 
     def __init__(self, robot_port: str, robot_baudrate: int):
         self.path: List[Any] = []
-        self.robot = RobotController(robot_port, robot_baudrate)
-        self.robot.set_threshold_stop_distance_right(1)
-        self.robot.set_threshold_stop_distance_left(1) # remove in real run
-        self.dispatcher = BlockingDispatcher(self.robot, 5, 2, u_if=_IO_Attr_Type.PHYSICAL)
         self.logger = logging.getLogger(__name__)
         self.moving = False
 
@@ -39,7 +31,6 @@ class Translator:
             if not isinstance(movement, Command):
                 raise ValueError("Invalid movement encountered: {}".format(movement))
             self.path.append(movement)
-        return self.path
 
     def translate(self, path = ''): ### TODO Remove Compress and change to STM commands
         if path != '':
@@ -49,6 +40,38 @@ class Translator:
             return []
         cmd_path: List[Tuple[Callable, List[Any]]] = []
 
+        summarized_path: List[List[Any]] = []
+
+        """
+        # shorten the path by combining consecutive straight movements
+        for i in range(0, len(self.path)):
+            if i == 0:
+                summarized_path.append([self.path[i], self.GRID_UNIT_CM])
+            elif self.path[i] == self.path[i - 1] and len(summarized_path) > 0:
+                summarized_path[-1][1] += self.GRID_UNIT_CM
+
+            else:
+                summarized_path.append([self.path[i], self.GRID_UNIT_CM])
+
+        self.logger.debug(summarized_path)
+        self.logger.debug("summarized path!")
+        
+        # compensate for turning arc
+        for i in range(1, len(summarized_path)):
+            if summarized_path[i][0] == Movement.RIGHT or summarized_path[i][0] == Movement.LEFT:
+                if summarized_path[i - 1][0] == Movement.FORWARD:
+                    summarized_path[i - 1][1] -= self.TURN_ARC_RADIUS_CM
+                    self.logger.debug("reduced length to %s", summarized_path[i - 1][1])
+                elif summarized_path[i - 1][0] == Movement.REVERSE:
+                    summarized_path[i - 1][1] += self.TURN_ARC_RADIUS_CM
+
+                if i >= len(summarized_path) - 1:
+                    continue
+                if summarized_path[i + 1][0] == Movement.FORWARD:
+                    summarized_path[i + 1][1] -= self.TURN_ARC_RADIUS_CM
+                elif summarized_path[i + 1][0] == Movement.REVERSE:
+                    summarized_path[i + 1][1] += self.TURN_ARC_RADIUS_CM
+        """
         for i in range(len(self.path)):
             tempCmd = self.path[i]
             #Straight Line movements
@@ -96,47 +119,15 @@ class Translator:
             #     print(" V ")
             print(*cmd[1])
             if isinstance(cmd[0],str):
-                snap_pic_process = Process(target=photographer.take_photo)
-                snap_pic_process.start()
-                # print('snap! took a photo')
-                # photographer.take_photo()
-                # sleep(0.5)#Take Image and send to rpi/pc
+                print('snap! took a photo')
+                photographer.take_photo()
+                sleep(0.5)#Take Image and send to rpi/pc
             else: 
                 self.moving = True
                 #cmd[0](self.robot, *cmd[1])
-                print(cmd[1])
                 await self.dispatcher.dispatchB(cmd[0], cmd[1], self.obstacle_callback)
-                while(self.robot.poll_is_moving()):# If robot not moving
+                if(self.robot.poll_is_moving==False):# If robot not moving
                 # if(1):
                     self.moving = False
-        self.logger.debug("dispatched path")
-        return None
-    
-    async def dispatch_2(self, cmd_path): # TODO: a bit wonky here. fix.
-        self.logger.debug("Start Dispatch")
-        self.logger.debug("dispatching path")
-        for cmd in cmd_path:
-            while self.moving:
-                print("in while loopp", self.moving)
-                self.moving = False # temporary 
-                sleep(1)
-
-            print(cmd)
-            if isinstance(cmd,str):
-                snap_pic_process = Process(target=photographer.take_photo)
-                snap_pic_process.start()
-                # print('snap! took a photo')
-                # photographer.take_photo()
-                # sleep(0.5)#Take Image and send to rpi/pc
-            else: 
-                self.moving = True
-                if len(cmd == 2):
-                    print('robot supposed to move in a straight line, dist:', cmd[1])
-                else:
-                    print('robot moving curved, angle:', cmd[1], 'reverse:', cmd[2])
-                # await self.dispatcher.dispatchB(cmd[0], cmd[1], self.obstacle_callback)
-                # while(self.robot.poll_is_moving()):# If robot not moving
-                # # if(1):
-                #     self.moving = False
         self.logger.debug("dispatched path")
         return None
