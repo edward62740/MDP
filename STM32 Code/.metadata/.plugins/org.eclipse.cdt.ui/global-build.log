@@ -1,58 +1,32 @@
-10:50:16 **** Incremental Build of configuration Debug for project STM32_code ****
+19:30:21 **** Incremental Build of configuration Debug for project STM32_code ****
 make -j20 all 
-arm-none-eabi-gcc "../Core/ICM20948_lib/ICM20948.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I"C:/Users/Edward/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I"C:/Users/Edward/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/OLED_lib" -I"C:/Users/Edward/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -I../Core/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/ICM20948_lib/ICM20948.d" -MT"Core/ICM20948_lib/ICM20948.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/ICM20948_lib/ICM20948.o"
-../Core/ICM20948_lib/ICM20948.c: In function 'IMU_Initialise':
-../Core/ICM20948_lib/ICM20948.c:52:2: warning: implicit declaration of function 'osDelay' [-Wimplicit-function-declaration]
-   52 |  osDelay(10);
-      |  ^~~~~~~
-../Core/ICM20948_lib/ICM20948.c:21:7: warning: unused variable 'hex' [-Wunused-variable]
-   21 |  char hex[2];
-      |       ^~~
-../Core/ICM20948_lib/ICM20948.c: In function 'IMU_TempRead':
-../Core/ICM20948_lib/ICM20948.c:135:10: warning: unused variable 'tempC' [-Wunused-variable]
-  135 |  int32_t tempC; // temperature in deg C, with sensitivity 333.87.   Offset value 0 = 21 deg C
-      |          ^~~~~
-../Core/ICM20948_lib/ICM20948.c: In function 'IMU_GyroRead':
-../Core/ICM20948_lib/ICM20948.c:224:10: warning: variable 'temp' set but not used [-Wunused-but-set-variable]
-  224 |  int16_t temp;
-      |          ^~~~
-../Core/ICM20948_lib/ICM20948.c:223:10: warning: unused variable 'gyroDiff' [-Wunused-variable]
-  223 |  int16_t gyroDiff[3];
-      |          ^~~~~~~~
-../Core/ICM20948_lib/ICM20948.c: In function 'Mag_init':
-../Core/ICM20948_lib/ICM20948.c:260:10: warning: unused variable 'tmp' [-Wunused-variable]
-  260 |  uint8_t tmp = 0;
+arm-none-eabi-g++ "../Core/Src/app_motion.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -DSTM32_THREAD_SAFE_STRATEGY=4 -c -I../Core/Inc -I"C:/Users/Edward/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/OLED_lib" -I"C:/Users/Edward/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/Inc" -I"C:/Users/Edward/Documents/GitHub/MDP/STM32 Code/STM32_code/Core/ICM20948_lib" -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Core/ThreadSafe -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/Src/app_motion.d" -MT"Core/Src/app_motion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app_motion.o"
+../Core/Src/app_motion.cpp: In static member function 'static void AppMotion::MotionController::motionTask(void*)':
+../Core/Src/app_motion.cpp:69:9: warning: unused variable 'lmotor' [-Wunused-variable]
+   69 |  Motor *lmotor = self->lmotor;
+      |         ^~~~~~
+../Core/Src/app_motion.cpp:70:9: warning: unused variable 'rmotor' [-Wunused-variable]
+   70 |  Motor *rmotor = self->rmotor;
+      |         ^~~~~~
+../Core/Src/app_motion.cpp: In member function 'void AppMotion::MotionController::move(bool, uint32_t, uint32_t)':
+../Core/Src/app_motion.cpp:127:11: warning: unused variable 'timeStart' [-Wunused-variable]
+  127 |  uint32_t timeStart = HAL_GetTick();
+      |           ^~~~~~~~~
+../Core/Src/app_motion.cpp: In member function 'void AppMotion::MotionController::turn(bool, bool, uint32_t)':
+../Core/Src/app_motion.cpp:194:10: warning: unused variable 'buf' [-Wunused-variable]
+  194 |  uint8_t buf[30] = { 0 };
       |          ^~~
-../Core/ICM20948_lib/ICM20948.c: In function 'IMU_TempRead':
-../Core/ICM20948_lib/ICM20948.c:141:1: warning: control reaches end of non-void function [-Wreturn-type]
-  141 | }
-      | ^
-../Core/ICM20948_lib/ICM20948.c: In function 'Mag_init':
-../Core/ICM20948_lib/ICM20948.c:264:1: warning: control reaches end of non-void function [-Wreturn-type]
-  264 | }
-      | ^
-At top level:
-../Core/ICM20948_lib/ICM20948.c:364:14: warning: 'zeta' defined but not used [-Wunused-variable]
-  364 | static float zeta = sqrt(3.0f / 4.0f) * GyroMeasDrift;
-      |              ^~~~
-../Core/ICM20948_lib/ICM20948.c:361:14: warning: 'beta' defined but not used [-Wunused-variable]
-  361 | static float beta = sqrt(3.0f / 4.0f) * GyroMeasError;   // Compute beta
-      |              ^~~~
+../Core/Src/app_motion.cpp:198:8: warning: variable 'prev_yaw' set but not used [-Wunused-but-set-variable]
+  198 |  float prev_yaw = cur;
+      |        ^~~~~~~~
 arm-none-eabi-g++ -o "STM32_code.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Edward\Documents\GitHub\MDP\STM32 Code\STM32_code\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_code.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 Finished building target: STM32_code.elf
  
 arm-none-eabi-size   STM32_code.elf 
 arm-none-eabi-objdump -h -S  STM32_code.elf  > "STM32_code.list"
    text	   data	    bss	    dec	    hex	filename
-  81284	    588	  28212	 110084	  1ae04	STM32_code.elf
+  81524	    588	  28220	 110332	  1aefc	STM32_code.elf
 Finished building: default.size.stdout
  
 Finished building: STM32_code.list
- 
-10:50:19 **** Incremental Build of configuration Debug for project STM32_code ****
-make -j20 all 
-arm-none-eabi-size   STM32_code.elf 
-   text	   data	    bss	    dec	    hex	filename
-  81284	    588	  28212	 110084	  1ae04	STM32_code.elf
-Finished building: default.size.stdout
  

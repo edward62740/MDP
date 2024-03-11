@@ -197,7 +197,7 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 	float cur = sensor_data.yaw_abs; //[-179,180]
 	float prev_yaw = cur;
 	float last_target_dist = 99999.0f; // overshoot protection
-
+	float bwd_diffn_delta = 0;
 
 	if((!isRight && isFwd) || (isRight && !isFwd) ) //increase
 	{
@@ -218,7 +218,18 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 		}
 
 		timeNow = HAL_GetTick();
-		cur = sensor_data.yaw_abs; //filter
+		/* Use backward differentiation algorithm here to estimate the current yaw based on time
+		 * elapsed since last sample.
+		 * Attempting to increase the gyro sample rate is worse because the drift errors pile up.
+		 * Since we dont want to measure changes in sgn(cur - prev yaw) anyway, this method seems fine.
+		 *
+		 * abs(sensor_data.yaw_abs - sensor_data.yaw_abs_prev) is STEP SIZE
+		 * 50 is TIME PER STEP
+		 * sgn(sensor_data.yaw_abs - sensor_data.yaw_abs_prev) is DIRECTION
+		 *
+		 * */
+		bwd_diffn_delta = abs(sensor_data.yaw_abs - sensor_data.yaw_abs_prev) * (50.0f / (timeNow - sensor_data.yaw_abs_time));
+		cur = sensor_data.yaw_abs +  (bwd_diffn_delta * sgn(sensor_data.yaw_abs - sensor_data.yaw_abs_prev)); // already dlpf and qtn filtered
 
 		prev_yaw = cur;
 		//break off immediately if overshoot

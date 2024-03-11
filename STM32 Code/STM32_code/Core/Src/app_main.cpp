@@ -186,11 +186,14 @@ void sensorTask(void *pv) {
 		imu.q[2] = SEq_3;
 		imu.q[3] = SEq_4;
 
+		sensor_data.yaw_abs_prev = sensor_data.yaw_abs;
 		sensor_data.yaw_abs = atan2(
 				2.0f * (imu.q[1] * imu.q[2] + imu.q[0] * imu.q[3]),
 				imu.q[0] * imu.q[0] + imu.q[1] * imu.q[1] - imu.q[2] * imu.q[2]
 						- imu.q[3] * imu.q[3])
 				* 57.295779513082320876798154814105f;
+		sensor_data.yaw_abs_time = timeNow; // note that this method runs the risk of overflow but its every 49 days.
+
 
 		//sensor_data.yaw_abs += imu.gyro[2] * (HAL_GetTick() - timeNow) * 0.001f;
 

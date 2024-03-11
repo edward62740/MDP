@@ -1,13 +1,13 @@
 ../Core/Inc/app_parser.h:95:14:static void AppParser::Processor::signalObstruction()	4	static
 ../Core/Inc/app_parser.h:96:14:static void AppParser::Processor::signalNoObstruction()	4	static
-../Core/Inc/app_motion.h:105:2:AppMotion::MotionController::~MotionController()	16	static
+../Core/Inc/app_motion.h:106:2:AppMotion::MotionController::~MotionController()	16	static
 ../Core/Src/app_main.cpp:19:6:void HAL_GPIO_EXTI_Callback(uint16_t)	16	static
 ../Core/Src/app_main.cpp:54:6:void HAL_UART_RxCpltCallback(UART_HandleTypeDef*)	16	static
 ../Core/Src/app_main.cpp:64:6:void initializeCPPconstructs()	8	static
 ../Core/Src/app_main.cpp:88:6:void irTask(void*)	48	static
 ../Core/Src/app_main.cpp:132:6:void sensorTask(void*)	168	static
-../Core/Src/app_main.cpp:209:6:void _ext_sig_halt()	8	static
-../Core/Src/app_main.cpp:215:6:void quaternionUpdate(float, float, float, float, float, float, float)	152	static
-../Core/Src/app_main.cpp:282:1:void __static_initialization_and_destruction_0(int, int)	16	static
-../Core/Src/app_main.cpp:282:1:cpp)	8	static
-../Core/Src/app_main.cpp:282:1:cpp)	8	static
+../Core/Src/app_main.cpp:212:6:void _ext_sig_halt()	8	static
+../Core/Src/app_main.cpp:218:6:void quaternionUpdate(float, float, float, float, float, float, float)	152	static
+../Core/Src/app_main.cpp:285:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Core/Src/app_main.cpp:285:1:cpp)	8	static
+../Core/Src/app_main.cpp:285:1:cpp)	8	static
