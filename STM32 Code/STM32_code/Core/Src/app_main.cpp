@@ -78,7 +78,7 @@ void initializeCPPconstructs(void) {
 	irTaskHandle = osThreadNew(irTask, NULL, &irTask_attr);
 }
 
-#define BUFFER_SIZE 256  // Buffer size for 10 samples
+#define BUFFER_SIZE 32  // Buffer size for 10 samples
 
 float irBufferL[BUFFER_SIZE]; // Buffer for left IR sensor
 float irBufferR[BUFFER_SIZE]; // Buffer for right IR sensor
@@ -169,7 +169,7 @@ void sensorTask(void *pv) {
 	float DEG2RAD = 0.017453292519943295769236907684886f;
 
 	for (;;) {
-		osDelay(50); // 281hz gyro
+		osDelay(80); // 281hz gyro
 		osThreadYield();
 
 		IMU_AccelRead(&imu);

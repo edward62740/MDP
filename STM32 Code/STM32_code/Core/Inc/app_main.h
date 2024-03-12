@@ -25,7 +25,8 @@ typedef struct {
 	float usonic_dist;
 	float yaw_abs;
 	float yaw_abs_prev; // just to determine sgn(cur-prev yaw)
-	float yaw_abs_time;
+	uint32_t yaw_abs_time;
+	float yaw_cur_dbg;
 	uint32_t d_valid; // bitwise data valid mask. starts with LSB.
 	uint32_t ql; // length of uart incoming queue
 	bool is_allow_motor_override;  // gives this application power to override uart commands to stop if ir_distL || ir_dist R < th
