@@ -74,6 +74,23 @@ class Brain:
                     index += 1
                 command = StraightCommand(new_length)
                 new_commands.append(command)
+                #############################################
+            elif isinstance(command, TurnCommand):
+                newAngle =0
+                #same direction & reverse
+                while index < len(self.commands) and isinstance(self.commands[index], TurnCommand):
+                    isRev = self.commands[index].rev
+                    angle = self.commands[index].angle
+                    newAngle += angle
+                    index += 1
+                    #-ve angle --> Right
+                    if (self.commands[index].angle == angle & self.commands[index].rev == isRev):
+                        newAngle += angle
+
+                command = TurnCommand(newAngle, isRev)
+                new_commands.append(command)
+                ###################################################
+
             else:
                 new_commands.append(command)
                 index += 1
