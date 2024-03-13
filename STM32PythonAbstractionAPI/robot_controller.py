@@ -299,6 +299,32 @@ class RobotController:
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
 
+    def crawl_forward(self, dist: int) -> bool:
+        if dist < 0 or dist > 999:
+            raise ValueError("Invalid distance, must be 0-999")
+
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.MOTOR)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.FWD_CHAR)
+        self.drv.add_args_bytes(dist)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.CRAWL_CHAR)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+
+    def crawl_backward(self, dist: int) -> bool:
+        if dist < 0 or dist > 999:
+            raise ValueError("Invalid distance, must be 0-999")
+
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.MOTOR)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.BWD_CHAR)
+        self.drv.add_args_bytes(dist)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.CRAWL_CHAR)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+
     def get_last_successful_arg(self):
         self.drv.construct_cmd()
         self.drv.add_cmd_byte(False)
@@ -311,3 +337,4 @@ class RobotController:
         except ValueError:
             return None
         return ret
+

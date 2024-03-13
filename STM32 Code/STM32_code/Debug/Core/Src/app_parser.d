@@ -46,7 +46,7 @@ Core/Src/app_parser.o: ../Core/Src/app_parser.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/main.h \
- C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h \
+ C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h \
  ../Core/Inc/app_main.h ../Core/Inc/app_motion.h ../Core/Inc/app_parser.h \
  ../Core/Inc/pid.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
@@ -98,7 +98,7 @@ Core/Src/app_parser.o: ../Core/Src/app_parser.cpp \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Core/Inc/main.h:
-C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h:
+C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h:
 ../Core/Inc/app_main.h:
 ../Core/Inc/app_motion.h:
 ../Core/Inc/app_parser.h:

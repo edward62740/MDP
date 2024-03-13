@@ -92,12 +92,12 @@ void MotionController::motionTask(void *pv) {
 			if (pkt.cmd == AppParser::MOTION_CMD::MOVE_FWD) {
 				servo->turnFront();
 
-				self->move(true, pkt.arg, 30);
+				self->move(true, pkt.arg, 30, pkt.is_crawl);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_BWD) {
 				servo->turnFront();
 
-				self->move(false, pkt.arg, 30);
+				self->move(false, pkt.arg, 30, pkt.is_crawl);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_LEFT_FWD) {
 				self->turn(false, true, pkt.arg);
@@ -118,13 +118,18 @@ void MotionController::motionTask(void *pv) {
 }
 
 
-void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
+void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed, bool isCrawl) {
 	emergency = false;
 	servo->turnFront();
 	isFwd ? lmotor->setForward() : lmotor->setBackward();
 	isFwd ? rmotor->setForward() : rmotor->setBackward();
 	lmotor->setSpeed(speed);
 	rmotor->setSpeed(speed);
+	if (isCrawl)
+	{
+		lmotor->setSpeed(25);
+		rmotor->setSpeed(25);
+	}
 	uint32_t timeStart = HAL_GetTick();
 	uint32_t l_encoder_count = lencoder->getCount();
 	uint32_t r_encoder_count = rencoder->getCount();
@@ -144,20 +149,29 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
 		cur_right += count_right;
 		speed_error += (count_left - count_right);
 
-		if (cur_left > target - 2000 || cur_right > target - 2000) {
-			lmotor->setSpeed(map(target - cur_left, 2000, 330, 30, 12));
-			rmotor->setSpeed(map(target - cur_right, 2000, 330, 30, 12));
-		} else {
-			float pid_left = PID_calc(&this->left_pid, target - cur_left, target);
-			float pid_right = PID_calc(&this->right_pid, target - cur_right, target);
-			float pid_left_d = PID_calc(&this->sync_left_pid, speed_error, 0);
-			float pid_right_d = PID_calc(&this->sync_right_pid, -speed_error, 0);
-			lmotor->_setDutyCycleVal((uint32_t) ((pid_left + pid_left_d ) > 1000 ? (pid_left + pid_left_d ) : 1000)
-					);
-			rmotor->_setDutyCycleVal((uint32_t) ((pid_right + pid_right_d) > 1000 ? (pid_right + pid_right_d)  : 1000)
-					);
+		if (!isCrawl) {
+			if (cur_left > target - 2000 || cur_right > target - 2000) {
+				lmotor->setSpeed(map(target - cur_left, 2000, 330, 30, 12));
+				rmotor->setSpeed(map(target - cur_right, 2000, 330, 30, 12));
+			} else {
+				float pid_left = PID_calc(&this->left_pid, target - cur_left,
+						target);
+				float pid_right = PID_calc(&this->right_pid, target - cur_right,
+						target);
+				float pid_left_d = PID_calc(&this->sync_left_pid, speed_error,
+						0);
+				float pid_right_d = PID_calc(&this->sync_right_pid,
+						-speed_error, 0);
+				lmotor->_setDutyCycleVal(
+						(uint32_t) (
+								(pid_left + pid_left_d) > 1000 ?
+										(pid_left + pid_left_d) : 1000));
+				rmotor->_setDutyCycleVal(
+						(uint32_t) (
+								(pid_right + pid_right_d) > 1000 ?
+										(pid_right + pid_right_d) : 1000));
+			}
 		}
-
 		l_encoder_count = lencoder->getCount();
 		r_encoder_count = rencoder->getCount();
 

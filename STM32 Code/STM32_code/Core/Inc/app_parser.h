@@ -48,6 +48,7 @@ typedef struct
 	uint32_t arg;
 	bool is_absol;
 	bool turn_opt;
+	bool is_crawl;
 } MOTION_PKT_t; // struct containing msg to send to motioncontroller queue
 
 
@@ -122,6 +123,7 @@ static constexpr BUF_CMP_t RIGHT_CHAR = 'r';
 static constexpr BUF_CMP_t LEFT_CHAR = 'l';
 static constexpr BUF_CMP_t HALT_CHAR = 'h';
 
+static constexpr BUF_CMP_t CRAWL_CHAR = 'd';
 
 static constexpr BUF_CMP_t IR_L_CHAR = 'w';
 static constexpr BUF_CMP_t IR_R_CHAR = 'e';

@@ -1,5 +1,5 @@
 Core/Src/app_display.o: ../Core/Src/app_display.cpp \
- C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/OLED_lib/oled.h \
+ C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/OLED_lib/oled.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -35,8 +35,8 @@ Core/Src/app_display.o: ../Core/Src/app_display.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  ../Core/Inc/app_main.h \
- C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h
-C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/OLED_lib/oled.h:
+ C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h
+C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/OLED_lib/oled.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
@@ -72,4 +72,4 @@ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/OLED_lib/oled.h
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 ../Core/Inc/app_main.h:
-C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h:
+C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h:

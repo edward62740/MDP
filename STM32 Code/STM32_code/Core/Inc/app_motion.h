@@ -101,7 +101,7 @@ public:
 	void start();
 	void turn(bool isRight, bool isFwd,
 			uint32_t arg);
-	void move(bool isFwd, uint32_t arg, uint32_t speed);
+	void move(bool isFwd, uint32_t arg, uint32_t speed, bool isCrawl);
 	void emergencyStop();
 	~MotionController() {
 	}

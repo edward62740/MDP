@@ -1,7 +1,7 @@
 Middlewares/Third_Party/FreeRTOS/Source/tasks.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/tasks.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
- C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h \
+ C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
@@ -13,7 +13,7 @@ Middlewares/Third_Party/FreeRTOS/Source/tasks.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
-C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h:
+C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:

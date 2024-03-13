@@ -276,13 +276,16 @@ MOTION_PKT_t* Processor::getMotionCmdFromBytes(BUF_CMP_t *bytes) {
 		return NULL; // invalid input or no action
 	MOTION_PKT_t *pkt = new MOTION_PKT_t();
 	pkt->arg = val;
+
 	switch (bytes[3]) {
 	case FWD_CHAR: {
 		pkt->cmd = MOVE_FWD;
+		pkt->is_crawl =(bool) (isEq<BUF_CMP_t>(CRAWL_CHAR, bytes[7]));
 		break;
 	}
 	case BWD_CHAR: {
 		pkt->cmd = MOVE_BWD;
+		pkt->is_crawl =(bool) (isEq<BUF_CMP_t>(CRAWL_CHAR, bytes[7]));
 		break;
 	}
 	case LEFT_CHAR: {
