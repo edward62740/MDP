@@ -7,7 +7,7 @@ import ast
 import torch
 from io import BytesIO
 from flask import Flask, request, jsonify
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw
 from ultralytics import YOLO
 import random
 
@@ -130,6 +130,12 @@ def detect_image(image_path):
             print('saving image')
             saved_filename = f'found_{chosen_class[0]}.jpg'
             im.save(os.path.join("./photos_taken", saved_filename))
+            # Photo edit function should start here, WIP. To replace "sample text" with 
+            # Actual detected number / character
+            edit_img = Image.open(f'./photos_taken/found_{chosen_class[0]}.jpg')
+            draw = ImageDraw.Draw(edit_img)
+            font = ImageFont.truetype('arial.ttf',120)
+            draw.text((0,0), "sample text",(255,255,255),font=font)
         elif output_class[chosen_class[0]] < chosen_class[1] and detection_count >= 1:
             output_class[chosen_class[0]] = chosen_class[1]
             print('saving image')
