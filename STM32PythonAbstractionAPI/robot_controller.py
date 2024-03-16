@@ -4,7 +4,7 @@ from enum import Enum
 from typing import Optional, Callable, Any
 import asyncio
 import serial as ser
-from serial_cmd_base_ll import SerialCmdBaseLL
+from stm32_api.serial_cmd_base_ll import SerialCmdBaseLL
 
 import RPi.GPIO as GPIO
 
@@ -72,7 +72,7 @@ class RobotController:
     returns True if command was acknowledged, False otherwise.
     '''
 
-    def move_forward(self, dist: int) -> bool:
+    def move_forward(self, dist: int, no_brakes: bool = False) -> bool:
         if dist < 0 or dist > 999:
             raise ValueError("Invalid distance, must be 0-999")
 
@@ -81,10 +81,13 @@ class RobotController:
         self.drv.add_module_byte(self.drv.Modules.MOTOR)
         self.drv.add_motor_cmd_byte(self.drv.MotorCmd.FWD_CHAR)
         self.drv.add_args_bytes(dist)
+        self.drv.add_motor_cmd_byte(self.drv.CmdChar.PAD_CHAR) #empty
+        if no_brakes:
+            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LINEAR_CHAR)
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
 
-    def move_backward(self, dist: int) -> bool:
+    def move_backward(self, dist: int, no_brakes: bool = False) -> bool:
         if dist < 0 or dist > 999:
             raise ValueError("Invalid distance, must be 0-999")
 
@@ -93,6 +96,9 @@ class RobotController:
         self.drv.add_module_byte(self.drv.Modules.MOTOR)
         self.drv.add_motor_cmd_byte(self.drv.MotorCmd.BWD_CHAR)
         self.drv.add_args_bytes(dist)
+        self.drv.add_motor_cmd_byte(self.drv.CmdChar.PAD_CHAR) #empty
+        if no_brakes:
+            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LINEAR_CHAR)
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
 
@@ -103,7 +109,7 @@ class RobotController:
     returns True if command was acknowledged, False otherwise.
     '''
 
-    def turn_left(self, angle: int, dir: bool) -> bool:
+    def turn_left(self, angle: int, dir: bool, no_brakes: bool = False) -> bool:
         if angle < 0 or angle > 359:
             raise ValueError("Invalid angle, must be 0-359")
 
@@ -117,10 +123,13 @@ class RobotController:
         else:
             self.drv.add_motor_cmd_byte(self.drv.MotorCmd.BWD_CHAR)
 
+        if no_brakes:
+            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LINEAR_CHAR)
+
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
 
-    def turn_right(self, angle: int, dir: bool) -> bool:
+    def turn_right(self, angle: int, dir: bool, no_brakes: bool = False) -> bool:
         if angle < 0 or angle > 359:
             raise ValueError("Invalid angle, must be 0-359")
 
@@ -133,6 +142,9 @@ class RobotController:
             self.drv.add_motor_cmd_byte(self.drv.MotorCmd.FWD_CHAR)
         else:
             self.drv.add_motor_cmd_byte(self.drv.MotorCmd.BWD_CHAR)
+
+        if no_brakes:
+            self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LINEAR_CHAR)
 
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
@@ -252,7 +264,17 @@ class RobotController:
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
 
-    def set_threshold_disable_obstacle_detection(self) -> bool:
+    def set_threshold_disable_obstacle_detection_left(self) -> bool:
+
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.SENSOR)
+        self.drv.add_sensor_byte(self.drv.SensorCmd.IR_LEFT)
+        self.drv.add_args_bytes(999)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+
+    def set_threshold_disable_obstacle_detection_right(self) -> bool:
 
         self.drv.construct_cmd()
         self.drv.add_cmd_byte(True)
@@ -261,6 +283,8 @@ class RobotController:
         self.drv.add_args_bytes(999)
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
+
+
 
     """ DEPRECIATED: USE BELOW INSTEAD
     async def listen_for_obstruction(self, callback: Callable[..., None]):
@@ -324,6 +348,7 @@ class RobotController:
         self.drv.add_motor_cmd_byte(self.drv.MotorCmd.CRAWL_CHAR)
         self.drv.pad_to_end()
         return self.drv.ll_is_valid(self.drv.send_cmd())
+
 
     def get_last_successful_arg(self):
         self.drv.construct_cmd()

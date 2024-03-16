@@ -82,7 +82,7 @@ void Processor::processorTask(void *pv) {
 		//HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_10);
 		is_task_alive_struct.proc = true;
 
-		osDelay(50);
+		osDelay(10);
 		osThreadYield();
 
 		/* Let N be the expected input size in bytes.
@@ -146,11 +146,16 @@ void Processor::processorTask(void *pv) {
 
 			} else if (isEq<BUF_CMP_t>(CMD_CHAR, msg.buffer[1])) {
 				// do command stuff
-				if (isEq(HALT_CHAR, msg.buffer[3])) {
-					_ext_sig_halt();
-				}
+
 				switch (msg.buffer[2]) {
 				case MOTOR_CHAR: {
+					if (isEq(HALT_CHAR, msg.buffer[3])) {
+						_ext_sig_halt();
+						osMessageQueueReset(rx_ctx->mailbox.queue); // remove all movement from queue such that it works async
+						HAL_UART_Transmit(&huart3, (BUF_CMP_t*) ack,
+														sizeof(ack), 10);
+						break;
+					}
 					MOTION_PKT_t *pkt = getMotionCmdFromBytes(
 							(uint8_t*) &msg.buffer);
 					if (pkt == NULL) {
@@ -281,23 +286,27 @@ MOTION_PKT_t* Processor::getMotionCmdFromBytes(BUF_CMP_t *bytes) {
 	case FWD_CHAR: {
 		pkt->cmd = MOVE_FWD;
 		pkt->is_crawl =(bool) (isEq<BUF_CMP_t>(CRAWL_CHAR, bytes[7]));
+		pkt->linear =(bool) (isEq<BUF_CMP_t>(LINEAR_CHAR, bytes[8]));
 		break;
 	}
 	case BWD_CHAR: {
 		pkt->cmd = MOVE_BWD;
 		pkt->is_crawl =(bool) (isEq<BUF_CMP_t>(CRAWL_CHAR, bytes[7]));
+		pkt->linear =(bool) (isEq<BUF_CMP_t>(LINEAR_CHAR, bytes[8]));
 		break;
 	}
 	case LEFT_CHAR: {
 		pkt->cmd =
 				(bool) (isEq<BUF_CMP_t>(BWD_CHAR, bytes[7])) ?
 						MOVE_LEFT_BWD : MOVE_LEFT_FWD;
+		pkt->linear =(bool) (isEq<BUF_CMP_t>(LINEAR_CHAR, bytes[8]));
 		break;
 	}
 	case RIGHT_CHAR: {
 		pkt->cmd =
 				(bool) (isEq<BUF_CMP_t>(BWD_CHAR, bytes[7])) ?
 						MOVE_RIGHT_BWD : MOVE_RIGHT_FWD;
+		pkt->linear =(bool) (isEq<BUF_CMP_t>(LINEAR_CHAR, bytes[8]));
 		break;
 
 	}

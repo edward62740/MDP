@@ -92,24 +92,24 @@ void MotionController::motionTask(void *pv) {
 			if (pkt.cmd == AppParser::MOTION_CMD::MOVE_FWD) {
 				servo->turnFront();
 
-				self->move(true, pkt.arg, 30, pkt.is_crawl);
+				self->move(true, pkt.arg, 35, pkt.is_crawl, pkt.linear);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_BWD) {
 				servo->turnFront();
 
-				self->move(false, pkt.arg, 30, pkt.is_crawl);
+				self->move(false, pkt.arg, 35, pkt.is_crawl, pkt.linear);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_LEFT_FWD) {
-				self->turn(false, true, pkt.arg);
+				self->turn(false, true, pkt.linear, pkt.arg);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_RIGHT_FWD)
-				self->turn(true, true, pkt.arg);
+				self->turn(true, true, pkt.linear, pkt.arg);
 
 			else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_LEFT_BWD) {
-				self->turn(false, false, pkt.arg);
+				self->turn(false, false, pkt.linear, pkt.arg);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_RIGHT_BWD)
-				self->turn(true, false, pkt.arg);
+				self->turn(true, false, pkt.linear, pkt.arg);
 		}
 		HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_10);
 		HAL_GPIO_WritePin(Movement_Ind_Port, Movement_Ind_Pin, GPIO_PIN_RESET);
@@ -118,7 +118,7 @@ void MotionController::motionTask(void *pv) {
 }
 
 
-void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed, bool isCrawl) {
+void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed, bool isCrawl, bool nostop) {
 	emergency = false;
 	servo->turnFront();
 	isFwd ? lmotor->setForward() : lmotor->setBackward();
@@ -127,9 +127,10 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed, bool isCra
 	rmotor->setSpeed(speed);
 	if (isCrawl)
 	{
-		lmotor->setSpeed(25);
-		rmotor->setSpeed(25);
+		lmotor->setSpeed(35);
+		rmotor->setSpeed(35);
 	}
+
 	uint32_t timeStart = HAL_GetTick();
 	uint32_t l_encoder_count = lencoder->getCount();
 	uint32_t r_encoder_count = rencoder->getCount();
@@ -149,10 +150,10 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed, bool isCra
 		cur_right += count_right;
 		speed_error += (count_left - count_right);
 
-		if (!isCrawl) {
+		if (!isCrawl && !nostop) {
 			if (cur_left > target - 2000 || cur_right > target - 2000) {
-				lmotor->setSpeed(map(target - cur_left, 2000, 330, 30, 12));
-				rmotor->setSpeed(map(target - cur_right, 2000, 330, 30, 12));
+				lmotor->setSpeed(map(target - cur_left, 2000, 330, 35, 15));
+				rmotor->setSpeed(map(target - cur_right, 2000, 330, 35, 15));
 			} else {
 				float pid_left = PID_calc(&this->left_pid, target - cur_left,
 						target);
@@ -184,7 +185,7 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed, bool isCra
 
 		osDelay(10);
 		sensor_data.last_halt_val = arg;
-		//osThreadYield();
+		osThreadYield();
 
 	} while (1);
 	uint8_t buf[10] = { 0 };
@@ -196,14 +197,19 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed, bool isCra
 	rmotor->halt();
 }
 
-void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
+void MotionController::turn(bool isRight, bool isFwd, bool arc, uint32_t arg) {
 	emergency = false;
 	isRight ? servo->turnRight() : servo->turnLeft();
 
 	isFwd ? lmotor->setForward() : lmotor->setBackward();
 	isFwd ? rmotor->setForward() : rmotor->setBackward();
-	isRight ? lmotor->setSpeed(30) : lmotor->setSpeed(0);
-	isRight ? rmotor->setSpeed(0) : rmotor->setSpeed(30);
+	isRight ? lmotor->setSpeed(35) : lmotor->setSpeed(0);
+	isRight ? rmotor->setSpeed(0) : rmotor->setSpeed(35);
+	if(arc) // arc increases turn radius
+	{
+		isRight ? lmotor->setSpeed(55) : lmotor->setSpeed(20);
+		isRight ? rmotor->setSpeed(20) : rmotor->setSpeed(55);
+	}
 	uint32_t timeNow = HAL_GetTick();
 	uint32_t timeStart = timeNow;
 	uint8_t buf[30] = { 0 };
@@ -227,15 +233,15 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 
 	do{
 		if (abs(target_yaw - cur) < 45 ) {
-			if(isRight) lmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 45, 0, 25, 15));
+			if(isRight) lmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 45, 0, 30, 15));
 
-			else rmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 45, 0, 25, 15));
+			else rmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 45, 0, 30, 15));
 		}
 		else if(fmod(abs(abs(target_yaw) - abs(cur)), 180) < 45 )
 		{
-			if(isRight) lmotor->setSpeed((uint32_t)map(fmod(abs(abs(target_yaw) - abs(cur)), 180), 45, 0, 25, 15));
+			if(isRight) lmotor->setSpeed((uint32_t)map(fmod(abs(abs(target_yaw) - abs(cur)), 180), 45, 0, 30, 15));
 
-			else rmotor->setSpeed((uint32_t)map(fmod(abs(abs(target_yaw) - abs(cur)), 180), 45, 0, 25, 15));
+			else rmotor->setSpeed((uint32_t)map(fmod(abs(abs(target_yaw) - abs(cur)), 180), 45, 0, 30, 15));
 		}
 
 		timeNow = HAL_GetTick();

@@ -78,7 +78,7 @@ void initializeCPPconstructs(void) {
 	irTaskHandle = osThreadNew(irTask, NULL, &irTask_attr);
 }
 
-#define BUFFER_SIZE 32  // Buffer size for 10 samples
+#define BUFFER_SIZE 8  // Buffer size for 10 samples
 
 float irBufferL[BUFFER_SIZE]; // Buffer for left IR sensor
 float irBufferR[BUFFER_SIZE]; // Buffer for right IR sensor
@@ -116,8 +116,8 @@ void irTask(void *pv) {
 		if (sensor_data.is_allow_motor_override) {
 			if (sensor_data.ir_distL < sensor_data.ir_dist_th_L
 					|| sensor_data.ir_distR < sensor_data.ir_dist_th_R) {
-				controller.emergencyStop();
-				processor.signalObstruction();
+				//controller.emergencyStop();
+				//processor.signalObstruction();
 				HAL_GPIO_WritePin(Collision_Ind_Port, Collision_Ind_Pin,
 						GPIO_PIN_SET);
 			} else {

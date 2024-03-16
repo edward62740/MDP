@@ -11,7 +11,7 @@ import serial as ser
 class SerialCmdBaseLL:
     ser = None  # instance of serial.Serial
     CMD_LEN = 10
-    ACK_TIMEOUT_MS = 200
+    ACK_TIMEOUT_MS =    200
     payload = ""
     is_reading = False
 
@@ -37,6 +37,7 @@ class SerialCmdBaseLL:
         LEFT_CHAR = b'l'
         HALT_CHAR = b'h'
         CRAWL_CHAR = b'd'
+        LINEAR_CHAR = b'j'
 
     class SensorCmd(Enum):
         IR_LEFT = b'w'
