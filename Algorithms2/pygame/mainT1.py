@@ -5,8 +5,10 @@
 
 import asyncio
 from time import sleep
+import requests
 from typing import List
 from Map import *
+from settings import PC, FLASK_PORT
 from Connection.RPI_comms import RPI_connection
 from simulator import AlgoMinimal
 #import pdb; pdb.set_trace()
@@ -14,24 +16,37 @@ from simulator import AlgoMinimal
 rpi = RPI_connection()
 
 def main():
-    #rpi.bluetooth_connect() #TODO: test this on the android
-    
-
-    print("===========================Receive Obstacles Data===========================")
-    print("Waiting to receive obstacle data from ANDROID...")
-
-    obst_message = '16,15,N,16,6,W,8,10,S,1,15,E,6,20,S'
-    #obst_message = rpi.android_receive()
-    #obst_message = obst_message.replace(' ', '')
-    #obst_message = obst_message[:-1]
-    obstacles = parse_obstacle_data_cur(obst_message)
-    print(obstacles) #debugging
-    
-    try:
-        app = AlgoMinimal(obstacles)
-        asyncio.run(app.execute())
-    except Exception as e:
-        print(e)
+    while True:
+        print("Select choice of execution:")
+        print("1. send map via android")
+        print("2. send map via hardcoded map")
+        choice = input()
+        choice = int(choice)
+        
+        if choice == 1:
+            rpi.bluetooth_connect() #TODO: test this on the android
+            print("===========================Receive Obstacles Data===========================")
+            print("Waiting to receive obstacle data from ANDROID...")
+            obst_message = rpi.android_receive()
+            try:
+                obstacles = parse_obstacle_data_cur(obst_message)
+                app = AlgoMinimal(obstacles)
+                asyncio.run(app.execute())
+            except Exception as e:
+                print(e)
+        elif choice == 2:
+            #obst_message = '16,15,N,16,6,W,8,10,S,1,15,E,6,20,S'
+            obst_message = '16,15,N,16,6,W,8,10,S,3,18,S,18,18,w'
+            #obst_message = '18,18,s,3,18,s, 18,3,w'
+            try:
+                obstacles = parse_obstacle_data_cur(obst_message)
+                app = AlgoMinimal(obstacles)
+                asyncio.run(app.execute())
+                print("finished Task 1")
+            except Exception as e:
+                print(e)
+        else:
+            print("invalid choice")
 
 def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
     '''
@@ -88,6 +103,19 @@ def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
 
     # [[x, y, orient, index], [x, y, orient, index]]
     return obs 
+
+# def compute_on_PC(obst_message):
+#     data = {'message': str(obst_message)}
+#     response = requests.post(f'http://{PC}:{FLASK_PORT}/map', json=data)
+#     if response.status_code == 200:
+#         computed_path = response.text
+#         print("COMPUTED PATH:", computed_path)
+#         sleep(1)
+#         return computed_path
+#     else:
+#         print("Server Down or message sending failed!")
+#         return None
+    
 
 if __name__ == '__main__':
     main()

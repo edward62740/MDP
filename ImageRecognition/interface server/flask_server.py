@@ -8,6 +8,11 @@ from io import BytesIO
 from flask import Flask, request, jsonify
 from PIL import Image
 from ultralytics import YOLO
+import random
+
+from simulator import AlgoMinimal
+from Map import Obstacle, Direction
+from typing import List
 # import cv2
 # import numpy as np
 # import uuid
@@ -53,7 +58,7 @@ id_to_class = {
 output_class = {}
 
 def choose_best_class(detected_items):
-    YOLO_CONF_THRESH = 0.5
+    YOLO_CONF_THRESH = 0.1
 
     if len(detected_items) == 0:
         print('No items detected')
@@ -123,12 +128,17 @@ def detect_image(image_path):
             output_class[chosen_class[0]] = chosen_class[1]
             print('saving image')
             saved_filename = f'found_{chosen_class[0]}.jpg'
-            im.save(os.path.join("./output", saved_filename))
+            im.save(os.path.join("./photos_taken", saved_filename))
         elif output_class[chosen_class[0]] < chosen_class[1] and detection_count >= 1:
             output_class[chosen_class[0]] = chosen_class[1]
             print('saving image')
             saved_filename = f'found_{chosen_class[0]}.jpg'
-            im.save(os.path.join("./output", saved_filename))
+            im.save(os.path.join("./photos_taken", saved_filename))
+        else:
+            print('saving image by else')
+            number = str(random.randint(0,9999999))
+            saved_filename = f'found_{number}.jpg'
+            im.save(os.path.join("./photos_taken", saved_filename))
 
         #if detection_count >= 1:
         #    print('saving image')
@@ -162,10 +172,122 @@ def upload_image():
     # mdp_id = img_rec(img)
     mdp_id = detect_image(img)
     if mdp_id[0] == -1:
+        img.save(f'./photos_taken/not_found_{str(random.randint(0,9999999))}.jpeg', 'JPEG')
         result = {'message': 'TARGET,Obstacle_num,-1,-1'}
     else:
         result = {'message': f'TARGET,Obstacle_num,{mdp_id[0]},{mdp_id[1]}'}
     return jsonify(result), 200  # Return a success response with the result
+
+# To receive map data from RPI for computation of hamiltonian path
+@app.route('/map', methods=['POST'])
+def upload_map():
+    map = request.json
+    map = map['message']
+
+    obstacles = parse_obstacle_data_cur(map)
+    app = AlgoMinimal(obstacles)
+    path = app.plan_path_only()
+    serialized_data = list(path)
+    print('JSONIFY =', jsonify({"data": serialized_data}), 200)
+    return jsonify({"data": serialized_data}), 200
+
+def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
+    '''
+    converts obstacle data from android to list format. a bit weird here since im trying to fit it to the format that was previously written
+    - input example argument: 1,18,S,16,10,N,12,3,N,18,18,S,2,8,N,5,12,S
+    - output example return value: [Obstacle(Position(15, 185,  angle=Direction.BOTTOM)), Obstacle(Position(165, 105,  angle=Direction.TOP)), Obstacle(Position(125, 35,  angle=Direction.TOP)), Obstacle(Position(185, 185,  angle=Direction.BOTTOM)), Obstacle(Position(25, 85,  angle=Direction.TOP)), Obstacle(Position(55, 125,  angle=Direction.BOTTOM))]
+    '''
+    obst_message = obst_message.replace(' ', '')
+    if obst_message[-1] == ',':
+        obst_message = obst_message[:-1]
+    obst_split = obst_message.split(',')
+    print(obst_split)
+    data = []
+    for i in range(0,len(obst_split), 3):
+        x = int(obst_split[i])
+        y = int(obst_split[i+1])
+        if(obst_split[i+2].upper() == 'N'):
+            direction = 90
+        elif(obst_split[i+2].upper() == 'S'):
+            direction = -90
+        elif(obst_split[i+2].upper() == 'E'):
+            direction = 0
+        elif(obst_split[i+2].upper() == 'W'):
+            direction = 180
+        obs_id = i // 3
+        data.append({"x":x,"y":y,"direction":direction,"obs_id":obs_id})
+    
+    # this part onwards was the previously written parsing thing
+    obs = []
+    lst3 = []
+    lst = []
+    i = 0
+
+    for obj in data:
+        lst.append(obj)
+
+    for i in lst:
+        i["x"] *= 10
+        i["x"] += 5
+        i["y"] *= 10
+        i["y"] += 5
+        #i["obs_id"] -= 1
+
+    a = [list(row) for row in zip(*[m.values() for m in lst])]
+
+    for i in range(len(a[0])):
+        lst2 = [item[i] for item in a]
+        lst3.append(lst2)
+        i+=1
+        
+    for obstacle_params in lst3:
+        obs.append(Obstacle(obstacle_params[0],
+                            obstacle_params[1],
+                            Direction(obstacle_params[2]),
+                            obstacle_params[3]))
+
+    # [[x, y, orient, index], [x, y, orient, index]]
+    return obs 
+
+@app.route('/combine_images', methods=['POST'])
+def combine_images_two_columns():
+    folder_path = './photos_taken'  # Change to your folder path
+    output_path = 'combined_result.jpg'  # Output image path
+    # Load all the images in the folder that end with .jpg
+    images = [Image.open(os.path.join(folder_path, f)) for f in os.listdir(folder_path) if f.endswith('.jpg')]
+    
+    # Split the images into two columns
+    left_column_images = images[::2]  # Images at even indices
+    right_column_images = images[1::2]  # Images at odd indices
+
+    # Calculate total height for each column
+    left_column_height = sum(image.height for image in left_column_images)
+    right_column_height = sum(image.height for image in right_column_images)
+
+    # Calculate the maximum width for both columns to align them properly
+    max_width_left = max(image.width for image in left_column_images)
+    max_width_right = max(image.width for image in right_column_images)
+
+    # Create a new image with the appropriate size
+    total_height = max(left_column_height, right_column_height)
+    combined_image = Image.new('RGB', (max_width_left + max_width_right, total_height))
+
+    # Paste the images in the left column
+    y_offset_left = 0
+    for image in left_column_images:
+        combined_image.paste(image, (0, y_offset_left))
+        y_offset_left += image.height
+
+    # Paste the images in the right column
+    y_offset_right = 0
+    for image in right_column_images:
+        combined_image.paste(image, (max_width_left, y_offset_right))
+        y_offset_right += image.height
+
+    # Save the combined image
+    combined_image.save(output_path)
+    
+    return jsonify({"message": "Images combined successfully"})
     
 def start_server(host, port, debug):
     app.run(host=host,port=port,debug=debug)    

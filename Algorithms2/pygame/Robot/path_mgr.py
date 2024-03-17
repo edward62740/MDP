@@ -64,6 +64,7 @@ class Brain:
         """
         print("Compressing commands... ", end="")
         index = 0
+        err_count = 0
         new_commands = deque()
         while index < len(self.commands):
             command = self.commands[index]
@@ -74,12 +75,44 @@ class Brain:
                     index += 1
                 command = StraightCommand(new_length)
                 new_commands.append(command)
+                #############################################
+            elif isinstance(command, TurnCommand):
+                newAngle =0
+                #same direction & reverse
+                while index < len(self.commands) and isinstance(self.commands[index], TurnCommand):
+                    isRev = self.commands[index].rev
+                    angle = self.commands[index].angle
+                    
+                    newAngle += angle
+                    if(angle > 0):          #If turn angle >0(Left) err count +1, else -1
+                        err_count += 1
+                    elif(angle < 0):                           
+                        err_count -= 1
+
+                    #-ve angle --> Right
+                    if (isinstance(self.commands[index+1], TurnCommand) and self.commands[index+1].angle == angle and self.commands[index+1].rev == isRev):
+                        newAngle += angle
+                    # else:
+                    #     pass
+                    index += 1
+                    if(err_count == 5): ##Compensate for cumlative errors.
+                        newAngle -= 5
+                        err_count =0
+
+                    if(err_count == -5):
+                        newAngle += 5
+                        err_count =0
+                
+                command = TurnCommand(newAngle, isRev)
+                new_commands.append(command)
+                ###################################################
+
             else:
                 new_commands.append(command)
                 index += 1
         self.commands = new_commands
-        self.translator.add_path(new_commands)
         print("Done!")
+        return self.translator.add_path(new_commands)
 
     def plan_path(self):
         print("-" * 70)
@@ -99,9 +132,8 @@ class Brain:
                 curr = res
                 self.commands.append(ScanCommand(ROBOT_SCAN_TIME, obstacle.index))
 
-        self.compress_paths()
         print("-" * 70)
-        return index_list
+        return self.compress_paths()
 
     # def plan_bullseye(self):
     #     print("-" * 40)

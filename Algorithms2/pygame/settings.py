@@ -15,8 +15,9 @@ PORT = '/dev/ttyUSB0'
 BAUD = 115200
 
 # PC address 
-PC = '192.168.22.44' # EDWARD's macbook
-#PC = '192.168.22.31' # YL's macbook
+#PC = '192.168.22.44' # EDWARD's macbook
+PC = '192.168.22.31' # YL's macbook
+#PC = '192.168.22.42' 
 FLASK_PORT = 8080
   
 RED = (255, 0, 0)
@@ -43,11 +44,11 @@ FRAMES = 60
 WINDOW_SIZE = 900, 650
 
 # Robot Attributes
-ROBOT_LENGTH = 23 * SCALING_FACTOR  # Recommended robot footprint is 30cm by 30cm
+ROBOT_LENGTH = 30 * SCALING_FACTOR  # Recommended robot footprint is 30cm by 30cm
 ROBOT_TURN_RADIUS = 18 * SCALING_FACTOR
 ROBOT_SPEED_PER_SECOND = 10 * SCALING_FACTOR
 ROBOT_S_FACTOR = ROBOT_LENGTH / ROBOT_TURN_RADIUS  
-ROBOT_SAFETY_DISTANCE = 18 * SCALING_FACTOR
+ROBOT_SAFETY_DISTANCE = 15 * SCALING_FACTOR
 ROBOT_SCAN_TIME = 0.25  # Time provided for scanning an obstacle image in seconds.
 
 # Grid Attributes
