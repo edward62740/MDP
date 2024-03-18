@@ -53,6 +53,8 @@ def obst_cb(*args):
 
 # wait for "interrupt". technically, not an interrupt. but it makes sense to think of it as such from application level
 async def _WFI():
+     
+     await asyncio.sleep(0.45)
      while(robot.poll_is_moving()):
         await asyncio.sleep(0.05)
 
@@ -68,6 +70,61 @@ async def get_distance():
     return x
 
 """
+This function finds mag(epsilon) and sgn(epsilon) for which mag(expected_phi -cur_phi) is minimized,
+given expected_phi = prev_phi + sgn_offset
+subject to the wrapping of values at 180 <-> -180.
+Otherwise, solves the optimization problem to minimize epsilon for any integer k*90 angular offset
+from phi.
+
+"""
+async def turn_error_minimization(phi: float, offset_known: bool, sgn_offset: float = 0) :
+    phi_cur = await dispatcher.dispatchB(RobotController.get_yaw, [], obst_cb)
+    if offset_known:
+
+        if (phi + sgn_offset) >= 180:
+            phi_opt = -180 + ((phi + sgn_offset) % 180)
+        elif (phi + sgn_offset) < -180:
+            phi_opt = (phi + sgn_offset) % 180
+        else:
+            phi_opt = (phi + sgn_offset)
+
+
+        epsl = phi_opt - phi_cur
+        if abs(epsl) <= 180:
+            return abs(epsl), DIR.LEFT if epsl > 0 else DIR.RIGHT
+        else:
+            return 360-epsl, DIR.LEFT if epsl <= 0 else DIR.RIGHT
+
+    else:
+        epsl_vars = []
+        # basically repeat the above for all k in -2..2
+        _CONST_ROT_MAG = 90
+        for k in (-2, 3):
+            if (phi + _CONST_ROT_MAG * k) >= 180:
+                phi_opt = -180 + ((phi + _CONST_ROT_MAG * k) % 180)
+            elif (phi + _CONST_ROT_MAG * k) < -180:
+                phi_opt = (phi + _CONST_ROT_MAG * k) % 180
+            else:
+                phi_opt = (phi + _CONST_ROT_MAG * k)
+
+
+            epsl = phi_opt - phi_cur
+            if abs(epsl) <= 180:
+                epsl_vars.append([abs(epsl), DIR.LEFT if epsl > 0 else DIR.RIGHT])
+            else:
+                epsl_vars.append([360-epsl, DIR.LEFT if epsl <= 0 else DIR.RIGHT])
+        n = 0
+        for k, _ in enumerate(epsl_vars):
+            if epsl_vars[k][0] < epsl_vars[n][0]:
+                n = k
+        return epsl_vars[n]
+
+            
+    
+
+
+
+"""
 navigate to the side of obstacle 1 corresponding to dir and start scanning
 """          
 async def nav1_pos(dir: DIR):
@@ -79,16 +136,16 @@ async def nav1_pos(dir: DIR):
     await dispatcher.dispatchB(RobotController.turn_right if dir is DIR.RIGHT else RobotController.turn_left, [55, 1, 1], obst_cb)
     await _WFI()
 
-    cur_phi = await dispatcher.dispatchB(RobotController.get_yaw, [], obst_cb)
+    #cur_phi = await dispatcher.dispatchB(RobotController.get_yaw, [], obst_cb)
 
     global phi
-    print(cur_phi)
+    mag, direction = await turn_error_minimization(phi, True, 0)
+    print(mag)
+    print(direction)
 
-    print(abs(cur_phi - phi))
-    print(cur_phi > phi)
-
-    await dispatcher.dispatchB(RobotController.turn_left if cur_phi < phi else RobotController.turn_right, [math.floor(abs(cur_phi - phi)), 1], obst_cb)
-    await _WFI()
+    if mag < 15:
+        await dispatcher.dispatchB(RobotController.turn_left if direction is DIR.LEFT else RobotController.turn_right, [math.floor(mag), 1], obst_cb)
+        await _WFI()
 
 
 
@@ -101,11 +158,13 @@ async def scan_len2(dir: DIR) -> float:
     sensor = None
     
     await dispatcher.dispatchB(RobotController.turn_left if dir is DIR.LEFT else RobotController.turn_right, [90, 1], obst_cb)
-    sensor = DIR.RIGHT if dir is DIR.LEFT else DIR.LEFT
-    await dispatcher.dispatchB(RobotController.set_threshold_stop_distance_left if sensor is DIR.LEFT else RobotController.set_threshold_stop_distance_right, [20], obst_cb)
     await _WFI()
+    sensor = DIR.RIGHT if dir is DIR.LEFT else DIR.LEFT
+    await dispatcher.dispatchB(RobotController.set_threshold_stop_distance_left if sensor is DIR.LEFT else RobotController.set_threshold_stop_distance_right, [25], obst_cb)
+    
     
     await dispatcher.dispatchB(RobotController.crawl_forward, [CONST_STEP_SIZE_OBST*6], obst_cb)
+    
     await asyncio.sleep(0.25)
     while 1:
         #x = await dispatcher.dispatchB(RobotController.get_ir_R if sensor is DIR.LEFT else RobotController.get_ir_L, [], obst_cb)
@@ -114,7 +173,7 @@ async def scan_len2(dir: DIR) -> float:
             break
         await asyncio.sleep(0.01)
 
-    await asyncio.sleep(0.15)
+    
     await dispatcher.dispatchB(RobotController.halt, [], obst_cb)
     await _WFI()
 
@@ -123,71 +182,102 @@ async def scan_len2(dir: DIR) -> float:
         x = 0
 
     global x_p
-    x_p += x + CONST_TURN_RAD_CM + CONST_STEP_SIZE_OBST//2
+    x_p += x + CONST_TURN_RAD_CM + CONST_STEP_SIZE_OBST
 
     print("Last distance: " + str(x))
-
+    
 
     print(sensor)
     await dispatcher.dispatchB(RobotController.turn_left if sensor is DIR.LEFT else RobotController.turn_right, [90, 1, 1], obst_cb)
 
     await _WFI()
 
-    await dispatcher.dispatchB(RobotController.crawl_forward, [5], obst_cb)
-    await _WFI()
-
-    await dispatcher.dispatchB(RobotController.turn_left if sensor is DIR.LEFT else RobotController.turn_right, [90, 1, 1], obst_cb)
-
-    await _WFI()
-
-    await dispatcher.dispatchB(RobotController.move_forward, [math.floor(2*(x+ CONST_TURN_RAD_CM) + 2*CONST_STEP_SIZE_OBST)], obst_cb)
-    await _WFI()
-
-    await dispatcher.dispatchB(RobotController.turn_left if sensor is DIR.LEFT else RobotController.turn_right, [90, 1, 1], obst_cb)
-    await _WFI()
-    cur_phi = await dispatcher.dispatchB(RobotController.get_yaw, [], obst_cb)
-    print(cur_phi)
     global phi
-    if phi > 0:
-        phi += -180
-    else:
-        phi += 180
-    
 
-    print(abs(cur_phi - phi))
-    comp = min(abs(cur_phi - phi)%180, abs(180-abs(cur_phi - phi)%180))
-    comp_dir = DIR.RIGHT if cur_phi > phi else DIR.LEFT
 
-    if cur_phi < -135 and phi > 135:
-        comp_dir = DIR.RIGHT
-    elif phi < -135 and cur_phi > 135:
-        comp_dir = DIR.LEFT
-    print(cur_phi)
-    print(phi)
-
-    await dispatcher.dispatchB(RobotController.turn_left if comp_dir is DIR.LEFT else RobotController.turn_right, [math.floor(comp), 1], obst_cb)
+    await dispatcher.dispatchB(RobotController.crawl_forward, [math.floor(CONST_STEP_SIZE_OBST//2)], obst_cb)
     await _WFI()
+
+
+  
+
+    await dispatcher.dispatchB(RobotController.turn_left if sensor is DIR.LEFT else RobotController.turn_right, [90, 1, 1], obst_cb)
+
+    await _WFI()
+
+    mag, direction = await turn_error_minimization(phi, True, 0)
+    print(mag)
+    print(direction)
+
+    if mag < 15:
+        await dispatcher.dispatchB(RobotController.turn_left if direction is DIR.LEFT else RobotController.turn_right, [math.floor(mag), 1], obst_cb)
+        await _WFI()
+
+
+    mag, direction = await turn_error_minimization(phi, True, 90 if dir is DIR.RIGHT else -90)
+    print(mag)
+    print(direction)
+
+    if mag < 15:
+        await dispatcher.dispatchB(RobotController.turn_left if direction is DIR.LEFT else RobotController.turn_right, [math.floor(mag), 1], obst_cb)
+        await _WFI()
+    #await dispatcher.dispatchB(RobotController.move_forward, [math.floor(2*(x+ CONST_TURN_RAD_CM) + CONST_STEP_SIZE_OBST), 1], obst_cb)
+    #await _WFI()
+    await dispatcher.dispatchB(RobotController.crawl_forward, [math.floor(2*(x+ CONST_TURN_RAD_CM) + 2*CONST_STEP_SIZE_OBST)], obst_cb)
+    
+    await asyncio.sleep(0.25)
+    while 1:
+        #x = await dispatcher.dispatchB(RobotController.get_ir_R if sensor is DIR.LEFT else RobotController.get_ir_L, [], obst_cb)
+        if not robot.poll_obstruction():
+            print("FALSE")
+            break
+        await asyncio.sleep(0.01)
+
+    
+    await dispatcher.dispatchB(RobotController.halt, [], obst_cb)
+    await _WFI()
+    await dispatcher.dispatchB(RobotController.move_forward, [5, 1], obst_cb)
+    await _WFI()
+
+    await dispatcher.dispatchB(RobotController.turn_left if sensor is DIR.LEFT else RobotController.turn_right, [90, 1, 1], obst_cb)
+    await _WFI()
+    await _WFI()
+
+
+    mag, direction = await turn_error_minimization(phi, True, 180)
+    print(mag)
+    print(direction)
+    if mag < 15:
+        await dispatcher.dispatchB(RobotController.turn_left if direction is DIR.LEFT else RobotController.turn_right, [math.floor(mag), 1], obst_cb)
+        await _WFI()
+
 
 
     await dispatcher.dispatchB(RobotController.move_forward, [math.floor(y_p2)], obst_cb)
+    await _WFI()
     await dispatcher.dispatchB(RobotController.turn_right if dir is DIR.LEFT else RobotController.turn_left, [90, 1, 1], obst_cb)
+    await _WFI()
     
     if x_p - 2*CONST_TURN_RAD_CM> 0:
         await dispatcher.dispatchB(RobotController.move_forward, [math.floor(x_p-2*CONST_TURN_RAD_CM), 1], obst_cb)
   
     await dispatcher.dispatchB(RobotController.turn_right if dir is DIR.RIGHT else RobotController.turn_left, [90, 1, 1], obst_cb)
+    await _WFI()
 
-
+    await dispatcher.dispatchB(RobotController.set_threshold_disable_obstacle_detection_left if sensor is DIR.LEFT else RobotController.set_threshold_disable_obstacle_detection_right, [], obst_cb)
+    
 
 
 
 async def main():
     await dispatcher.dispatchB(RobotController.set_threshold_disable_obstacle_detection_left, [], obst_cb)
     await dispatcher.dispatchB(RobotController.set_threshold_disable_obstacle_detection_right, [], obst_cb)
-    await dispatcher.dispatchB(RobotController.set_threshold_stop_distance_left, [20], obst_cb)
 
     global phi
+    
     phi = await dispatcher.dispatchB(RobotController.get_yaw, [], obst_cb)
+    print("YAW")
+    print(phi)
 
 
 
@@ -208,6 +298,10 @@ async def main():
     x = await get_distance()
     LOG_I(x)
     await _WFI()
+    img_task = asyncio.create_task(take_photo())
+
+ 
+
     if x < CONST_TH_DIST_OBST:
         await dispatcher.dispatchB(RobotController.move_backward, [CONST_TH_DIST_OBST - x], obst_cb)
     else:
@@ -215,6 +309,11 @@ async def main():
     await _WFI()
     x = await get_distance()
     LOG_I(x)
+    await img_task
+    img = str(img_task.result())
+    
+    img = (json.loads(img)["message"]).split(",")[2]
+    print(img)
     
     
 
@@ -223,18 +322,16 @@ async def main():
     
     #snap_pic_process = Process(target=take_photo)
     #snap_pic_process.start()
-    '''
-    img = str(take_photo())
-    img = (json.loads(img)["message"]).split(",")[2]
-    print(img)
+    
+    
     
     # tony wants to send a HTTP signal here
 
     # ^
     ret = DIR.RIGHT if int(img) == 38 else DIR.LEFT
-    '''
-    ret = DIR.LEFT
-    await nav1_pos(DIR.RIGHT)
+    
+  
+    await nav1_pos(ret)
     d0 = await get_distance()
     if d0 is None:
         await dispatcher.dispatchB(RobotController.crawl_backward, [10], obst_cb)
@@ -242,19 +339,23 @@ async def main():
         d0 = await get_distance()
 
     y_p2 += min((d0 + 30), 150)
-    if not d0 < CONST_TH_DIST_OBST + 5:
+    if not d0 < CONST_TH_DIST_OBST :
         await dispatcher.dispatchB(RobotController.crawl_forward, [150], obst_cb)
         d0 = await get_distance()
-        while d0 is None or d0 > CONST_TH_DIST_OBST + 5:                                      #range distance min(60,150)
+        while d0 is None or d0 > CONST_TH_DIST_OBST :                                      #range distance min(60,150)
             d0 = await get_distance()
             LOG_I(d0)
 
             await asyncio.sleep(0.05)
         await dispatcher.dispatchB(RobotController.halt, [], obst_cb)
-    if d0 < CONST_TH_DIST_OBST + 5 :
-        await dispatcher.dispatchB(RobotController.move_backward, [CONST_TH_DIST_OBST + 5 - d0], obst_cb)
+        await _WFI()
+        d0 = await get_distance()
+
+    img_task = asyncio.create_task(take_photo())
+    if d0 < CONST_TH_DIST_OBST  :
+        await dispatcher.dispatchB(RobotController.move_backward, [CONST_TH_DIST_OBST - d0], obst_cb)
     else:
-        await dispatcher.dispatchB(RobotController.move_forward, [d0 - CONST_TH_DIST_OBST + 5 ], obst_cb)
+        await dispatcher.dispatchB(RobotController.move_forward, [d0 - CONST_TH_DIST_OBST ], obst_cb)
     await _WFI()
     d0 = await get_distance()
     print(d0)
@@ -264,37 +365,26 @@ async def main():
     await _WFI()
 
     
-
-
-    '''
-    img = str(take_photo())
+    await img_task
+    img = str(img_task.result())
+    
     img = (json.loads(img)["message"]).split(",")[2]
 
     ret = DIR.RIGHT if int(img) == 38 else DIR.LEFT
-    '''
+    
  
-    len2 = await scan_len2(DIR.LEFT)
+    len2 = await scan_len2(ret)
     
 
     await _WFI()
 
+    mag, direction = await turn_error_minimization(phi, True, 180)
+    print(mag)
+    print(direction)
 
-    cur_phi = await dispatcher.dispatchB(RobotController.get_yaw, [], obst_cb)
-
-    print(abs(cur_phi - phi))
-    comp = min(abs(cur_phi - phi)%180, abs(180-abs(cur_phi - phi)%180))
-    comp_dir = DIR.RIGHT if cur_phi > phi else DIR.LEFT
-
-    if cur_phi < -135 and phi > 135:
-        comp_dir = DIR.RIGHT
-    elif phi < -135 and cur_phi > 135:
-        comp_dir = DIR.LEFT
-    print(cur_phi)
-    print(phi)
-
-    await dispatcher.dispatchB(RobotController.turn_left if comp_dir is DIR.LEFT else RobotController.turn_right, [math.floor(comp), 1], obst_cb)
-    await _WFI()
-
+    if mag < 15:
+        await dispatcher.dispatchB(RobotController.turn_left if direction is DIR.LEFT else RobotController.turn_right, [math.floor(mag), 1], obst_cb)
+        await _WFI()
 
 
 

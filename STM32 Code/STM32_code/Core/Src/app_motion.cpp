@@ -41,7 +41,7 @@ void MotionController::start(void) {
 	this->rmotor = new Motor(&htim8, TIM_CHANNEL_2, GPIOA, GPIOA, GPIO_PIN_2,
 	GPIO_PIN_3, 7199);
 	float pid_param_right[3] = { 3.1, 0.0, 0.1 };
-	float pid_param_sync[3] = { 5, 0, 1 };
+	float pid_param_sync[3] = { 12, 3, 1 };
 	PID_init(&this->left_pid, PID_POSITION, pid_param_right, 7500, 7500);
 	PID_init(&this->right_pid, PID_POSITION, pid_param_right, 7500, 7500);
 	PID_init(&this->sync_left_pid, 0, pid_param_sync, 1000, 1000);
@@ -268,7 +268,7 @@ void MotionController::turn(bool isRight, bool isFwd, bool arc, uint32_t arg) {
 			break;
 		else last_target_dist = abs(target_yaw - cur);
 
-		if (abs(target_yaw - cur) <= 0.25
+		if (abs(target_yaw - cur) <= 0.25 || (abs(target_yaw - cur) <= 1.5 && arc)
 				|| (HAL_GetTick() - timeStart) > 10000)
 		{
 			sensor_data.last_halt_val = ((uint32_t)abs(target_yaw - cur)) %180;
