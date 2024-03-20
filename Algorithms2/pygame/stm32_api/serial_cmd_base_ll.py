@@ -11,7 +11,7 @@ import serial as ser
 class SerialCmdBaseLL:
     ser = None  # instance of serial.Serial
     CMD_LEN = 10
-    ACK_TIMEOUT_MS = 200
+    ACK_TIMEOUT_MS =    200
     payload = ""
     is_reading = False
 
@@ -36,6 +36,8 @@ class SerialCmdBaseLL:
         RIGHT_CHAR = b'r'
         LEFT_CHAR = b'l'
         HALT_CHAR = b'h'
+        CRAWL_CHAR = b'd'
+        LINEAR_CHAR = b'j'
 
     class SensorCmd(Enum):
         IR_LEFT = b'w'
@@ -52,7 +54,7 @@ class SerialCmdBaseLL:
     def __init__(self, port, baud):
         self.ser = ser.Serial(port, baud)
         self.ser.timeout = self.ACK_TIMEOUT_MS / 1000
-        pass
+        
 
     def send_cmd(self) -> str:
         self.is_reading = True

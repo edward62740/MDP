@@ -7,14 +7,15 @@ from Robot.commands import *
 from settings import PORT, BAUD
 from Robot.path_algo import ModifiedAStar
 from translator import Translator
+from Connection.RPI_comms import RPI_connection
 
 class Brain:
-    def __init__(self, robot, grid):
+    def __init__(self, robot, grid, rpi: RPI_connection = None):
         self.robot = robot
         self.grid = grid
 
         ####
-        self.translator = Translator(PORT, BAUD)
+        self.translator = Translator(PORT, BAUD, rpi)
         ####
 
         # Compute the simple Hamiltonian path for all obstacles
@@ -90,7 +91,8 @@ class Brain:
                         err_count -= 1
 
                     #-ve angle --> Right
-                    if (self.commands[index+1].angle == angle & self.commands[index+1].rev == isRev):
+                    if (isinstance(self.commands[index+1], TurnCommand) and self.commands[index+1].angle == angle and self.commands[index+1].rev == isRev):
+
                         newAngle += angle
                     # else:
                     #     pass

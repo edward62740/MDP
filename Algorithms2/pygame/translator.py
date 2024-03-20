@@ -2,6 +2,7 @@ import logging
 from time import sleep
 from multiprocessing import Process
 
+import asyncio
 from stm32_api.dispatcher import BlockingDispatcher, _IO_Attr_Type
 
 """
@@ -18,23 +19,28 @@ from typing import List, Tuple, Any, Callable
 from stm32_api.robot_controller import RobotController
 from Robot.commands import *
 import photographer
+from Connection.RPI_comms import RPI_connection
 
+def obst_cb():
+    pass
 
 class Translator:
     GRID_UNIT_CM = 10
     TURN_ARC_RADIUS_CM = 20
 
-    def __init__(self, robot_port: str, robot_baudrate: int):
+    def __init__(self, robot_port: str, robot_baudrate: int, rpi: RPI_connection = None):
         self.path: List[Any] = []
         self.robot = RobotController(robot_port, robot_baudrate)
         self.robot.set_threshold_stop_distance_right(1)
         self.robot.set_threshold_stop_distance_left(1) # remove in real run
         self.dispatcher = BlockingDispatcher(self.robot, 5, 2, u_if=_IO_Attr_Type.PHYSICAL)
         self.logger = logging.getLogger(__name__)
+        self.rpi = rpi
         self.moving = False
+        self.camera = None
 
     def add_path(self, path: List[Command]):
-        self.logger.debug("adding path %s", path)
+        #self.logger.debug("adding path %s", path)
         for movement in path:
             if not isinstance(movement, Command):
                 raise ValueError("Invalid movement encountered: {}".format(movement))
@@ -72,7 +78,7 @@ class Translator:
             
             elif isinstance(tempCmd,ScanCommand):
                 #SendRequest to take image
-                cmd_path.append('Scan')
+                cmd_path.append(f'Scan,{tempCmd.obj_index}')
 
         cmd_path.append("Fin")
         self.logger.debug(cmd_path)
@@ -84,59 +90,87 @@ class Translator:
     async def dispatch(self, cmd_path):
         self.logger.debug("Start Dispatch")
         self.logger.debug("dispatching path")
+        phi = await self.dispatcher.dispatchB(RobotController.get_yaw, [], obst_cb)
+        cur_offset = 0
+        ctr = 0
         for cmd in cmd_path:
-            while self.moving:
-                print("in while loopp", self.moving)
-                self.moving = False # temporary 
-                sleep(1)
-            # print(cmd[0])
-            # print(*cmd[1])
-            # if cmd[0] != 'F':
-            #     print(" | ")
-            #     print(" V ")
-            print(*cmd[1])
             if isinstance(cmd[0],str):
-                snap_pic_process = Process(target=photographer.take_photo)
-                snap_pic_process.start()
-                # print('snap! took a photo')
-                # photographer.take_photo()
-                # sleep(0.5)#Take Image and send to rpi/pc
-            else: 
-                self.moving = True
-                #cmd[0](self.robot, *cmd[1])
-                print(cmd[1])
-                await self.dispatcher.dispatchB(cmd[0], cmd[1], self.obstacle_callback)
-                while(self.robot.poll_is_moving()):# If robot not moving
-                # if(1):
-                    self.moving = False
-        self.logger.debug("dispatched path")
-        return None
-    
-    async def dispatch_2(self, cmd_path): # TODO: a bit wonky here. fix.
-        self.logger.debug("Start Dispatch")
-        self.logger.debug("dispatching path")
-        for cmd in cmd_path:
-            while self.moving:
-                print("in while loopp", self.moving)
-                self.moving = False # temporary 
-                sleep(1)
+                if ('Scan' in cmd):
+                    obj_index = cmd.split(',')[1]
+                    
+                    if self.camera is None:
+                        self.camera = photographer.start_camera()
+                    photographer.fire_and_forget(self.camera, self.rpi, obj_index)
 
-            print(cmd)
-            if isinstance(cmd,str):
-                snap_pic_process = Process(target=photographer.take_photo)
-                snap_pic_process.start()
-                # print('snap! took a photo')
-                # photographer.take_photo()
-                # sleep(0.5)#Take Image and send to rpi/pc
             else: 
                 self.moving = True
-                if len(cmd == 2):
-                    print('robot supposed to move in a straight line, dist:', cmd[1])
-                else:
-                    print('robot moving curved, angle:', cmd[1], 'reverse:', cmd[2])
-                # await self.dispatcher.dispatchB(cmd[0], cmd[1], self.obstacle_callback)
-                # while(self.robot.poll_is_moving()):# If robot not moving
-                # # if(1):
-                #     self.moving = False
+                await self.dispatcher.dispatchB(cmd[0], cmd[1], self.obstacle_callback)
+                await asyncio.sleep(0.45)
+                    
+                while(self.robot.poll_is_moving()):# If robot not moving
+                    await asyncio.sleep(0.01)
+                    
+                ctr += 1
+                if id(cmd[0]) == id(RobotController.turn_left):
+                    cur_offset += 90
+                    if cur_offset > 180:
+                        cur_offset = -180 + (cur_offset % 180)
+                elif id(cmd[0]) == id(RobotController.turn_right):
+                    cur_offset -= 90
+                    if cur_offset < -180:
+                        cur_offset %= 180
+
+                if id(cmd[0]) == id(RobotController.move_forward):
+                    phi_cur = await self.dispatcher.dispatchB(RobotController.get_yaw, [], obst_cb)
+                    e, sgn = await turn_error_minimization(phi, True, phi_cur, cur_offset)
+                    print(e)
+                    if e < 25:
+                        await self.dispatcher.dispatchB(RobotController.turn_left if sgn else RobotController.turn_right, [math.floor(e), 1], self.obstacle_callback)
+                        while(self.robot.poll_is_moving()):# If robot not moving
+                            await asyncio.sleep(0.01)
+                            
         self.logger.debug("dispatched path")
+        photographer.combine_images()
         return None
+
+async def turn_error_minimization(phi: float, offset_known: bool, phi_cur: float,  sgn_offset: float = 0) :
+    
+    if offset_known:
+
+        if (phi + sgn_offset) >= 180:
+            phi_opt = -180 + ((phi + sgn_offset) % 180)
+        elif (phi + sgn_offset) < -180:
+            phi_opt = (phi + sgn_offset) % 180
+        else:
+            phi_opt = (phi + sgn_offset)
+
+
+        epsl = phi_opt - phi_cur
+        if abs(epsl) <= 180:
+            return abs(epsl), 1 if epsl > 0 else 0
+        else:
+            return 360-epsl, 1 if epsl <= 0 else 0
+
+    else:
+        epsl_vars = []
+        # basically repeat the above for all k in -2..2
+        _CONST_ROT_MAG = 90
+        for k in (-2, 3):
+            if (phi + _CONST_ROT_MAG * k) >= 180:
+                phi_opt = -180 + ((phi + _CONST_ROT_MAG * k) % 180)
+            elif (phi + _CONST_ROT_MAG * k) < -180:
+                phi_opt = (phi + _CONST_ROT_MAG * k) % 180
+            else:
+                phi_opt = (phi + _CONST_ROT_MAG * k)
+
+
+            epsl = phi_opt - phi_cur
+            if abs(epsl) <= 180:
+                epsl_vars.append([abs(epsl), 1 if epsl > 0 else 0])
+            else:
+                epsl_vars.append([360-epsl, 1 if epsl <= 0 else 0])
+        n = 0
+        for k, _ in enumerate(epsl_vars):
+            if epsl_vars[k][0] < epsl_vars[n][0]:
+                n = k
+        return epsl_vars[n]

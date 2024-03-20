@@ -17,7 +17,9 @@ BAUD = 115200
 # PC address 
 #PC = '192.168.22.44' # EDWARD's macbook
 PC = '192.168.22.31' # YL's macbook
-FLASK_PORT = 8081
+#PC = '192.168.22.42' 
+FLASK_PORT = 8080
+RPI_FLASK_PORT = 2222
   
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -43,7 +45,9 @@ FRAMES = 60
 WINDOW_SIZE = 900, 650
 
 # Robot Attributes
-ROBOT_LENGTH = 23 * SCALING_FACTOR  # Recommended robot footprint is 30cm by 30cm
+
+ROBOT_LENGTH = 30 * SCALING_FACTOR  # Recommended robot footprint is 30cm by 30cm
+
 ROBOT_TURN_RADIUS = 18 * SCALING_FACTOR
 ROBOT_SPEED_PER_SECOND = 10 * SCALING_FACTOR
 ROBOT_S_FACTOR = ROBOT_LENGTH / ROBOT_TURN_RADIUS  
