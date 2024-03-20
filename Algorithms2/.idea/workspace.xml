@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f18e610e-b877-468b-b887-23d6256f3b2f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/.bak_0.log" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/.bak_0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/.log" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.cdt.ui/global-build.log" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.cdt.ui/global-build.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.projects/STM32_code/.indexes/bf/b2/history.index" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.projects/STM32_code/.indexes/bf/b2/history.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.projects/STM32_code/.indexes/bf/be/history.index" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.projects/STM32_code/.indexes/bf/be/history.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.projects/STM32_code/.indexes/bf/c4/history.index" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.projects/STM32_code/.indexes/bf/c4/history.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.projects/STM32_code/.indexes/bf/c4/properties.index" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.projects/STM32_code/.indexes/bf/c4/properties.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/.metadata/version.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/.metadata/version.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/ICM20948_lib/ICM20948.c" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/ICM20948_lib/ICM20948.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/Inc/app_main.h" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/Inc/app_main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/Src/app_display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/Src/app_display.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/Src/app_main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/Src/app_main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/Src/app_motion.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Core/Src/app_motion.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/ICM20948_lib/ICM20948.o" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/ICM20948_lib/ICM20948.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_display.o" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_display.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_main.o" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_main.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_motion.o" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_motion.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_motion.su" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_motion.su" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_parser.o" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/Core/Src/app_parser.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/STM32_code.elf" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/STM32_code.elf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/STM32_code.list" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/STM32_code.list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/STM32_code.map" beforeDir="false" afterPath="$PROJECT_DIR$/../STM32 Code/STM32_code/Debug/STM32_code.map" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2dZV5Gi34M3jzEAlcCwuduC9bop" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f18e610e-b877-468b-b887-23d6256f3b2f" name="Changes" comment="" />
+      <created>1710215408825</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710215408825</updated>
+    </task>
+    <servers />
+  </component>
+</project>

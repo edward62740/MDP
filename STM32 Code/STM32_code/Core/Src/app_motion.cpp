@@ -17,13 +17,14 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
+#include <cmath>
 
 namespace AppMotion {
 
 #define ALPHA 0.8
 #define REAR_WHEEL_RADIUS_CM 6.5/2
 #define REAR_WHEEL_ROTATION_DISTANCE (2 * 3.142 * REAR_WHEEL_RADIUS_CM)
-#define ENCODER_PULSES_PER_ROTATION 1560
+#define ENCODER_PULSES_PER_ROTATION 1560 * 1.045
 #define DISTANCE_PER_ENCODER_PULSE (REAR_WHEEL_ROTATION_DISTANCE / ENCODER_PULSES_PER_ROTATION)
 
 MotionController::MotionController(u_ctx *ctx) {
@@ -40,9 +41,9 @@ void MotionController::start(void) {
 	this->rmotor = new Motor(&htim8, TIM_CHANNEL_2, GPIOA, GPIOA, GPIO_PIN_2,
 	GPIO_PIN_3, 7199);
 	float pid_param_right[3] = { 3.1, 0.0, 0.1 };
-	float pid_param_sync[3] = { 5, 0, 1 };
-	PID_init(&this->left_pid, PID_POSITION, pid_param_right, 5000, 4000);
-	PID_init(&this->right_pid, PID_POSITION, pid_param_right, 5000, 4000);
+	float pid_param_sync[3] = { 12, 3, 1 };
+	PID_init(&this->left_pid, PID_POSITION, pid_param_right, 7500, 7500);
+	PID_init(&this->right_pid, PID_POSITION, pid_param_right, 7500, 7500);
 	PID_init(&this->sync_left_pid, 0, pid_param_sync, 1000, 1000);
 	PID_init(&this->sync_right_pid, 0, pid_param_sync, 1000, 1000);
 
@@ -57,6 +58,7 @@ void MotionController::start(void) {
 			&(ctx->attr));
 	return;
 }
+
 
 void MotionController::motionTask(void *pv) {
 
@@ -90,24 +92,24 @@ void MotionController::motionTask(void *pv) {
 			if (pkt.cmd == AppParser::MOTION_CMD::MOVE_FWD) {
 				servo->turnFront();
 
-				self->move(true, pkt.arg, 15);
+				self->move(true, pkt.arg, 35, pkt.is_crawl, pkt.linear);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_BWD) {
 				servo->turnFront();
 
-				self->move(false, pkt.arg, 15);
+				self->move(false, pkt.arg, 35, pkt.is_crawl, pkt.linear);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_LEFT_FWD) {
-				self->turn(false, true, pkt.arg);
+				self->turn(false, true, pkt.linear, pkt.arg);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_RIGHT_FWD)
-				self->turn(true, true, pkt.arg);
+				self->turn(true, true, pkt.linear, pkt.arg);
 
 			else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_LEFT_BWD) {
-				self->turn(false, false, pkt.arg);
+				self->turn(false, false, pkt.linear, pkt.arg);
 
 			} else if (pkt.cmd == AppParser::MOTION_CMD::MOVE_RIGHT_BWD)
-				self->turn(true, false, pkt.arg);
+				self->turn(true, false, pkt.linear, pkt.arg);
 		}
 		HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_10);
 		HAL_GPIO_WritePin(Movement_Ind_Port, Movement_Ind_Pin, GPIO_PIN_RESET);
@@ -116,13 +118,19 @@ void MotionController::motionTask(void *pv) {
 }
 
 
-void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
+void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed, bool isCrawl, bool nostop) {
 	emergency = false;
 	servo->turnFront();
 	isFwd ? lmotor->setForward() : lmotor->setBackward();
 	isFwd ? rmotor->setForward() : rmotor->setBackward();
 	lmotor->setSpeed(speed);
 	rmotor->setSpeed(speed);
+	if (isCrawl)
+	{
+		lmotor->setSpeed(35);
+		rmotor->setSpeed(35);
+	}
+
 	uint32_t timeStart = HAL_GetTick();
 	uint32_t l_encoder_count = lencoder->getCount();
 	uint32_t r_encoder_count = rencoder->getCount();
@@ -142,29 +150,42 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
 		cur_right += count_right;
 		speed_error += (count_left - count_right);
 
-		if (cur_left > target - 2000 || cur_right > target - 2000) {
-			lmotor->setSpeed(map(target - cur_left, 2000, 330, 30, 12));
-			rmotor->setSpeed(map(target - cur_right, 2000, 330, 30, 12));
-		} else {
-			float pid_left = PID_calc(&this->left_pid, target - cur_left, target);
-			float pid_right = PID_calc(&this->right_pid, target - cur_right, target);
-			float pid_left_d = PID_calc(&this->sync_left_pid, speed_error, 0);
-			float pid_right_d = PID_calc(&this->sync_right_pid, -speed_error, 0);
-			lmotor->_setDutyCycleVal((uint32_t) ((pid_left + pid_left_d ) > 1000 ? (pid_left + pid_left_d ) : 1000)
-					);
-			rmotor->_setDutyCycleVal((uint32_t) ((pid_right + pid_right_d) > 1000 ? (pid_right + pid_right_d)  : 1000)
-					);
+		if (!isCrawl && !nostop) {
+			if (cur_left > target - 2000 || cur_right > target - 2000) {
+				lmotor->setSpeed(map(target - cur_left, 2000, 330, 35, 15));
+				rmotor->setSpeed(map(target - cur_right, 2000, 330, 35, 15));
+			} else {
+				float pid_left = PID_calc(&this->left_pid, target - cur_left,
+						target);
+				float pid_right = PID_calc(&this->right_pid, target - cur_right,
+						target);
+				float pid_left_d = PID_calc(&this->sync_left_pid, speed_error,
+						0);
+				float pid_right_d = PID_calc(&this->sync_right_pid,
+						-speed_error, 0);
+				lmotor->_setDutyCycleVal(
+						(uint32_t) (
+								(pid_left + pid_left_d) > 1000 ?
+										(pid_left + pid_left_d) : 1000));
+				rmotor->_setDutyCycleVal(
+						(uint32_t) (
+								(pid_right + pid_right_d) > 1000 ?
+										(pid_right + pid_right_d) : 1000));
+			}
 		}
-
 		l_encoder_count = lencoder->getCount();
 		r_encoder_count = rencoder->getCount();
 
 		if ((cur_left > target && cur_right > target) || emergency)
+		{
+			sensor_data.last_halt_val = (uint32_t) (cur_left>cur_right?cur_right:cur_left) * DISTANCE_PER_ENCODER_PULSE;
 			break;
+		}
+
 
 		osDelay(10);
-
-		//osThreadYield();
+		sensor_data.last_halt_val = arg;
+		osThreadYield();
 
 	} while (1);
 	uint8_t buf[10] = { 0 };
@@ -176,22 +197,28 @@ void MotionController::move(bool isFwd, uint32_t arg, uint32_t speed) {
 	rmotor->halt();
 }
 
-void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
+void MotionController::turn(bool isRight, bool isFwd, bool arc, uint32_t arg) {
 	emergency = false;
 	isRight ? servo->turnRight() : servo->turnLeft();
 
 	isFwd ? lmotor->setForward() : lmotor->setBackward();
 	isFwd ? rmotor->setForward() : rmotor->setBackward();
-	isRight ? lmotor->setSpeed(25) : lmotor->setSpeed(0);
-	isRight ? rmotor->setSpeed(0) : rmotor->setSpeed(25);
+	isRight ? lmotor->setSpeed(35) : lmotor->setSpeed(0);
+	isRight ? rmotor->setSpeed(0) : rmotor->setSpeed(35);
+	if(arc) // arc increases turn radius
+	{
+		isRight ? lmotor->setSpeed(55) : lmotor->setSpeed(20);
+		isRight ? rmotor->setSpeed(20) : rmotor->setSpeed(55);
+	}
 	uint32_t timeNow = HAL_GetTick();
 	uint32_t timeStart = timeNow;
 	uint8_t buf[30] = { 0 };
 	float target_yaw = 0;
-	float req = ((float) arg);
+	float req = ((float) arg) ;
 	float cur = sensor_data.yaw_abs; //[-179,180]
 	float prev_yaw = cur;
-
+	float last_target_dist = 99999.0f; // overshoot protection
+	float bwd_diffn_delta = 0;
 
 	if((!isRight && isFwd) || (isRight && !isFwd) ) //increase
 	{
@@ -205,23 +232,51 @@ void MotionController::turn(bool isRight, bool isFwd, uint32_t arg) {
 	}
 
 	do{
-		if (abs(target_yaw - cur) < 29) {
-			if(isRight) lmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 29, 0, 25, 15));
+		if (abs(target_yaw - cur) < 45 ) {
+			if(isRight) lmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 45, 0, 30, 15));
 
-			else rmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 29, 0, 25, 15));
+			else rmotor->setSpeed((uint32_t)map(abs(target_yaw - cur), 45, 0, 30, 15));
+		}
+		else if(fmod(abs(abs(target_yaw) - abs(cur)), 180) < 45 )
+		{
+			if(isRight) lmotor->setSpeed((uint32_t)map(fmod(abs(abs(target_yaw) - abs(cur)), 180), 45, 0, 30, 15));
+
+			else rmotor->setSpeed((uint32_t)map(fmod(abs(abs(target_yaw) - abs(cur)), 180), 45, 0, 30, 15));
 		}
 
-
 		timeNow = HAL_GetTick();
-		cur = sensor_data.yaw_abs; //filter
-
+		/* Use backward differentiation algorithm here to estimate the current yaw based on time
+		 * elapsed since last sample.
+		 * Attempting to increase the gyro sample rate is worse because the drift errors pile up.
+		 * Since we dont want to measure changes in sgn(cur - prev yaw) anyway, this method seems fine.
+		 *
+		 * abs(sensor_data.yaw_abs - sensor_data.yaw_abs_prev) is STEP SIZE
+		 * 50 is TIME PER STEP
+		 * sgn(sensor_data.yaw_abs - sensor_data.yaw_abs_prev) is DIRECTION
+		 *
+		 * */
+		if(timeNow != sensor_data.yaw_abs_time)
+			bwd_diffn_delta = abs(sensor_data.yaw_abs - sensor_data.yaw_abs_prev) * (float)(abs(timeNow - sensor_data.yaw_abs_time)/80);
+		else
+			bwd_diffn_delta = 0;
+		cur = sensor_data.yaw_abs +  (bwd_diffn_delta * sgn(sensor_data.yaw_abs - sensor_data.yaw_abs_prev)); // already dlpf and qtn filtered
+		sensor_data.yaw_cur_dbg = cur;
 		prev_yaw = cur;
-
-		if (abs(target_yaw - cur) <= 1
-				|| (HAL_GetTick() - timeStart) > 10000 || emergency)
+		//break off immediately if overshoot
+		if (last_target_dist < abs(target_yaw - cur)
+				&& abs(target_yaw - cur) < 15)
 			break;
+		else last_target_dist = abs(target_yaw - cur);
 
-		osDelay(10);
+		if (abs(target_yaw - cur) <= 0.25 || (abs(target_yaw - cur) <= 1.5 && arc)
+				|| (HAL_GetTick() - timeStart) > 10000)
+		{
+			sensor_data.last_halt_val = ((uint32_t)abs(target_yaw - cur)) %180;
+			break;
+		}
+
+		sensor_data.last_halt_val = arg;
+		osDelay(2);
 		osThreadYield(); // need to ensure yield for the sensortask
 
 	} while (1);

@@ -13,6 +13,7 @@ import threading
 from Connection.RPI_comms import RPI_connection
 import json
 
+
 def start_camera():
     camera = picamera.PiCamera()
     camera.resolution = (1980, 1980)
@@ -24,17 +25,15 @@ def take_photo():
     print("snap! picture taken")
     with picamera.PiCamera() as camera:
         camera.resolution = (1980, 1980)
-        # camera.start_preview()
-        # time.sleep(1)
         image_stream = BytesIO()
         camera.capture(image_stream, format='jpeg')  # take photo and save as given name
         image_stream.seek(0)
         files = {'image': ('camera_photo.jpg', image_stream, 'image/jpeg'), 'task2':0}
         response = requests.post(f'http://{PC}:{FLASK_PORT}/upload', files=files)
-        # camera.stop_preview()
         if response.status_code == 200:
             mdp_id = response.text
             print(mdp_id)
+            time.sleep(1)
             return mdp_id
         else:
             print("Server Down or Image Rec failed!")

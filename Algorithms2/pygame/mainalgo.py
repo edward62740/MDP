@@ -13,9 +13,9 @@ from translator import *
 import asyncio
 
 
-#start_img = pygame.image.load("Algorithms-testing/assets/Start.png").convert_alpha()
-#exit_img = pygame.image.load("Algorithms-testing/assets/Exit.png").convert_alpha()
-#reset_img = pygame.image.load("Algorithms-testing/assets/Reset.png").convert_alpha()
+start_img = pygame.image.load("Algorithms-testing/assets/Start.png").convert_alpha()
+exit_img = pygame.image.load("Algorithms-testing/assets/Exit.png").convert_alpha()
+reset_img = pygame.image.load("Algorithms-testing/assets/Reset.png").convert_alpha()
 
 """
 old_obstacles = [{"x":1,"y":18,"direction":-90,"obs_id":0},

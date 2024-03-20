@@ -35,6 +35,7 @@ private:
 	uint32_t MAX_PWM;
 	uint32_t CTR_PWM;
 
+
 };
 /* Motor class that holds motor info */
 class Motor {
@@ -98,9 +99,9 @@ public:
 	MotionController(u_ctx *ctx);
 
 	void start();
-	void turn(bool isRight, bool isFwd,
+	void turn(bool isRight, bool isFwd, bool nostop,
 			uint32_t arg);
-	void move(bool isFwd, uint32_t arg, uint32_t speed);
+	void move(bool isFwd, uint32_t arg, uint32_t speed, bool isCrawl, bool nostop);
 	void emergencyStop();
 	~MotionController() {
 	}
@@ -109,6 +110,9 @@ public:
 	static void motionTask(void *pv);
 	static float map(float x, float in_min, float in_max, float out_min, float out_max) {
 	    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
+	template <typename T> static int sgn(T val) {
+	    return (T(0) < val) - (val < T(0));
 	}
 private:
 	Motor *lmotor;

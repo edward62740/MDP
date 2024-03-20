@@ -92,6 +92,7 @@ class Brain:
 
                     #-ve angle --> Right
                     if (isinstance(self.commands[index+1], TurnCommand) and self.commands[index+1].angle == angle and self.commands[index+1].rev == isRev):
+
                         newAngle += angle
                     # else:
                     #     pass

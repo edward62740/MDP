@@ -1,7 +1,7 @@
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o: \
  ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h \
+ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -34,7 +34,7 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o: \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h:
+C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:

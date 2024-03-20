@@ -5,7 +5,8 @@ from multiprocessing import Process
 import flask_server
 from PC_comms import Communication
 
-def PC_communications(IP, PORT):
+def PC_communications(IP, PORT): # i think we dont even need communication with PC since the flask server alr does its thing
+    return
     pc = Communication(IP, PORT)
     pc.connect()
     x = input()

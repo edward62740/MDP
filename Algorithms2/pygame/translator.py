@@ -1,5 +1,6 @@
 import logging
 from time import sleep
+from multiprocessing import Process
 
 import asyncio
 from stm32_api.dispatcher import BlockingDispatcher, _IO_Attr_Type
@@ -54,38 +55,6 @@ class Translator:
             return []
         cmd_path: List[Tuple[Callable, List[Any]]] = []
 
-        summarized_path: List[List[Any]] = []
-
-        """
-        # shorten the path by combining consecutive straight movements
-        for i in range(0, len(self.path)):
-            if i == 0:
-                summarized_path.append([self.path[i], self.GRID_UNIT_CM])
-            elif self.path[i] == self.path[i - 1] and len(summarized_path) > 0:
-                summarized_path[-1][1] += self.GRID_UNIT_CM
-
-            else:
-                summarized_path.append([self.path[i], self.GRID_UNIT_CM])
-
-        self.logger.debug(summarized_path)
-        self.logger.debug("summarized path!")
-        
-        # compensate for turning arc
-        for i in range(1, len(summarized_path)):
-            if summarized_path[i][0] == Movement.RIGHT or summarized_path[i][0] == Movement.LEFT:
-                if summarized_path[i - 1][0] == Movement.FORWARD:
-                    summarized_path[i - 1][1] -= self.TURN_ARC_RADIUS_CM
-                    self.logger.debug("reduced length to %s", summarized_path[i - 1][1])
-                elif summarized_path[i - 1][0] == Movement.REVERSE:
-                    summarized_path[i - 1][1] += self.TURN_ARC_RADIUS_CM
-
-                if i >= len(summarized_path) - 1:
-                    continue
-                if summarized_path[i + 1][0] == Movement.FORWARD:
-                    summarized_path[i + 1][1] -= self.TURN_ARC_RADIUS_CM
-                elif summarized_path[i + 1][0] == Movement.REVERSE:
-                    summarized_path[i + 1][1] += self.TURN_ARC_RADIUS_CM
-        """
         for i in range(len(self.path)):
             tempCmd = self.path[i]
             #Straight Line movements

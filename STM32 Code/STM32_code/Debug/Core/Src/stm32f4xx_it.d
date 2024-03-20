@@ -1,7 +1,7 @@
 Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c \
- C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/main.h \
+ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h \
+ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -33,11 +33,11 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h \
- C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_it.h
-C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/main.h:
+ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h \
+ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_it.h
+C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h:
+C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:
@@ -69,5 +69,5 @@ C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h:
-C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_it.h:
+C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/ICM20948_lib/ICM20948.h:
+C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_it.h:

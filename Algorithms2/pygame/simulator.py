@@ -44,6 +44,7 @@ class AlgoMinimal(AlgoApp):
 
     async def execute(self):
         print("Calculating path...")
+
         planned_path = self.robot.brain.plan_path()
         ret = self.robot.brain.translator.translate()
         #print("Planned path: ", planned_path)
@@ -54,4 +55,5 @@ class AlgoMinimal(AlgoApp):
                     break
         print("Translated path...  Dispatching..")
         await self.robot.brain.translator.dispatch(ret)
+
    

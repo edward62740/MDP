@@ -38,6 +38,7 @@ typedef enum : uint32_t
 	MOVE_LEFT_FWD,
 	MOVE_RIGHT_BWD,
 	MOVE_LEFT_BWD,
+	MOVE_HALT,
 } MOTION_CMD;
 
 
@@ -47,6 +48,8 @@ typedef struct
 	uint32_t arg;
 	bool is_absol;
 	bool turn_opt;
+	bool is_crawl;
+	bool linear;
 } MOTION_PKT_t; // struct containing msg to send to motioncontroller queue
 
 
@@ -119,6 +122,10 @@ static constexpr BUF_CMP_t FWD_CHAR = 'f';
 static constexpr BUF_CMP_t BWD_CHAR = 'b';
 static constexpr BUF_CMP_t RIGHT_CHAR = 'r';
 static constexpr BUF_CMP_t LEFT_CHAR = 'l';
+static constexpr BUF_CMP_t HALT_CHAR = 'h';
+
+static constexpr BUF_CMP_t CRAWL_CHAR = 'd';
+static constexpr BUF_CMP_t LINEAR_CHAR = 'j';
 
 static constexpr BUF_CMP_t IR_L_CHAR = 'w';
 static constexpr BUF_CMP_t IR_R_CHAR = 'e';
@@ -126,6 +133,8 @@ static constexpr BUF_CMP_t USOUND_CHAR = 'u';
 static constexpr BUF_CMP_t GY_Z_CHAR = 'g'; // others are probably useless..
 static constexpr BUF_CMP_t QTRN_YAW_CHAR = 'y';
 static constexpr BUF_CMP_t QTRN_ALL_CHAR = 'k';
+
+static constexpr BUF_CMP_t LAST_HALT_CHAR = 'o';
 // index 4,5,6
 /* This will be a 3-digit number
  * if [2] is MOTOR_CHAR AND [3] is f/b, then this is motion in cm.

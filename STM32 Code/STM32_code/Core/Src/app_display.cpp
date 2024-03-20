@@ -60,6 +60,7 @@ void oledTask(void*) {
 		memset(&buf, 0, sizeof(buf));
 		snprintf((char*) buf, sizeof(buf), "%4.1f", sensor_data.yaw_abs);
 		OLED_ShowString(85, 36, (uint8_t*) &buf);
+
 		OLED_Refresh_Gram();
 
 		self = !self;

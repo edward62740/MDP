@@ -86,6 +86,7 @@ static const uint8_t REG_TEMP_L = 0x3A; // address of temperature register (@Ban
 /* user bank 2 register */
 #define REG_ADD_GYRO_SMPLRT_DIV 0x00
 #define REG_ADD_GYRO_CONFIG_1   0x01
+#define REG_ADD_GYRO_CONFIG_2   0x02
 #define REG_VAL_BIT_GYRO_DLPCFG_2   0x10 /* bit[5:3] */
 #define REG_VAL_BIT_GYRO_DLPCFG_4   0x20 /* bit[5:3] */
 #define REG_VAL_BIT_GYRO_DLPCFG_6   0x30 /* bit[5:3]  LPF = 5.7 Hz pg 59 */

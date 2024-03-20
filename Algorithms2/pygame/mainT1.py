@@ -1,9 +1,9 @@
 '''
-[WIP] This is a replacement of mainalgo
-- TODO: robot movement currently seems incorrect. to check with team on expected robot movement
+This is a replacement of mainalgo
 '''
 
 import asyncio
+import ast
 from time import sleep
 import requests
 from typing import List
@@ -13,6 +13,7 @@ from Connection.RPI_comms import RPI_connection
 from simulator import AlgoMinimal
 from RPI_flask import RPIFlaskServer
 from multiprocessing import Process
+
 #import pdb; pdb.set_trace()
 
 
@@ -120,19 +121,6 @@ def parse_obstacle_data_cur(obst_message: str) -> List[Obstacle]:
 
     # [[x, y, orient, index], [x, y, orient, index]]
     return obs 
-
-# def compute_on_PC(obst_message):
-#     data = {'message': str(obst_message)}
-#     response = requests.post(f'http://{PC}:{FLASK_PORT}/map', json=data)
-#     if response.status_code == 200:
-#         computed_path = response.text
-#         print("COMPUTED PATH:", computed_path)
-#         sleep(1)
-#         return computed_path
-#     else:
-#         print("Server Down or message sending failed!")
-#         return None
-    
 
 if __name__ == '__main__':
     main()

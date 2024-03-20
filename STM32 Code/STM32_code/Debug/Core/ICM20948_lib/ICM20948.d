@@ -1,7 +1,7 @@
 Core/ICM20948_lib/ICM20948.o: ../Core/ICM20948_lib/ICM20948.c \
  ../Core/ICM20948_lib/ICM20948.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h \
+ C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -36,7 +36,7 @@ Core/ICM20948_lib/ICM20948.o: ../Core/ICM20948_lib/ICM20948.c \
  ../Core/ICM20948_lib/AK09918.h
 ../Core/ICM20948_lib/ICM20948.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-C:/Users/Workstation/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h:
+C:/Users/Edward/Documents/GitHub/MDP/STM32\ Code/STM32_code/Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:

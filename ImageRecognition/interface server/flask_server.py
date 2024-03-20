@@ -3,21 +3,13 @@ To be run on PC. PC hosts flask server for image recognition works
 '''
 
 import os
-import torch
 from io import BytesIO
 from flask import Flask, request, jsonify
 from PIL import Image
 from ultralytics import YOLO
 import random
 import requests
-from simulator import AlgoMinimal
-from Map import Obstacle, Direction
 from typing import List
-# import cv2
-# import numpy as np
-# import uuid
-# import math
-
 
 app = Flask(__name__)
 model = YOLO('./models/no_deadend.pt') # replace model here
@@ -188,7 +180,7 @@ def upload_image():
     elif 'task2' in request.files:
         if mdp_id[0] == -1:
             img.save(f'./photos_taken/not_found_{str(random.randint(0,9999999))}.jpeg', 'JPEG')
-            result = {'message': 'No image found'}
+            result = {'message': '-1,No image found'}
         else:
             result = {'message': f'{mdp_id[0]},{mdp_id[1]}'}
         return jsonify(result), 200  # Return a success response with the result
@@ -197,7 +189,7 @@ def upload_image():
 @app.route('/combine_images', methods=['POST'])
 def combine_images_two_columns():
     folder_path = './photos_taken'  # Change to your folder path
-    output_path = 'combined_result.jpg'  # Output image path
+    output_path = 'combined_result.jpg'  # Output image pathpython
     # Load all the images in the folder that end with .jpg
     images = [Image.open(os.path.join(folder_path, f)) for f in os.listdir(folder_path) if f.endswith('.jpg')]
     

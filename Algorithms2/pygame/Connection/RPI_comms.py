@@ -1,12 +1,8 @@
-'''
-RPI will be hosted as socket server for android and PC communications
-'''
-
 import os
 import socket
 import bluetooth
 from time import sleep
-from Connection.setup_logger import logger
+from setup_logger import logger
 
 RETRY_LIMIT = 10
 

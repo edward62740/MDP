@@ -1,4 +1,3 @@
-
 import asyncio
 import SRF05
 
@@ -49,9 +48,7 @@ id_to_class = {
     28: 39, #left
     29: 40,
 }
-
-
-        
+   
 async def main():
     robot = RobotController(PORT, BAUD)
     DIST = 100 # cm

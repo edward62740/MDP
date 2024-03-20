@@ -2,7 +2,7 @@
 <launchConfiguration type="com.st.stm32cube.ide.mcu.debug.launch.launchConfigurationType">
     <stringAttribute key="com.st.stm32cube.ide.mcu.debug.jlink.device" value="STM32F407VE"/>
     <stringAttribute key="com.st.stm32cube.ide.mcu.debug.jlink.endian" value="little"/>
-    <stringAttribute key="com.st.stm32cube.ide.mcu.debug.jlink.init_speed" value="1000"/>
+    <stringAttribute key="com.st.stm32cube.ide.mcu.debug.jlink.init_speed" value="4000"/>
     <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.jlink.jlink_check_serial_number" value="false"/>
     <stringAttribute key="com.st.stm32cube.ide.mcu.debug.jlink.jlink_script_path" value=""/>
     <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.jlink.jlink_script_used" value="false"/>
@@ -43,7 +43,7 @@
     <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.enable_shared_stlink" value="false"/>
     <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.frequency" value="0"/>
     <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.halt_all_on_reset" value="false"/>
-    <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.log_file" value="C:\Users\Workstation\Documents\GitHub\MDP\STM32 Code\STM32_code\Debug\st-link_gdbserver_log.txt"/>
+    <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.log_file" value="C:\Users\Edward\Documents\GitHub\MDP\STM32 Code\STM32_code\Debug\st-link_gdbserver_log.txt"/>
     <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.low_power_debug" value="none"/>
     <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.max_halt_delay" value="2"/>
     <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.reset_strategy" value="connect_under_reset"/>
