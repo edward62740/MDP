@@ -6,10 +6,11 @@ from time import *
 from Connection.RPI_comms import RPI_connection
 from stm32_api.dispatcher import BlockingDispatcher, _IO_Attr_Type
 import math
-import photographer
-from multiprocessing import Process, Pool
+from photographer import take_photo
+from multiprocessing import Process
 import json
 from RPI_flask import RPIFlaskServer
+from settings import TASK2_VALUE
 
 robot = RobotController(PORT, BAUD)
 robot.set_threshold_stop_distance_left(1)
@@ -55,7 +56,7 @@ def obst_cb(*args):
 # wait for "interrupt". technically, not an interrupt. but it makes sense to think of it as such from application level
 async def _WFI():
      
-     await asyncio.sleep(0.45)
+     await asyncio.sleep(0.4)
      while(robot.poll_is_moving()):
         await asyncio.sleep(0.05)
 
@@ -183,7 +184,7 @@ async def scan_len2(dir: DIR) -> float:
         x = 0
 
     global x_p
-    x_p += x + CONST_TURN_RAD_CM + CONST_STEP_SIZE_OBST
+    x_p += x + 2*CONST_TURN_RAD_CM
 
     print("Last distance: " + str(x))
     
@@ -231,9 +232,9 @@ async def scan_len2(dir: DIR) -> float:
 
     
     await dispatcher.dispatchB(RobotController.halt, [], obst_cb)
-    #await _WFI()
-    await dispatcher.dispatchB(RobotController.move_forward, [5, 1], obst_cb)
     await _WFI()
+    #await dispatcher.dispatchB(RobotController.move_forward, [5, 1], obst_cb)
+    #await _WFI()
 
     await dispatcher.dispatchB(RobotController.turn_left if sensor is DIR.LEFT else RobotController.turn_right, [90, 1, 1], obst_cb)
     await _WFI()
@@ -254,11 +255,13 @@ async def scan_len2(dir: DIR) -> float:
     await dispatcher.dispatchB(RobotController.turn_right if dir is DIR.LEFT else RobotController.turn_left, [90, 1, 1], obst_cb)
     await _WFI()
     
-    if x_p - 2*CONST_TURN_RAD_CM> 0:
-        await dispatcher.dispatchB(RobotController.move_forward, [math.floor(x_p-CONST_TURN_RAD_CM), 1], obst_cb)
-    elif x_p - 2*CONST_TURN_RAD_CM < 0:
-        await dispatcher.dispatchB(RobotController.move_backward, [math.floor(10), 1], obst_cb)
+    if x_p - 30> 0:
+        await dispatcher.dispatchB(RobotController.move_forward, [math.floor(x_p-2*CONST_TURN_RAD_CM), 1], obst_cb)
 
+    elif x_p - 30 < 0:
+        await dispatcher.dispatchB(RobotController.backward, [CONST_STEP_SIZE_OBST, 1], obst_cb)
+
+    
   
     await dispatcher.dispatchB(RobotController.turn_right if dir is DIR.RIGHT else RobotController.turn_left, [90, 1, 1], obst_cb)
     await _WFI()
@@ -268,7 +271,7 @@ async def scan_len2(dir: DIR) -> float:
 
 
 
-async def main():    
+async def main():
     await dispatcher.dispatchB(RobotController.set_threshold_disable_obstacle_detection_left, [], obst_cb)
     await dispatcher.dispatchB(RobotController.set_threshold_disable_obstacle_detection_right, [], obst_cb)
 
@@ -278,7 +281,6 @@ async def main():
     print("YAW")
     print(phi)
 
-    pool = Pool()
 
     x = await get_distance()
     await dispatcher.dispatchB(RobotController.crawl_forward, [150], obst_cb)
@@ -293,10 +295,12 @@ async def main():
 
         await asyncio.sleep(0.05)
     await dispatcher.dispatchB(RobotController.halt, [], obst_cb)
-    #await _WFI()
-    img = pool.apply_async(photographer.take_photo) # move this
     x = await get_distance()
     LOG_I(x)
+    await _WFI()
+    
+
+ 
 
     if x < CONST_TH_DIST_OBST:
         await dispatcher.dispatchB(RobotController.move_backward, [CONST_TH_DIST_OBST - x], obst_cb)
@@ -306,11 +310,9 @@ async def main():
     x = await get_distance()
     LOG_I(x)
     
+    img = 0
     
-    img = str(img.get())
-    img = (json.loads(img)["message"]).split(",")[0]
     ret = DIR.RIGHT if int(img) == 38 else DIR.LEFT
-    
     
   
     await nav1_pos(ret)
@@ -333,7 +335,6 @@ async def main():
         await _WFI()
         d0 = await get_distance()
 
-    img = pool.apply_async(photographer.take_photo) # move this
 
     if d0 < CONST_TH_DIST_OBST  :
         await dispatcher.dispatchB(RobotController.move_backward, [CONST_TH_DIST_OBST - d0], obst_cb)
@@ -347,12 +348,14 @@ async def main():
     LOG_I(x)
     await _WFI()
 
-    img = str(img.get())
-    img = (json.loads(img)["message"]).split(",")[0]
+    
+    img = 0
     ret = DIR.RIGHT if int(img) == 38 else DIR.LEFT
+    
  
     len2 = await scan_len2(ret)
     
+
     await _WFI()
 
     mag, direction = await turn_error_minimization(phi, True, 180)
@@ -364,8 +367,11 @@ async def main():
         await _WFI()
 
     x = await get_distance()
+    if x < CONST_TH_DIST_OBST + 10:
+        return
     await dispatcher.dispatchB(RobotController.crawl_forward, [50], obst_cb)
     
+ 
     while x > CONST_TH_DIST_OBST + 10:                                      #range distance min(60,150)
         x = await get_distance()
         LOG_I(x)

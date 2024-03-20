@@ -4,10 +4,10 @@ from Map import RobotPosition
 from settings import *
 from Robot.commands import *
 from Robot.path_mgr import Brain
-
+from Connection.RPI_comms import RPI_connection
 
 class Robot:
-    def __init__(self, grid):
+    def __init__(self, grid, rpi: RPI_connection = None):
         # Note that we assume the robot starts always facing the top.
         # This value will never change, but it will not affect us as the robot uses a more fine-tuned internal
         # angle tracker.
@@ -18,7 +18,7 @@ class Robot:
                                  
         self._start_copy = self.pos.copy()
 
-        self.brain = Brain(self, grid)
+        self.brain = Brain(self, grid, rpi)
 
         #self.__image = pygame.transform.scale(pygame.image.load("Algorithms-testing/assets/robot.png"), (90, 90))
 

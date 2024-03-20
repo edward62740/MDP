@@ -54,7 +54,7 @@ class SerialCmdBaseLL:
     def __init__(self, port, baud):
         self.ser = ser.Serial(port, baud)
         self.ser.timeout = self.ACK_TIMEOUT_MS / 1000
-        pass
+        
 
     def send_cmd(self) -> str:
         self.is_reading = True

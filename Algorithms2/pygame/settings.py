@@ -19,6 +19,7 @@ BAUD = 115200
 PC = '192.168.22.31' # YL's macbook
 #PC = '192.168.22.42' 
 FLASK_PORT = 8080
+RPI_FLASK_PORT = 2222
   
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)

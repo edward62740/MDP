@@ -1,6 +1,5 @@
 import logging
 from time import sleep
-from multiprocessing import Process
 
 import asyncio
 from stm32_api.dispatcher import BlockingDispatcher, _IO_Attr_Type
@@ -19,6 +18,7 @@ from typing import List, Tuple, Any, Callable
 from stm32_api.robot_controller import RobotController
 from Robot.commands import *
 import photographer
+from Connection.RPI_comms import RPI_connection
 
 def obst_cb():
     pass
@@ -27,18 +27,19 @@ class Translator:
     GRID_UNIT_CM = 10
     TURN_ARC_RADIUS_CM = 20
 
-    def __init__(self, robot_port: str, robot_baudrate: int):
+    def __init__(self, robot_port: str, robot_baudrate: int, rpi: RPI_connection = None):
         self.path: List[Any] = []
         self.robot = RobotController(robot_port, robot_baudrate)
         self.robot.set_threshold_stop_distance_right(1)
         self.robot.set_threshold_stop_distance_left(1) # remove in real run
         self.dispatcher = BlockingDispatcher(self.robot, 5, 2, u_if=_IO_Attr_Type.PHYSICAL)
         self.logger = logging.getLogger(__name__)
+        self.rpi = rpi
         self.moving = False
         self.camera = None
 
     def add_path(self, path: List[Command]):
-        self.logger.debug("adding path %s", path)
+        #self.logger.debug("adding path %s", path)
         for movement in path:
             if not isinstance(movement, Command):
                 raise ValueError("Invalid movement encountered: {}".format(movement))
@@ -108,7 +109,7 @@ class Translator:
             
             elif isinstance(tempCmd,ScanCommand):
                 #SendRequest to take image
-                cmd_path.append('Scan')
+                cmd_path.append(f'Scan,{tempCmd.obj_index}')
 
         cmd_path.append("Fin")
         self.logger.debug(cmd_path)
@@ -124,14 +125,16 @@ class Translator:
         cur_offset = 0
         ctr = 0
         for cmd in cmd_path:
-            print(*cmd[1])
             if isinstance(cmd[0],str):
-                if self.camera is None:
-                    self.camera = photographer.start_camera()
-                photographer.fire_and_forget(self.camera)
+                if ('Scan' in cmd):
+                    obj_index = cmd.split(',')[1]
+                    
+                    if self.camera is None:
+                        self.camera = photographer.start_camera()
+                    photographer.fire_and_forget(self.camera, self.rpi, obj_index)
+
             else: 
                 self.moving = True
-                print(cmd[1])
                 await self.dispatcher.dispatchB(cmd[0], cmd[1], self.obstacle_callback)
                 await asyncio.sleep(0.45)
                     
@@ -139,9 +142,6 @@ class Translator:
                     await asyncio.sleep(0.01)
                     
                 ctr += 1
-                print(cmd[0])
-                print(RobotController.turn_left)
-                
                 if id(cmd[0]) == id(RobotController.turn_left):
                     cur_offset += 90
                     if cur_offset > 180:
@@ -157,6 +157,8 @@ class Translator:
                     print(e)
                     if e < 25:
                         await self.dispatcher.dispatchB(RobotController.turn_left if sgn else RobotController.turn_right, [math.floor(e), 1], self.obstacle_callback)
+                        while(self.robot.poll_is_moving()):# If robot not moving
+                            await asyncio.sleep(0.01)
                             
         self.logger.debug("dispatched path")
         photographer.combine_images()

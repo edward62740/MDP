@@ -55,7 +55,7 @@ def obst_cb(*args):
 # wait for "interrupt". technically, not an interrupt. but it makes sense to think of it as such from application level
 async def _WFI():
      
-     await asyncio.sleep(0.45)
+     await asyncio.sleep(0.15)
      while(robot.poll_is_moving()):
         await asyncio.sleep(0.05)
 

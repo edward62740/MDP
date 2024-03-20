@@ -38,8 +38,8 @@ def main():
                 print(e)
         elif choice == 2:
             #obst_message = '16,15,N,16,6,W,8,10,S,1,15,E,6,20,S'
-            #obst_message = '16,15,N,16,6,W,8,10,S,3,18,S,18,18,w'
-            obst_message = '18,18,s,3,18,s, 18,3,w'
+            obst_message = '17,15,N,6,8,S,7,15,W,12,11,E,12,4,E'
+            #obst_message = '18,18,s,3,18,s, 18,3,w'
             try:
                 obstacles = parse_obstacle_data_cur(obst_message)
                 app = AlgoMinimal(obstacles)
