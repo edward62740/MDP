@@ -94,9 +94,22 @@ def combine_images():
         print("Server Down or something failed!")
         return None
 
+def reset_images():
+    response = requests.post(f'http://{PC}:{FLASK_PORT}/reset_images')
+
+    if response.status_code == 200:
+        print(response.text)
+        return
+    else:
+        print("Server Down or something failed!")
+        return None
+
 def fire_and_forget(camera, rpi: RPI_connection, obj_index: int = -1):
     threading.Thread(target=take_photo2, args=(camera, rpi, obj_index)).start()
-        
+
+def fire_and_destroy():
+    threading.Thread(target=reset_images).start()
+
 if __name__ == '__main__':
     cam = start_camera()
     n = 3

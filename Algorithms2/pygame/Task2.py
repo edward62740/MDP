@@ -97,7 +97,7 @@ async def main():
         #robot.turn_right(ANGLE, True)                               #turn forward right arnd 1st obstacle
         await dispatcher.dispatchB(robot.turn_right,[ANGLE,True],None)
         print("Turn Right forward around obs1")
-
+        
         #robot.turn_left(ANGLE, True)                                #turn forward left
         await dispatcher.dispatchB(robot.turn_left,[ANGLE,True],None)
         print("Turn Left forward around obs1")        
@@ -350,4 +350,3 @@ async def main():
 if __name__ == '__main__':
     asyncio.run(main())
     
-

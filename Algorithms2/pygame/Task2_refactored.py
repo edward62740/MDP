@@ -280,8 +280,8 @@ async def main():
     else:
         Obst1Left(dispatcher)
 
-    y2 = FwdTillObst(dispatcher,sensor) + 60                             # Move forward till in front of Obstacle 2 with distance of 40, y2 used to avoid Obst1 on return motion
-
+    y2 = await FwdTillObst(dispatcher,sensor)                             # Move forward till in front of Obstacle 2 with distance of 40, y2 used to avoid Obst1 on return motion
+    y2 += 60
     obs2 = photographer.take_photo()                                     #scan 2nd obstacle
     #obs2 = 38
     print("2nd obstacle direction: ", obs2)

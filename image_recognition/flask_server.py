@@ -16,7 +16,7 @@ import requests
 
 
 app = Flask(__name__)
-model = YOLO('./models/no_deadend.pt') # replace model here
+model = YOLO('./AI_models/no_deadend.pt') # replace model here
 id_to_class = { 
     0: 99, # convert detected image ID to their correct (MDP) class ID
     1: 12,
@@ -84,8 +84,8 @@ class_to_obst={
     40: 'STOP'
 }
 
-output_class = {}
-
+# output_class = {}
+image_counter = 1 # count number of images taken so far
 def choose_best_class(detected_items):
     YOLO_CONF_THRESH = 0.1
 
@@ -117,6 +117,7 @@ def choose_best_class(detected_items):
     return best_actual_id, confidence
 
 def detect_image(image_path):
+    global image_counter
     output_folder_path = './photos_taken'
 
     if not os.path.exists(output_folder_path):
@@ -125,8 +126,8 @@ def detect_image(image_path):
     detected_items = {}
 
     try:
-        # results = model(image_path, device="0") only with gpu
-        results = model(image_path) # CPU
+        results = model(image_path, device="0") # only with gpu
+        # results = model(image_path) # CPU
         result = results[0]
         detection_count = result.boxes.shape[0]
         print(f'Number of detections: {detection_count}')
@@ -149,8 +150,11 @@ def detect_image(image_path):
             real_id = id_to_class[obj_detected_startfrom0]
             print(str(real_id)+' area: '+str(box_size))
             detected_items[real_id] = [box_size, confidence]
-
-        chosen_class = choose_best_class(detected_items)
+        chosen_class = choose_best_class(detected_items) # [0] = class ID, [1] = confidence value
+        print(f"saving detected class: {chosen_class[0]}")
+        saved_filename = f'found_{chosen_class[0]}_{image_counter}.jpg'
+        im.save(os.path.join('./photos_taken', saved_filename))
+        """
         #print('chosen_class ',chosen_class)
         if not output_class.get(chosen_class[0]) and detection_count >= 1:
             output_class[chosen_class[0]] = chosen_class[1]
@@ -167,13 +171,13 @@ def detect_image(image_path):
         else:
             print("Something went wrong")
             return -1,-1
-        
-        img = Image.open(f"./photos_taken/found_{chosen_class[0]}.jpg")
+        """
+        img = Image.open(f"./photos_taken/{saved_filename}")
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("arial.ttf", 120)
         draw.text((0,0), f"Object: {class_to_obst[int(chosen_class[0])]}", (255,255,255), font=font)
-        img.save(f'./photos_taken/found_{chosen_class[0]}.jpg')
-
+        img.save(f'./photos_taken/{saved_filename}')
+        image_counter += 1 
         #if detection_count >= 1:
         #    print('saving image')
         #    saved_filename = f'found_{chosen_class[0]}.jpg'
@@ -267,6 +271,16 @@ def combine_images_two_columns():
     combined_image.save(output_path)
     
     return jsonify({"message": "Images combined successfully"})
+
+@app.route('/reset_images', methods=['POST'])
+def reset_images():
+    global image_counter
+    image_counter = 1
+    folder = "./photos_taken"
+    for file in os.listdir(folder):
+        os.unlink(f'{folder}/{file}')
+    return 'done', 200
+    
     
 def start_server(host, port, debug):
     app.run(host=host,port=port,debug=debug)    
