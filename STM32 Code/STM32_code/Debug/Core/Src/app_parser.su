@@ -5,7 +5,7 @@
 ../Core/Src/app_parser.cpp:48:1:AppParser::Processor::~Processor()	16	static
 ../Core/Src/app_parser.cpp:53:6:static void AppParser::Processor::startImpl(void*)	16	static
 ../Core/Src/app_parser.cpp:58:6:void AppParser::Processor::start()	32	static
-../Core/Src/app_parser.cpp:71:6:static void AppParser::Processor::processorTask(void*)	88	static
-../Core/Src/app_parser.cpp:225:6:static void AppParser::Processor::returnSensorRequestCmd(AppParser::BUF_CMP_t)	104	static
-../Core/Src/app_parser.cpp:277:15:static AppParser::MOTION_PKT_t* AppParser::Processor::getMotionCmdFromBytes(AppParser::BUF_CMP_t*)	24	static
-../Core/Inc/app_parser.h:79:14:static bool AppParser::Processor::isEq(const T&, const T&) [with T = unsigned char]	16	static
+../Core/Src/app_parser.cpp:71:6:static void AppParser::Processor::processorTask(void*)	104	static
+../Core/Src/app_parser.cpp:249:6:static void AppParser::Processor::returnSensorRequestCmd(AppParser::BUF_CMP_t)	104	static
+../Core/Src/app_parser.cpp:301:15:static AppParser::MOTION_PKT_t* AppParser::Processor::getMotionCmdFromBytes(AppParser::BUF_CMP_t*)	24	static
+../Core/Inc/app_parser.h:82:14:static bool AppParser::Processor::isEq(const T&, const T&) [with T = unsigned char]	16	static

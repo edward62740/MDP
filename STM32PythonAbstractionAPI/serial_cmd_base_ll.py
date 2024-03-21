@@ -38,6 +38,9 @@ class SerialCmdBaseLL:
         HALT_CHAR = b'h'
         CRAWL_CHAR = b'd'
         LINEAR_CHAR = b'j'
+        T2_180_CHAR = b'!'
+        T2_90_CHAR = b'?'
+        T2_O1_CHAR = b'@'
 
     class SensorCmd(Enum):
         IR_LEFT = b'w'

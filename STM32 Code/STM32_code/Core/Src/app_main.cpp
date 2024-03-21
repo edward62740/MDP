@@ -78,7 +78,7 @@ void initializeCPPconstructs(void) {
 	irTaskHandle = osThreadNew(irTask, NULL, &irTask_attr);
 }
 
-#define BUFFER_SIZE 8  // Buffer size for 10 samples
+#define BUFFER_SIZE 4  // Buffer size for 10 samples
 
 float irBufferL[BUFFER_SIZE]; // Buffer for left IR sensor
 float irBufferR[BUFFER_SIZE]; // Buffer for right IR sensor

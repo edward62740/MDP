@@ -363,3 +363,30 @@ class RobotController:
             return None
         return ret
 
+    def T2_180(self, dir: bool):
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.AUX)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.T2_180_CHAR)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LEFT_CHAR) if dir else self.drv.add_motor_cmd_byte(self.drv.MotorCmd.RIGHT_CHAR)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+
+    def T2_90(self, dir: bool):
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.AUX)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.T2_90_CHAR)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LEFT_CHAR) if dir else self.drv.add_motor_cmd_byte(self.drv.MotorCmd.RIGHT_CHAR)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+
+    def T2_O1(self, dir: bool):
+        self.drv.construct_cmd()
+        self.drv.add_cmd_byte(True)
+        self.drv.add_module_byte(self.drv.Modules.AUX)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.T2_O1_CHAR)
+        self.drv.add_motor_cmd_byte(self.drv.MotorCmd.LEFT_CHAR) if dir else self.drv.add_motor_cmd_byte(self.drv.MotorCmd.RIGHT_CHAR)
+        self.drv.pad_to_end()
+        return self.drv.ll_is_valid(self.drv.send_cmd())
+

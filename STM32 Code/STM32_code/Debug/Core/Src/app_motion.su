@@ -1,21 +1,24 @@
-../Core/Inc/app_motion.h:111:15:static float AppMotion::MotionController::map(float, float, float, float, float)	32	static
+../Core/Inc/app_motion.h:114:15:static float AppMotion::MotionController::map(float, float, float, float, float)	32	static
 ../Core/Src/app_motion.cpp:30:1:AppMotion::MotionController::MotionController(u_ctx*)	16	static
 ../Core/Src/app_motion.cpp:36:6:void AppMotion::MotionController::start()	72	static
 ../Core/Src/app_motion.cpp:63:6:static void AppMotion::MotionController::motionTask(void*)	80	static
-../Core/Src/app_motion.cpp:121:6:void AppMotion::MotionController::move(bool, uint32_t, uint32_t, bool, bool)	128	static
-../Core/Src/app_motion.cpp:200:6:void AppMotion::MotionController::turn(bool, bool, bool, uint32_t)	96	static
-../Core/Src/app_motion.cpp:289:6:void AppMotion::MotionController::emergencyStop()	16	static
-../Core/Src/app_motion.cpp:293:1:AppMotion::Servo::Servo(TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t, uint32_t)	24	static
-../Core/Src/app_motion.cpp:303:6:void AppMotion::Servo::turnLeft()	16	static
-../Core/Src/app_motion.cpp:308:6:void AppMotion::Servo::turnRight()	16	static
-../Core/Src/app_motion.cpp:313:6:void AppMotion::Servo::turnFront()	16	static
-../Core/Src/app_motion.cpp:318:1:AppMotion::Motor::Motor(TIM_HandleTypeDef*, uint32_t, GPIO_TypeDef*, GPIO_TypeDef*, uint16_t, uint16_t, uint32_t)	24	static
-../Core/Src/app_motion.cpp:333:6:bool AppMotion::Motor::setSpeed(uint32_t)	24	static
-../Core/Src/app_motion.cpp:341:6:bool AppMotion::Motor::_setDutyCycleVal(uint32_t)	16	static
-../Core/Src/app_motion.cpp:348:6:void AppMotion::Motor::halt()	16	static
-../Core/Src/app_motion.cpp:352:6:void AppMotion::Motor::setForward()	16	static
-../Core/Src/app_motion.cpp:357:6:void AppMotion::Motor::setBackward()	16	static
-../Core/Src/app_motion.cpp:362:1:AppMotion::Encoder::Encoder(TIM_HandleTypeDef*, uint32_t)	24	static
-../Core/Src/app_motion.cpp:370:10:uint32_t AppMotion::Encoder::getCount()	16	static
-../Core/Src/app_motion.cpp:374:10:uint32_t AppMotion::Encoder::getDelta(uint32_t, uint32_t)	24	static
-../Core/Inc/app_motion.h:114:35:static int AppMotion::MotionController::sgn(T) [with T = float]	16	static
+../Core/Src/app_motion.cpp:129:6:void AppMotion::MotionController::move(bool, uint32_t, uint32_t, bool, bool)	128	static
+../Core/Src/app_motion.cpp:208:6:void AppMotion::MotionController::turn(bool, bool, bool, uint32_t)	96	static
+../Core/Src/app_motion.cpp:297:6:void AppMotion::MotionController::emergencyStop()	16	static
+../Core/Src/app_motion.cpp:314:6:void AppMotion::MotionController::task2ScanAndRot(bool)	120	static
+../Core/Src/app_motion.cpp:430:6:void AppMotion::MotionController::task2ScanAndReturn(bool)	120	static
+../Core/Src/app_motion.cpp:546:6:void AppMotion::MotionController::task2PassObstOne(bool)	24	static
+../Core/Src/app_motion.cpp:552:1:AppMotion::Servo::Servo(TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t, uint32_t)	24	static
+../Core/Src/app_motion.cpp:562:6:void AppMotion::Servo::turnLeft()	16	static
+../Core/Src/app_motion.cpp:567:6:void AppMotion::Servo::turnRight()	16	static
+../Core/Src/app_motion.cpp:572:6:void AppMotion::Servo::turnFront()	16	static
+../Core/Src/app_motion.cpp:577:1:AppMotion::Motor::Motor(TIM_HandleTypeDef*, uint32_t, GPIO_TypeDef*, GPIO_TypeDef*, uint16_t, uint16_t, uint32_t)	24	static
+../Core/Src/app_motion.cpp:592:6:bool AppMotion::Motor::setSpeed(uint32_t)	24	static
+../Core/Src/app_motion.cpp:600:6:bool AppMotion::Motor::_setDutyCycleVal(uint32_t)	16	static
+../Core/Src/app_motion.cpp:607:6:void AppMotion::Motor::halt()	16	static
+../Core/Src/app_motion.cpp:611:6:void AppMotion::Motor::setForward()	16	static
+../Core/Src/app_motion.cpp:616:6:void AppMotion::Motor::setBackward()	16	static
+../Core/Src/app_motion.cpp:621:1:AppMotion::Encoder::Encoder(TIM_HandleTypeDef*, uint32_t)	24	static
+../Core/Src/app_motion.cpp:629:10:uint32_t AppMotion::Encoder::getCount()	16	static
+../Core/Src/app_motion.cpp:633:10:uint32_t AppMotion::Encoder::getDelta(uint32_t, uint32_t)	24	static
+../Core/Inc/app_motion.h:117:35:static int AppMotion::MotionController::sgn(T) [with T = float]	16	static

@@ -134,7 +134,9 @@ void Processor::processorTask(void *pv) {
 			if (isEq<BUF_CMP_t>(REQ_CHAR, msg.buffer[1])) {
 				if (isEq(SENSOR_CHAR, msg.buffer[2])) {
 					returnSensorRequestCmd(msg.buffer[3]);
-				} else if (isEq(AUX_CHAR, msg.buffer[2])) {
+				}
+
+				else if (isEq(AUX_CHAR, msg.buffer[2])) {
 					if (isEq(LAST_HALT_CHAR, msg.buffer[3])) {
 						uint8_t tx_buf[25] = { 0 };
 						snprintf((char*) &tx_buf, sizeof(tx_buf), "%ld",
@@ -200,6 +202,28 @@ void Processor::processorTask(void *pv) {
 
 					}
 
+				}
+				case AUX_CHAR: {
+					if (isEq(T2_180R_CHAR, msg.buffer[3])) {
+						MOTION_PKT_t *pkt = new MOTION_PKT_t();
+						pkt->turn_opt = isEq(LEFT_CHAR, msg.buffer[4]);
+						osMessageQueuePut(tx_ctx->mailbox.queue, pkt, 0, 0);
+						HAL_UART_Transmit(&huart3, (BUF_CMP_t*) ack,
+								sizeof(ack), 10);
+					} else if (isEq(T2_90R_CHAR, msg.buffer[3])) {
+						MOTION_PKT_t *pkt = new MOTION_PKT_t();
+						pkt->turn_opt = isEq(LEFT_CHAR, msg.buffer[4]);
+						osMessageQueuePut(tx_ctx->mailbox.queue, pkt, 0, 0);
+						HAL_UART_Transmit(&huart3, (BUF_CMP_t*) ack,
+								sizeof(ack), 10);
+					}
+					else if (isEq(T2_O1_CHAR, msg.buffer[3])) {
+						MOTION_PKT_t *pkt = new MOTION_PKT_t();
+						pkt->turn_opt = isEq(LEFT_CHAR, msg.buffer[4]);
+						osMessageQueuePut(tx_ctx->mailbox.queue, pkt, 0, 0);
+						HAL_UART_Transmit(&huart3, (BUF_CMP_t*) ack,
+								sizeof(ack), 10);
+					}
 				}
 				default: {
 					// something went wrong..

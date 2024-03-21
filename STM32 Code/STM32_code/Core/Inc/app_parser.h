@@ -39,6 +39,9 @@ typedef enum : uint32_t
 	MOVE_RIGHT_BWD,
 	MOVE_LEFT_BWD,
 	MOVE_HALT,
+	MOVE_T2_S180R,
+	MOVE_T2_S90R,
+	MOVE_T2_O1, // move around 1st obstacle
 } MOTION_CMD;
 
 
@@ -112,6 +115,7 @@ static constexpr BUF_CMP_t START_CHAR = 'x';
 static constexpr BUF_CMP_t CMD_CHAR = 'c';
 static constexpr BUF_CMP_t REQ_CHAR = 'q';
 
+
 // index 2
 static constexpr BUF_CMP_t MOTOR_CHAR = 'm';
 static constexpr BUF_CMP_t SENSOR_CHAR = 's';
@@ -135,6 +139,9 @@ static constexpr BUF_CMP_t QTRN_YAW_CHAR = 'y';
 static constexpr BUF_CMP_t QTRN_ALL_CHAR = 'k';
 
 static constexpr BUF_CMP_t LAST_HALT_CHAR = 'o';
+static constexpr BUF_CMP_t T2_180R_CHAR = '!';
+static constexpr BUF_CMP_t T2_90R_CHAR = '?';
+static constexpr BUF_CMP_t T2_O1_CHAR = '@';
 // index 4,5,6
 /* This will be a 3-digit number
  * if [2] is MOTOR_CHAR AND [3] is f/b, then this is motion in cm.

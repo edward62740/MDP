@@ -83,8 +83,8 @@ private:
 class MotionController {
 
 #define CENTER_POS_PWM 147.5 //150
-#define LEFT_DELTA 50  // was 40
-#define RIGHT_DELTA 100 // was 80 then 100
+#define LEFT_DELTA 64  // was 40 //50 /65
+#define RIGHT_DELTA 89 // was 80 then 100 //100 /102
 
 #define LEFT_POS_PWM (CENTER_POS_PWM - RIGHT_DELTA)
 #define RIGHT_POS_PWM (CENTER_POS_PWM + RIGHT_DELTA)
@@ -103,6 +103,9 @@ public:
 			uint32_t arg);
 	void move(bool isFwd, uint32_t arg, uint32_t speed, bool isCrawl, bool nostop);
 	void emergencyStop();
+	void task2ScanAndRot(bool dir);
+	void task2ScanAndReturn(bool dir);
+	void task2PassObstOne(bool dir);
 	~MotionController() {
 	}
 	;
@@ -114,6 +117,7 @@ public:
 	template <typename T> static int sgn(T val) {
 	    return (T(0) < val) - (val < T(0));
 	}
+
 private:
 	Motor *lmotor;
 	Motor *rmotor;
