@@ -1,17 +1,22 @@
-# import cv2
+'''
+To be run on PC. PC hosts flask server for image recognition works
+'''
+
 import os
+from io import BytesIO
+from flask import Flask, request, jsonify
+from PIL import Image, ImageFont, ImageDraw
+from ultralytics import YOLO
+import random
+import requests
+# import cv2
 # import numpy as np
 # import uuid
 # import math
-import torch
-from io import BytesIO
-from flask import Flask, request, jsonify
-from PIL import Image
-from ultralytics import YOLO
 
 
 app = Flask(__name__)
-model = YOLO('best_model_dead_end.pt') # replace model here
+model = YOLO('./models/no_deadend.pt') # replace model here
 id_to_class = { 
     0: 99, # convert detected image ID to their correct (MDP) class ID
     1: 12,
@@ -46,10 +51,43 @@ id_to_class = {
     99: 99,
 }
 
+class_to_obst={
+    11: '1',
+    12: '2',
+    13: '3',
+    14: '4',
+    15: '5',
+    16: '6',
+    17: '7',
+    18: '8',
+    19: '9',
+    20: 'A',
+    21: 'B',
+    22: 'C',
+    23: 'D',
+    24: 'E',
+    25: 'F',
+    26: 'G',
+    27: 'H',
+    28: 'S',
+    29: 'T',
+    30: 'U',
+    31: 'V',
+    32: 'W',
+    33: 'X',
+    34: 'Y',
+    35: 'Z',
+    36: 'UP',
+    37: 'DOWN',
+    38: 'RIGHT',
+    39: 'LEFT',
+    40: 'STOP'
+}
+
 output_class = {}
 
 def choose_best_class(detected_items):
-    YOLO_CONF_THRESH = 0.5
+    YOLO_CONF_THRESH = 0.1
 
     if len(detected_items) == 0:
         print('No items detected')
@@ -79,7 +117,7 @@ def choose_best_class(detected_items):
     return best_actual_id, confidence
 
 def detect_image(image_path):
-    output_folder_path = './output'
+    output_folder_path = './photos_taken'
 
     if not os.path.exists(output_folder_path):
         os.makedirs(output_folder_path)
@@ -92,14 +130,13 @@ def detect_image(image_path):
         result = results[0]
         detection_count = result.boxes.shape[0]
         print(f'Number of detections: {detection_count}')
-
+        
         if detection_count == 0:
             return -1,-1  # Return -1 to indicate no detections
-        
         boxes = result.boxes
         im_array = result.plot()
         im = Image.fromarray(im_array[..., ::-1])
-
+        
         for i in range(detection_count):
             obj_detected_startfrom0 = int(result.boxes.cls[i])
             confidence = result.boxes.conf[i]
@@ -119,12 +156,23 @@ def detect_image(image_path):
             output_class[chosen_class[0]] = chosen_class[1]
             print('saving image')
             saved_filename = f'found_{chosen_class[0]}.jpg'
-            im.save(os.path.join("./output", saved_filename))
+            im.save(os.path.join("./photos_taken", saved_filename))
+            
         elif output_class[chosen_class[0]] < chosen_class[1] and detection_count >= 1:
             output_class[chosen_class[0]] = chosen_class[1]
             print('saving image')
             saved_filename = f'found_{chosen_class[0]}.jpg'
-            im.save(os.path.join("./output", saved_filename))
+            im.save(os.path.join("./photos_taken", saved_filename))
+            
+        else:
+            print("Something went wrong")
+            return -1,-1
+        
+        img = Image.open(f"./photos_taken/found_{chosen_class[0]}.jpg")
+        draw = ImageDraw.Draw(img)
+        font = ImageFont.truetype("arial.ttf", 120)
+        draw.text((0,0), f"Object: {class_to_obst[int(chosen_class[0])]}", (255,255,255), font=font)
+        img.save(f'./photos_taken/found_{chosen_class[0]}.jpg')
 
         #if detection_count >= 1:
         #    print('saving image')
@@ -153,15 +201,75 @@ def img_rec(image_file):
 def upload_image():
     if 'image' not in request.files:
         return jsonify({'message': 'No image part'}), 400  # Return an error response 
+    
     image = request.files['image']
     img = Image.open(BytesIO(image.read()))
     # mdp_id = img_rec(img)
     mdp_id = detect_image(img)
-    if mdp_id[0] == -1:
-        result = {'message': 'TARGET,Obstacle_num,-1,-1'}
-    else:
-        result = {'message': f'TARGET,Obstacle_num,{mdp_id[0]},{mdp_id[1]}'}
-    return jsonify(result), 200  # Return a success response with the result
     
+    if 'obj_index' in request.files:
+        obj_index = request.files['obj_index'].read().decode('utf-8')
+        print("obj_index", obj_index)
+        url = 'http://192.168.22.22:2222/class_detected' # pi server
+        data = f'{mdp_id[0]},{int(obj_index)}' # detection class
+        headers = { # filler
+            'Content-Type':'plain'
+        }
+        requests.post(url,data=data,headers=headers)
+        
+        return 't', 202
+    
+    elif 'task2' in request.files:
+        if mdp_id[0] == -1:
+            img.save(f'./photos_taken/not_found_{str(random.randint(0,9999999))}.jpeg', 'JPEG')
+            result = {'message': '-1,No image found'}
+        else:
+            result = {'message': f'{mdp_id[0]},{mdp_id[1]}'}
+        return jsonify(result), 200  # Return a success response with the result
+        
+
+@app.route('/combine_images', methods=['POST'])
+def combine_images_two_columns():
+    folder_path = './photos_taken'  # Change to your folder path
+    output_path = 'combined_result.jpg'  # Output image path
+    # Load all the images in the folder that end with .jpg
+    images = [Image.open(os.path.join(folder_path, f)) for f in os.listdir(folder_path) if (f.endswith('.jpg') or f.endswith('.jpeg'))]
+    
+    # Split the images into two columns
+    left_column_images = images[::2]  # Images at even indices
+    right_column_images = images[1::2]  # Images at odd indices
+
+    # Calculate total height for each column
+    left_column_height = sum(image.height for image in left_column_images)
+    right_column_height = sum(image.height for image in right_column_images)
+
+    # Calculate the maximum width for both columns to align them properly
+    max_width_left = max(image.width for image in left_column_images)
+    max_width_right = max(image.width for image in right_column_images)
+
+    # Create a new image with the appropriate size
+    total_height = max(left_column_height, right_column_height)
+    combined_image = Image.new('RGB', (max_width_left + max_width_right, total_height))
+
+    # Paste the images in the left column
+    y_offset_left = 0
+    for image in left_column_images:
+        combined_image.paste(image, (0, y_offset_left))
+        y_offset_left += image.height
+
+    # Paste the images in the right column
+    y_offset_right = 0
+    for image in right_column_images:
+        combined_image.paste(image, (max_width_left, y_offset_right))
+        y_offset_right += image.height
+
+    # Save the combined image
+    combined_image.save(output_path)
+    
+    return jsonify({"message": "Images combined successfully"})
+    
+def start_server(host, port, debug):
+    app.run(host=host,port=port,debug=debug)    
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=8080,debug=False)
