@@ -16,7 +16,7 @@ In practice, this method is able to yield error accumulation less than 0.0125 de
 #### Turning
 To perform a turn, the values $\epsilon = abs(\phi_{cur} - \phi_{target})$ and the optimum turn direction $sgn(\phi_{cur} - \phi_{target})$ (which minimizes $\epsilon$ ) are calculated. In practice, the control loop terminates the rotation whenever $\epsilon$ is within the acceptance threshold $\epsilon_{TH}$.
 
- Note: The yaw angle $\phi_z$ is derived by $\arctan\left(2 \cdot \left(q_0q_3 + q_1q_2\right), 1 - 2 \cdot \left(q_2^2 + q_3^2\right)\right)$ where $q$ is the quaternion, which itself was 
+ Note: The yaw angle $\phi_z$ is derived by $\arctan\left(2 \cdot \left(q_0q_3 + q_1q_2\right), 1 - 2 \cdot \left(q_2^2 + q_3^2\right)\right)$ where $q$ is the quaternion.
 
 #### Angular compensation
 It is possible to correct the robot's angle on the fly with the application code in [ISSUE 7](/../../issues/7). It simply performs the operation described in "Turning", or solves the optimization problem that minimizes $\epsilon$ for each 90 degree interval offset of the reference value (which also only works if $\epsilon < 45$)
