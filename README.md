@@ -9,7 +9,7 @@ The IMU's magnetometer cannot be used due to magnetic interference from the moto
 
 #### Reducing measurement errors
 A trivial solution for decreasing the integration error is to sample less often, since we are more interested in the lower frequency component of the gyro. Each sample is denoted as $\omega_{n - kT}$, where $T$ is the inter-sample time and $k \in \mathbb{Z}$.<br>
-To provide a sufficiently "smooth" output (i.e. to have step size smaller than T), the samples are interpolated $a$ times per sample. Each interpolated sample $\omega_{n - k \frac{T}{a} \cdot i}$, $i \in 1..a-1$, such that each $\omega_{n - k \frac{T}{a} \cdot i} = \frac{1}{a} \Delta \omega_{n-(k-1)T} \cdot i + \omega_{n-kT}$. $a$ is chosen such that $a < \epsilon_{TH}$ as described below.
+To provide a sufficiently "smooth" output (i.e. to have step size smaller than T), the samples are interpolated $a$ times per sample. Each interpolated sample $\omega_{n - k \frac{T}{a} \cdot i}$, $i \in 1..a-1$, such that each $\omega_{n - k \frac{T}{a} \cdot i} = \frac{1}{a} \Delta \omega_{n-(k-1)T} \cdot i + \omega_{n-kT}$. $a$ is chosen such that $a^{-1} < max( \Delta \phi ) / s$ as described below.
 <br>
 In practice, this method is able to yield error accumulation less than 0.0125 deg/s with DLPF avergaging over 8 samples.
 
