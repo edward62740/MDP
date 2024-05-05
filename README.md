@@ -1,4 +1,17 @@
 # MDP
+## Overview
+The contents of the subfolders in this repository are as follows:
+| Subfolder                 | Purpose                                  |
+|---------------------------|------------------------------------------|
+| Algorithms                | Algorithms for pathfinding               |
+| Android                   | Android app                              |
+| ImageRecognition          | Pytorch model weights, flask server etc. |
+| STM32 Code                | Robot C++ code (on STM32)                |
+| STM32PythonAbstractionAPI | Robot Python abstraction layers          |
+| Task 2 Code               | Code for task 2 (fastest car)            |
+| Task A5 Code              | Code for checklist A5                    |
+
+Some of the subfolders also contain their own READMEs.
  
 ## Theory of Operation (STM32 and related SW Abstractions)
 ### Speed Control
@@ -9,7 +22,7 @@ The IMU's magnetometer cannot be used due to magnetic interference from the moto
 
 #### Reducing measurement errors
 A trivial solution for decreasing the integration error is to sample less often, since we are more interested in the lower frequency component of the gyro. Each sample is denoted as $\omega_{n - kT}$, where $T$ is the inter-sample time and $k \in \mathbb{Z}$.<br>
-To provide a sufficiently "smooth" output (i.e. to have step size smaller than T), the samples are interpolated $a$ times per sample. Each interpolated sample is given by $\omega_{n - k \frac{T}{a} \cdot i} = \frac{1}{a} \Delta \omega_{n-(k-1)T} \cdot i + \omega_{n-kT}$ , for $i \in 1..a-1$,. <br> $a$ is chosen such that $max( \Delta \phi ) \cdot aT^{-1} \leq \epsilon_{TH}$ as described below.
+To provide a sufficiently "smooth" output (i.e. to have step size smaller than T), the samples are interpolated $a$ times per sample. Each interpolated sample is given by $\omega_{n - k \frac{T}{a} \cdot i} = \frac{1}{a} \Delta \omega_{n-(k-1)T} \cdot i + \omega_{n-kT}$ , for $i \in 1..a-1$,.
 <br>
 In practice, this method is able to yield error accumulation less than 0.0125 deg/s with DLPF avergaging over 8 samples.
 
